@@ -1,0 +1,12 @@
+{
+  "name": "Rakesh Naik — Raman & SERS spectroscopy",
+  "short_name": "Rakesh Naik",
+  "description": "Research, software and science communication in Raman spectroscopy, SERS and plasmonic biosensing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0a18",
+  "theme_color": "#0f0a18",
+  "icons": [
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

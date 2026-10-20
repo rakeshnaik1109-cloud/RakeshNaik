@@ -1,180 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rakesh Naik | PhD Scholar </title>
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<title>Rakesh Naik — Raman &amp; SERS Spectroscopy, Plasmonic Biosensing | IIT Roorkee</title>
+<meta name="description" content="Rakesh Naik is a PhD researcher at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee, working on surface-enhanced Raman spectroscopy (SERS), plasmonic biosensing and machine learning for rapid optical diagnostics. Developer of RNSpectraX.">
+<meta name="keywords" content="Rakesh Naik, SERS, surface-enhanced Raman spectroscopy, Raman spectroscopy, plasmonics, photonics, biosensing, IIT Roorkee, machine learning spectroscopy, RNSpectraX, optical sensing, virus detection">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Rakesh Naik — Raman &amp; SERS spectroscopy, plasmonic biosensing">
+<meta property="og:description" content="PhD researcher at IIT Roorkee reading molecules by the light they scatter. SERS biosensing, machine learning on spectra, and the RNSpectraX analysis suite.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="profile:first_name" content="Rakesh">
+<meta property="profile:last_name" content="Naik">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rakesh Naik — Raman &amp; SERS spectroscopy, plasmonic biosensing">
+<meta name="twitter:description" content="PhD researcher at IIT Roorkee. SERS biosensing, machine learning on spectra, and the RNSpectraX analysis suite.">
+<meta name="twitter:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/favicon.svg">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="css/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/#person",
+      "name": "Rakesh Naik",
+      "givenName": "Rakesh",
+      "familyName": "Naik",
+      "url": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/",
+      "jobTitle": "PhD Researcher in Photonics and Raman Spectroscopy",
+      "image": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/rakesh-naik.jpg",
+      "description": "PhD researcher working on surface-enhanced Raman spectroscopy, plasmonic biosensing and machine learning for rapid optical diagnostics.",
+      "affiliation": {
+        "@type": "ResearchOrganization",
+        "name": "Centre for Photonics and Quantum Communication Technology, Indian Institute of Technology Roorkee",
+        "url": "https://www.iitr.ac.in/"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Indian Institute of Technology Roorkee"
+      },
+      "worksFor": {
+        "@type": "ResearchOrganization",
+        "name": "Indian Institute of Technology Roorkee"
+      },
+      "knowsAbout": [
+        "Surface-enhanced Raman spectroscopy",
+        "Raman spectroscopy",
+        "Plasmonics",
+        "Photonics",
+        "Optical biosensing",
+        "Machine learning for spectral analysis",
+        "Fibre Bragg gratings",
+        "Scientific software development"
+      ],
+      "address": { "@type": "PostalAddress", "addressLocality": "Roorkee", "addressRegion": "Uttarakhand", "addressCountry": "IN" },
+      "sameAs": [
+        "https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ",
+        "https://www.linkedin.com/in/albertrakesh/",
+        "https://github.com/rakeshnaik1109-cloud",
+        "https://open.spotify.com/episode/7HmyC1vNIFne5u2BsQcuqN"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/#website",
+      "url": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/",
+      "name": "Rakesh Naik — research, software and science communication",
+      "publisher": { "@id": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/#person" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://rakeshnaik1109-cloud.github.io/RNSpectra_X/#software",
+      "name": "RNSpectraX",
+      "applicationCategory": "ScienceApplication",
+      "operatingSystem": "Any modern web browser",
+      "url": "https://rakeshnaik1109-cloud.github.io/RNSpectra_X/",
+      "softwareVersion": "3.3",
+      "description": "A client-side suite for Raman and SERS spectral processing — despiking, baseline correction, smoothing, group averaging with SD and SEM bands, prominence-based peak assignment and cross-file comparison — with a general scientific XY plotter and weighted curve fitting with parameter uncertainties.",
+      "author": { "@id": "https://rakeshnaik1109-cloud.github.io/RakeshNaik/#person" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}
+</script>
+</head>
 <body>
 
-<header class="navbar">
-    <div class="nav-container">
-        <div class="logo">Rakesh<span>Naik</span></div>
-        <nav class="nav-links">
-            <a href="#about">About</a>
-            <a href="#research">Research</a>
-            <a href="#publications">Publications</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/">RNSpectraX</a>
-            <a href="media.html">Lab2Life</a>
-            <a href="blog.html">Blog</a>
-            
-            
-            
-            
-        </nav>
-    </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html" class="current" aria-current="page">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/">RNSpectraX ↗</a>
+    </nav>
+  </div>
 </header>
 
-<main class="container">
+<main id="main">
 
-    <section id="about" class="header-flex">
-        <img src="Profile.png" class="profile-pic" alt="Rakesh Naik">
-        <div class="hero-content">
-            <h1>Rakesh Naik</h1>
-            <p class="subtitle">
-                PhD Scholar at CPQCT, IIT Roorkee<br>
-                <strong>Photonics • Plasmonics • AI in Healthcare</strong>
-            </p>
-            
-            <div class="hero-links" style="margin-top: 20px;">
-                <a href="https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ" target="_blank" class="btn-secondary">Scholar</a>
-                <a href="https://www.linkedin.com/in/albertrakesh/" target="_blank" class="btn-secondary">LinkedIn</a>
-                <a href="CV.pdf" target="_blank" class="btn-secondary">Download CV</a>
-                <a href="#contact" class="btn-primary">Contact</a>
-            </div>
-        </div>
-    </section>
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="wrap hero-grid">
 
-    <section class="intro-text">
-        <p>
-            I am a research scholar dedicated to advancing <strong>high-sensitivity optical sensing systems</strong>. 
-            By bridging the gap between experimental photonics and computational intelligence, I develop next-generation 
-            biomedical diagnostics using SERS and Optical Sensing.
-        </p>
-    </section>
+    <div>
+      <span class="hero-status"><span class="pip" aria-hidden="true"></span>PhD Researcher · IIT Roorkee</span>
 
-    <section id="research">
-    <h2>Research Interests</h2>
+      <h1>
+        <span class="line"><span>Rakesh Naik</span></span>
+      </h1>
 
-    <!-- Research Visual Banner -->
-    <div class="research-banner">
-    <img id="researchImg"
-         src="images/ResearchersBanners.png"
-         alt="Physics, Photonics, AI and Healthcare Research">
-</div>
+      <p class="lede hero-lede">
+        I read molecules by the light they scatter. My work sits where
+        <em style="color:var(--au);font-style:normal">surface-enhanced Raman spectroscopy</em>,
+        plasmonic nanostructures and machine learning meet — building optical
+        platforms that identify a pathogen or a biomarker in minutes, from a
+        signal one photon in a billion strong.
+      </p>
 
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="research.html">
+          See the research
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M1.5 12C4 12 4.5 5 6.5 5s2 7 4 7 2-9 4-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Open RNSpectraX
+        </a>
+      </div>
 
-    <div class="interests-grid">
-        <span class="tag">Surface-Enhanced Raman Scattering (SERS)</span>
-        <span class="tag">Plasmonics</span>
-        <span class="tag">Optical Spectroscopy</span>
-        <span class="tag">Machine Learning for Sensing</span>
-        <span class="tag">Optical Sensing</span>
+      <p class="hero-affil">
+        <strong>Centre for Photonics and Quantum Communication Technology</strong> ·
+        Department of Physics, Indian Institute of Technology Roorkee ·
+        research group of Dr Sachin Kumar Srivastava.
+      </p>
     </div>
+
+<figure class="spectrum-fig">
+      <svg viewBox="0 0 492 340" role="img" aria-labelledby="specTitle specDesc">
+        <title id="specTitle">A surface-enhanced Raman spectrum</title>
+        <desc id="specDesc">A simulated SERS spectrum from 400 to 1800 wavenumbers, with five labelled bands: tyrosine at 850, phenylalanine ring breathing at 1002, Amide III at 1250, CH2 deformation at 1450, and Amide I at 1655 reciprocal centimetres.</desc>
+
+        <defs>
+          <linearGradient id="specGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#e0a82e" stop-opacity=".26"/>
+            <stop offset="100%" stop-color="#e0a82e" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- axis -->
+        <line class="spectrum-axis" x1="30" y1="288" x2="462" y2="288"/>
+        <g class="spectrum-tick">
+          <text x="30"  y="303" text-anchor="middle">400</text>
+          <text x="153" y="303" text-anchor="middle">800</text>
+          <text x="277" y="303" text-anchor="middle">1200</text>
+          <text x="400" y="303" text-anchor="middle">1600</text>
+        </g>
+        <text class="spectrum-label" x="246" y="322" text-anchor="middle">RAMAN SHIFT (CM⁻¹)</text>
+
+        <path class="spectrum-fill" d="M 30.0 259.5 L 30.8 258.3 L 31.5 259.4 L 32.3 259.5 L 33.1 260.4 L 33.9 259.3 L 34.6 257.2 L 35.4 258.3 L 36.2 257.3 L 36.9 258.5 L 37.7 258.2 L 38.5 258.5 L 39.3 261.4 L 40.0 257.5 L 40.8 258.0 L 41.6 258.0 L 42.3 261.3 L 43.1 261.4 L 43.9 260.0 L 44.7 259.3 L 45.4 258.1 L 46.2 258.6 L 47.0 257.7 L 47.7 259.5 L 48.5 258.0 L 49.3 257.9 L 50.1 259.5 L 50.8 255.8 L 51.6 257.5 L 52.4 256.5 L 53.1 259.3 L 53.9 259.5 L 54.7 258.8 L 55.5 258.4 L 56.2 257.3 L 57.0 257.8 L 57.8 258.9 L 58.5 259.6 L 59.3 258.9 L 60.1 256.2 L 60.9 259.3 L 61.6 257.7 L 62.4 257.4 L 63.2 260.3 L 63.9 257.9 L 64.7 255.9 L 65.5 261.0 L 66.3 258.3 L 67.0 258.0 L 67.8 259.0 L 68.6 257.0 L 69.3 257.8 L 70.1 259.9 L 70.9 256.4 L 71.7 256.6 L 72.4 256.1 L 73.2 255.3 L 74.0 256.9 L 74.7 257.2 L 75.5 259.4 L 76.3 256.4 L 77.1 258.2 L 77.8 257.9 L 78.6 259.1 L 79.4 258.6 L 80.1 257.9 L 80.9 255.0 L 81.7 260.0 L 82.5 259.0 L 83.2 256.3 L 84.0 254.4 L 84.8 255.6 L 85.5 259.2 L 86.3 260.0 L 87.1 255.4 L 87.9 256.9 L 88.6 257.2 L 89.4 253.6 L 90.2 253.0 L 90.9 253.9 L 91.7 253.1 L 92.5 251.8 L 93.3 248.7 L 94.0 248.3 L 94.8 245.8 L 95.6 241.9 L 96.3 240.2 L 97.1 230.6 L 97.9 228.7 L 98.7 231.7 L 99.4 240.7 L 100.2 243.5 L 101.0 245.0 L 101.7 251.7 L 102.5 251.0 L 103.3 250.4 L 104.1 254.9 L 104.8 251.0 L 105.6 253.1 L 106.4 254.5 L 107.1 254.1 L 107.9 253.8 L 108.7 254.7 L 109.5 253.3 L 110.2 256.1 L 111.0 255.8 L 111.8 253.6 L 112.5 255.1 L 113.3 256.5 L 114.1 253.6 L 114.9 252.8 L 115.6 255.6 L 116.4 257.0 L 117.2 255.0 L 117.9 254.8 L 118.7 254.9 L 119.5 252.0 L 120.3 255.4 L 121.0 251.5 L 121.8 254.9 L 122.6 253.6 L 123.3 250.5 L 124.1 248.6 L 124.9 247.4 L 125.7 246.0 L 126.4 243.4 L 127.2 239.8 L 128.0 235.7 L 128.7 235.4 L 129.5 236.1 L 130.3 239.0 L 131.1 243.4 L 131.8 245.1 L 132.6 247.6 L 133.4 246.9 L 134.1 250.6 L 134.9 252.5 L 135.7 253.0 L 136.5 252.9 L 137.2 251.8 L 138.0 254.0 L 138.8 253.1 L 139.5 251.0 L 140.3 257.8 L 141.1 255.7 L 141.9 253.6 L 142.6 253.4 L 143.4 253.7 L 144.2 254.7 L 144.9 253.0 L 145.7 253.6 L 146.5 254.8 L 147.3 250.2 L 148.0 253.3 L 148.8 254.7 L 149.6 253.9 L 150.3 254.0 L 151.1 253.6 L 151.9 257.6 L 152.7 254.0 L 153.4 251.6 L 154.2 254.7 L 155.0 252.8 L 155.7 251.0 L 156.5 250.9 L 157.3 249.6 L 158.1 254.1 L 158.8 251.6 L 159.6 251.0 L 160.4 248.8 L 161.1 247.1 L 161.9 251.8 L 162.7 244.5 L 163.5 246.5 L 164.2 240.7 L 165.0 240.6 L 165.8 233.5 L 166.5 226.2 L 167.3 221.6 L 168.1 215.3 L 168.9 211.9 L 169.6 215.3 L 170.4 221.4 L 171.2 225.4 L 171.9 231.9 L 172.7 238.4 L 173.5 237.0 L 174.3 245.5 L 175.0 244.2 L 175.8 247.4 L 176.6 247.8 L 177.3 247.7 L 178.1 249.1 L 178.9 249.0 L 179.7 252.7 L 180.4 253.0 L 181.2 250.0 L 182.0 252.6 L 182.7 252.8 L 183.5 253.6 L 184.3 249.5 L 185.1 250.4 L 185.8 249.3 L 186.6 253.1 L 187.4 251.6 L 188.1 253.4 L 188.9 250.4 L 189.7 249.1 L 190.5 252.9 L 191.2 249.0 L 192.0 249.8 L 192.8 251.5 L 193.5 254.2 L 194.3 248.9 L 195.1 251.1 L 195.9 251.7 L 196.6 250.0 L 197.4 249.7 L 198.2 247.8 L 198.9 251.4 L 199.7 247.8 L 200.5 246.9 L 201.3 246.6 L 202.0 248.7 L 202.8 249.0 L 203.6 245.6 L 204.3 246.3 L 205.1 245.3 L 205.9 242.2 L 206.7 243.4 L 207.4 244.7 L 208.2 239.5 L 209.0 238.7 L 209.7 230.5 L 210.5 225.6 L 211.3 218.9 L 212.1 205.7 L 212.8 185.5 L 213.6 157.0 L 214.4 111.4 L 215.1 64.8 L 215.9 46.6 L 216.7 80.6 L 217.5 129.8 L 218.2 171.2 L 219.0 193.5 L 219.8 213.4 L 220.5 222.4 L 221.3 230.7 L 222.1 230.9 L 222.9 237.9 L 223.6 238.6 L 224.4 240.7 L 225.2 241.9 L 225.9 243.9 L 226.7 243.5 L 227.5 241.8 L 228.3 244.9 L 229.0 244.5 L 229.8 244.1 L 230.6 246.0 L 231.3 247.7 L 232.1 246.5 L 232.9 243.9 L 233.7 247.7 L 234.4 245.7 L 235.2 242.6 L 236.0 242.1 L 236.7 242.2 L 237.5 239.4 L 238.3 238.3 L 239.1 237.5 L 239.8 234.3 L 240.6 228.0 L 241.4 220.1 L 242.1 217.4 L 242.9 215.9 L 243.7 217.7 L 244.5 223.8 L 245.2 227.1 L 246.0 233.6 L 246.8 235.0 L 247.5 242.0 L 248.3 240.0 L 249.1 243.0 L 249.9 246.2 L 250.6 242.9 L 251.4 245.1 L 252.2 248.6 L 252.9 246.9 L 253.7 245.4 L 254.5 246.8 L 255.3 245.0 L 256.0 245.2 L 256.8 245.4 L 257.6 245.9 L 258.3 244.4 L 259.1 245.4 L 259.9 245.6 L 260.7 249.4 L 261.4 244.8 L 262.2 244.0 L 263.0 246.3 L 263.7 246.4 L 264.5 242.5 L 265.3 248.0 L 266.1 244.3 L 266.8 241.1 L 267.6 245.9 L 268.4 243.1 L 269.1 241.0 L 269.9 243.7 L 270.7 242.2 L 271.5 241.2 L 272.2 243.5 L 273.0 241.7 L 273.8 240.5 L 274.5 239.0 L 275.3 239.5 L 276.1 239.0 L 276.9 239.3 L 277.6 237.2 L 278.4 234.2 L 279.2 234.1 L 279.9 234.1 L 280.7 232.4 L 281.5 225.2 L 282.3 225.4 L 283.0 223.8 L 283.8 226.1 L 284.6 218.2 L 285.3 215.1 L 286.1 209.6 L 286.9 207.6 L 287.7 204.2 L 288.4 199.1 L 289.2 198.7 L 290.0 190.4 L 290.7 188.5 L 291.5 188.0 L 292.3 184.1 L 293.1 183.9 L 293.8 190.6 L 294.6 192.3 L 295.4 194.3 L 296.1 198.3 L 296.9 203.1 L 297.7 207.9 L 298.5 206.8 L 299.2 211.8 L 300.0 218.2 L 300.8 221.1 L 301.5 218.7 L 302.3 221.8 L 303.1 222.1 L 303.9 225.1 L 304.6 228.8 L 305.4 228.0 L 306.2 232.4 L 306.9 230.7 L 307.7 229.9 L 308.5 229.0 L 309.3 230.7 L 310.0 229.3 L 310.8 227.7 L 311.6 226.7 L 312.3 224.9 L 313.1 223.6 L 313.9 222.0 L 314.7 217.1 L 315.4 214.5 L 316.2 211.2 L 317.0 205.6 L 317.7 199.1 L 318.5 194.1 L 319.3 189.9 L 320.1 188.7 L 320.8 189.9 L 321.6 194.3 L 322.4 201.4 L 323.1 204.5 L 323.9 209.0 L 324.7 214.6 L 325.5 219.6 L 326.2 221.9 L 327.0 226.7 L 327.8 230.3 L 328.5 229.0 L 329.3 231.8 L 330.1 230.3 L 330.9 233.9 L 331.6 236.9 L 332.4 234.9 L 333.2 231.1 L 333.9 234.3 L 334.7 235.8 L 335.5 234.7 L 336.3 232.5 L 337.0 232.1 L 337.8 232.1 L 338.6 229.4 L 339.3 229.8 L 340.1 229.9 L 340.9 227.7 L 341.7 224.6 L 342.4 223.9 L 343.2 221.8 L 344.0 222.6 L 344.7 218.2 L 345.5 213.4 L 346.3 210.8 L 347.1 203.7 L 347.8 198.5 L 348.6 191.0 L 349.4 184.6 L 350.1 171.1 L 350.9 163.1 L 351.7 155.3 L 352.5 146.0 L 353.2 135.9 L 354.0 138.1 L 354.8 138.5 L 355.5 144.5 L 356.3 154.9 L 357.1 166.7 L 357.9 174.5 L 358.6 183.5 L 359.4 190.4 L 360.2 197.9 L 360.9 205.0 L 361.7 208.6 L 362.5 213.3 L 363.3 217.3 L 364.0 220.4 L 364.8 223.3 L 365.6 223.9 L 366.3 228.4 L 367.1 229.2 L 367.9 229.5 L 368.7 232.8 L 369.4 232.1 L 370.2 235.3 L 371.0 233.9 L 371.7 232.5 L 372.5 232.9 L 373.3 234.2 L 374.1 234.7 L 374.8 236.8 L 375.6 231.9 L 376.4 234.0 L 377.1 233.1 L 377.9 236.0 L 378.7 234.8 L 379.5 237.1 L 380.2 232.8 L 381.0 232.2 L 381.8 236.1 L 382.5 232.6 L 383.3 230.9 L 384.1 233.7 L 384.9 232.7 L 385.6 230.3 L 386.4 228.1 L 387.2 227.4 L 387.9 222.9 L 388.7 219.9 L 389.5 216.0 L 390.3 212.1 L 391.0 206.6 L 391.8 202.5 L 392.6 202.0 L 393.3 197.4 L 394.1 196.7 L 394.9 197.1 L 395.7 197.8 L 396.4 200.8 L 397.2 203.4 L 398.0 209.7 L 398.7 211.7 L 399.5 211.6 L 400.3 213.1 L 401.1 213.9 L 401.8 213.6 L 402.6 214.2 L 403.4 211.0 L 404.1 210.1 L 404.9 208.9 L 405.7 207.5 L 406.5 203.7 L 407.2 204.1 L 408.0 197.2 L 408.8 190.7 L 409.5 187.2 L 410.3 177.9 L 411.1 170.2 L 411.9 163.9 L 412.6 152.6 L 413.4 142.5 L 414.2 131.1 L 414.9 121.3 L 415.7 114.3 L 416.5 110.3 L 417.3 107.4 L 418.0 109.3 L 418.8 113.5 L 419.6 122.3 L 420.3 133.6 L 421.1 145.0 L 421.9 153.8 L 422.7 164.2 L 423.4 173.7 L 424.2 180.1 L 425.0 187.7 L 425.7 193.0 L 426.5 197.7 L 427.3 203.8 L 428.1 203.6 L 428.8 211.2 L 429.6 212.1 L 430.4 216.3 L 431.1 217.1 L 431.9 224.5 L 432.7 223.9 L 433.5 223.9 L 434.2 224.8 L 435.0 223.5 L 435.8 227.7 L 436.5 227.3 L 437.3 229.0 L 438.1 229.5 L 438.9 231.0 L 439.6 232.7 L 440.4 232.3 L 441.2 235.3 L 441.9 232.3 L 442.7 236.2 L 443.5 234.6 L 444.3 232.2 L 445.0 236.1 L 445.8 236.1 L 446.6 234.6 L 447.3 236.7 L 448.1 238.2 L 448.9 236.8 L 449.7 236.5 L 450.4 236.5 L 451.2 239.0 L 452.0 235.3 L 452.7 235.6 L 453.5 238.3 L 454.3 238.0 L 455.1 239.2 L 455.8 236.5 L 456.6 239.9 L 457.4 237.9 L 458.1 239.7 L 458.9 240.2 L 459.7 238.1 L 460.5 237.2 L 461.2 239.3 L 462.0 240.4 L 462.0 288.0 L 30.0 288.0 Z"/>
+        <path class="spectrum-trace" d="M 30.0 259.5 L 30.8 258.3 L 31.5 259.4 L 32.3 259.5 L 33.1 260.4 L 33.9 259.3 L 34.6 257.2 L 35.4 258.3 L 36.2 257.3 L 36.9 258.5 L 37.7 258.2 L 38.5 258.5 L 39.3 261.4 L 40.0 257.5 L 40.8 258.0 L 41.6 258.0 L 42.3 261.3 L 43.1 261.4 L 43.9 260.0 L 44.7 259.3 L 45.4 258.1 L 46.2 258.6 L 47.0 257.7 L 47.7 259.5 L 48.5 258.0 L 49.3 257.9 L 50.1 259.5 L 50.8 255.8 L 51.6 257.5 L 52.4 256.5 L 53.1 259.3 L 53.9 259.5 L 54.7 258.8 L 55.5 258.4 L 56.2 257.3 L 57.0 257.8 L 57.8 258.9 L 58.5 259.6 L 59.3 258.9 L 60.1 256.2 L 60.9 259.3 L 61.6 257.7 L 62.4 257.4 L 63.2 260.3 L 63.9 257.9 L 64.7 255.9 L 65.5 261.0 L 66.3 258.3 L 67.0 258.0 L 67.8 259.0 L 68.6 257.0 L 69.3 257.8 L 70.1 259.9 L 70.9 256.4 L 71.7 256.6 L 72.4 256.1 L 73.2 255.3 L 74.0 256.9 L 74.7 257.2 L 75.5 259.4 L 76.3 256.4 L 77.1 258.2 L 77.8 257.9 L 78.6 259.1 L 79.4 258.6 L 80.1 257.9 L 80.9 255.0 L 81.7 260.0 L 82.5 259.0 L 83.2 256.3 L 84.0 254.4 L 84.8 255.6 L 85.5 259.2 L 86.3 260.0 L 87.1 255.4 L 87.9 256.9 L 88.6 257.2 L 89.4 253.6 L 90.2 253.0 L 90.9 253.9 L 91.7 253.1 L 92.5 251.8 L 93.3 248.7 L 94.0 248.3 L 94.8 245.8 L 95.6 241.9 L 96.3 240.2 L 97.1 230.6 L 97.9 228.7 L 98.7 231.7 L 99.4 240.7 L 100.2 243.5 L 101.0 245.0 L 101.7 251.7 L 102.5 251.0 L 103.3 250.4 L 104.1 254.9 L 104.8 251.0 L 105.6 253.1 L 106.4 254.5 L 107.1 254.1 L 107.9 253.8 L 108.7 254.7 L 109.5 253.3 L 110.2 256.1 L 111.0 255.8 L 111.8 253.6 L 112.5 255.1 L 113.3 256.5 L 114.1 253.6 L 114.9 252.8 L 115.6 255.6 L 116.4 257.0 L 117.2 255.0 L 117.9 254.8 L 118.7 254.9 L 119.5 252.0 L 120.3 255.4 L 121.0 251.5 L 121.8 254.9 L 122.6 253.6 L 123.3 250.5 L 124.1 248.6 L 124.9 247.4 L 125.7 246.0 L 126.4 243.4 L 127.2 239.8 L 128.0 235.7 L 128.7 235.4 L 129.5 236.1 L 130.3 239.0 L 131.1 243.4 L 131.8 245.1 L 132.6 247.6 L 133.4 246.9 L 134.1 250.6 L 134.9 252.5 L 135.7 253.0 L 136.5 252.9 L 137.2 251.8 L 138.0 254.0 L 138.8 253.1 L 139.5 251.0 L 140.3 257.8 L 141.1 255.7 L 141.9 253.6 L 142.6 253.4 L 143.4 253.7 L 144.2 254.7 L 144.9 253.0 L 145.7 253.6 L 146.5 254.8 L 147.3 250.2 L 148.0 253.3 L 148.8 254.7 L 149.6 253.9 L 150.3 254.0 L 151.1 253.6 L 151.9 257.6 L 152.7 254.0 L 153.4 251.6 L 154.2 254.7 L 155.0 252.8 L 155.7 251.0 L 156.5 250.9 L 157.3 249.6 L 158.1 254.1 L 158.8 251.6 L 159.6 251.0 L 160.4 248.8 L 161.1 247.1 L 161.9 251.8 L 162.7 244.5 L 163.5 246.5 L 164.2 240.7 L 165.0 240.6 L 165.8 233.5 L 166.5 226.2 L 167.3 221.6 L 168.1 215.3 L 168.9 211.9 L 169.6 215.3 L 170.4 221.4 L 171.2 225.4 L 171.9 231.9 L 172.7 238.4 L 173.5 237.0 L 174.3 245.5 L 175.0 244.2 L 175.8 247.4 L 176.6 247.8 L 177.3 247.7 L 178.1 249.1 L 178.9 249.0 L 179.7 252.7 L 180.4 253.0 L 181.2 250.0 L 182.0 252.6 L 182.7 252.8 L 183.5 253.6 L 184.3 249.5 L 185.1 250.4 L 185.8 249.3 L 186.6 253.1 L 187.4 251.6 L 188.1 253.4 L 188.9 250.4 L 189.7 249.1 L 190.5 252.9 L 191.2 249.0 L 192.0 249.8 L 192.8 251.5 L 193.5 254.2 L 194.3 248.9 L 195.1 251.1 L 195.9 251.7 L 196.6 250.0 L 197.4 249.7 L 198.2 247.8 L 198.9 251.4 L 199.7 247.8 L 200.5 246.9 L 201.3 246.6 L 202.0 248.7 L 202.8 249.0 L 203.6 245.6 L 204.3 246.3 L 205.1 245.3 L 205.9 242.2 L 206.7 243.4 L 207.4 244.7 L 208.2 239.5 L 209.0 238.7 L 209.7 230.5 L 210.5 225.6 L 211.3 218.9 L 212.1 205.7 L 212.8 185.5 L 213.6 157.0 L 214.4 111.4 L 215.1 64.8 L 215.9 46.6 L 216.7 80.6 L 217.5 129.8 L 218.2 171.2 L 219.0 193.5 L 219.8 213.4 L 220.5 222.4 L 221.3 230.7 L 222.1 230.9 L 222.9 237.9 L 223.6 238.6 L 224.4 240.7 L 225.2 241.9 L 225.9 243.9 L 226.7 243.5 L 227.5 241.8 L 228.3 244.9 L 229.0 244.5 L 229.8 244.1 L 230.6 246.0 L 231.3 247.7 L 232.1 246.5 L 232.9 243.9 L 233.7 247.7 L 234.4 245.7 L 235.2 242.6 L 236.0 242.1 L 236.7 242.2 L 237.5 239.4 L 238.3 238.3 L 239.1 237.5 L 239.8 234.3 L 240.6 228.0 L 241.4 220.1 L 242.1 217.4 L 242.9 215.9 L 243.7 217.7 L 244.5 223.8 L 245.2 227.1 L 246.0 233.6 L 246.8 235.0 L 247.5 242.0 L 248.3 240.0 L 249.1 243.0 L 249.9 246.2 L 250.6 242.9 L 251.4 245.1 L 252.2 248.6 L 252.9 246.9 L 253.7 245.4 L 254.5 246.8 L 255.3 245.0 L 256.0 245.2 L 256.8 245.4 L 257.6 245.9 L 258.3 244.4 L 259.1 245.4 L 259.9 245.6 L 260.7 249.4 L 261.4 244.8 L 262.2 244.0 L 263.0 246.3 L 263.7 246.4 L 264.5 242.5 L 265.3 248.0 L 266.1 244.3 L 266.8 241.1 L 267.6 245.9 L 268.4 243.1 L 269.1 241.0 L 269.9 243.7 L 270.7 242.2 L 271.5 241.2 L 272.2 243.5 L 273.0 241.7 L 273.8 240.5 L 274.5 239.0 L 275.3 239.5 L 276.1 239.0 L 276.9 239.3 L 277.6 237.2 L 278.4 234.2 L 279.2 234.1 L 279.9 234.1 L 280.7 232.4 L 281.5 225.2 L 282.3 225.4 L 283.0 223.8 L 283.8 226.1 L 284.6 218.2 L 285.3 215.1 L 286.1 209.6 L 286.9 207.6 L 287.7 204.2 L 288.4 199.1 L 289.2 198.7 L 290.0 190.4 L 290.7 188.5 L 291.5 188.0 L 292.3 184.1 L 293.1 183.9 L 293.8 190.6 L 294.6 192.3 L 295.4 194.3 L 296.1 198.3 L 296.9 203.1 L 297.7 207.9 L 298.5 206.8 L 299.2 211.8 L 300.0 218.2 L 300.8 221.1 L 301.5 218.7 L 302.3 221.8 L 303.1 222.1 L 303.9 225.1 L 304.6 228.8 L 305.4 228.0 L 306.2 232.4 L 306.9 230.7 L 307.7 229.9 L 308.5 229.0 L 309.3 230.7 L 310.0 229.3 L 310.8 227.7 L 311.6 226.7 L 312.3 224.9 L 313.1 223.6 L 313.9 222.0 L 314.7 217.1 L 315.4 214.5 L 316.2 211.2 L 317.0 205.6 L 317.7 199.1 L 318.5 194.1 L 319.3 189.9 L 320.1 188.7 L 320.8 189.9 L 321.6 194.3 L 322.4 201.4 L 323.1 204.5 L 323.9 209.0 L 324.7 214.6 L 325.5 219.6 L 326.2 221.9 L 327.0 226.7 L 327.8 230.3 L 328.5 229.0 L 329.3 231.8 L 330.1 230.3 L 330.9 233.9 L 331.6 236.9 L 332.4 234.9 L 333.2 231.1 L 333.9 234.3 L 334.7 235.8 L 335.5 234.7 L 336.3 232.5 L 337.0 232.1 L 337.8 232.1 L 338.6 229.4 L 339.3 229.8 L 340.1 229.9 L 340.9 227.7 L 341.7 224.6 L 342.4 223.9 L 343.2 221.8 L 344.0 222.6 L 344.7 218.2 L 345.5 213.4 L 346.3 210.8 L 347.1 203.7 L 347.8 198.5 L 348.6 191.0 L 349.4 184.6 L 350.1 171.1 L 350.9 163.1 L 351.7 155.3 L 352.5 146.0 L 353.2 135.9 L 354.0 138.1 L 354.8 138.5 L 355.5 144.5 L 356.3 154.9 L 357.1 166.7 L 357.9 174.5 L 358.6 183.5 L 359.4 190.4 L 360.2 197.9 L 360.9 205.0 L 361.7 208.6 L 362.5 213.3 L 363.3 217.3 L 364.0 220.4 L 364.8 223.3 L 365.6 223.9 L 366.3 228.4 L 367.1 229.2 L 367.9 229.5 L 368.7 232.8 L 369.4 232.1 L 370.2 235.3 L 371.0 233.9 L 371.7 232.5 L 372.5 232.9 L 373.3 234.2 L 374.1 234.7 L 374.8 236.8 L 375.6 231.9 L 376.4 234.0 L 377.1 233.1 L 377.9 236.0 L 378.7 234.8 L 379.5 237.1 L 380.2 232.8 L 381.0 232.2 L 381.8 236.1 L 382.5 232.6 L 383.3 230.9 L 384.1 233.7 L 384.9 232.7 L 385.6 230.3 L 386.4 228.1 L 387.2 227.4 L 387.9 222.9 L 388.7 219.9 L 389.5 216.0 L 390.3 212.1 L 391.0 206.6 L 391.8 202.5 L 392.6 202.0 L 393.3 197.4 L 394.1 196.7 L 394.9 197.1 L 395.7 197.8 L 396.4 200.8 L 397.2 203.4 L 398.0 209.7 L 398.7 211.7 L 399.5 211.6 L 400.3 213.1 L 401.1 213.9 L 401.8 213.6 L 402.6 214.2 L 403.4 211.0 L 404.1 210.1 L 404.9 208.9 L 405.7 207.5 L 406.5 203.7 L 407.2 204.1 L 408.0 197.2 L 408.8 190.7 L 409.5 187.2 L 410.3 177.9 L 411.1 170.2 L 411.9 163.9 L 412.6 152.6 L 413.4 142.5 L 414.2 131.1 L 414.9 121.3 L 415.7 114.3 L 416.5 110.3 L 417.3 107.4 L 418.0 109.3 L 418.8 113.5 L 419.6 122.3 L 420.3 133.6 L 421.1 145.0 L 421.9 153.8 L 422.7 164.2 L 423.4 173.7 L 424.2 180.1 L 425.0 187.7 L 425.7 193.0 L 426.5 197.7 L 427.3 203.8 L 428.1 203.6 L 428.8 211.2 L 429.6 212.1 L 430.4 216.3 L 431.1 217.1 L 431.9 224.5 L 432.7 223.9 L 433.5 223.9 L 434.2 224.8 L 435.0 223.5 L 435.8 227.7 L 436.5 227.3 L 437.3 229.0 L 438.1 229.5 L 438.9 231.0 L 439.6 232.7 L 440.4 232.3 L 441.2 235.3 L 441.9 232.3 L 442.7 236.2 L 443.5 234.6 L 444.3 232.2 L 445.0 236.1 L 445.8 236.1 L 446.6 234.6 L 447.3 236.7 L 448.1 238.2 L 448.9 236.8 L 449.7 236.5 L 450.4 236.5 L 451.2 239.0 L 452.0 235.3 L 452.7 235.6 L 453.5 238.3 L 454.3 238.0 L 455.1 239.2 L 455.8 236.5 L 456.6 239.9 L 457.4 237.9 L 458.1 239.7 L 458.9 240.2 L 459.7 238.1 L 460.5 237.2 L 461.2 239.3 L 462.0 240.4"/>
+
+      <g class="band" role="button" aria-label="850 cm⁻¹: Tyrosine ring, Fermi doublet">
+        <line class="band-stem" x1="168.9" y1="213.1" x2="132.0" y2="236"/>
+        <circle class="band-dot" cx="168.9" cy="213.1" r="3.4"/>
+        <rect class="band-hit" x="157.9" y="202.1" width="22" height="22"/>
+        <g class="band-note">
+          <rect x="28" y="236" width="208" height="38"/>
+          <text x="39" y="252">850 cm⁻¹</text>
+          <text class="sub" x="39" y="265">Tyrosine ring, Fermi doublet</text>
+        </g>
+      </g>
+      <g class="band" role="button" aria-label="1002 cm⁻¹: Phenylalanine ring breathing">
+        <line class="band-stem" x1="215.8" y1="47.0" x2="340.0" y2="82"/>
+        <circle class="band-dot" cx="215.8" cy="47.0" r="3.4"/>
+        <rect class="band-hit" x="204.8" y="36.0" width="22" height="22"/>
+        <g class="band-note">
+          <rect x="236" y="44" width="208" height="38"/>
+          <text x="247" y="60">1002 cm⁻¹</text>
+          <text class="sub" x="247" y="73">Phenylalanine ring breathing</text>
+        </g>
+      </g>
+      <g class="band" role="button" aria-label="1250 cm⁻¹: Amide III · N–H bend, C–N stretch">
+        <line class="band-stem" x1="292.3" y1="186.2" x2="242.0" y2="246"/>
+        <circle class="band-dot" cx="292.3" cy="186.2" r="3.4"/>
+        <rect class="band-hit" x="281.3" y="175.2" width="22" height="22"/>
+        <g class="band-note">
+          <rect x="138" y="246" width="208" height="38"/>
+          <text x="149" y="262">1250 cm⁻¹</text>
+          <text class="sub" x="149" y="275">Amide III · N–H bend, C–N stretch</text>
+        </g>
+      </g>
+      <g class="band" role="button" aria-label="1450 cm⁻¹: CH₂ / CH₃ deformation">
+        <line class="band-stem" x1="354.0" y1="137.6" x2="332.0" y2="130"/>
+        <circle class="band-dot" cx="354.0" cy="137.6" r="3.4"/>
+        <rect class="band-hit" x="343.0" y="126.6" width="22" height="22"/>
+        <g class="band-note">
+          <rect x="228" y="92" width="208" height="38"/>
+          <text x="239" y="108">1450 cm⁻¹</text>
+          <text class="sub" x="239" y="121">CH₂ / CH₃ deformation</text>
+        </g>
+      </g>
+      <g class="band" role="button" aria-label="1655 cm⁻¹: Amide I · C=O stretch, α-helix">
+        <line class="band-stem" x1="417.3" y1="107.2" x2="350.0" y2="186"/>
+        <circle class="band-dot" cx="417.3" cy="107.2" r="3.4"/>
+        <rect class="band-hit" x="406.3" y="96.2" width="22" height="22"/>
+        <g class="band-note">
+          <rect x="246" y="186" width="208" height="38"/>
+          <text x="257" y="202">1655 cm⁻¹</text>
+          <text class="sub" x="257" y="215">Amide I · C=O stretch, α-helix</text>
+        </g>
+      </g>
+      </svg>
+      <figcaption class="spectrum-caption">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.3"/><path d="M8 5.2v.01M8 7.4v3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Hover or tap a marked band to see what it is
+      </figcaption>
+    </figure>
+
+  </div>
 </section>
 
-    <section id="research-visuals">
-        <div class="section-header">
-            <h2>Research Visualizations</h2>
-            <p class="text-muted">Interactive gallery of experimental setups and data models.</p>
-        </div>
+<!-- ══════════════════════════ ABOUT ══════════════════════════ -->
+<section class="band-section on-raised" id="about" style="padding-block: clamp(56px,7vw,96px)">
+  <div class="wrap">
 
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="img-wrapper"><img src="images/Rapid.png" alt="Research Focus"></div>
-                <p>Rapid detection and classification of five respiratory viruses by machine learning integrated SERS sensing platform</p>
-            </div>
-            <div class="gallery-item">
-                <div class="img-wrapper"><img src="images/HighPrecisionMicrobialIdentification.png" alt="AI-Assisted Photonic Sensing"></div>
-                <p>Machine Learning-Based Detection and Classification of Bacterial and Fungal Species and Their Mixture through Raman Spectra Analysis</p>
-            </div>
-            <div class="gallery-item">
-                <div class="img-wrapper"><img src="images/ExplainableAIBased.png" alt="Biomedical Nanophotonic"></div>
-                <p>Explainable AI based SERS Sensor for multi-virus detection</p>
-            </div>
-            <div class="gallery-item">
-                <div class="img-wrapper"><img src="images/PAQS.png" alt="Quantum Sensing"></div>
-                <p>Plasmonic-Assisted Quantum Sensing</p>
-            </div>
-            </div>
-    </section>
+    <div class="about-block">
 
-    <section id="publications">
-        <div class="section-header">
-            <h2>Selected Publications</h2>
-            <a href="https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ" target="_blank" class="back-home">Google Scholar Profile →</a>
-        </div>
-        
-        <div id="pub-list" class="pub-container">
-            </div>
-    </section>
+      <div class="portrait reveal" id="portrait">
+        <figure>
+          <img src="images/rakesh-naik.jpg"
+               alt="Rakesh Naik, PhD researcher in Raman and SERS spectroscopy at IIT Roorkee"
+               width="800" height="1000" loading="lazy" decoding="async"
+               onerror="this.closest('.portrait').classList.add('is-missing')">
+          <div class="monogram" aria-hidden="true">RN<small>add images/rakesh-naik.jpg</small></div>
+          <figcaption>
+            Rakesh Naik · Centre for Photonics and Quantum<br>
+            Communication Technology, IIT Roorkee
+          </figcaption>
+        </figure>
+      </div>
 
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <div class="contact-wrapper">
-            <div class="contact-form">
-                <form action="https://formspree.io/f/mqegeayd" method="POST">
-                    
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" name="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" placeholder="email@iitr.ac.in" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea name="message" rows="5" placeholder="I'm interested in collaborating on..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">Send Message</button>
-                </form>
-            </div>
+      <div class="about-body reveal" data-delay="1">
+        <p class="eyebrow">About</p>
+        <h2>The short version</h2>
+        <p style="margin-top:20px">I am a PhD researcher in the Department of
+        Physics at IIT Roorkee, working in the Centre for Photonics and Quantum
+        Communication Technology with <strong>Dr Sachin Kumar Srivastava</strong>.
+        My subject is what light gives away about matter — specifically, the
+        vanishingly small fraction of scattered photons that come back carrying a
+        molecule's vibrational signature.</p>
 
-            <div class="contact-info">
-                <div class="info-item">
-                    <h3>📍 Lab Location</h3>
-                    <p>Applied Plasmonics and Photonics Lab, CPQCT<br>IIT Roorkee, India</p>
-                </div>
-                <div class="info-item">
-                    <h3>✉️ Professional Email</h3>
-                    <p><a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <p>Most of my time goes to <strong>surface-enhanced Raman
+        spectroscopy</strong>: designing plasmonic substrates that amplify that
+        signature by orders of magnitude, and then working out how much of the
+        result is the sample and how much is the substrate. The current
+        application is a receptor-free platform that identifies respiratory
+        viruses from their intrinsic spectrum, with machine learning doing the
+        separation that no single band can.</p>
+
+        <p>The rest goes to the things that make the first part usable. I wrote
+        <strong>RNSpectraX</strong> because a reproducible analysis pipeline
+        should not require three programs and two undocumented settings. I record
+        <strong>Lab2Life</strong> because a result nobody outside the field can
+        follow is only half finished. And in 2025 I spent a stretch at
+        <strong>Shimane University in Japan</strong>, which taught me more about
+        how research groups actually work than any paper has.</p>
+      </div>
+
+    </div>
+
+    <dl class="fact-row reveal">
+      <div class="fact"><dt>Position</dt><dd>PhD researcher, Physics</dd></div>
+      <div class="fact"><dt>Group</dt><dd>Photonics &amp; Quantum Communication, IIT Roorkee</dd></div>
+      <div class="fact"><dt>Method</dt><dd>SERS · plasmonics · chemometrics</dd></div>
+      <div class="fact"><dt>Also builds</dt><dd>RNSpectraX analysis suite</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ══════════════════════════ RESEARCH ══════════════════════════ -->
+<section class="band-section" id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">What I work on</p>
+      <h2>Four threads, one question</h2>
+      <p class="lede">How little of a molecule can you detect, how fast, and how
+      certain can you be about what it is? Each thread below attacks a different
+      part of that question — the surface, the signal, the platform, and the
+      analysis.</p>
+    </div>
+
+    <div class="research-grid">
+
+      <article class="research-card reveal">
+        <span class="kicker">Surface</span>
+        <h3>SERS biosensing without receptors</h3>
+        <p>Raman scattering is famously weak — roughly one photon in a billion.
+        Park a molecule nanometres from a plasmonic surface and that signal
+        jumps by orders of magnitude. I build substrates that hold analytes in
+        those hot spots reproducibly, so the enhancement is a measurement rather
+        than an accident, and detect targets by their intrinsic fingerprint
+        instead of a labelled receptor.</p>
+        <div class="tag-row"><span class="tag">SERS</span><span class="tag">Nanoplasmonics</span><span class="tag">Label-free</span></div>
+      </article>
+
+      <article class="research-card reveal" data-delay="1">
+        <span class="kicker">Signal</span>
+        <h3>Machine learning on spectra</h3>
+        <p>A biological SERS spectrum is a crowded superposition: hundreds of
+        overlapping bands, a drifting fluorescence background, and sample-to-sample
+        variation that dwarfs the difference you care about. Classifiers trained on
+        properly preprocessed spectra separate classes that no single band
+        distinguishes — provided the preprocessing is honest about what it removes.</p>
+        <div class="tag-row"><span class="tag">Chemometrics</span><span class="tag">Classification</span><span class="tag">Preprocessing</span></div>
+      </article>
+
+      <article class="research-card reveal" data-delay="2">
+        <span class="kicker">Platform</span>
+        <h3>Photonic and fibre-optic sensing</h3>
+        <p>A spectrometer on an optical bench is not a diagnostic. Fibre Bragg
+        gratings, waveguide couplers and integrated optical elements move a
+        measurement from the bench toward something field-deployable, and each
+        introduces its own trade-off between sensitivity, robustness and cost.</p>
+        <div class="tag-row"><span class="tag">Fibre optics</span><span class="tag">FBG</span><span class="tag">Optical sensing</span></div>
+      </article>
+
+      <article class="research-card reveal" data-delay="3">
+        <span class="kicker">Analysis</span>
+        <h3>Reproducible spectral software</h3>
+        <p>Two labs applying "baseline correction" to the same spectrum can
+        publish different peak ratios. RNSpectraX exposes every processing choice
+        — despiking threshold, baseline order, smoothing window — so a pipeline
+        can be reported precisely and reproduced exactly. It runs entirely in the
+        browser, so no data leaves the machine that measured it.</p>
+        <div class="tag-row"><span class="tag">Scientific software</span><span class="tag">Reproducibility</span><span class="tag">Open workflow</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SOFTWARE ══════════════════════════ -->
+<section class="band-section on-paper" id="software">
+  <div class="wrap software-block">
+
+    <div class="reveal">
+      <p class="eyebrow">Software</p>
+      <h2>RNSpectraX</h2>
+      <p class="lede" style="margin-top:16px">A full Raman and SERS analysis
+      workspace that runs in a browser tab. Built because moving spectra between
+      three pieces of proprietary software to make one figure is not a workflow —
+      it is a reproducibility problem.</p>
+
+      <ul class="feature-list">
+        <li><svg class="mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Reads your spectrometer.</b> Ocean Optics, Horiba/LabSpec, Renishaw WiRE, Bruker, WITec, JCAMP-DX, binary SPC and plain two-column, detected automatically.</span></li>
+        <li><svg class="mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Cleans the signal properly.</b> Cosmic-ray removal that leaves sharp bands intact, four baseline models including iterative ModPoly, Savitzky–Golay and three other filters — each with its parameters on screen.</span></li>
+        <li><svg class="mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Averages groups with real statistics.</b> SD or SEM, as capped bars or shaded bands, computed across replicates you tag by name.</span></li>
+        <li><svg class="mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Finds what differs.</b> The cross-file analyser clusters peaks across every loaded spectrum into common bands and sample-specific bands.</span></li>
+        <li><svg class="mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Plots and fits any XY data.</b> A general scientific plotter with error bars and weighted least-squares fitting that reports every parameter with its standard error.</span></li>
+        <li><svg class="mark" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Keeps your data yours.</b> Everything is computed in the tab. Nothing is uploaded, ever.</span></li>
+      </ul>
+
+      <div class="hero-actions" style="opacity:1;animation:none;margin-top:30px">
+        <a class="btn btn-ink" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/">
+          Launch the suite
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" style="border-color:#cfc8de;color:#3a3050" href="https://github.com/rakeshnaik1109-cloud/RNSpectra_X/blob/main/docs/USER_MANUAL.md">Read the manual</a>
+      </div>
+    </div>
+
+    <div class="app-frame reveal" data-delay="1">
+      <div class="app-frame-bar">
+        <i></i><i></i><i></i>
+        <span>RNSpectraX — Raman / spectral workspace</span>
+      </div>
+      <div class="app-frame-body">
+        <svg viewBox="0 0 420 250" style="width:100%;height:auto" role="img" aria-label="Illustration of two spectra overlaid with a shaded error band and detected peaks marked.">
+          <defs>
+            <linearGradient id="bandFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e0a82e" stop-opacity=".22"/>
+              <stop offset="100%" stop-color="#e0a82e" stop-opacity=".02"/>
+            </linearGradient>
+          </defs>
+          <g stroke="rgba(255,255,255,.07)" stroke-width="1">
+            <line x1="34" y1="40" x2="404" y2="40"/><line x1="34" y1="90" x2="404" y2="90"/>
+            <line x1="34" y1="140" x2="404" y2="140"/><line x1="34" y1="190" x2="404" y2="190"/>
+          </g>
+          <line x1="34" y1="215" x2="404" y2="215" stroke="rgba(255,255,255,.16)"/>
+          <line x1="34" y1="26" x2="34" y2="215" stroke="rgba(255,255,255,.16)"/>
+          <path d="M34 200 C70 196 84 150 104 150 S128 200 150 198 C170 196 178 86 196 86 S220 196 240 194 C262 192 268 130 292 130 S318 190 340 186 C362 182 372 108 388 108 L404 148"
+                fill="url(#bandFill)" stroke="none" opacity=".9"/>
+          <path d="M34 202 C70 198 84 156 104 156 S128 202 150 200 C170 198 178 96 196 96 S220 198 240 196 C262 194 268 138 292 138 S318 192 340 188 C362 184 372 116 388 116 L404 152"
+                fill="none" stroke="#e0a82e" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M34 206 C70 203 84 172 104 172 S128 206 150 205 C170 203 178 126 196 126 S220 204 240 202 C262 200 268 160 292 160 S318 198 340 195 C362 192 372 142 388 142 L404 170"
+                fill="none" stroke="#45bfd6" stroke-width="1.7" stroke-dasharray="5 4" stroke-linejoin="round"/>
+          <g fill="none" stroke="#e2566e" stroke-width="1.5">
+            <circle cx="196" cy="96" r="4.5"/><circle cx="292" cy="138" r="4.5"/><circle cx="388" cy="116" r="4.5"/>
+          </g>
+          <g fill="#837a94" font-family="'IBM Plex Mono',monospace" font-size="9">
+            <text x="196" y="82" text-anchor="middle">1002</text>
+            <text x="292" y="124" text-anchor="middle">1450</text>
+            <text x="388" y="102" text-anchor="middle">1655</text>
+            <text x="219" y="235" text-anchor="middle">RAMAN SHIFT (CM⁻¹)</text>
+          </g>
+          <g font-family="'IBM Plex Mono',monospace" font-size="9" fill="#b6acc8">
+            <rect x="270" y="30" width="130" height="34" rx="5" fill="#211735" stroke="rgba(255,255,255,.12)"/>
+            <rect x="280" y="39" width="14" height="3" fill="#e0a82e"/><text x="300" y="43">Treated (n = 6)</text>
+            <rect x="280" y="52" width="14" height="3" fill="#45bfd6"/><text x="300" y="56">Control (n = 6)</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════ TIMELINE ══════════════════════════ -->
+<section class="band-section" id="journey">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">How it has gone so far</p>
+      <h2>Research journey</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <span class="tl-year">2024</span>
+        <h3>Into Raman and optical sensing</h3>
+        <p>Started advanced work on Raman spectroscopy and optical sensing at the
+        Centre for Photonics and Quantum Communication Technology, and began
+        pairing spectral measurement with machine learning.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <span class="tl-year">2025</span>
+        <h3>A receptor-free SERS platform for respiratory viruses</h3>
+        <p>Developed a machine-learning-integrated SERS platform for rapid
+        respiratory virus detection — identifying targets from their intrinsic
+        vibrational fingerprint rather than from a bound receptor, which removes
+        the reagent that is usually the slowest and most fragile part of a
+        diagnostic.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <span class="tl-year">2025</span>
+        <h3>Research exchange at Shimane University, Japan</h3>
+        <p>A period of collaborative work in Matsue, and a reminder that most of
+        what you learn abroad happens between the experiments.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <span class="tl-year">2026</span>
+        <h3>RNSpectraX, and taking the science outward</h3>
+        <p>Released the RNSpectraX analysis suite, presented at the OPTCT +
+        SeNcity conference at IIT Roorkee, and started publishing science
+        communication — a podcast, explainers and lab footage — under Lab2Life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ OUTREACH ══════════════════════════ -->
+<section class="band-section on-raised" id="beyond">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Beyond the bench</p>
+      <h2>From spectra to stories</h2>
+      <p class="lede">A result that nobody outside the field can follow is only
+      half finished. These are the places I try to close that gap.</p>
+    </div>
+
+    <div class="card-grid">
+      <a class="soft-card reveal" href="media.html">
+        <h3>Lab2Life</h3>
+        <p>A podcast and video channel on Raman scattering, SERS, photonics and
+        AI in healthcare — starting with why a one-in-a-billion scattering event
+        is worth building an instrument around.</p>
+        <span class="go">Listen and watch <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="soft-card reveal" data-delay="1" href="blog.html">
+        <h3>The Lab Notebook</h3>
+        <p>Short pieces on research, campus life at IIT Roorkee, and the
+        occasional encounter with the local wildlife that ends with a lesson in
+        colony defence.</p>
+        <span class="go">Read the posts <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+
+      <a class="soft-card reveal" data-delay="2" href="gallery.html">
+        <h3>Gallery</h3>
+        <p>Conferences, demonstrations, group milestones, and a stretch of Japan
+        between Matsue Castle and Lake Shinji.</p>
+        <span class="go">Look around <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTACT ══════════════════════════ -->
+<section class="band-section" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Collaborations, questions, or a spectrum that will not behave</h2>
+      <p class="lede">I am glad to hear from anyone working on SERS substrates,
+      spectral classification or optical diagnostics — and from students thinking
+      about a PhD in photonics.</p>
+    </div>
+
+    <div class="contact-grid">
+      <a class="contact-card reveal" href="mailto:rakesh_n@cpqct.iitr.ac.in">
+        <span class="ct-k">Email</span><span class="ct-v">rakesh_n@cpqct.iitr.ac.in</span>
+      </a>
+      <a class="contact-card reveal" data-delay="1" href="https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ" rel="me noopener">
+        <span class="ct-k">Google Scholar</span><span class="ct-v">Publications and citations</span>
+      </a>
+      <a class="contact-card reveal" data-delay="2" href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener">
+        <span class="ct-k">LinkedIn</span><span class="ct-v">Profile, CV and experience</span>
+      </a>
+      <div class="contact-card reveal" data-delay="3">
+        <span class="ct-k">Where</span><span class="ct-v">Dept. of Physics &amp; CPQCT, IIT Roorkee, Uttarakhand 247667, India</span>
+      </div>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<footer class="container">
-    <p>© 2026 Rakesh Naik </p>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/">RNSpectraX suite</a></li>
+          <li><a href="https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ" rel="me noopener">Google Scholar</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/rakeshnaik1109-cloud" rel="me noopener">GitHub</a></li>
+          <li><a href="CV.pdf">CV (PDF)</a></li>
+          <li><a href="https://open.spotify.com/episode/7HmyC1vNIFne5u2BsQcuqN" rel="noopener">Podcast</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No trackers, no cookies.</span>
+    </div>
+  </div>
 </footer>
-<!-- <div class="visitor-counter">
-    <span class="icon">👁️</span>
-    <span id="visit-count">0000</span> 
-    <span class="label">Total Visits</span>
-</div>-->
 
-   <!-- <div class="visitor-counter">
-    <span class="pulse-dot"></span>
-    <span id="visit-count">0000</span> 
-    <span class="label">Live Visitors</span>
-</div>-->
-
-<div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <span class="nav-btn prev">&#10094;</span>
-    <img class="modal-content" id="zoomedImg">
-    <span class="nav-btn next">&#10095;</span>
-</div>
-
-<script src="script.js"></script>
-
+<script src="js/site.js"></script>
 </body>
 </html>

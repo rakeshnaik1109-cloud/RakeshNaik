@@ -1,0 +1,15 @@
+# Rename this file to CNAME (no extension) and put a single line in it
+# containing your custom domain, with no protocol and no trailing slash:
+#
+#     rakeshnaik.com
+#
+# Then add these DNS records at your registrar:
+#
+#   A     @   185.199.108.153
+#   A     @   185.199.109.153
+#   A     @   185.199.110.153
+#   A     @   185.199.111.153
+#   CNAME www rakeshnaik.github.io
+#
+# Finally, tick "Enforce HTTPS" in Settings -> Pages.
+# Remember to update the canonical URLs and sitemap.xml to the new domain.

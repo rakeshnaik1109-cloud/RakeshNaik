@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~
+node_modules/
+
+# Full-resolution originals — commit web-sized copies to Photos/ instead
+Photos/originals/
