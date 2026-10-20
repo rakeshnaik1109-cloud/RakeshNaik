@@ -57,12 +57,12 @@ academic sites link to you. Meta tags cannot manufacture that.
    DOI in `publications.html` is a phrase someone might search. Add DOIs as
    papers are published.
 
-4. **Add an ORCID iD when you have one.** In `index.html`, inside the `Person`
-   block, add it to `sameAs` next to Google Scholar, LinkedIn and GitHub:
+4. **Keep `sameAs` complete.** In `index.html`, inside the `Person` block, the
+   `sameAs` list links this page to your academic identities:
 
    ```json
    "sameAs": [
-     "https://orcid.org/XXXX-XXXX-XXXX-XXXX",
+     "https://orcid.org/0000-0003-1391-607X",
      "https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ",
      "https://www.linkedin.com/in/albertrakesh/",
      "https://github.com/rakeshnaik1109-cloud"
