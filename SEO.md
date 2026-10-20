@@ -64,8 +64,7 @@ academic sites link to you. Meta tags cannot manufacture that.
    "sameAs": [
      "https://orcid.org/0000-0003-1391-607X",
      "https://scholar.google.com/citations?hl=en&user=xDMzlr0AAAAJ",
-     "https://www.linkedin.com/in/albertrakesh/",
-     "https://github.com/rakeshnaik1109-cloud"
+     "https://www.linkedin.com/in/albertrakesh/"
    ]
    ```
 
