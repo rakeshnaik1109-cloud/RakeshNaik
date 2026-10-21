@@ -114,3 +114,13 @@ academic sites link to you. Meta tags cannot manufacture that.
 Expect two to six weeks before a new site settles into results, and longer before
 your name query is dominated by your own site rather than by namesakes. The
 backlinks in step 2 are what shorten that.
+
+
+---
+
+## Visitor statistics
+
+Every page loads GoatCounter (`rakeshnaik.goatcounter.com`), which counts page
+visits, referrers and countries without cookies or personal data. The
+dashboard is at <https://rakeshnaik.goatcounter.com>. RNSpectraX
+(`/RNSpectra_X/`) reports to the same dashboard.
