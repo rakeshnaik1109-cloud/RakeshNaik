@@ -199,12 +199,26 @@
     <div class="footer-base">
       <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
       <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+      <span data-visit-counter="/RakeshNaik/" hidden title="Visitors to this website (GoatCounter)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="vertical-align:-2px"><path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.8"/></svg> <span data-count></span> visitors</span>
     </div>
   </div>
 </footer>
 
 <script src="js/site.js"></script>
-<!-- Anonymous visit counts (GoatCounter: no cookies, no personal data) -->
+<!-- Anonymous visit counts (GoatCounter: no cookies, no personal data).
+     "/RakeshNaik/index.html" is counted as "/RakeshNaik/" so the home page has one count. -->
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+/* Public visitor count in the footer (GoatCounter counter API). Stays hidden
+   until GoatCounter answers, e.g. if "Allow adding visitor counts" is off. */
+(function () {
+  var el = document.querySelector('[data-visit-counter]'); if (!el || !window.fetch) return;
+  fetch('https://rakeshnaik.goatcounter.com/counter/' + encodeURIComponent(el.getAttribute('data-visit-counter')) + '.json')
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (d) { if (d && d.count) { el.querySelector('[data-count]').textContent = d.count; el.hidden = false; } })
+    .catch(function () {});
+})();
+</script>
 </body>
 </html>
