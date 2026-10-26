@@ -13,7 +13,7 @@ can do — and it matters far more.
 | Canonical URLs | every `<head>` |
 | Open Graph + Twitter cards, so shared links preview properly | every `<head>` |
 | `Person` structured data — name, job title, affiliation, expertise | `index.html` JSON-LD |
-| `SoftwareApplication` structured data for RNSpectraX | `index.html` JSON-LD |
+| `SoftwareApplication` structured data for RNSpectraX and RNBeamX | `index.html` JSON-LD |
 | `WebSite` and `BreadcrumbList` structured data | `index.html`, subpages |
 | `sitemap.xml` listing every page with priorities | root |
 | `robots.txt` pointing at the sitemap | root |
