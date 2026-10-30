@@ -431,6 +431,7 @@
       <div class="app-frame-bar">
         <i></i><i></i><i></i>
         <span>RNSpectraX (Spectral Plotter and Analytics Suite)</span>
+        <em class="live-pill" data-live-count="rnspectrax" hidden title="People using it right now (live)"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" class="live-dot"><circle cx="4" cy="4" r="4" fill="#30a46c"/></svg> <b data-n></b> using now</em>
       </div>
       <div class="app-frame-body">
         <picture>
@@ -480,6 +481,7 @@
       <div class="app-frame-bar">
         <i></i><i></i><i></i>
         <span>RNBeamX (Optical Setup Designer)</span>
+        <em class="live-pill" data-live-count="rnbeamx" hidden title="People using it right now (live)"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" class="live-dot"><circle cx="4" cy="4" r="4" fill="#30a46c"/></svg> <b data-n></b> using now</em>
       </div>
       <div class="app-frame-body">
         <img src="images/rnbeamx-sers-setup.svg" width="1612" height="931" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;border-radius:8px;background:#fff"
@@ -661,6 +663,8 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/presence.js"></script>
+<script>if (window.RNPresence) { RNPresence.bind('rnspectrax'); RNPresence.bind('rnbeamx'); }</script>
 <!-- Anonymous visit counts (GoatCounter: no cookies, no personal data).
      "/RakeshNaik/index.html" is counted as "/RakeshNaik/" so the home page has one count. -->
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>

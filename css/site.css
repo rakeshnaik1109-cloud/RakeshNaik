@@ -685,6 +685,11 @@ p + p { margin-top: 1.1em; }
   margin-left: 8px;
 }
 .app-frame-body { padding: 22px; }
+.live-pill { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-style: normal; font-family: var(--mono); font-size: .66rem; color: var(--text-2, #cfc8de); padding: 3px 9px; border: 1px solid var(--hairline); border-radius: 99px; }
+.live-pill b { color: #8fe0b0; font-weight: 600; }
+.live-pill .live-dot { animation: rnlive 2s ease-in-out infinite; }
+@keyframes rnlive { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .live-pill .live-dot { animation: none; } }
 .frame-stack { display: grid; gap: 22px; min-width: 0; }
 .frame-note { margin-top: 10px; font-family: var(--mono); font-size: .66rem; line-height: 1.5; color: var(--text-3); }
 .frame-video video { display: block; width: 100%; height: auto; border-radius: 8px; background: #111; }
