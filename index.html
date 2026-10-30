@@ -433,40 +433,12 @@
         <span>RNSpectraX (Spectral Plotter and Analytics Suite)</span>
       </div>
       <div class="app-frame-body">
-        <svg viewBox="0 0 420 250" style="width:100%;height:auto" role="img" aria-label="Illustration of two spectra overlaid with a shaded error band and detected peaks marked.">
-          <defs>
-            <linearGradient id="bandFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#e0a82e" stop-opacity=".22"/>
-              <stop offset="100%" stop-color="#e0a82e" stop-opacity=".02"/>
-            </linearGradient>
-          </defs>
-          <g stroke="rgba(255,255,255,.07)" stroke-width="1">
-            <line x1="34" y1="40" x2="404" y2="40"/><line x1="34" y1="90" x2="404" y2="90"/>
-            <line x1="34" y1="140" x2="404" y2="140"/><line x1="34" y1="190" x2="404" y2="190"/>
-          </g>
-          <line x1="34" y1="215" x2="404" y2="215" stroke="rgba(255,255,255,.16)"/>
-          <line x1="34" y1="26" x2="34" y2="215" stroke="rgba(255,255,255,.16)"/>
-          <path d="M34 200 C70 196 84 150 104 150 S128 200 150 198 C170 196 178 86 196 86 S220 196 240 194 C262 192 268 130 292 130 S318 190 340 186 C362 182 372 108 388 108 L404 148"
-                fill="url(#bandFill)" stroke="none" opacity=".9"/>
-          <path d="M34 202 C70 198 84 156 104 156 S128 202 150 200 C170 198 178 96 196 96 S220 198 240 196 C262 194 268 138 292 138 S318 192 340 188 C362 184 372 116 388 116 L404 152"
-                fill="none" stroke="#e0a82e" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M34 206 C70 203 84 172 104 172 S128 206 150 205 C170 203 178 126 196 126 S220 204 240 202 C262 200 268 160 292 160 S318 198 340 195 C362 192 372 142 388 142 L404 170"
-                fill="none" stroke="#45bfd6" stroke-width="1.7" stroke-dasharray="5 4" stroke-linejoin="round"/>
-          <g fill="none" stroke="#e2566e" stroke-width="1.5">
-            <circle cx="196" cy="96" r="4.5"/><circle cx="292" cy="138" r="4.5"/><circle cx="388" cy="116" r="4.5"/>
-          </g>
-          <g fill="#837a94" font-family="'IBM Plex Mono',monospace" font-size="9">
-            <text x="196" y="82" text-anchor="middle">1002</text>
-            <text x="292" y="124" text-anchor="middle">1450</text>
-            <text x="388" y="102" text-anchor="middle">1655</text>
-            <text x="219" y="235" text-anchor="middle">RAMAN SHIFT (CM⁻¹)</text>
-          </g>
-          <g font-family="'IBM Plex Mono',monospace" font-size="9" fill="#b6acc8">
-            <rect x="270" y="30" width="130" height="34" rx="5" fill="#211735" stroke="rgba(255,255,255,.12)"/>
-            <rect x="280" y="39" width="14" height="3" fill="#e0a82e"/><text x="300" y="43">Treated (n = 6)</text>
-            <rect x="280" y="52" width="14" height="3" fill="#45bfd6"/><text x="300" y="56">Control (n = 6)</text>
-          </g>
-        </svg>
+        <picture>
+          <source srcset="images/rnspectrax-plot.webp" type="image/webp">
+          <img src="images/rnspectrax-plot.png" width="1400" height="755" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;border-radius:8px;background:#fff"
+               alt="RNSpectraX plot: baseline-corrected group-average Raman spectra of a control and a treated group (n = 3 each), with the peaks found and labelled automatically, from 400 to 1800 cm⁻¹.">
+        </picture>
+        <p class="frame-note">A real RNSpectraX result: ALS baseline correction, group averages and automatic peak labels (synthetic demonstration spectra).</p>
       </div>
     </div>
 
@@ -503,30 +475,34 @@
       <p style="margin-top:18px;font-size:.85rem;line-height:1.6;color:#5b5370">By Rakesh Naik and Sachin Kumar Srivastava, IIT Roorkee. Runs entirely in the browser; nothing is uploaded. · <a href="publications.html#cite-rnbeamx">How to cite</a> (APA and BibTeX) · Cite as: Naik, R., &amp; Srivastava, S. K. (2026). <i>RNBeamX (Optical Setup Designer)</i> (Version 1.2) [Computer software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.23697703" target="_blank" rel="noopener noreferrer">https://doi.org/10.5281/zenodo.23697703</a> · Works hand in hand with <a href="#software">RNSpectraX</a>: send a processed spectrum straight across as panel b.</p>
     </div>
 
+    <div class="frame-stack">
     <div class="app-frame reveal" data-delay="1">
       <div class="app-frame-bar">
         <i></i><i></i><i></i>
         <span>RNBeamX (Optical Setup Designer)</span>
       </div>
       <div class="app-frame-body">
-        <svg viewBox="0 0 420 250" style="width:100%;height:auto" role="img" aria-label="Illustration of a laser beam reflected by a mirror, split by a beam splitter and focused by a lens onto a detector.">
-          <rect x="0" y="0" width="420" height="250" fill="#ffffff"/>
-          <rect x="28" y="150" width="70" height="26" rx="4" fill="#ffffff" stroke="#1d1f23" stroke-width="1.6"/>
-          <rect x="84" y="150" width="5" height="26" fill="#1fae3e"/>
-          <line x1="99" y1="163" x2="220" y2="163" stroke="#1fae3e" stroke-width="4" stroke-linecap="round"/>
-          <rect x="207" y="150" width="26" height="26" fill="#d4e6f5" stroke="#1d1f23" stroke-width="1.4"/>
-          <line x1="207" y1="176" x2="233" y2="150" stroke="#1d1f23" stroke-width="1.4"/>
-          <line x1="220" y1="163" x2="220" y2="60" stroke="#1fae3e" stroke-width="4" stroke-linecap="round" opacity=".85"/>
-          <line x1="220" y1="163" x2="330" y2="163" stroke="#1fae3e" stroke-width="4" stroke-linecap="round" opacity=".85"/>
-          <path d="M 300 145 Q 318 163 300 181 Q 282 163 300 145 Z" fill="#d4e6f5" stroke="#1d1f23" stroke-width="1.4"/>
-          <path d="M 300 161 L 350 163 L 300 165 Z" fill="#1fae3e" opacity=".9"/>
-          <path d="M 350 150 L 362 150 A 13 13 0 0 1 362 176 L 350 176 Z" fill="#26292e"/>
-          <rect x="206" y="46" width="28" height="7" fill="#a3acb7" stroke="#1d1f23" stroke-width="1.4"/>
-          <g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#222" text-anchor="middle">
-            <text x="63" y="196">Laser 532 nm</text><text x="246" y="196">BS</text><text x="300" y="134">L</text><text x="356" y="196">PD</text><text x="250" y="53">M</text>
-          </g>
-        </svg>
+        <img src="images/rnbeamx-sers-setup.svg" width="1612" height="931" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;border-radius:8px;background:#fff"
+             alt="SERS Raman microscope drawn with RNBeamX: a 532 nm laser, band-pass filter and half-wave plate, a dichroic mirror sending the beam up through a 50× objective onto a SERS substrate (with a zoomed inset of the nanoparticles), and the Raman signal returning through a long-pass filter and lens into a fibre to the spectrometer and PC.">
+        <p class="frame-note">Exported from RNBeamX as vector SVG: every beam is traced by the app.</p>
       </div>
+    </div>
+
+    <div class="app-frame reveal" data-delay="2">
+      <div class="app-frame-bar">
+        <i></i><i></i><i></i>
+        <span>RNBeamX · 3D animation</span>
+      </div>
+      <div class="app-frame-body frame-video">
+        <video autoplay muted loop playsinline preload="metadata" poster="images/rnbeamx-demo-poster.jpg" width="1280" height="700"
+               aria-label="Animation made with RNBeamX: the same SERS Raman setup on a 3D optical table, swinging gently while light flows along the green laser path and the yellow Raman path.">
+          <source src="media/rnbeamx-demo.webm" type="video/webm">
+          <source src="media/rnbeamx-demo.mp4" type="video/mp4">
+        </video>
+        <p class="frame-note">Rendered by RNBeamX: the 3D view with the photo look, a turntable swing and light flow.</p>
+        <script>(function () { var v = document.currentScript.parentNode.querySelector('video'); if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.controls = true; v.pause(); } })();</script>
+      </div>
+    </div>
     </div>
 
   </div>
