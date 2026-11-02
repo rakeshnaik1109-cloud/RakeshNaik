@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Vacuum and Thin-Film Deposition from First Principles | Rakesh Naik</title>
+<meta name="description" content="A complete, from-zero guide to vacuum and thin-film deposition: why we need vacuum, how rotary, diffusion and turbo pumps work, roughing, backing and hi-vac, Pirani (GH1, GH2) and Penning gauges, purging, LT and HT supplies, thermal and electron-beam evaporation, the quartz-crystal thickness monitor (DTM), and how electron-beam lithography differs. With equations and interactive simulations.">
+<meta name="keywords" content="thermal evaporation, electron beam evaporation, EBL, electron beam lithography, vacuum pump, rotary pump, diffusion pump, roughing backing hi-vac, Pirani gauge GH1 GH2, Penning gauge, DTM quartz crystal monitor, Sauerbrey, tooling factor, LT current HT current, glow discharge, purging, mean free path, thin film deposition tutorial">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-vacuum-deposition.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vacuum and Thin-Film Deposition from First Principles">
+<meta property="og:description" content="Why vacuum, how the pumps work and why the sequence matters, Pirani and Penning gauges, LT vs HT, thermal vs e-beam evaporation, the DTM, and EBL — from the very basics, with interactive simulations.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-vacuum-deposition.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-11-02">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vacuum and Thin-Film Deposition from First Principles">
+<meta name="twitter:description" content="From why we need vacuum to e-beam lithography: equations, diagrams and interactive simulations.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Vacuum and Thin-Film Deposition from First Principles","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-vacuum-deposition.html"}]},
+{"@type":"TechArticle","headline":"Vacuum and Thin-Film Deposition from First Principles","datePublished":"2026-11-02","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"A from-zero guide to vacuum technology, thermal and electron-beam evaporation, the quartz crystal thickness monitor and electron-beam lithography, with interactive simulations.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Vacuum and thin-film deposition, from first principles</h1>
+    <p class="lede">Why we pump the air out before we deposit anything; how a rotary, a diffusion
+    and a turbo pump actually move gas; why the valves must be opened in one order and no other;
+    what GH1, GH2, LT, HT and the DTM on the front panel really mean; how thermal evaporation,
+    electron-beam evaporation and electron-beam lithography differ. Starting from zero, with every
+    equation explained and simulations you can play with.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Instrumentation</span><span>2 November 2026</span><span>≈ 60 min read</span><span>Rakesh Naik</span></div>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-family">The family of deposition techniques</a></li>
+    <li><a href="#s-pressure">What pressure is: kinetic theory in five equations</a></li>
+    <li><a href="#s-why">Why we need vacuum</a></li>
+    <li><a href="#s-ranges">Degrees of vacuum and the toolbox</a></li>
+    <li><a href="#s-flow">Gas flow: throughput, speed, conductance, pump-down</a></li>
+    <li><a href="#s-pumps">How the pumps work</a></li>
+    <li><a href="#s-names">Roughing, backing, foreline, hi-vac: the names</a></li>
+    <li><a href="#s-gauges">Measuring vacuum: Pirani (GH1, GH2) and Penning</a></li>
+    <li><a href="#s-sequence">The sequence, and why it matters (simulator)</a></li>
+    <li><a href="#s-purge">Venting and purging</a></li>
+    <li><a href="#s-thermal">Thermal evaporation</a></li>
+    <li><a href="#s-lt-ht">LT current and HT voltage</a></li>
+    <li><a href="#s-ebeam">Electron-beam evaporation</a></li>
+    <li><a href="#s-dtm">The DTM: weighing a film with a quartz crystal</a></li>
+    <li><a href="#s-ebl">Electron-beam lithography (EBL)</a></li>
+    <li><a href="#s-compare">Thermal vs e-beam evaporation vs EBL</a></li>
+    <li><a href="#s-run">A complete run: 5 nm Cr + 50 nm Au</a></li>
+    <li><a href="#s-safety">Safety</a></li>
+    <li><a href="#s-glossary">Glossary and further reading</a></li>
+  </ol>
+</nav>
+
+<p>Every thin-film lab has the same machine somewhere: a glass or steel bell jar on a steel
+base plate, a cabinet of pumps underneath humming and occasionally gurgling, and a front panel
+full of labels nobody explained to you — <code>RV</code>, <code>BV</code>, <code>HV</code>,
+<code>GH1</code>, <code>GH2</code>, <code>LT</code>, <code>HT</code>, <code>DTM</code>. Most
+of us learn to drive it by watching a senior, writing the steps down, and hoping. This article
+is the explanation I wish I had been given: <b>why</b> every step exists, derived from the
+physics, so that the sequence becomes obvious instead of something to memorise.</p>
+
+<p>It is written for someone who has never touched a vacuum system. If you already have, skip to
+the <a href="#s-sequence">simulator</a> or the <a href="#s-dtm">DTM</a> section. Every figure
+marked <b>Interactive</b> runs in your browser; nothing is sent anywhere.</p>
+
+<figure class="fig paper">
+  <div class="fig-tag">Figure 1 · drawn with RNBeamX</div>
+  <img src="images/blog/rnbeamx-coater.svg" alt="A vacuum coater: DC power supply showing 3.20 V and 180 A connected to a vacuum chamber, a rotary vane pump pumping the chamber, and a nitrogen cylinder for venting, with high-voltage, hot-surface and gloves safety signs" loading="lazy" width="1500" height="720">
+  <figcaption><b>The pieces of a coating unit.</b> A low-voltage, high-current supply (LT) heats
+  the evaporation source inside the chamber; a rotary pump (with a diffusion pump, not drawn,
+  for high vacuum) evacuates it; a nitrogen cylinder vents and purges it. The signs are the
+  hazards you work next to: high voltage, hot surfaces, and the need for gloves. Drawn in
+  <a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-family"><span class="num">01</span>The family of deposition techniques</h2>
+
+<p>A <b>thin film</b> is a layer of material from a few atoms to a few micrometres thick on a
+surface we call the <b>substrate</b>. There are three broad ways to put one there:</p>
+<ul>
+  <li><b>Physical vapour deposition (PVD)</b>: turn a solid into a vapour by <i>physical</i>
+  means — heat it until it evaporates, or knock atoms off it with ions (sputtering) — and let the
+  vapour condense on the substrate. No chemical reaction is needed. PVD almost always needs
+  vacuum.</li>
+  <li><b>Chemical vapour deposition (CVD, ALD)</b>: let gases <i>react</i> on the hot substrate
+  so that the solid product stays behind (e.g. SiH₄ → Si + 2H₂). Atomic-layer deposition (ALD)
+  does this one self-limiting monolayer at a time.</li>
+  <li><b>Liquid and solution routes</b>: spin coating, dip coating, electroplating, sol–gel.
+  Cheap, usually at atmosphere.</li>
+</ul>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 2</div>
+  <svg viewBox="0 0 860 330" role="img" aria-label="Family tree of thin-film deposition techniques">
+    <style>.ft{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#efeaf6}.fs{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#b6acc8}.fb{fill:#211735;stroke:rgba(255,255,255,.18)}.fh{fill:#2b1f45;stroke:#e0a82e}</style>
+    <rect x="330" y="10" width="200" height="34" rx="8" class="fh"/><text x="430" y="32" class="ft" text-anchor="middle">Thin-film deposition</text>
+    <path d="M430 44 V62 M110 62 H760 M110 62 V78 M430 62 V78 M760 62 V78" stroke="rgba(255,255,255,.3)" fill="none"/>
+    <rect x="20" y="78" width="180" height="34" rx="8" class="fh"/><text x="110" y="100" class="ft" text-anchor="middle">Physical (PVD)</text>
+    <rect x="340" y="78" width="180" height="34" rx="8" class="fh"/><text x="430" y="100" class="ft" text-anchor="middle">Chemical</text>
+    <rect x="670" y="78" width="180" height="34" rx="8" class="fh"/><text x="760" y="100" class="ft" text-anchor="middle">Liquid / solution</text>
+    <path d="M110 112 V128 M60 128 H200 M60 128 V140 M200 128 V140" stroke="rgba(255,255,255,.3)" fill="none"/>
+    <rect x="8" y="140" width="112" height="30" rx="7" class="fb" stroke="#45bfd6"/><text x="64" y="160" class="ft" text-anchor="middle" fill="#45bfd6">Evaporation</text>
+    <rect x="146" y="140" width="112" height="30" rx="7" class="fb"/><text x="202" y="160" class="ft" text-anchor="middle">Sputtering</text>
+    <text x="16" y="194" class="fs">• thermal (resistive)</text><text x="16" y="212" class="fs">• electron-beam</text><text x="16" y="230" class="fs">• molecular-beam</text><text x="16" y="248" class="fs">  epitaxy (MBE)</text><text x="16" y="266" class="fs">• pulsed laser (PLD)</text>
+    <text x="150" y="194" class="fs">• DC / RF</text><text x="150" y="212" class="fs">• magnetron</text><text x="150" y="230" class="fs">• reactive</text><text x="150" y="248" class="fs">• ion-beam</text>
+    <text x="350" y="140" class="fs">• APCVD, LPCVD</text><text x="350" y="158" class="fs">• plasma-enhanced (PECVD)</text><text x="350" y="176" class="fs">• metal-organic (MOCVD)</text><text x="350" y="194" class="fs">• atomic-layer (ALD)</text>
+    <text x="680" y="140" class="fs">• spin / dip / spray</text><text x="680" y="158" class="fs">• electroplating</text><text x="680" y="176" class="fs">• sol–gel</text><text x="680" y="194" class="fs">• Langmuir–Blodgett</text>
+    <rect x="330" y="230" width="520" height="86" rx="10" fill="rgba(226,86,110,.07)" stroke="rgba(226,86,110,.5)" stroke-dasharray="5 4"/>
+    <text x="345" y="252" class="ft" fill="#e2566e">Not deposition — patterning</text>
+    <text x="345" y="272" class="fs">photolithography · electron-beam lithography (EBL) · focused ion beam · nanoimprint</text>
+    <text x="345" y="290" class="fs">These decide WHERE material goes. They are combined with deposition</text>
+    <text x="345" y="306" class="fs">by lift-off or etching (section 15).</text>
+  </svg>
+  <figcaption><b>Where everything in this article sits.</b> Thermal and electron-beam evaporation
+  are two ways of making the vapour in PVD. Electron-beam <i>lithography</i> uses electrons too,
+  but it deposits nothing: it draws a pattern in a polymer so that a later deposition lands only
+  where you want it.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-pressure"><span class="num">02</span>What pressure is: kinetic theory in five equations</h2>
+
+<p>The air in a room is about \(2.5\times10^{19}\) molecules in every cubic centimetre, each
+flying at roughly the speed of sound and hitting each other and the walls billions of times a
+second. <b>Pressure is nothing more than the momentum those molecules deliver to a wall per unit
+area per unit time.</b> Everything in vacuum technology follows from that picture, so let us
+build it carefully.</p>
+
+<h3>1 · The ideal-gas law, molecule by molecule</h3>
+<p>A molecule of mass \(m\) moving towards a wall with velocity component \(v_x\) bounces back with
+\(-v_x\): it hands the wall momentum \(2mv_x\). Counting how many such hits arrive per second on
+an area \(A\) and averaging over all molecules gives</p>
+$$p = \tfrac{1}{3}\, n\, m \,\overline{v^2}, \qquad \tfrac12 m\overline{v^2} = \tfrac32 k_B T \;\;\Rightarrow\;\; \boxed{\,p = n\,k_B\,T\,}$$
+<p>where \(n\) is the number of molecules per unit volume, \(T\) the temperature in kelvin and
+\(k_B = 1.381\times10^{-23}\ \mathrm{J\,K^{-1}}\) Boltzmann's constant. <b>Pressure is proportional
+to the number density.</b> Pumping a chamber from 1000 mbar to \(10^{-6}\) mbar removes all but one
+molecule in a billion — and still leaves \(2.5\times10^{10}\) of them in every cubic centimetre.</p>
+
+<h3>2 · How fast molecules move</h3>
+<p>The speeds follow the Maxwell–Boltzmann distribution. Its mean is</p>
+$$\bar v = \sqrt{\frac{8 k_B T}{\pi m}} \qquad (\text{N}_2 \text{ at } 20^\circ\text{C}: \ \bar v \approx 470\ \mathrm{m\,s^{-1}})$$
+<p>Light molecules are fast (H₂: 1760 m/s) and heavy ones slow (Au atoms evaporating at 1400 °C:
+≈ 420 m/s). This matters for turbo pumps, which work only on molecules they can outrun.</p>
+
+<h3>3 · How often molecules hit a surface</h3>
+<p>The number of molecules striking unit area per second, the <b>impingement rate</b>, is</p>
+$$\Phi = \tfrac14 n \bar v = \frac{p}{\sqrt{2\pi m k_B T}}$$
+<p>For air at room temperature this is \(\Phi \approx 2.9\times10^{20}\, p\,[\mathrm{mbar}]\)
+molecules cm⁻² s⁻¹. The same equation, read in reverse, is the rate at which a hot metal
+<i>leaves</i> its own surface — the Hertz–Knudsen equation of <a href="#s-thermal">section 11</a>.</p>
+
+<h3>4 · How far a molecule flies between collisions</h3>
+<p>Picture a molecule of diameter \(d\) sweeping out a cylinder of cross-section \(\pi d^2\) as it
+moves. It collides with every molecule whose centre lies in that cylinder. On average it travels
+the <b>mean free path</b></p>
+$$\lambda = \frac{k_B T}{\sqrt2\,\pi d^2\, p} \qquad\Rightarrow\qquad \lambda_{\text{air}}\,[\mathrm{cm}] \approx \frac{6.6\times10^{-3}}{p\,[\mathrm{mbar}]}$$
+<p>(the \(\sqrt2\) appears because the other molecules are moving too). At atmosphere \(\lambda\)
+is 66 nm; at \(10^{-2}\) mbar it is 6.6 mm; at \(10^{-5}\) mbar it is 6.6 m — longer than any
+chamber.</p>
+
+<h3>5 · Units</h3>
+<div class="tbl-wrap"><table>
+  <tr><th>Unit</th><th>Equals</th><th>Who uses it</th></tr>
+  <tr><td>1 Pa (N/m²)</td><td>0.01 mbar = 0.0075 Torr</td><td>SI; papers</td></tr>
+  <tr><td>1 mbar</td><td>100 Pa = 0.750 Torr</td><td>most European/Indian gauges and this article</td></tr>
+  <tr><td>1 Torr (≈ 1 mm Hg)</td><td>1.333 mbar = 133.3 Pa</td><td>US equipment, older literature</td></tr>
+  <tr><td>1 atm</td><td>1013 mbar = 760 Torr = 101 325 Pa</td><td>“atmosphere”</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-why"><span class="num">03</span>Why we need vacuum</h2>
+
+<p>Evaporating gold is easy: heat it. Getting the gold atoms to arrive on your substrate as a
+clean, dense, well-attached film is the hard part, and there are four separate reasons air
+prevents it.</p>
+
+<h3>Reason 1 — the atoms must fly straight</h3>
+<p>An evaporated atom leaves the source in a straight line. If it collides with gas molecules on
+the way it scatters, loses energy, may react, and arrives from a random direction — or not at
+all. The probability that an atom crosses a distance \(L\) <b>without a single collision</b>
+follows from the same reasoning as radioactive decay:</p>
+$$P(\text{no collision}) = e^{-L/\lambda}$$
+<p>For a 30 cm source–substrate distance we want \(\lambda \gg 30\) cm. At \(10^{-2}\) mbar,
+\(e^{-30/0.66}\approx 10^{-20}\): essentially nothing arrives straight. At \(10^{-5}\) mbar,
+\(e^{-30/660} \approx 0.96\): 96 % do. That one exponential is why evaporators work at
+\(10^{-5}\)–\(10^{-6}\) mbar and not at \(10^{-2}\).</p>
+
+<figure class="fig" data-fig="flight">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Gold atoms crossing a 30 cm chamber.</b> The mean free path is calculated from the
+  pressure and drawn to scale. Gold atoms that fly straight are yellow; any atom that has
+  collided with a gas molecule turns red and wanders. Slide from 10⁻² to 10⁻⁵ mbar and watch the
+  transition from diffusion to a molecular beam.</figcaption>
+</figure>
+
+<h3>Reason 2 — a clean surface is dirty within seconds</h3>
+<p>Every gas molecule that hits the substrate may stick. A full monolayer is about
+\(10^{15}\) molecules per cm², so with a sticking probability near 1 the time to cover a clean
+surface with one layer of contamination is</p>
+$$\tau_{\text{mono}} \approx \frac{10^{15}\ \mathrm{cm^{-2}}}{\Phi} \approx \frac{3\times10^{-6}\ \mathrm{s}}{p\,[\mathrm{mbar}]}$$
+<p>At \(10^{-6}\) mbar a monolayer of water and hydrocarbons forms in about <b>3 s</b>; at
+\(10^{-9}\) mbar in an hour. The film you deposit therefore always competes with the residual gas:
+the ratio of metal flux to gas flux decides how pure it is. Reactive metals (Ti, Cr, Al) pick up
+oxygen from water vapour readily — which is partly why a fast deposition rate gives a cleaner film.</p>
+
+<h3>Reason 3 — hot things oxidise and burn out</h3>
+<p>A tungsten boat at 1500 °C in air oxidises in seconds; the molten metal in it would oxidise
+too. In vacuum both survive.</p>
+
+<h3>Reason 4 — plasmas and electron beams need room</h3>
+<p>Electrons accelerated through 10 kV must not hit gas molecules on the way (they would ionise
+them and arc). Sputtering and glow-discharge cleaning need the opposite: a controlled low pressure
+at which a discharge can strike (<a href="#s-lt-ht">section 12</a>). Either way, you only get the
+right number of molecules by first removing almost all of them.</p>
+
+<figure class="fig" data-fig="mfp">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The numbers behind “why vacuum”.</b> Mean free path (gold) and the time to form
+  one contamination monolayer (cyan) against pressure. The Knudsen number
+  \(\mathrm{Kn} = \lambda/D\) compares the mean free path with the chamber size \(D\) and tells you
+  how the gas flows (next sections).</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ranges"><span class="num">04</span>Degrees of vacuum and the toolbox</h2>
+
+<p>Vacuum spans more than fourteen orders of magnitude, and <b>no single pump or gauge covers it</b>.
+That one fact explains the entire architecture of a coating unit.</p>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Range</th><th>Pressure (mbar)</th><th>Mean free path</th><th>How gas behaves</th></tr>
+  <tr><td>Rough (low) vacuum</td><td>1013 – 1</td><td>66 nm – 66 µm</td><td>viscous flow: gas moves like a fluid, molecules push each other</td></tr>
+  <tr><td>Medium vacuum</td><td>1 – 10⁻³</td><td>66 µm – 6.6 cm</td><td>transition (Knudsen) flow</td></tr>
+  <tr><td>High vacuum (HV)</td><td>10⁻³ – 10⁻⁷</td><td>6.6 cm – 660 m</td><td>molecular flow: molecules only hit walls</td></tr>
+  <tr><td>Ultra-high vacuum (UHV)</td><td>&lt; 10⁻⁷</td><td>&gt; 660 m</td><td>molecular; walls (outgassing) dominate</td></tr>
+</table></div>
+
+<figure class="fig" data-fig="ranges">
+  <div class="fig-tag">Figure 5</div>
+  <figcaption><b>Who works where.</b> Each pump, gauge and process has its own pressure window. A
+  rotary pump cannot reach high vacuum; a diffusion or turbo pump cannot start from atmosphere; a
+  Pirani gauge is blind below 10⁻³ mbar and a Penning gauge must not be run above 10⁻² mbar. So
+  we chain them.</figcaption>
+</figure>
+
+<p>The two flow regimes are the key physical distinction. In <b>viscous flow</b>
+(\(\mathrm{Kn} = \lambda/D \lt 0.01\)) molecules collide mostly with each other; a pressure difference
+pushes the gas like water in a pipe, and a pump simply sucks. In <b>molecular flow</b>
+(\(\mathrm{Kn} \gt 0.5\)) a molecule bounces from wall to wall without meeting another molecule;
+nothing “sucks” any more. A pump can only catch the molecules that happen to wander into its
+mouth, and keep them from coming back. That is why high-vacuum pumps look nothing like
+low-vacuum pumps.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-flow"><span class="num">05</span>Gas flow: throughput, speed, conductance, pump-down</h2>
+
+<h3>Throughput and pumping speed</h3>
+<p>We measure gas quantity as \(pV\) (by the ideal-gas law, \(pV = Nk_BT\) is proportional to the
+number of molecules). The <b>throughput</b> \(Q\) is the \(pV\) flowing past a point per second,
+in mbar·L/s. A pump's <b>pumping speed</b> \(S\) is the volume of gas, measured at its inlet
+pressure, that it removes per second:</p>
+$$Q = p\,S \qquad [\mathrm{mbar\,L\,s^{-1}} = \mathrm{mbar}\times \mathrm{L\,s^{-1}}]$$
+<p>Because molecules are conserved, <b>the same throughput passes through every part of a series
+line</b>. This is the most useful equation in the whole subject: if a diffusion pump takes
+\(Q = 5\times10^{-6}\ \mathrm{mbar}\times 500\ \mathrm{L/s} = 2.5\times10^{-3}\) mbar·L/s from the
+chamber, the rotary pump behind it must take the same \(Q\) out of the foreline. With a rotary
+speed of 4.5 L/s that sets the foreline pressure at \(Q/S \approx 5.6\times10^{-4}\) mbar. The
+diffusion pump has compressed the gas by a factor of 100 — and if the rotary could not keep the
+foreline low, the diffusion pump would fail (section 9).</p>
+
+<h3>Conductance: pipes are resistors</h3>
+<p>A pipe or valve passes gas in proportion to the pressure difference across it,
+\(Q = C\,(p_1 - p_2)\), where \(C\) is its <b>conductance</b> in L/s — exactly like
+\(I = V/R\). Conductances combine like electrical conductances:</p>
+$$\frac{1}{C_\text{series}} = \sum_i \frac{1}{C_i}, \qquad \frac{1}{S_\text{eff}} = \frac{1}{S_\text{pump}} + \frac{1}{C_\text{line}}$$
+<p>The second equation is the sobering one: <b>a pipe can only make a pump slower</b>. The
+conductance depends strongly on the flow regime. For a long round tube of diameter \(d\) and
+length \(L\) (cm) in air at 20 °C,</p>
+$$C_\text{viscous} \approx 135\,\frac{d^4}{L}\,\bar p\ \ [\mathrm{L/s},\ \bar p \text{ in mbar}], \qquad C_\text{molecular} \approx 12.1\,\frac{d^3}{L}\ \ [\mathrm{L/s}], \qquad C_\text{orifice} \approx 11.6\,A\ \ [\mathrm{L/s},\ A \text{ in cm}^2]$$
+<div class="callout tip"><b>Worked example</b>
+<p>A roughing line 2 m long and 2.5 cm in diameter. At a mean pressure of 1 mbar (viscous)
+\(C \approx 135 \times 39/200 \times 1 = 26\) L/s — much more than the 4.5 L/s rotary pump, so the
+line hardly matters. At \(10^{-2}\) mbar (molecular) \(C \approx 12.1\times15.6/200 = 0.95\) L/s,
+and the effective speed at the chamber falls to \(1/(1/4.5 + 1/0.95) = 0.78\) L/s. Long, thin
+roughing lines are why the last decade of rough pumping is slow, and why high-vacuum pumps sit
+directly under the chamber with an inlet as wide as possible.</p></div>
+
+<h3>The pump-down equation</h3>
+<p>For a chamber of volume \(V\) pumped with speed \(S\), the gas inside decreases at the rate it
+is pumped out, while the walls release gas (outgassing, leaks) at a rate \(Q_\text{gas}\):</p>
+$$V\frac{dp}{dt} = -S\,p + Q_\text{gas} \quad\Rightarrow\quad p(t) = \Big(p_0 - \frac{Q_\text{gas}}{S}\Big)e^{-St/V} + \frac{Q_\text{gas}}{S}$$
+<p>Two lessons:</p>
+<ul>
+  <li><b>Early on</b> (\(Q_\text{gas}\) negligible) pressure falls exponentially with time constant
+  \(V/S\). The time to go from \(p_0\) to \(p_1\) is \(t = (V/S)\ln(p_0/p_1)\). A 40 L bell jar
+  pumped at 4.5 L/s from 1013 to 0.05 mbar: \(t = 8.9 \times \ln(20\,000) \approx 90\) s in theory,
+  a few minutes in practice.</li>
+  <li><b>Eventually</b> the pressure stops at the <b>ultimate pressure</b>
+  \(p_\text{ult} = Q_\text{gas}/S\). Below about \(10^{-4}\) mbar the gas in a chamber is no longer the
+  air you started with; it is water desorbing from the walls. An unbaked steel chamber after an
+  hour releases roughly \(10^{-8}\)–\(10^{-7}\) mbar·L s⁻¹ per cm² of surface, so 5000 cm² of walls
+  and fixtures pumped at 300 L/s settles in the \(10^{-7}\)–\(10^{-6}\) mbar range. Clean, dry
+  surfaces and short venting times matter more than a bigger pump.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-pumps"><span class="num">06</span>How the pumps work</h2>
+
+<p>There are two families. <b>Gas-transfer pumps</b> move gas from the inlet to an exhaust:
+rotary vane, Roots, diffusion, turbomolecular. <b>Capture pumps</b> hold the gas inside: cryopumps
+freeze it, ion pumps bury it. Coating units mostly use the first family, a rotary pump and a
+diffusion (or turbo) pump working as a team.</p>
+
+<h3>6.1 The rotary vane pump — the roughing and backing pump</h3>
+<p>A cylindrical <b>rotor</b> spins off-centre inside a cylindrical <b>stator</b>, touching it
+along one line at the top. Two <b>vanes</b> slide in slots in the rotor and are pressed against
+the stator wall by springs and centrifugal force. As the rotor turns, the space between a vane
+and the contact line on the inlet side grows, so gas flows in; once the next vane passes the
+inlet, that pocket is sealed off and carried round; on the exhaust side it shrinks until the gas
+is compressed above atmospheric pressure and pushes open an oil-sealed exhaust valve.</p>
+
+<figure class="fig" data-fig="rotary">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This animation needs JavaScript.</p></noscript>
+  <figcaption><b>Rotary vane pump, one stage.</b> The vane lengths are computed exactly for the
+  off-centre geometry. Cyan: the pocket opening to the inlet; violet: a sealed pocket being
+  carried round; red: the pocket being compressed towards the exhaust.</figcaption>
+</figure>
+
+<p>Every pumping cycle is a compression from inlet pressure to ≈1.2 bar. One stage achieves a
+compression ratio of about \(10^5\); two stages in series (a <b>two-stage</b> pump, the usual kind)
+reach an ultimate pressure of about \(10^{-3}\) mbar. The <b>oil</b> does three jobs: it seals the
+tiny gaps between vanes and stator, lubricates, and carries away the heat of compression.</p>
+
+<h4>Gas ballast</h4>
+<p>When the pump compresses water vapour from the chamber, the vapour's partial pressure rises.
+If it exceeds the saturated vapour pressure of water at the pump temperature (≈ 70–80 mbar at
+40 °C) before the exhaust valve opens, the vapour <b>condenses into the oil</b>. Wet oil has a high
+vapour pressure, the ultimate pressure rises, and the pump corrodes. The <b>gas ballast</b> valve
+lets a small, controlled amount of air into the compression stroke so that the exhaust valve
+opens <i>before</i> the water can condense. You trade a slightly worse ultimate pressure for dry
+oil. Open it after venting with humid air or pumping solvents; close it for the lowest pressure.</p>
+
+<h3>6.2 The diffusion pump — the classic high-vacuum (hi-vac) pump</h3>
+<p>A diffusion pump has no moving parts. A heater at the bottom boils a special low-vapour-pressure
+oil (silicone or polyphenyl ether) at around 200 °C. The vapour rises up a central
+<b>chimney</b> and is thrown outwards and downwards through ring-shaped <b>jets</b> at supersonic
+speed. Gas molecules wandering in from the chamber (in molecular flow, remember — they arrive by
+chance) are struck by the much denser jet of heavy oil molecules and acquire a downward velocity.
+Stage by stage they are compressed towards the bottom, where the <b>foreline</b> leads them to the
+rotary pump. The oil vapour itself hits the water-cooled walls, condenses and runs back into the
+boiler.</p>
+
+<figure class="fig" data-fig="diffpump">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This animation needs JavaScript.</p></noscript>
+  <figcaption><b>A three-stage diffusion pump.</b> White molecules come in from the chamber; green
+  ones have been struck by a jet and are being driven down. Press <i>Raise the foreline
+  pressure</i>: the jets can no longer push against the gas below them, the pump stalls, and gas
+  and oil stream back up (red). Turn the heater off and nothing is pumped at all.</figcaption>
+</figure>
+
+<p>The name comes from the gas molecules <i>diffusing</i> into the vapour jet. The important numbers:</p>
+<ul>
+  <li><b>Speed</b> scales with the inlet area. The ideal speed of an opening of area \(A\) is
+  \(11.6\,A\) L/s (cm²), and a good pump captures 30–50 % of the molecules that enter it (the
+  Ho coefficient). A 6-inch (150 mm) pump: \(0.4\times11.6\times177 \approx 800\) L/s for air.</li>
+  <li><b>Critical backing (foreline) pressure</b>, typically 0.2–0.5 mbar. Above it the
+  bottom jet cannot compress against the gas below, the pump <b>stalls</b>, and hot oil vapour
+  moves upwards into your chamber. This is why the rotary must be connected to the foreline
+  (backing it) whenever the diffusion pump is hot.</li>
+  <li><b>Maximum inlet pressure</b>, roughly \(10^{-2}\)–\(10^{-1}\) mbar. Above it the jets are
+  overwhelmed by the sheer amount of gas. This is why the chamber must be roughed before the
+  hi-vac valve opens.</li>
+  <li><b>Warm-up</b> of 15–30 minutes to boil the oil; <b>cool-down</b> of similar length before the
+  oil may meet air (hot oil oxidises and cracks into tar).</li>
+  <li><b>Backstreaming</b>: a few oil molecules always travel upwards. A water-cooled cold cap
+  above the top jet and a chevron <b>baffle</b> (sometimes cooled with liquid nitrogen) between the
+  pump and the hi-vac valve catch them, at the cost of some speed.</li>
+</ul>
+
+<h3>6.3 The turbomolecular pump</h3>
+<p>A turbo pump does mechanically what the diffusion pump does with oil vapour. A rotor carrying
+many rows of angled blades spins at 20 000–90 000 rpm, so the blade tips move at 200–600 m/s —
+comparable to the speeds of gas molecules. A molecule that lands on a moving blade leaves with the
+blade's velocity added to its own, and the angle of the blades means it is more likely to be sent
+down into the next row than back up. Fixed <b>stator</b> rows between the rotor rows redirect the
+molecules into the next rotor row.</p>
+
+<figure class="fig" data-fig="turbo">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This animation needs JavaScript.</p></noscript>
+  <figcaption><b>Rotor and stator rows, unrolled.</b> Slow the blades down and the pump stops
+  discriminating between up and down; speed them up and more molecules are passed towards the
+  backing side. (A simplified probability model; the real transmission depends on blade angle,
+  spacing and the molecule's speed.)</figcaption>
+</figure>
+
+<p>The compression ratio of each stage grows exponentially with the ratio of blade speed to the
+molecule's thermal speed, roughly \(K \propto \exp\!\big(c\,v_\text{blade}\sqrt{M}\big)\). For
+nitrogen a turbo pump reaches \(K \sim 10^{8}\)–\(10^{9}\); for hydrogen, whose molecules are
+fast, only \(10^{3}\)–\(10^{4}\). A turbo is oil-free in the pumping path, starts in minutes, and
+does not care which way up it is mounted. It still needs a backing pump: its exhaust must be held
+below about \(10^{-2}\)–1 mbar.</p>
+
+<figure class="fig" data-fig="speeds">
+  <div class="fig-tag">Figure 9</div>
+  <figcaption><b>Pumping speed against inlet pressure</b> (illustrative curves). The rotary pump's
+  speed collapses near its 10⁻³ mbar ultimate; the diffusion and turbo pumps only start working
+  where the rotary gives up. The team covers the whole range; neither member can.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-names"><span class="num">07</span>Roughing, backing, foreline, hi-vac: the names</h2>
+
+<p>The same rotary pump does two different jobs at different times, and the names describe the
+<i>job</i>, not the hardware:</p>
+<div class="tbl-wrap"><table>
+  <tr><th>Term</th><th>Meaning</th><th>Why it is called that</th></tr>
+  <tr><td><b>Roughing</b></td><td>Pumping the chamber directly with the rotary pump from atmosphere down to ~10⁻² mbar, through the <b>roughing valve (RV)</b> and roughing line, bypassing the diffusion pump.</td><td>It takes the chamber through the “rough” vacuum range; the gross bulk of the air is removed.</td></tr>
+  <tr><td><b>Backing</b></td><td>The rotary pump holding the <i>outlet</i> of the diffusion (or turbo) pump below its critical pressure, through the <b>backing valve (BV)</b>.</td><td>It “backs up” the high-vacuum pump, which cannot exhaust to atmosphere on its own. The same pump is then called the backing pump.</td></tr>
+  <tr><td><b>Foreline</b></td><td>The pipe between the diffusion pump outlet and the backing valve/rotary pump.</td><td>The line “before” (fore) the rotary pump. Its pressure is what GH2 usually reads.</td></tr>
+  <tr><td><b>Hi-vac (high vacuum)</b></td><td>The diffusion or turbo pump, and the large <b>hi-vac valve (HV)</b> — a butterfly, gate or baffle valve — between it and the chamber.</td><td>It takes the chamber into the high-vacuum range (10⁻³–10⁻⁷ mbar).</td></tr>
+  <tr><td><b>Air admittance / vent valve</b></td><td>Lets air or dry nitrogen into the chamber to bring it back to atmosphere.</td><td>It “admits” air.</td></tr>
+  <tr><td><b>Crossover pressure</b></td><td>The chamber pressure at which you switch from roughing to the hi-vac pump (~5×10⁻² mbar for a diffusion pump).</td><td>Where the job “crosses over” from one pump to the other.</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-gauges"><span class="num">08</span>Measuring vacuum: Pirani (GH1, GH2) and Penning</h2>
+
+<p>Below about 1 mbar there is too little force on a membrane to measure pressure mechanically.
+So vacuum gauges measure something that depends on the number of molecules: how well the gas
+carries heat away (Pirani), or how much current you get by ionising it (Penning).</p>
+
+<h3>The Pirani gauge</h3>
+<p>A fine tungsten or platinum wire is kept hot (typically ~120 °C) inside a small tube connected
+to the vacuum. It loses heat in three ways: radiation, conduction through its supports, and
+conduction <b>through the gas</b>. Only the last depends on pressure. The gauge's electronics
+keep the wire at constant temperature in a Wheatstone bridge, and the power this needs is
+converted into a pressure reading.</p>
+<p>The physics of the response is a lovely piece of kinetic theory. When the mean free path is
+much longer than the gap between wire and wall (low pressure), each molecule that hits the wire
+carries away a fixed amount of energy, so the heat loss is proportional to the impingement rate,
+i.e. to \(p\). When the mean free path is much shorter than the gap (high pressure), the thermal
+conductivity of a gas,</p>
+$$\kappa \approx \tfrac13\, n\, m\, c_v\, \bar v\, \lambda, \qquad \lambda \propto \frac1n \;\Rightarrow\; \kappa \text{ independent of pressure,}$$
+<p>— Maxwell's surprising result — so the gauge saturates. Between the radiation floor at about
+\(10^{-3}\) mbar and saturation at some tens of mbar, the Pirani gauge reads well. Because
+different gases carry heat differently, a Pirani gauge calibrated for nitrogen <b>reads wrong in
+argon, helium or water vapour</b>.</p>
+
+<figure class="fig" data-fig="pirani">
+  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Pirani response</b> (a simple model with typical gas factors). The useful range is
+  where the curves slope. In argon at a true 0.1 mbar an N₂-calibrated gauge reads low, so you
+  would think you had pumped further than you have. Always check the manufacturer's gas-correction
+  table when you work with process gases.</figcaption>
+</figure>
+
+<div class="callout info"><b>GH1 and GH2</b>
+<p>Many coating units, including those common in Indian labs, have a two-channel digital Pirani
+gauge whose two <b>g</b>auge <b>h</b>eads are labelled <b>GH1</b> and <b>GH2</b>. One head sits on the
+chamber side (on the chamber or on the roughing line next to it) and reads the <b>chamber
+pressure during roughing</b>; the other sits on the <b>foreline</b> and tells you whether the
+diffusion pump is properly backed. The usual assignment is GH1 → chamber/roughing and
+GH2 → foreline/backing, but manufacturers differ: follow the cable and the tube from each head on
+your own unit and write the answer on the panel. You need both readings — GH1 to know when to
+cross over, GH2 to know the diffusion pump is safe.</p></div>
+
+<h3>The Penning (cold-cathode) gauge</h3>
+<p>Below \(10^{-3}\) mbar the Pirani is blind, and we switch to an ionisation gauge. A Penning
+gauge has a ring or rod anode at +2 to +3 kV between two cathode plates, all inside a permanent
+magnet. A stray electron is accelerated by the electric field but bent into a tight helix by the
+magnetic field, so it travels metres before it reaches the anode. On the way it ionises gas
+molecules; the ions are collected at the cathode. The discharge current follows</p>
+$$I = K\,p^{\,n}, \qquad n \approx 1.1\text{–}1.2$$
+<p>with \(K\) found by calibration. Range: about \(10^{-2}\) to \(10^{-7}\) mbar (inverted-magnetron
+designs reach \(10^{-11}\)). Switch it on only below \(10^{-2}\) mbar: at higher pressure the
+discharge becomes an intense glow that sputters the electrodes and contaminates the gauge. At very
+low pressure it can take seconds to minutes to “strike”. Hot-cathode (Bayard–Alpert) gauges use a
+heated filament instead and reach UHV.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 11</div>
+  <svg viewBox="0 0 860 300" role="img" aria-label="Pirani and Penning gauge heads">
+    <style>.gl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.gt{font-family:'IBM Plex Mono',monospace;font-size:12.5px;fill:#e0a82e;letter-spacing:.12em}</style>
+    <text x="20" y="24" class="gt">PIRANI</text>
+    <rect x="60" y="50" width="80" height="190" rx="10" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+    <path d="M100 60 V230" stroke="#ff9a3c" stroke-width="2.5"/><circle cx="100" cy="60" r="3" fill="#ff9a3c"/>
+    <path d="M100 240 V280" stroke="rgba(255,255,255,.5)" stroke-width="2"/><text x="108" y="276" class="gl">to vacuum</text>
+    <g fill="#c9d3df">
+      <circle cx="80" cy="90" r="2.4"/><circle cx="118" cy="120" r="2.4"/><circle cx="85" cy="160" r="2.4"/><circle cx="122" cy="200" r="2.4"/><circle cx="76" cy="215" r="2.4"/>
+    </g>
+    <path d="M100 120 L80 92 M100 200 L120 198" stroke="#e2566e" stroke-width="1.3" stroke-dasharray="3 3"/>
+    <text x="150" y="80" class="gl">hot wire (~120 °C), one arm</text><text x="150" y="96" class="gl">of a Wheatstone bridge</text>
+    <text x="150" y="136" class="gl">gas molecules carry heat</text><text x="150" y="152" class="gl">from wire to wall: loss ∝ p</text>
+    <text x="150" y="192" class="gl">power to hold the wire at</text><text x="150" y="208" class="gl">constant T → pressure</text>
+    <text x="150" y="246" class="gl">range ≈ 10⁻³ – 100 mbar</text>
+    <text x="450" y="24" class="gt">PENNING</text>
+    <rect x="470" y="70" width="40" height="170" fill="#45bfd6" opacity=".35"/><rect x="650" y="70" width="40" height="170" fill="#e2566e" opacity=".35"/>
+    <text x="474" y="62" class="gl" fill="#45bfd6">N</text><text x="660" y="62" class="gl">S</text>
+    <rect x="520" y="80" width="8" height="150" fill="#9fb4c8"/><rect x="632" y="80" width="8" height="150" fill="#9fb4c8"/>
+    <ellipse cx="580" cy="155" rx="28" ry="58" fill="none" stroke="#e0a82e" stroke-width="5"/>
+    <path d="M560 120 c 20 -12 40 12 20 22 c -20 10 -36 -10 -16 -20 c 22 -10 38 14 18 24 c -22 8 -36 -12 -14 -20" fill="none" stroke="#7fd18b" stroke-width="1.6"/>
+    <text x="520" y="252" class="gl">cathodes (0 V)</text><text x="548" y="98" class="gl" fill="#e0a82e">anode +2.5 kV</text>
+    <text x="700" y="120" class="gl">B field traps</text><text x="700" y="136" class="gl">electrons in long</text><text x="700" y="152" class="gl">spirals → they</text><text x="700" y="168" class="gl">ionise the gas</text>
+    <text x="700" y="200" class="gl">I = K·pⁿ</text><text x="700" y="216" class="gl">range ≈ 10⁻² –</text><text x="700" y="232" class="gl">10⁻⁷ mbar</text>
+  </svg>
+  <figcaption><b>The two gauge heads on a coating unit.</b> The Pirani measures heat conduction
+  (rough and medium vacuum); the Penning measures an ionisation current (high vacuum).</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-sequence"><span class="num">09</span>The sequence, and why it matters</h2>
+
+<p>We now have everything needed to derive the operating procedure. Three hard constraints come
+straight from section 6:</p>
+<ol>
+  <li><b>The diffusion pump's outlet must stay below its critical backing pressure (~0.4 mbar)
+  whenever it is hot.</b> Otherwise it stalls and backstreams oil.</li>
+  <li><b>Its inlet must never see a pressure above ~0.1 mbar while it is hot.</b> Otherwise the
+  jets collapse and the hot oil meets air.</li>
+  <li><b>The rotary pump has only one inlet.</b> It can rough the chamber <i>or</i> back the
+  diffusion pump, not both at once (if both valves are open, chamber air at high pressure flows
+  straight into the foreline).</li>
+</ol>
+<p>The procedure is simply the order of operations that never violates any of them.</p>
+
+<figure class="fig" data-fig="sim">
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive simulator</span></div>
+  <noscript><p>The simulator needs JavaScript.</p></noscript>
+  <figcaption><b>A thermal-evaporation coating unit.</b> Click a valve (or use the buttons) to open
+  or close it; switch on the water, rotary pump and diffusion-pump heater. Gas flow is calculated
+  from the throughputs \(Q = C\Delta p\) and \(Q = Sp\) on three volumes (chamber 40 L, foreline 1.5
+  L, roughing manifold 0.5 L), including outgassing, so pressures behave as they would on a real
+  machine — including when you do things in the wrong order. Press <i>Show me</i> to watch the
+  correct start-up. Pipe colour shows pressure (red high, blue low).</figcaption>
+</figure>
+
+<h3>Start-up (cold machine, chamber at atmosphere)</h3>
+<ol>
+  <li><b>Cooling water on.</b> The diffusion-pump walls must be cold before the oil boils, or the
+  vapour is not condensed and the pump overheats.</li>
+  <li><b>Rotary pump on</b>, all valves closed. Let it run a minute (open the gas ballast if it has
+  been idle or the oil may be wet).</li>
+  <li><b>Open the backing valve (BV).</b> The rotary evacuates the diffusion pump and the foreline.
+  Wait until <b>GH2 reads below ~0.1 mbar</b>.</li>
+  <li><b>Diffusion-pump heater on.</b> Wait the warm-up time (15–30 min). Meanwhile load your
+  substrates and source — the chamber is still isolated from the pumps by the closed hi-vac valve.</li>
+  <li><b>Close BV, open the roughing valve (RV).</b> The rotary now pumps the chamber directly. The
+  diffusion pump is briefly unbacked; that is fine for a few minutes because, with its hi-vac valve
+  shut, almost no gas enters it, and the foreline pressure rises only slowly (watch GH2).</li>
+  <li>When <b>GH1 reads below ~0.05 mbar</b> (the crossover pressure): <b>close RV, open BV</b>.
+  The diffusion pump is backed again.</li>
+  <li><b>Open the hi-vac valve (HV)</b> slowly. The chamber pressure drops by decades within seconds;
+  GH2 rises briefly as the diffusion pump pushes the remaining chamber gas into the foreline.</li>
+  <li><b>Switch on the Penning gauge</b> once below \(10^{-2}\) mbar, and wait for base pressure (for
+  evaporation, typically \(2\times10^{-5}\)–\(5\times10^{-6}\) mbar). A cold trap filled with liquid
+  nitrogen, if fitted, speeds up the last part by freezing out water vapour.</li>
+</ol>
+
+<h3>Shut-down</h3>
+<ol>
+  <li><b>Close the hi-vac valve.</b> The diffusion pump is now isolated and stays backed.</li>
+  <li><b>Wait for the sources and substrates to cool</b> (≥ 10–15 min). Hot metal and hot boats
+  oxidise when air comes in.</li>
+  <li><b>Vent</b> the chamber through the air-admittance valve, preferably with dry nitrogen
+  (section 10). Close the vent valve once at atmosphere and unload.</li>
+  <li>If the machine will be used again soon, close the chamber and rough it (keeping it under
+  vacuum keeps it clean and dry). Otherwise: <b>diffusion-pump heater off</b>, keep BV open and
+  the water running until the pump is cool (~30–45 min), then <b>close BV, stop the rotary</b>
+  (vent its inlet if it has no automatic valve), and turn off the water.</li>
+</ol>
+
+<h3>What goes wrong, and why</h3>
+<div class="tbl-wrap"><table>
+  <tr><th>Mistake</th><th>What happens physically</th></tr>
+  <tr><td>Opening HV with the chamber at atmosphere (or above ~0.1 mbar) and the DP hot</td><td>A blast of air enters the pump: the jets collapse, hot oil oxidises into varnish, oil vapour is blown up into the chamber and coats everything. The most expensive mistake on the list.</td></tr>
+  <tr><td>Roughing for too long with BV closed and the DP hot</td><td>The foreline creeps above the critical backing pressure; the pump stalls and backstreams. Watch GH2 while roughing, and alternate RV/BV if roughing is slow.</td></tr>
+  <tr><td>RV and BV open together at high chamber pressure</td><td>Chamber air rushes into the foreline and the DP stalls.</td></tr>
+  <tr><td>Heater on without cooling water</td><td>Oil vapour is not condensed on the walls; the pump overheats until its thermal cut-out trips, and oil migrates into the foreline and the chamber.</td></tr>
+  <tr><td>Venting with HV open</td><td>Nitrogen or air floods the hot DP — the same failure as the first row, from the other side.</td></tr>
+  <tr><td>Stopping the rotary with a valve open</td><td>The pressure difference pushes rotary oil back up the line (“suck-back”) into the foreline or chamber.</td></tr>
+  <tr><td>Penning on above 10⁻² mbar</td><td>An intense glow discharge sputters and contaminates the gauge; the reading is meaningless.</td></tr>
+</table></div>
+
+<p>On a <b>turbo-pumped</b> system the rules are gentler: the turbo can usually be started together
+with the rotary from atmosphere (it spins up as the pressure falls), and there is no hot oil to
+protect. You still must not vent it at full speed (the sudden gas load can crash the rotor), and
+it still needs its backing pump running.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-purge"><span class="num">10</span>Venting and purging</h2>
+
+<p><b>Venting</b> is bringing a chamber back to atmospheric pressure. <b>Purging</b> means
+replacing an unwanted gas in a space with a clean, inert one. They overlap in practice:</p>
+<ul>
+  <li><b>Venting with dry nitrogen</b> instead of room air. Water molecules stick to metal surfaces
+  in many layers and desorb slowly (they are what limits your base pressure, section 5). Nitrogen
+  barely adsorbs and leaves quickly. A chamber vented with dry N₂ and opened only briefly pumps
+  down to the same base pressure noticeably faster than one vented with humid monsoon air.
+  Keeping a slight N₂ flow while the chamber is open (a “purge”) reduces water uptake further.</li>
+  <li><b>Pump–purge cycles</b> for gas lines and process chambers (sputtering, CVD, glove boxes):
+  pump down to \(p_\text{low}\), back-fill with pure gas to \(p_\text{high}\), repeat. Each cycle
+  dilutes the impurity by \(p_\text{low}/p_\text{high}\), so after \(N\) cycles
+  $$x_N = x_0\left(\frac{p_\text{low}}{p_\text{high}}\right)^{N}$$
+  Three cycles between 1 mbar and 1000 mbar reduce air from 100 % to one part in \(10^{9}\).
+  Flow-purging alone (sweeping gas through) is far less efficient, because it only dilutes
+  exponentially with the number of volume exchanges, and dead legs never get swept.</li>
+  <li><b>Gas-ballast purging</b> of the rotary pump (section 6.1) to strip condensed vapour from
+  the oil.</li>
+  <li><b>Purging the diffusion pump</b> after maintenance or a bad venting: never with hot oil;
+  vent the cold pump with dry N₂.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-thermal"><span class="num">11</span>Thermal evaporation</h2>
+
+<p>Thermal (resistive) evaporation is the simplest PVD method: put the material in a
+<b>boat</b>, filament or crucible made of a refractory metal (W, Mo, Ta), pass a large current
+through it, and let the material melt and evaporate. The vapour travels in straight lines (we
+made sure of that with the vacuum) and condenses on everything in sight, including the substrate.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 13</div>
+  <svg viewBox="0 0 860 470" role="img" aria-label="Cross-section of a thermal evaporation chamber">
+    <style>.el{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.eh{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#e0a82e}
+    @keyframes vup{from{stroke-dashoffset:0}to{stroke-dashoffset:-30}} .vap{stroke:#e0a82e;stroke-width:1.4;stroke-dasharray:3 7;animation:vup 1.2s linear infinite;opacity:.8}
+    @keyframes bglow{from{fill:#ff8a2b}to{fill:#ffd36b}} .bt{animation:bglow 1.1s ease-in-out infinite alternate}
+    @media (prefers-reduced-motion: reduce){.vap,.bt{animation:none}}</style>
+    <path d="M140 380 V140 Q140 40 330 40 Q520 40 520 140 V380" fill="rgba(69,191,214,.04)" stroke="rgba(255,255,255,.55)" stroke-width="3"/>
+    <rect x="110" y="380" width="440" height="16" fill="#3b3156"/>
+    <text x="500" y="56" class="el">bell jar (glass or steel)</text>
+    <rect x="220" y="92" width="220" height="10" fill="#5a4b80"/><rect x="326" y="70" width="8" height="22" fill="#5a4b80"/><text x="342" y="84" class="el">rotating holder</text>
+    <rect x="236" y="102" width="50" height="5" fill="#45bfd6"/><rect x="304" y="102" width="50" height="5" fill="#45bfd6"/><rect x="372" y="102" width="50" height="5" fill="#45bfd6"/>
+    <text x="232" y="122" class="el" fill="#45bfd6">substrates</text>
+    <rect x="290" y="140" width="110" height="5" fill="#837a94" transform="rotate(-8 290 142)"/><text x="410" y="146" class="el">substrate shutter</text>
+    <g><path d="M330 330 L250 112 M330 330 L300 108 M330 330 L360 108 M330 330 L410 112 M330 330 L190 220 M330 330 L470 220 M330 330 L215 300" class="vap"/></g>
+    <rect x="300" y="330" width="60" height="7" class="bt"/>
+    <rect x="292" y="337" width="10" height="43" fill="#b87333"/><rect x="358" y="337" width="10" height="43" fill="#b87333"/>
+    <text x="376" y="372" class="eh">← LT electrodes (water-cooled Cu)</text><text x="368" y="336" class="el">boat</text>
+    <rect x="226" y="304" width="62" height="5" fill="#837a94" transform="rotate(-20 288 306)"/><text x="150" y="290" class="el">source shutter (swung open)</text>
+    <rect x="456" y="238" width="30" height="20" rx="3" fill="#2e7d32"/><path d="M471 258 V380" stroke="#45bfd6" stroke-width="2"/><text x="492" y="246" class="el">quartz crystal</text><text x="492" y="260" class="el">(DTM sensor,</text><text x="492" y="274" class="el">water-cooled)</text>
+    <ellipse cx="200" cy="360" rx="32" ry="6" fill="none" stroke="#a98bf0" stroke-width="3"/><path d="M200 366 V380" stroke="#a98bf0" stroke-width="2"/><text x="150" y="350" class="el" fill="#a98bf0">HT glow ring</text>
+    <path d="M330 396 V430" stroke="#2b2242" stroke-width="30"/><text x="350" y="420" class="el">→ hi-vac valve, baffle, diffusion pump</text>
+    <path d="M520 300 H600" stroke="#2b2242" stroke-width="12"/><text x="606" y="304" class="el">→ roughing valve (GH1 here)</text>
+    <path d="M520 200 H580" stroke="#2b2242" stroke-width="10"/><text x="586" y="204" class="el">Penning gauge</text>
+    <path d="M140 250 H90" stroke="#2b2242" stroke-width="10"/><text x="18" y="236" class="el">vent / N₂</text>
+    <path d="M520 150 H570" stroke="#2b2242" stroke-width="10"/><text x="576" y="154" class="el">viewport</text>
+    <text x="640" y="80" class="eh">substrate heater (lamp),</text><text x="640" y="96" class="el">optional, above the holder</text>
+  </svg>
+  <figcaption><b>Inside a thermal evaporator.</b> The boat between the copper LT electrodes is the
+  source. The source shutter lets you melt and outgas the charge without coating anything; the
+  substrate shutter lets the crystal monitor see the rate stabilise before the film starts. The
+  HT ring is used for glow-discharge cleaning before deposition (section 12).</figcaption>
+</figure>
+
+<h3>How much heat: Joule heating with the LT supply</h3>
+<p>A boat is a resistor of a few to a few tens of milliohms. The heating power is</p>
+$$P = I^2 R$$
+<p>so to deliver several hundred watts into 15 mΩ you need ~150–250 A at only 2–5 V. That is what
+the step-down transformer of the <b>LT (low-tension) supply</b> provides (section 12). The boat
+reaches a temperature where the input power balances radiation (\(\varepsilon\sigma A T^4\)) and
+conduction into the water-cooled electrodes. Because \(R\) itself rises with temperature, you
+raise the current slowly — both to avoid thermal shock and to let the charge outgas.</p>
+
+<figure class="fig" data-fig="boat">
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
+  <noscript><p>This calculator needs JavaScript.</p></noscript>
+  <figcaption><b>The LT circuit in numbers.</b> A few volts and a few hundred amps on the boat side;
+  a few amps from the 230 V mains on the primary side.</figcaption>
+</figure>
+
+<h3>How fast a metal evaporates: vapour pressure and Hertz–Knudsen</h3>
+<p>Every solid and liquid has a <b>vapour pressure</b> \(p_v(T)\): the pressure of its own vapour in
+equilibrium with it. Thermodynamics (the Clausius–Clapeyron equation) gives its temperature
+dependence:</p>
+$$\frac{d\ln p_v}{dT} = \frac{\Delta H_\text{vap}}{RT^2} \quad\Rightarrow\quad \log_{10} p_v = A - \frac{B}{T}$$
+<p>— an exponential rise with temperature. In equilibrium, the flux of atoms leaving the surface
+equals the flux of vapour atoms arriving (section 2, equation 3). In vacuum nothing comes back,
+so the surface keeps emitting at the equilibrium rate. That is the <b>Hertz–Knudsen–Langmuir
+equation</b>:</p>
+<div class="eq-box">
+$$\Gamma = \frac{\alpha\,(p_v - p)}{\sqrt{2\pi m k_B T}} \qquad \Gamma_m = m\Gamma = \alpha\,p_v\sqrt{\frac{M}{2\pi R T}}$$
+<div class="eq-name">Γ: atoms per m² per s · Γ<sub>m</sub>: kg m⁻² s⁻¹ · α ≤ 1 evaporation coefficient · M molar mass</div>
+</div>
+<p>In practical units, \(\Gamma_m \approx 5.83\times10^{-2}\, p_v[\mathrm{Torr}]\sqrt{M/T}\) g cm⁻² s⁻¹.
+A useful rate needs \(p_v \approx 10^{-2}\) mbar, which sets the evaporation temperature of each
+material. Some metals (Cr, Ti at modest temperatures) reach it <b>below their melting point</b> and
+sublime from the solid.</p>
+
+<figure class="fig" data-fig="vapor">
+  <div class="fig-tag">Figure 15 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Vapour pressures of common metals</b> (fitted to standard vapour-pressure tables;
+  dots mark the melting points). The calculator applies Hertz–Knudsen to a 1 cm² melt and the
+  cosine law below to estimate the film growth rate straight above it. Notice how steep the
+  curves are: 100 °C more can mean ten times the rate.</figcaption>
+</figure>
+
+<h3>Where the atoms land: the cosine law and film uniformity</h3>
+<p>A small flat source emits more atoms straight up than sideways. Knudsen showed that the
+number leaving at angle \(\theta\) from the surface normal goes as \(\cos\theta\) (a point source
+would emit equally in all directions). An area element of the substrate at distance \(r\), whose
+normal makes an angle \(\phi\) with the incoming direction, receives</p>
+$$\frac{dM_s}{dA_s} = \frac{M_e}{\pi r^2}\cos\theta\,\cos\phi$$
+<p>For a flat substrate parallel to the source at height \(h\), a point at lateral distance \(\ell\)
+has \(\cos\theta = \cos\phi = h/r\) and \(r^2 = h^2 + \ell^2\). Dividing by density gives the
+thickness, and normalising to the thickness \(t_0\) directly above the source:</p>
+<div class="eq-box">
+$$\frac{t}{t_0} = \frac{1}{\big[1 + (\ell/h)^2\big]^{2}}\ \ \text{(small surface source)}, \qquad \frac{t}{t_0} = \frac{1}{\big[1 + (\ell/h)^2\big]^{3/2}}\ \ \text{(point source)}$$
+<div class="eq-name">film uniformity on a flat substrate</div>
+</div>
+<p>With \(h = 25\) cm, a point 5 cm off-centre gets 92 % of the centre thickness. To do better you
+increase \(h\) (at the cost of rate, which falls as \(1/h^2\)), rotate the substrates, or put them on a
+sphere passing through the source (on such a <b>Knudsen sphere</b>, \(\cos\theta\cos\phi/r^2\) is
+constant and the coating is perfectly uniform for a surface source).</p>
+
+<figure class="fig" data-fig="evapmc">
+  <div class="fig-tag">Figure 16 · <span class="live">Interactive Monte Carlo</span></div>
+  <noscript><p>This simulation needs JavaScript.</p></noscript>
+  <figcaption><b>Building the thickness profile atom by atom.</b> Each frame launches thousands of
+  atoms with the chosen angular distribution and records where they land on a flat substrate; the
+  bars converge onto the analytical curve (cyan). This geometry is also why evaporation is
+  <i>directional</i> — the property that makes lift-off work (section 15).</figcaption>
+</figure>
+
+<h3>Practical notes</h3>
+<ul>
+  <li><b>Boat choice</b>: W for most metals, Mo or Ta for others; alumina-coated boats or crucibles
+  for metals that alloy with or wet the boat (Al dissolves tungsten — use coated boats or BN-TiB₂
+  crucibles). Au, Ag, Cu, Cr, Al are routine; refractory metals (W, Mo, Pt, Ta) and most oxides
+  are not possible thermally — that is what e-beam is for.</li>
+  <li><b>Alloys</b> do not evaporate at their composition: the component with the higher vapour
+  pressure leaves first (Raoult's law), so the film composition drifts.</li>
+  <li><b>Adhesion layers</b>: noble metals stick poorly to glass and oxides. A 2–5 nm Cr or Ti layer
+  (both oxide-forming) is deposited first.</li>
+  <li><b>Contamination from the boat</b> is the main purity limit, along with the residual gas.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-lt-ht"><span class="num">12</span>LT current and HT voltage</h2>
+
+<p>“Tension” is the old British (and Indian) engineering word for <b>voltage</b>. <b>LT</b> is
+<b>low tension</b>; <b>HT</b> is <b>high tension</b>. On a coating unit they are two very different
+supplies for two very different jobs:</p>
+<div class="tbl-wrap"><table>
+  <tr><th></th><th>LT (low tension)</th><th>HT (high tension)</th></tr>
+  <tr><td>Voltage</td><td>a few volts (typically 0–10 V)</td><td>kilovolts (typically 0–3 kV on a thermal unit; 5–10 kV on an e-beam gun)</td></tr>
+  <tr><td>Current</td><td>tens to hundreds of amperes</td><td>milliamperes (thermal unit) to ~1 A (e-beam)</td></tr>
+  <tr><td>What it drives</td><td>the resistive boat or filament (thermal evaporation); the e-beam gun's filament</td><td>glow-discharge cleaning ring (thermal unit); the electron acceleration in an e-beam gun</td></tr>
+  <tr><td>Physics</td><td>Joule heating \(P = I^2R\) in a low resistance</td><td>accelerating charges: \(E = eV\); striking a gas discharge</td></tr>
+  <tr><td>Built from</td><td>step-down transformer (and variac or thyristor control)</td><td>step-up transformer and rectifier</td></tr>
+  <tr><td>Hazard</td><td>very hot electrodes and boats; huge currents through loose contacts</td><td>lethal voltage; interlocks must never be bypassed</td></tr>
+</table></div>
+<p>Same power, opposite proportions: 3 V × 200 A = 600 W from LT; 3 kV × 0.2 A = 600 W from HT.
+The LT current <i>heats</i>; the HT voltage <i>accelerates</i>.</p>
+
+<h3>HT on a thermal unit: glow-discharge cleaning and the Paschen law</h3>
+<p>Before deposition, at a pressure of about \(10^{-1}\)–\(10^{-2}\) mbar (during roughing, or with a
+little gas admitted through a needle valve), the HT supply puts 1–3 kV on an aluminium ring
+electrode. A <b>glow discharge</b> strikes: gas ions accelerate into the surfaces and knock off
+adsorbed water and organic contamination, improving film adhesion dramatically.</p>
+<p>Why only in that pressure window? A discharge needs each electron to ionise enough gas
+molecules on its way across the gap \(d\) to replace itself. The ionisation per unit length is
+Townsend's \(\alpha = Ap\,e^{-Bp/E}\) and the breakdown condition \(\gamma(e^{\alpha d}-1) = 1\)
+(\(\gamma\): secondary electrons per ion at the cathode) leads to <b>Paschen's law</b>:</p>
+<div class="eq-box">
+$$V_b = \frac{B\,pd}{\ln(A\,pd) - \ln\!\big[\ln(1 + 1/\gamma)\big]}$$
+<div class="eq-name">breakdown voltage depends only on the product p·d</div>
+</div>
+<p>At high pressure, electrons collide too often to gain ionising energy, so a huge voltage is
+needed. At low pressure, they cross the gap without meeting a molecule at all, and no voltage
+helps. In between lies a minimum (a few hundred volts for air at \(pd \approx 1\) Torr·cm). With a
+gap of ~10 cm, that minimum sits near \(10^{-1}\) mbar — exactly the glow-cleaning window. It is
+also why a Penning gauge can run a discharge at \(10^{-6}\) mbar only because its magnet makes the
+electrons' path, not the gap, long.</p>
+
+<figure class="fig" data-fig="paschen">
+  <div class="fig-tag">Figure 17 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Paschen curve for air</b> (A = 15 cm⁻¹Torr⁻¹, B = 365 V cm⁻¹Torr⁻¹, γ = 0.01). Move
+  the pressure down from atmosphere: the glow strikes only inside the window where the curve dips
+  below the HT supply voltage, and goes dark again in high vacuum.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ebeam"><span class="num">13</span>Electron-beam evaporation</h2>
+
+<p>Thermal evaporation heats the whole boat, so the boat must be hotter than the material — which
+limits you to materials that evaporate below ~1800 °C and do not react with the boat. Electron-beam
+evaporation turns the problem around: <b>heat only the surface of the material itself</b>, with a
+focused beam of energetic electrons, while it sits in a water-cooled copper hearth that stays cold.</p>
+
+<h3>Step 1 — making electrons: thermionic emission (LT)</h3>
+<p>A tungsten filament is heated by an LT current to ~2500 K. Some of its electrons then have
+enough thermal energy to escape over the work function \(W\) (4.5 eV for W). The emitted current
+density follows the <b>Richardson–Dushman equation</b>:</p>
+$$J = A_G\,T^2\,e^{-W/k_B T}, \qquad A_G \approx 0.5\text{–}1.2\times10^{6}\ \mathrm{A\,m^{-2}\,K^{-2}}$$
+<p>The exponential makes emission extremely sensitive to filament temperature, which is how the
+emission current (and so the beam power) is controlled.</p>
+
+<h3>Step 2 — accelerating them (HT)</h3>
+<p>The electrons are accelerated through a potential of \(V\) = 5–10 kV, gaining kinetic energy
+\(E = eV\). At 10 kV their speed is about 0.2 c, so a small relativistic correction already
+appears:</p>
+$$\gamma = 1 + \frac{eV}{m_e c^2}, \qquad p = \frac{1}{c}\sqrt{(eV)^2 + 2\,eV\,m_ec^2}$$
+
+<h3>Step 3 — bending them 270°</h3>
+<p>The filament is hidden <i>below and beside</i> the hearth so that evaporated material cannot
+coat it and it does not see the hot melt. A permanent magnet (plus coils) supplies a field
+\(B\) perpendicular to the beam. The Lorentz force \(\mathbf F = -e\,\mathbf v\times\mathbf B\) bends the
+electrons into a circle of radius</p>
+$$r = \frac{p}{eB} \;\approx\; \frac{\sqrt{2 m_e eV}}{eB}$$
+<p>With 8 kV and 7.6 mT, \(r \approx 4\) cm: the beam loops up and over through 270° and lands in the
+crucible from above. Extra coils <b>sweep</b> the spot across the melt so it heats evenly and does
+not drill a hole.</p>
+
+<figure class="fig" data-fig="ebeam">
+  <div class="fig-tag">Figure 18 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A 270° electron gun.</b> The trajectory is calculated from \(r = p/(eB)\) with the
+  relativistic momentum. Raise the voltage without raising the field and the beam lands beyond the
+  melt — which is why the high voltage and the magnet are set together, and why the beam position
+  is corrected with the deflection coils on a real gun.</figcaption>
+</figure>
+
+<h3>Step 4 — what happens at the melt</h3>
+<p>The beam delivers \(P = V\cdot I\): 8 kV × 0.3 A = 2.4 kW into a spot a few millimetres across, a
+power density of order \(10^4\) W cm⁻². The surface melts and evaporates; the copper hearth, cooled
+by water, keeps the outer part of the charge solid, so the melt sits in a “skull” of its own
+material and never touches anything else. That is why e-beam films are purer, and why it can
+evaporate W, Mo, Ta, Pt, and oxides such as SiO₂, TiO₂, Al₂O₃ and HfO₂. Crucible liners (graphite,
+Mo, alumina) are used for metals that would otherwise wet the copper or conduct too much heat away.</p>
+
+<div class="callout warn"><b>X-rays</b>
+<p>Stopping 10 keV electrons in metal produces bremsstrahlung X-rays up to 10 keV. The chamber
+walls absorb them, but windows must be leaded glass, and X-rays plus stray electrons can damage
+sensitive devices (oxides in transistors, organic layers) on the substrate. This is one reason
+thermal evaporation is still preferred for some organic and device work.</p></div>
+
+<div class="tbl-wrap"><table>
+  <tr><th></th><th>Thermal (resistive)</th><th>Electron-beam</th></tr>
+  <tr><td>What is heated</td><td>the boat, and the charge by contact</td><td>only the charge surface</td></tr>
+  <tr><td>Supply</td><td>LT: 2–5 V, 100–300 A</td><td>LT filament + HT 5–10 kV, 0.05–1 A</td></tr>
+  <tr><td>Max. practical temperature</td><td>~1800 °C (boat limit)</td><td>&gt; 3000 °C at the spot</td></tr>
+  <tr><td>Materials</td><td>Au, Ag, Al, Cu, Cr, In, organics, some fluorides</td><td>almost anything: W, Mo, Ta, Pt, Ti, Ni, oxides</td></tr>
+  <tr><td>Purity</td><td>boat contamination possible</td><td>high (cold hearth)</td></tr>
+  <tr><td>Rate control</td><td>via LT current, slow response</td><td>via emission current, fast response</td></tr>
+  <tr><td>Side effects</td><td>radiant heat on substrates</td><td>X-rays, stray electrons, charging</td></tr>
+  <tr><td>Cost and complexity</td><td>low</td><td>high</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-dtm"><span class="num">14</span>The DTM: weighing a film with a quartz crystal</h2>
+
+<p>How do you know you have deposited 50 nm and not 45? The <b>digital thickness monitor (DTM)</b>,
+also called a quartz crystal monitor (QCM) or film thickness monitor, weighs the film as it grows,
+with a resolution far below one atomic layer. It does this with a vibrating crystal.</p>
+
+<h3>The crystal</h3>
+<p>Quartz is piezoelectric: a voltage deforms it, and deforming it produces a voltage. A thin disc
+cut at a particular angle to the crystal axes (the <b>AT-cut</b>) vibrates in <b>thickness-shear</b>
+mode — its two faces slide back and forth relative to each other — when an alternating voltage is
+applied to gold electrodes on both faces. The fundamental resonance is the frequency at which the
+plate is half an acoustic wavelength thick:</p>
+$$f_0 = \frac{v_s}{2\,t_q} = \frac{N_q}{t_q}, \qquad N_q = 1.668\times10^{5}\ \mathrm{Hz\,cm}$$
+<p>A 6 MHz crystal is therefore 0.278 mm thick. The AT-cut is chosen because its frequency barely
+changes with temperature near room temperature; the sensor head is still water-cooled, because
+radiant heat from the source would otherwise drift the reading.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 19</div>
+  <svg viewBox="0 0 860 260" role="img" aria-label="Quartz crystal monitor sensor and electronics">
+    <style>.ql{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}</style>
+    <rect x="60" y="100" width="200" height="40" fill="#cfd8e6" opacity=".25" stroke="rgba(255,255,255,.5)"/>
+    <rect x="80" y="94" width="160" height="6" fill="#e0a82e"/><rect x="80" y="140" width="160" height="6" fill="#e0a82e"/>
+    <rect x="80" y="86" width="160" height="8" fill="#9fb4c8"/><text x="250" y="90" class="ql">deposited film (mass Δm)</text>
+    <text x="250" y="122" class="ql">AT-cut quartz, 0.28 mm</text><text x="250" y="150" class="ql">gold electrodes</text>
+    <path d="M70 175 q 10 -12 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0 t 20 0" fill="none" stroke="#45bfd6" stroke-width="1.6"/>
+    <text x="70" y="200" class="ql" fill="#45bfd6">thickness-shear vibration: the faces slide in opposite directions</text>
+    <path d="M160 146 V230 H520" stroke="rgba(255,255,255,.4)" fill="none"/><path d="M160 94 V40 H520 V80" stroke="rgba(255,255,255,.4)" fill="none"/>
+    <rect x="480" y="80" width="130" height="60" rx="8" fill="#211735" stroke="#a98bf0"/><text x="545" y="106" class="ql" text-anchor="middle">oscillator</text><text x="545" y="122" class="ql" text-anchor="middle">at resonance</text>
+    <path d="M520 140 V230" stroke="rgba(255,255,255,.4)"/>
+    <path d="M610 110 H660" stroke="rgba(255,255,255,.4)"/>
+    <rect x="660" y="70" width="180" height="90" rx="8" fill="#0a0f0a" stroke="#2b2b33" stroke-width="4"/>
+    <text x="672" y="96" class="ql" fill="#7dff9a">f = 5.99832 MHz</text><text x="672" y="118" class="ql" fill="#7dff9a">THK 12.4 nm</text><text x="672" y="140" class="ql" fill="#7dff9a">RATE 1.0 Å/s</text>
+    <text x="664" y="180" class="ql">counter + ρ, Z, tooling</text><text x="664" y="196" class="ql">→ thickness and rate</text>
+  </svg>
+  <figcaption><b>The DTM chain.</b> The film adds mass to the vibrating plate, its resonance
+  frequency falls, the oscillator follows it, and a frequency counter converts the shift into a
+  thickness using the film's density.</figcaption>
+</figure>
+
+<h3>The Sauerbrey equation</h3>
+<p>A thin, rigid film of mass \(\Delta m\) on an area \(A\) behaves as extra quartz: it makes the
+plate effectively thicker, so the frequency falls. Differentiating \(f_0 = N_q/t_q\) and writing
+the added thickness as mass gives the Sauerbrey equation (1959):</p>
+<div class="eq-box">
+$$\Delta f = -\frac{2 f_0^2}{\sqrt{\rho_q\,\mu_q}}\,\frac{\Delta m}{A} = -\frac{f_0^2}{N_q\,\rho_q}\,\frac{\Delta m}{A}$$
+<div class="eq-name">ρ<sub>q</sub> = 2.648 g cm⁻³, μ<sub>q</sub> = 2.947×10¹¹ g cm⁻¹ s⁻² (shear modulus of quartz)</div>
+</div>
+<p>For a 6 MHz crystal the sensitivity is 81.5 Hz per µg cm⁻². One ångström of gold
+(\(19.3\ \mathrm{g\,cm^{-3}}\times10^{-8}\) cm \(=1.93\times10^{-7}\) g cm⁻²) lowers the frequency by
+about <b>16 Hz</b>; one ångström of aluminium by 2.2 Hz. A counter resolving 0.1 Hz therefore sees a
+small fraction of an atomic layer. The thickness follows from the mass per area:</p>
+$$t_f = \frac{\Delta m}{\rho_f\,A}$$
+<p>— which is why you must enter the <b>density</b> of the material in the DTM. Enter the density of
+gold while depositing aluminium and the reading is wrong by a factor of seven.</p>
+
+<h3>The Z-ratio: when the film is no longer “thin”</h3>
+<p>Sauerbrey assumes the film is acoustically identical to quartz. As the film thickens, the
+acoustic wave travels partly in a material with a different <b>acoustic impedance</b>
+\(Z = \sqrt{\rho\mu}\), and the frequency–mass relation bends. Lu and Lewis (1972) solved the
+composite resonator exactly:</p>
+<div class="eq-box">
+$$t_f = \frac{N_q\,\rho_q}{\pi\,\rho_f\,f_c\,Z}\arctan\!\Big[Z\tan\Big(\pi\,\frac{f_q - f_c}{f_q}\Big)\Big], \qquad Z = \sqrt{\frac{\rho_q\mu_q}{\rho_f\mu_f}}$$
+<div class="eq-name">f<sub>q</sub>: uncoated crystal frequency · f<sub>c</sub>: coated · Z: the “Z-ratio” you enter</div>
+</div>
+<p>For \(Z = 1\) it reduces to the Sauerbrey (period) form. Gold has \(Z = 0.381\), so on a crystal
+that has collected a lot of gold the simple formula overestimates the thickness; modern monitors
+use the Z-corrected formula, which is why they ask for the Z-ratio as well as the density.</p>
+
+<h3>The tooling factor</h3>
+<p>The crystal cannot sit where the substrate is: it is off to one side, at a different distance
+and angle from the source. By the cosine law it receives a different flux. The <b>tooling factor</b>
+corrects for this geometry:</p>
+$$\text{TF}\,(\%) = 100\times\frac{t_\text{substrate}}{t_\text{crystal}}, \qquad \text{TF}_\text{new} = \text{TF}_\text{old}\times\frac{t_\text{measured}}{t_\text{DTM}}$$
+<p>Calibrate it once per source position and material: deposit a film, measure its real thickness
+with a profilometer, AFM or ellipsometer, and update the tooling factor with the second formula.</p>
+
+<figure class="fig" data-fig="qcm">
+  <div class="fig-tag">Figure 20 · <span class="live">Interactive DTM</span></div>
+  <noscript><p>This simulation needs JavaScript.</p></noscript>
+  <figcaption><b>Run a deposition on a simulated DTM.</b> The crystal's frequency is computed from
+  the film on it with the Lu–Lewis equation. The <i>true geometry</i> is the real substrate-to-crystal
+  flux ratio; the <i>tooling factor entered</i> is what the monitor believes. Start the source with
+  the shutter closed (as you should, to let the rate settle), zero, open the shutter, and compare
+  the display with what actually reached the substrate. Then set the entered tooling factor equal
+  to the true one and repeat.</figcaption>
+</figure>
+
+<h3>Using the DTM well</h3>
+<ul>
+  <li>Enter <b>density, Z-ratio and tooling</b> for the material before you start. Thin-film
+  densities can be a few percent below bulk.</li>
+  <li>Bring the source up with the <b>shutter closed</b>; watch the rate on the crystal, which sees
+  the source; open the substrate shutter only once the rate is steady, and <b>zero</b> the thickness at
+  that moment. Close the shutter at the target thickness, then ramp the power down.</li>
+  <li>Many monitors close the loop: a PID controller adjusts the LT current or e-beam emission to
+  hold the rate.</li>
+  <li><b>Crystal life</b>: as mass builds up, the resonance weakens and eventually fails (often after
+  the frequency has fallen by roughly 1 MHz on a 6 MHz crystal, depending on the material and on
+  film stress). Change it before an important run; a crystal that “mode-hops” gives sudden jumps in
+  thickness.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ebl"><span class="num">15</span>Electron-beam lithography (EBL)</h2>
+
+<p>The names are almost identical, but electron-beam <i>lithography</i> and electron-beam
+<i>evaporation</i> do completely different things. E-beam evaporation uses a <b>broad, powerful</b>
+beam as a <b>heater</b>. EBL uses a <b>finely focused, very weak</b> beam as a <b>pen</b>: it draws a
+pattern into a thin polymer film called a <b>resist</b>, changing the polymer's chemistry where the
+beam has been. No material is deposited by EBL itself.</p>
+
+<h3>The column</h3>
+<p>An EBL system is essentially a scanning electron microscope with a fast beam blanker, a pattern
+generator and a precision stage. A (usually Schottky field-emission) gun produces electrons;
+they are accelerated through 10–100 kV; magnetic lenses demagnify the source to a spot of a few
+nanometres; a <b>blanker</b> switches the beam on and off in nanoseconds; deflection coils scan it
+over a writing field of up to a millimetre; a laser-interferometer stage moves the sample between
+fields and stitches them together. The whole column needs \(10^{-6}\)–\(10^{-9}\) mbar: electrons
+must travel more than a metre without scattering, and the field-emission tip needs ultra-high
+vacuum to stay clean.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 21</div>
+  <svg viewBox="0 0 860 470" role="img" aria-label="Electron beam lithography column and resist interaction">
+    <style>.cl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.ch{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#e0a82e}</style>
+    <path d="M200 30 V400" stroke="#e0a82e" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <path d="M200 46 L176 72 H224 Z" fill="#a98bf0"/><text x="240" y="60" class="cl">field-emission gun (UHV)</text>
+    <rect x="170" y="86" width="60" height="8" fill="#837a94"/><text x="240" y="94" class="cl">anode: 10–100 kV</text>
+    <ellipse cx="200" cy="130" rx="54" ry="12" fill="none" stroke="#45bfd6" stroke-width="5"/><text x="262" y="134" class="cl">condenser lens</text>
+    <rect x="186" y="164" width="6" height="24" fill="#e2566e"/><rect x="208" y="164" width="6" height="24" fill="#e2566e"/><text x="240" y="180" class="cl">beam blanker (ns on/off)</text>
+    <rect x="150" y="196" width="40" height="5" fill="#837a94"/><rect x="210" y="196" width="40" height="5" fill="#837a94"/><text x="262" y="202" class="cl">aperture</text>
+    <path d="M168 232 h-8 v20 h8 M232 232 h8 v20 h-8" stroke="#7fd18b" stroke-width="3" fill="none"/><text x="262" y="246" class="cl">deflection coils</text>
+    <ellipse cx="200" cy="290" rx="60" ry="13" fill="none" stroke="#45bfd6" stroke-width="5"/><text x="270" y="294" class="cl">objective lens</text><text x="270" y="310" class="cl">(spot of a few nm)</text>
+    <rect x="110" y="400" width="180" height="10" fill="#a98bf0" opacity=".6"/><rect x="110" y="410" width="180" height="30" fill="#3b3156"/>
+    <text x="300" y="410" class="cl">resist (PMMA) on substrate</text><rect x="110" y="446" width="180" height="10" fill="#5a4b80"/><text x="300" y="455" class="cl">laser-interferometer stage</text>
+    <text x="540" y="40" class="ch">IN THE RESIST AND SUBSTRATE</text>
+    <rect x="480" y="80" width="340" height="24" fill="#a98bf0" opacity=".45"/><rect x="480" y="104" width="340" height="300" fill="#3b3156"/>
+    <path d="M650 50 V92" stroke="#e0a82e" stroke-width="2.5"/>
+    <path d="M650 80 l-3 24 M650 80 l3 24 M650 80 l-1 26 M650 80 l2 26" stroke="#ffcf6b" stroke-width="1.2"/>
+    <path d="M650 104 C 600 160 560 220 590 290 C 620 340 690 340 715 290 C 745 220 700 160 650 104 Z" fill="rgba(226,86,110,.22)" stroke="rgba(226,86,110,.6)"/>
+    <path d="M650 104 l-30 60 l20 30 l-40 50 M650 104 l25 50 l-15 40 l40 40 l-30 50 M650 104 l5 80 l-30 60 l60 30" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1"/>
+    <path d="M600 210 Q 560 150 588 96 M700 230 Q 740 160 716 96" fill="none" stroke="#7fd18b" stroke-width="1.6" stroke-dasharray="4 3"/>
+    <text x="560" y="74" class="cl">forward scattering: α ≈ nm</text>
+    <text x="492" y="356" class="cl" fill="#7fd18b">green: back-scattered electrons re-expose</text><text x="492" y="370" class="cl" fill="#7fd18b">the resist far away (β ≈ µm)</text>
+    <text x="492" y="394" class="cl">electron range in Si ≈ 9 µm at 30 kV</text>
+  </svg>
+  <figcaption><b>An EBL column (left) and what the electrons do in the sample (right).</b> Electrons
+  spread a little in the resist (forward scattering) and a lot in the substrate, from which some are
+  scattered back up into the resist micrometres away. That second effect is the <b>proximity
+  effect</b>.</figcaption>
+</figure>
+
+<h3>Why not light? Wavelength is not the limit</h3>
+<p>Optical lithography is limited by diffraction to roughly the wavelength of light. Electrons
+have a de Broglie wavelength</p>
+$$\lambda_e = \frac{h}{\sqrt{2 m_e eV\left(1 + \dfrac{eV}{2m_ec^2}\right)}}$$
+<p>which is picometres at EBL voltages — tens of thousands of times shorter than UV light. The
+resolution of EBL (~5–20 nm) is set not by diffraction but by lens aberrations, electron scattering
+in the resist, the secondary electrons that actually break the polymer bonds, and the resist
+development.</p>
+
+<figure class="fig" data-fig="lambda">
+  <div class="fig-tag">Figure 22 · <span class="live">Interactive</span></div>
+  <noscript><p>This calculator needs JavaScript.</p></noscript>
+  <figcaption><b>Electron wavelength.</b> At 100 kV the relativistic correction is already 5 %.</figcaption>
+</figure>
+
+<h3>Resists, dose and development</h3>
+<p>The workhorse resist is <b>PMMA</b> (poly(methyl methacrylate), the polymer of acrylic glass),
+spin-coated to 50–500 nm. Electrons break its long chains (<b>chain scission</b>); the shorter
+chains dissolve in a developer (MIBK:IPA 1:3) while the unexposed long chains do not. That makes
+PMMA a <b>positive</b> resist: exposed areas are removed. <b>Negative</b> resists such as HSQ
+cross-link instead, and exposed areas remain.</p>
+<p>The exposure is measured as <b>dose</b> \(D\), charge per unit area. The minimum dose at which the
+resist clears completely is the <b>clearing dose</b>, about 100–400 µC cm⁻² for PMMA at 20–30 kV and
+higher at 100 kV (faster electrons deposit less energy per nanometre in the thin resist). With a
+beam current \(I\), the exposure time for an area \(A\) is simply</p>
+$$t = \frac{D\,A}{I}$$
+<p>and each pixel of size \(s\) gets a dwell time \(t_d = D s^2/I\). EBL is a <b>serial</b> technique,
+which is its great weakness: one square millimetre at 300 µC cm⁻² with 1 nA takes 50 minutes of pure
+exposure.</p>
+
+<figure class="fig" data-fig="writetime">
+  <div class="fig-tag">Figure 23 · <span class="live">Interactive</span></div>
+  <noscript><p>This calculator needs JavaScript.</p></noscript>
+  <figcaption><b>Write time and dwell time.</b> High currents write faster but give a larger spot;
+  small pixels need a pattern generator that can blank and step at many megahertz.</figcaption>
+</figure>
+
+<h3>The proximity effect</h3>
+<p>The energy deposited in the resist by a single point exposure is well described by a sum of two
+Gaussians (Chang, 1975): a narrow one for forward scattering and a wide, weaker one for
+back-scattered electrons:</p>
+<div class="eq-box">
+$$f(r) = \frac{1}{\pi(1+\eta)}\left[\frac{1}{\alpha^2}e^{-r^2/\alpha^2} + \frac{\eta}{\beta^2}e^{-r^2/\beta^2}\right]$$
+<div class="eq-name">α: forward-scatter range (nm) · β: back-scatter range (µm) · η: back-scattered energy ÷ forward</div>
+</div>
+<p>Because \(\eta\) is of order 0.5–0.8 on silicon and \(\beta\) is micrometres, every exposed line
+also delivers a background dose to its neighbours. In the middle of a dense grating the background
+adds up; at the edge it does not. The same dose then gives wider lines in the centre than at the
+edge, and isolated features need a higher dose than dense ones. <b>Proximity-effect correction</b>
+adjusts the dose of every shape so that the absorbed dose is the same everywhere.</p>
+
+<figure class="fig" data-fig="prox">
+  <div class="fig-tag">Figure 24 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Proximity effect on a line grating.</b> The absorbed dose (gold) is the designed
+  pattern (grey) convolved with the double-Gaussian point-spread function. Where it exceeds the
+  clearing dose (red), the resist develops away (green). Increase the number of lines or the
+  back-scatter ratio and the centre lines grow wider than the edge lines.</figcaption>
+</figure>
+
+<h3>Lift-off: where lithography meets evaporation</h3>
+<p>To make metal nanostructures (contacts, plasmonic antennas, gratings), the EBL pattern is
+transferred by <b>lift-off</b>: deposit metal over the developed resist, then dissolve the resist so
+the metal on top of it floats away, leaving metal only where the resist was opened. For this to
+work, the metal film on the resist and the film in the openings <b>must not be connected</b>. That
+needs a <b>directional</b> deposition from a small, distant source — thermal or e-beam evaporation,
+with its cosine-law beam in high vacuum (sections 3 and 11) — and an <b>undercut</b> resist profile,
+usually made with a two-layer PMMA stack whose bottom layer is more sensitive. Sputtering, at
+\(10^{-3}\) mbar with a short mean free path and a large target, coats the side walls and ruins
+lift-off.</p>
+
+<figure class="fig" data-fig="liftoff">
+  <div class="fig-tag">Figure 25 · <span class="live">Interactive</span></div>
+  <noscript><p>This figure needs JavaScript.</p></noscript>
+  <figcaption><b>EBL and lift-off, step by step.</b> Switch the deposition method to sputtering at
+  step 4 to see why lift-off processes use evaporation.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-compare"><span class="num">16</span>Thermal vs e-beam evaporation vs EBL</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th></th><th>Thermal evaporation</th><th>E-beam evaporation</th><th>E-beam lithography</th></tr>
+  <tr><td>Purpose</td><td>deposit a film</td><td>deposit a film</td><td>draw a pattern in resist</td></tr>
+  <tr><td>Energy source</td><td>Joule heating (LT current)</td><td>electron beam as a heater</td><td>electron beam as a pen</td></tr>
+  <tr><td>Electron energy</td><td>—</td><td>5–10 keV</td><td>10–100 keV</td></tr>
+  <tr><td>Beam current</td><td>—</td><td>0.05–1 A</td><td>pA – tens of nA</td></tr>
+  <tr><td>Power</td><td>0.2–2 kW in the boat</td><td>1–10 kW in the melt</td><td>~0.1 mW in the sample</td></tr>
+  <tr><td>Spot size</td><td>whole boat (cm)</td><td>mm</td><td>nm</td></tr>
+  <tr><td>Working pressure</td><td>10⁻⁵–10⁻⁶ mbar</td><td>10⁻⁶–10⁻⁷ mbar</td><td>10⁻⁶–10⁻⁹ mbar (column)</td></tr>
+  <tr><td>Result</td><td>uniform film over the substrate</td><td>uniform film over the substrate</td><td>chemically changed resist; no material added</td></tr>
+  <tr><td>Typical next step</td><td>—</td><td>—</td><td>develop → evaporate → lift-off, or etch</td></tr>
+</table></div>
+<p>The power column is the clearest way to see the difference: an e-beam evaporator puts ten
+<i>million</i> times more power into its target than an EBL tool does.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-run"><span class="num">17</span>A complete run: 5 nm Cr + 50 nm Au</h2>
+
+<p>Here is a full thermal-evaporation run, with the reason for each step, putting the whole article
+together. (Generic settings; use your own instrument's manual and your lab's rules.)</p>
+<ol>
+  <li><b>Prepare substrates</b>: solvent clean (acetone, IPA), dry with N₂, optionally oxygen plasma.
+  Every monolayer of contamination you bring in competes with your film (section 3).</li>
+  <li><b>Load</b>: Cr (chips or a Cr-coated rod) in one boat, Au wire in another (a W boat for each).
+  Check boat continuity with the LT off. Mount substrates face-down, note the distance to the
+  sources, check the shutters move freely.</li>
+  <li><b>Pump down</b> following section 9. Glow-clean with HT at ~0.1 mbar for a few minutes during
+  roughing if your unit has a glow ring (section 12).</li>
+  <li><b>Wait for base pressure</b>, ideally ≤ 5×10⁻⁶ mbar. At that pressure the mean free path is
+  over 10 m and the monolayer time about a second (section 3).</li>
+  <li><b>Set the DTM</b> for chromium: density 7.20 g cm⁻³, Z 0.305, tooling factor from your last
+  calibration.</li>
+  <li><b>Chromium</b>: shutter closed, raise the LT current slowly; Cr sublimes before it melts
+  (section 11). When the rate is steady at ~0.5 Å/s, zero the DTM, open the shutter; close it at
+  5 nm. Ramp the current down.</li>
+  <li><b>Gold</b>: switch the DTM to Au (19.32 g cm⁻³, Z 0.381). Switch the LT output to the Au boat.
+  Raise the current until the gold melts and the rate is steady at 1–2 Å/s. Zero, open, close at
+  50 nm. Ramp down. Depositing gold immediately after chromium, without breaking vacuum, keeps the
+  Cr surface unoxidised so the two layers bond.</li>
+  <li><b>Cool</b> ≥ 15 minutes under vacuum, close the hi-vac valve, <b>vent with dry N₂</b>
+  (section 10), unload, and pump the chamber back down or shut down (section 9).</li>
+  <li><b>Measure</b> the real thickness (profilometer step, AFM, ellipsometry or X-ray reflectivity)
+  and update the tooling factors (section 14).</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-safety"><span class="num">18</span>Safety</h2>
+<ul>
+  <li><b>High voltage</b>: HT supplies and e-beam guns operate at lethal kilovolts. Never open
+  covers or bypass interlocks; ground the electrode with a grounding stick before touching it.</li>
+  <li><b>High current and heat</b>: LT bus bars and boats are hot long after the current stops.
+  Use gloves; loose connections at hundreds of amperes overheat and arc.</li>
+  <li><b>Implosion</b>: a glass bell jar under vacuum stores a large force (1 bar on 0.1 m² is
+  10 kN). Use the implosion guard; never knock or heat it unevenly.</li>
+  <li><b>X-rays</b> around e-beam guns: leaded viewports, no improvised windows.</li>
+  <li><b>Liquid nitrogen</b>: cold burns, and asphyxiation in small rooms. Never seal it in a closed
+  container.</li>
+  <li><b>Pump oil and exhaust</b>: rotary exhaust carries oil mist and whatever you pumped (solvents,
+  process gases) — vent it outdoors or through a filter.</li>
+  <li><b>Toxic materials</b>: Cr, Ni, Cd, As, Se and fine metal flakes from chamber walls. Clean the
+  chamber with gloves and a mask, not compressed air.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-glossary"><span class="num">19</span>Glossary and further reading</h2>
+<div class="tbl-wrap"><table>
+  <tr><th>Term</th><th>Meaning</th></tr>
+  <tr><td>RV / BV / HV / AV</td><td>roughing, backing, hi-vac and air-admittance (vent) valves</td></tr>
+  <tr><td>GH1, GH2</td><td>Pirani gauge heads; typically chamber/roughing and foreline/backing (check your unit)</td></tr>
+  <tr><td>Penning (PG)</td><td>cold-cathode ionisation gauge for high vacuum</td></tr>
+  <tr><td>DP, TMP</td><td>diffusion pump, turbomolecular pump</td></tr>
+  <tr><td>LT / HT</td><td>low-tension (low voltage, high current) / high-tension (high voltage) supply</td></tr>
+  <tr><td>DTM / QCM</td><td>digital thickness monitor / quartz crystal microbalance</td></tr>
+  <tr><td>Tooling factor</td><td>ratio of substrate thickness to crystal thickness, in %</td></tr>
+  <tr><td>Z-ratio</td><td>acoustic impedance of quartz ÷ that of the film</td></tr>
+  <tr><td>Critical backing pressure</td><td>highest foreline pressure a diffusion pump tolerates</td></tr>
+  <tr><td>Crossover pressure</td><td>chamber pressure at which roughing hands over to the hi-vac pump</td></tr>
+  <tr><td>Base pressure</td><td>the lowest pressure reached before deposition starts</td></tr>
+  <tr><td>Mean free path λ</td><td>average distance a molecule travels between collisions</td></tr>
+  <tr><td>Clearing dose</td><td>EBL dose at which the resist develops away completely</td></tr>
+  <tr><td>Lift-off</td><td>patterning a deposited film by dissolving the resist under it</td></tr>
+</table></div>
+
+<h3>Further reading</h3>
+<ul>
+  <li>J. F. O'Hanlon, <i>A User's Guide to Vacuum Technology</i>, Wiley — the standard practical text.</li>
+  <li>Leybold, <i>Fundamentals of Vacuum Technology</i> — free, clear, full of useful numbers.</li>
+  <li>M. Ohring, <i>Materials Science of Thin Films</i>, Academic Press — evaporation, sputtering and film growth.</li>
+  <li>D. M. Mattox, <i>Handbook of Physical Vapor Deposition (PVD) Processing</i>, Elsevier.</li>
+  <li>G. Sauerbrey, <i>Z. Phys.</i> <b>155</b>, 206 (1959) — the quartz-crystal mass equation.</li>
+  <li>C. Lu and O. Lewis, <i>J. Appl. Phys.</i> <b>43</b>, 4385 (1972) — the Z-ratio correction.</li>
+  <li>T. H. P. Chang, <i>J. Vac. Sci. Technol.</i> <b>12</b>, 1271 (1975) — the proximity effect in EBL.</li>
+</ul>
+
+<hr>
+<p>The interactive figures are small simulations written for this article: their models are
+simple on purpose (stated in each caption) and meant for intuition, not for designing an
+instrument. Figure 1 was drawn in <a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>.
+Corrections and questions are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+<p><a href="blog.html">← Back to the Lab Notebook</a></p>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/blog/vl-core.js"></script>
+<script src="js/blog/vl-anim.js"></script>
+<script src="js/blog/vl-sim.js"></script>
+<script src="js/blog/vl-thin.js"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
