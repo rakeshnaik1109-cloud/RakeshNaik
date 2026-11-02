@@ -129,16 +129,6 @@ physics, so that the sequence becomes obvious instead of something to memorise.<
 the <a href="#s-sequence">simulator</a> or the <a href="#s-dtm">DTM</a> section. Every figure
 marked <b>Interactive</b> runs in your browser; nothing is sent anywhere.</p>
 
-<figure class="fig paper">
-  <div class="fig-tag">Figure 1 · drawn with RNBeamX</div>
-  <img src="images/blog/rnbeamx-coater.svg" alt="A vacuum coater: DC power supply showing 3.20 V and 180 A connected to a vacuum chamber, a rotary vane pump pumping the chamber, and a nitrogen cylinder for venting, with high-voltage, hot-surface and gloves safety signs" loading="lazy" width="1500" height="720">
-  <figcaption><b>The pieces of a coating unit.</b> A low-voltage, high-current supply (LT) heats
-  the evaporation source inside the chamber; a rotary pump (with a diffusion pump, not drawn,
-  for high vacuum) evacuates it; a nitrogen cylinder vents and purges it. The signs are the
-  hazards you work next to: high voltage, hot surfaces, and the need for gloves. Drawn in
-  <a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>.</figcaption>
-</figure>
-
 <!-- ═══════════════════════════════════════════════════════════ -->
 <h2 id="s-family"><span class="num">01</span>The family of deposition techniques</h2>
 
@@ -157,7 +147,7 @@ surface we call the <b>substrate</b>. There are three broad ways to put one ther
 </ul>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 2</div>
+  <div class="fig-tag">Figure 1</div>
   <svg viewBox="0 0 860 330" role="img" aria-label="Family tree of thin-film deposition techniques">
     <style>.ft{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#efeaf6}.fs{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#b6acc8}.fb{fill:#211735;stroke:rgba(255,255,255,.18)}.fh{fill:#2b1f45;stroke:#e0a82e}</style>
     <rect x="330" y="10" width="200" height="34" rx="8" class="fh"/><text x="430" y="32" class="ft" text-anchor="middle">Thin-film deposition</text>
@@ -253,7 +243,7 @@ $$P(\text{no collision}) = e^{-L/\lambda}$$
 \(10^{-5}\)–\(10^{-6}\) mbar and not at \(10^{-2}\).</p>
 
 <figure class="fig" data-fig="flight">
-  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Gold atoms crossing a 30 cm chamber.</b> The mean free path is calculated from the
   pressure and drawn to scale. Gold atoms that fly straight are yellow; any atom that has
@@ -282,7 +272,7 @@ at which a discharge can strike (<a href="#s-lt-ht">section 12</a>). Either way,
 right number of molecules by first removing almost all of them.</p>
 
 <figure class="fig" data-fig="mfp">
-  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The numbers behind “why vacuum”.</b> Mean free path (gold) and the time to form
   one contamination monolayer (cyan) against pressure. The Knudsen number
@@ -305,7 +295,7 @@ That one fact explains the entire architecture of a coating unit.</p>
 </table></div>
 
 <figure class="fig" data-fig="ranges">
-  <div class="fig-tag">Figure 5</div>
+  <div class="fig-tag">Figure 4</div>
   <figcaption><b>Who works where.</b> Each pump, gauge and process has its own pressure window. A
   rotary pump cannot reach high vacuum; a diffusion or turbo pump cannot start from atmosphere; a
   Pirani gauge is blind below 10⁻³ mbar and a Penning gauge must not be run above 10⁻² mbar. So
@@ -389,7 +379,7 @@ inlet, that pocket is sealed off and carried round; on the exhaust side it shrin
 is compressed above atmospheric pressure and pushes open an oil-sealed exhaust valve.</p>
 
 <figure class="fig" data-fig="rotary">
-  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
   <noscript><p>This animation needs JavaScript.</p></noscript>
   <figcaption><b>Rotary vane pump, one stage.</b> The vane lengths are computed exactly for the
   off-centre geometry. Cyan: the pocket opening to the inlet; violet: a sealed pocket being
@@ -421,7 +411,7 @@ rotary pump. The oil vapour itself hits the water-cooled walls, condenses and ru
 boiler.</p>
 
 <figure class="fig" data-fig="diffpump">
-  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
   <noscript><p>This animation needs JavaScript.</p></noscript>
   <figcaption><b>A three-stage diffusion pump.</b> White molecules come in from the chamber; green
   ones have been struck by a jet and are being driven down. Press <i>Raise the foreline
@@ -457,7 +447,7 @@ down into the next row than back up. Fixed <b>stator</b> rows between the rotor 
 molecules into the next rotor row.</p>
 
 <figure class="fig" data-fig="turbo">
-  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
   <noscript><p>This animation needs JavaScript.</p></noscript>
   <figcaption><b>Rotor and stator rows, unrolled.</b> Slow the blades down and the pump stops
   discriminating between up and down; speed them up and more molecules are passed towards the
@@ -473,7 +463,7 @@ does not care which way up it is mounted. It still needs a backing pump: its exh
 below about \(10^{-2}\)–1 mbar.</p>
 
 <figure class="fig" data-fig="speeds">
-  <div class="fig-tag">Figure 9</div>
+  <div class="fig-tag">Figure 8</div>
   <figcaption><b>Pumping speed against inlet pressure</b> (illustrative curves). The rotary pump's
   speed collapses near its 10⁻³ mbar ultimate; the diffusion and turbo pumps only start working
   where the rotary gives up. The team covers the whole range; neither member can.</figcaption>
@@ -519,7 +509,7 @@ different gases carry heat differently, a Pirani gauge calibrated for nitrogen <
 argon, helium or water vapour</b>.</p>
 
 <figure class="fig" data-fig="pirani">
-  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Pirani response</b> (a simple model with typical gas factors). The useful range is
   where the curves slope. In argon at a true 0.1 mbar an N₂-calibrated gauge reads low, so you
@@ -551,7 +541,7 @@ low pressure it can take seconds to minutes to “strike”. Hot-cathode (Bayard
 heated filament instead and reach UHV.</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 11</div>
+  <div class="fig-tag">Figure 10</div>
   <svg viewBox="0 0 860 300" role="img" aria-label="Pirani and Penning gauge heads">
     <style>.gl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.gt{font-family:'IBM Plex Mono',monospace;font-size:12.5px;fill:#e0a82e;letter-spacing:.12em}</style>
     <text x="20" y="24" class="gt">PIRANI</text>
@@ -597,7 +587,7 @@ straight from section 6:</p>
 <p>The procedure is simply the order of operations that never violates any of them.</p>
 
 <figure class="fig" data-fig="sim">
-  <div class="fig-tag">Figure 12 · <span class="live">Interactive simulator</span></div>
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive simulator</span></div>
   <noscript><p>The simulator needs JavaScript.</p></noscript>
   <figcaption><b>A thermal-evaporation coating unit.</b> Click a valve (or use the buttons) to open
   or close it; switch on the water, rotary pump and diffusion-pump heater. Gas flow is calculated
@@ -692,7 +682,7 @@ through it, and let the material melt and evaporate. The vapour travels in strai
 made sure of that with the vacuum) and condenses on everything in sight, including the substrate.</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 13</div>
+  <div class="fig-tag">Figure 12</div>
   <svg viewBox="0 0 860 470" role="img" aria-label="Cross-section of a thermal evaporation chamber">
     <style>.el{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.eh{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#e0a82e}
     @keyframes vup{from{stroke-dashoffset:0}to{stroke-dashoffset:-30}} .vap{stroke:#e0a82e;stroke-width:1.4;stroke-dasharray:3 7;animation:vup 1.2s linear infinite;opacity:.8}
@@ -735,7 +725,7 @@ conduction into the water-cooled electrodes. Because \(R\) itself rises with tem
 raise the current slowly — both to avoid thermal shock and to let the charge outgas.</p>
 
 <figure class="fig" data-fig="boat">
-  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
   <noscript><p>This calculator needs JavaScript.</p></noscript>
   <figcaption><b>The LT circuit in numbers.</b> A few volts and a few hundred amps on the boat side;
   a few amps from the 230 V mains on the primary side.</figcaption>
@@ -760,7 +750,7 @@ material. Some metals (Cr, Ti at modest temperatures) reach it <b>below their me
 sublime from the solid.</p>
 
 <figure class="fig" data-fig="vapor">
-  <div class="fig-tag">Figure 15 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Vapour pressures of common metals</b> (fitted to standard vapour-pressure tables;
   dots mark the melting points). The calculator applies Hertz–Knudsen to a 1 cm² melt and the
@@ -787,7 +777,7 @@ sphere passing through the source (on such a <b>Knudsen sphere</b>, \(\cos\theta
 constant and the coating is perfectly uniform for a surface source).</p>
 
 <figure class="fig" data-fig="evapmc">
-  <div class="fig-tag">Figure 16 · <span class="live">Interactive Monte Carlo</span></div>
+  <div class="fig-tag">Figure 15 · <span class="live">Interactive Monte Carlo</span></div>
   <noscript><p>This simulation needs JavaScript.</p></noscript>
   <figcaption><b>Building the thickness profile atom by atom.</b> Each frame launches thousands of
   atoms with the chosen angular distribution and records where they land on a flat substrate; the
@@ -847,7 +837,7 @@ also why a Penning gauge can run a discharge at \(10^{-6}\) mbar only because it
 electrons' path, not the gap, long.</p>
 
 <figure class="fig" data-fig="paschen">
-  <div class="fig-tag">Figure 17 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 16 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Paschen curve for air</b> (A = 15 cm⁻¹Torr⁻¹, B = 365 V cm⁻¹Torr⁻¹, γ = 0.01). Move
   the pressure down from atmosphere: the glow strikes only inside the window where the curve dips
@@ -887,7 +877,7 @@ crucible from above. Extra coils <b>sweep</b> the spot across the melt so it hea
 not drill a hole.</p>
 
 <figure class="fig" data-fig="ebeam">
-  <div class="fig-tag">Figure 18 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 17 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>A 270° electron gun.</b> The trajectory is calculated from \(r = p/(eB)\) with the
   relativistic momentum. Raise the voltage without raising the field and the beam lands beyond the
@@ -940,7 +930,7 @@ changes with temperature near room temperature; the sensor head is still water-c
 radiant heat from the source would otherwise drift the reading.</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 19</div>
+  <div class="fig-tag">Figure 18</div>
   <svg viewBox="0 0 860 260" role="img" aria-label="Quartz crystal monitor sensor and electronics">
     <style>.ql{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}</style>
     <rect x="60" y="100" width="200" height="40" fill="#cfd8e6" opacity=".25" stroke="rgba(255,255,255,.5)"/>
@@ -1000,7 +990,7 @@ $$\text{TF}\,(\%) = 100\times\frac{t_\text{substrate}}{t_\text{crystal}}, \qquad
 with a profilometer, AFM or ellipsometer, and update the tooling factor with the second formula.</p>
 
 <figure class="fig" data-fig="qcm">
-  <div class="fig-tag">Figure 20 · <span class="live">Interactive DTM</span></div>
+  <div class="fig-tag">Figure 19 · <span class="live">Interactive DTM</span></div>
   <noscript><p>This simulation needs JavaScript.</p></noscript>
   <figcaption><b>Run a deposition on a simulated DTM.</b> The crystal's frequency is computed from
   the film on it with the Lu–Lewis equation. The <i>true geometry</i> is the real substrate-to-crystal
@@ -1045,7 +1035,7 @@ must travel more than a metre without scattering, and the field-emission tip nee
 vacuum to stay clean.</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 21</div>
+  <div class="fig-tag">Figure 20</div>
   <svg viewBox="0 0 860 470" role="img" aria-label="Electron beam lithography column and resist interaction">
     <style>.cl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.ch{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#e0a82e}</style>
     <path d="M200 30 V400" stroke="#e0a82e" stroke-width="1.4" stroke-dasharray="4 4"/>
@@ -1085,7 +1075,7 @@ in the resist, the secondary electrons that actually break the polymer bonds, an
 development.</p>
 
 <figure class="fig" data-fig="lambda">
-  <div class="fig-tag">Figure 22 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 21 · <span class="live">Interactive</span></div>
   <noscript><p>This calculator needs JavaScript.</p></noscript>
   <figcaption><b>Electron wavelength.</b> At 100 kV the relativistic correction is already 5 %.</figcaption>
 </figure>
@@ -1106,7 +1096,7 @@ which is its great weakness: one square millimetre at 300 µC cm⁻² with 1 nA 
 exposure.</p>
 
 <figure class="fig" data-fig="writetime">
-  <div class="fig-tag">Figure 23 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 22 · <span class="live">Interactive</span></div>
   <noscript><p>This calculator needs JavaScript.</p></noscript>
   <figcaption><b>Write time and dwell time.</b> High currents write faster but give a larger spot;
   small pixels need a pattern generator that can blank and step at many megahertz.</figcaption>
@@ -1127,7 +1117,7 @@ edge, and isolated features need a higher dose than dense ones. <b>Proximity-eff
 adjusts the dose of every shape so that the absorbed dose is the same everywhere.</p>
 
 <figure class="fig" data-fig="prox">
-  <div class="fig-tag">Figure 24 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 23 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Proximity effect on a line grating.</b> The absorbed dose (gold) is the designed
   pattern (grey) convolved with the double-Gaussian point-spread function. Where it exceeds the
@@ -1147,7 +1137,7 @@ usually made with a two-layer PMMA stack whose bottom layer is more sensitive. S
 lift-off.</p>
 
 <figure class="fig" data-fig="liftoff">
-  <div class="fig-tag">Figure 25 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 24 · <span class="live">Interactive</span></div>
   <noscript><p>This figure needs JavaScript.</p></noscript>
   <figcaption><b>EBL and lift-off, step by step.</b> Switch the deposition method to sputtering at
   step 4 to see why lift-off processes use evaporation.</figcaption>
@@ -1253,7 +1243,7 @@ together. (Generic settings; use your own instrument's manual and your lab's rul
 <hr>
 <p>The interactive figures are small simulations written for this article: their models are
 simple on purpose (stated in each caption) and meant for intuition, not for designing an
-instrument. Figure 1 was drawn in <a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>.
+instrument.
 Corrections and questions are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
 <p><a href="blog.html">← Back to the Lab Notebook</a></p>
 
