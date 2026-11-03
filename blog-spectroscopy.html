@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Vibrational Spectroscopy, Plasmonics and SERS from First Principles | Rakesh Naik</title>
+<meta name="description" content="A from-zero guide to vibrational spectroscopy and SERS: molecular vibrations and normal modes (stretching, bending, wagging), IR absorption and FTIR, Raman scattering theory, Raman and IR bands of lipids, proteins and nucleic acids, the fingerprint and silent regions, plasmonics (Drude model, surface plasmons, Mie theory) and surface-enhanced Raman scattering, with interactive simulations and references.">
+<meta name="keywords" content="Raman spectroscopy, infrared spectroscopy, FTIR, SERS, surface-enhanced Raman, plasmonics, localized surface plasmon, Mie theory, Drude model, surface plasmon resonance, normal modes, molecular vibrations, fingerprint region, silent region, Raman bands lipids proteins DNA, amide I, alkyne tag, tutorial">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectroscopy.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vibrational Spectroscopy, Plasmonics and SERS from First Principles">
+<meta property="og:description" content="How molecules vibrate, how IR and Raman read them, what the fingerprint and silent regions are, and how plasmons turn Raman into SERS — from the basics, with simulations.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectroscopy.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-11-03">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vibrational Spectroscopy, Plasmonics and SERS from First Principles">
+<meta name="twitter:description" content="IR, Raman, normal modes, biological bands, the silent region, plasmonics and SERS — equations, diagrams and simulations.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Vibrational Spectroscopy, Plasmonics and SERS from First Principles","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectroscopy.html"}]},
+{"@type":"TechArticle","headline":"Vibrational Spectroscopy, Plasmonics and SERS from First Principles","datePublished":"2026-11-03","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"A from-zero guide to IR and Raman spectroscopy, biological band assignments, plasmonics and SERS, with interactive simulations.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Vibrational spectroscopy, plasmonics and SERS, from first principles</h1>
+    <p class="lede">How light reads molecules. Why a bond vibrates at the frequency it does; what
+    stretching, scissoring and wagging mean; how infrared absorption and Raman scattering work and why
+    they see different things; how to read the bands of lipids, proteins and DNA, and why one stretch of
+    the spectrum is silent; then the free electrons of gold and silver — plasmons — and how they turn
+    Raman into SERS. From the basic physics to the equations used in research, with simulations to play
+    with.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Spectroscopy</span><span>3 November 2026</span><span>≈ 75 min read</span><span>Rakesh Naik</span></div>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-light">Light, energy and the units of spectroscopy</a></li>
+    <li><a href="#s-levels">What a molecule can do with a photon</a></li>
+    <li><a href="#s-osc">A chemical bond is a spring</a></li>
+    <li><a href="#s-modes">Normal modes: stretching, bending, wagging…</a></li>
+    <li><a href="#s-ir">Infrared absorption and FTIR</a></li>
+    <li><a href="#s-raman">Raman scattering</a></li>
+    <li><a href="#s-compare">IR, Raman and their relatives compared</a></li>
+    <li><a href="#s-bio">Reading a biological spectrum</a></li>
+    <li><a href="#s-silent">The silent region, and why it is silent</a></li>
+    <li><a href="#s-plasmon">Plasmonics: the free electrons of a metal</a></li>
+    <li><a href="#s-spp">Surface plasmon polaritons</a></li>
+    <li><a href="#s-lspr">Localized plasmons in nanoparticles</a></li>
+    <li><a href="#s-sers">Surface-enhanced Raman scattering (SERS)</a></li>
+    <li><a href="#s-sim">Simulating spectra and plasmonic fields</a></li>
+    <li><a href="#s-practice">From the instrument to a clean spectrum</a></li>
+    <li><a href="#s-glossary">Glossary</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>Every molecule carries a signature written in the way its atoms move. Shine light on it and that
+signature leaks out — as missing colours in transmitted infrared light, or as a faint shifted glow in
+scattered laser light. Reading the signature is <b>vibrational spectroscopy</b>, and it is one of the
+few ways to identify a molecule without touching it, labelling it or knowing in advance what to look
+for. This article builds the subject from the ground up: first the physics of a single vibrating bond,
+then the two great techniques that read vibrations (infrared absorption and Raman scattering), then the
+practical art of reading spectra of biological material, and finally the plasmonic physics that boosts
+Raman signals by factors of a million or more in surface-enhanced Raman scattering.</p>
+<p>Every figure marked <b>Interactive</b> is a small simulation that runs in your browser. Numbers in
+square brackets point to the <a href="#s-refs">references</a> at the end.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-light"><span class="num">01</span>Light, energy and the units of spectroscopy</h2>
+
+<p>Light is an electromagnetic wave: an electric field and a magnetic field oscillating at right angles
+to each other and to the direction of travel. Quantum mechanically it comes in packets, <b>photons</b>,
+each with an energy fixed by its frequency \(\nu\):</p>
+$$E = h\nu = \frac{hc}{\lambda} = hc\,\tilde\nu, \qquad \tilde\nu = \frac{1}{\lambda}$$
+<p>where \(h = 6.626\times10^{-34}\) J s is Planck's constant and \(c\) the speed of light. The last
+form introduces the spectroscopist's favourite unit, the <b>wavenumber</b> \(\tilde\nu\) in cm⁻¹: the
+number of wavelengths per centimetre. It is proportional to energy, so energy differences are simple
+subtractions — which is exactly what Raman spectroscopy measures.</p>
+<div class="tbl-wrap"><table>
+  <tr><th>Quantity</th><th>Conversion</th><th>Example</th></tr>
+  <tr><td>wavelength ↔ wavenumber</td><td>\(\tilde\nu\,[\mathrm{cm^{-1}}] = 10^7 / \lambda\,[\mathrm{nm}]\)</td><td>532 nm = 18 797 cm⁻¹</td></tr>
+  <tr><td>wavenumber ↔ energy</td><td>1 cm⁻¹ = 1.2398 × 10⁻⁴ eV</td><td>3000 cm⁻¹ = 0.37 eV</td></tr>
+  <tr><td>thermal energy at 295 K</td><td>\(k_BT/hc\) ≈ 205 cm⁻¹</td><td>levels above this are mostly empty</td></tr>
+  <tr><td>Raman shift</td><td>\(\Delta\tilde\nu = 10^7/\lambda_0 - 10^7/\lambda_s\)</td><td>785 nm laser, 1003 cm⁻¹ → 852.1 nm</td></tr>
+</table></div>
+
+<figure class="fig" data-fig="emspec">
+  <div class="fig-tag">Figure 1</div>
+  <figcaption><b>Which part of the spectrum excites what.</b> Ultraviolet and visible photons move
+  electrons between orbitals; mid-infrared photons (2.5–25 µm, 4000–400 cm⁻¹) match the energies of
+  molecular vibrations; microwaves match rotations. Raman spectroscopy is the exception that makes it
+  powerful: it reads vibrations using visible or near-infrared light.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-levels"><span class="num">02</span>What a molecule can do with a photon</h2>
+
+<p>Because electrons are thousands of times lighter than nuclei, they rearrange almost instantly as
+the nuclei move (the <b>Born–Oppenheimer approximation</b>). The energy of a molecule then separates,
+to a good approximation, into an electronic part, a vibrational part and a rotational part:</p>
+$$E \approx E_\text{el} + E_\text{vib} + E_\text{rot}, \qquad \text{typical spacings: } 10^4\text{–}10^5,\;\; 10^2\text{–}10^3,\;\; 1\text{–}10\ \mathrm{cm^{-1}}$$
+<p>A photon can interact with these levels in three fundamentally different ways:</p>
+<ul>
+  <li><b>Absorption</b>: the photon disappears and its energy lifts the molecule to a higher level. It
+  only happens when the photon energy <i>matches</i> a gap. Infrared absorption excites vibrations;
+  UV–visible absorption excites electrons.</li>
+  <li><b>Emission</b>: an excited molecule gives the energy back as a photon. <b>Fluorescence</b> is
+  emission from an excited electronic state after it has first relaxed to its lowest vibrational level.</li>
+  <li><b>Scattering</b>: the photon is redirected without being absorbed. The light's field pushes the
+  electron cloud, which re-radiates. Almost always the scattered photon has the same energy
+  (<b>Rayleigh scattering</b>); about one in ten million times it has given some energy to a vibration
+  (<b>Stokes Raman</b>) or taken some from one (<b>anti-Stokes Raman</b>). Scattering does not need a
+  resonance — any photon will do.</li>
+</ul>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 2</div>
+  <svg viewBox="0 0 860 380" role="img" aria-label="Energy-level diagram of IR absorption, Rayleigh, Raman, fluorescence">
+    <style>.ll{stroke:#b6acc8;stroke-width:1.6}.lv{stroke:#837a94;stroke-width:1}.vs{stroke:#837a94;stroke-dasharray:5 4}.tx{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.th{font-family:'IBM Plex Mono',monospace;font-size:11.5px;fill:#efeaf6}</style>
+    <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>
+    <!-- ground state S0 with vibrational levels -->
+    <line x1="30" x2="830" y1="330" y2="330" class="ll"/><line x1="30" x2="830" y1="305" y2="305" class="lv"/><line x1="30" x2="830" y1="282" y2="282" class="lv"/>
+    <text x="34" y="348" class="tx">S₀, v = 0</text><text x="34" y="300" class="tx">v = 1</text><text x="34" y="277" class="tx">v = 2</text>
+    <!-- excited state S1 -->
+    <line x1="560" x2="830" y1="80" y2="80" class="ll"/><line x1="560" x2="830" y1="58" y2="58" class="lv"/><line x1="560" x2="830" y1="38" y2="38" class="lv"/><text x="760" y="96" class="tx">S₁ (electronic)</text>
+    <!-- virtual states -->
+    <line x1="150" x2="430" y1="130" y2="130" class="vs"/><text x="150" y="122" class="tx">virtual state (not a real level)</text>
+    <!-- IR -->
+    <line x1="100" x2="100" y1="330" y2="309" stroke="#e0a82e" stroke-width="3" marker-end="url(#ah)"/><text x="80" y="252" class="th">IR</text><text x="66" y="266" class="tx">absorption</text>
+    <!-- Rayleigh -->
+    <line x1="190" x2="190" y1="330" y2="134" stroke="#45bfd6" stroke-width="3" marker-end="url(#ah)"/><line x1="206" x2="206" y1="134" y2="326" stroke="#45bfd6" stroke-width="3" marker-end="url(#ah)"/><text x="168" y="360" class="th">Rayleigh</text>
+    <!-- Stokes -->
+    <line x1="290" x2="290" y1="330" y2="134" stroke="#45bfd6" stroke-width="3" marker-end="url(#ah)"/><line x1="306" x2="306" y1="134" y2="301" stroke="#e2566e" stroke-width="3" marker-end="url(#ah)"/><text x="270" y="360" class="th">Stokes</text>
+    <!-- anti-Stokes -->
+    <line x1="390" x2="390" y1="305" y2="134" stroke="#45bfd6" stroke-width="3" marker-end="url(#ah)"/><line x1="406" x2="406" y1="134" y2="326" stroke="#a98bf0" stroke-width="3" marker-end="url(#ah)"/><text x="398" y="360" class="th" text-anchor="middle">anti-Stokes</text>
+    <!-- resonance Raman -->
+    <line x1="480" x2="480" y1="330" y2="62" stroke="#45bfd6" stroke-width="3" marker-end="url(#ah)"/><line x1="496" x2="496" y1="62" y2="301" stroke="#e2566e" stroke-width="3" marker-end="url(#ah)"/><text x="488" y="360" class="th" text-anchor="middle">resonance</text><text x="488" y="374" class="th" text-anchor="middle">Raman</text>
+    <!-- fluorescence -->
+    <line x1="620" x2="620" y1="330" y2="42" stroke="#45bfd6" stroke-width="3" marker-end="url(#ah)"/><path d="M630 42 q8 12 0 20 q-8 8 0 18" stroke="#837a94" fill="none" stroke-width="1.5"/><line x1="660" x2="660" y1="80" y2="301" stroke="#7fd18b" stroke-width="3" marker-end="url(#ah)"/><text x="600" y="360" class="th">fluorescence</text>
+    <text x="640" y="200" class="tx">absorb, relax,</text><text x="640" y="214" class="tx">then emit (ns)</text>
+    <text x="210" y="196" class="tx">same colour</text><text x="310" y="214" class="tx">redder</text><text x="410" y="214" class="tx">bluer</text>
+  </svg>
+  <figcaption><b>The processes of vibrational and electronic spectroscopy.</b> In IR absorption a
+  photon whose energy exactly equals a vibrational gap is absorbed. In Raman scattering a visible
+  photon briefly distorts the electron cloud (the “virtual state” is a mathematical device, not a
+  stationary level) and leaves with less (Stokes) or more (anti-Stokes) energy. When the laser is
+  tuned to a real electronic transition, Raman becomes resonance Raman — and fluorescence, a
+  separate absorb-relax-emit process, competes with it.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-osc"><span class="num">03</span>A chemical bond is a spring</h2>
+
+<h3>The classical oscillator</h3>
+<p>Near its equilibrium length \(r_e\), the energy of a bond rises roughly quadratically when it is
+stretched or compressed — exactly like a spring obeying Hooke's law, \(F = -k\,x\). Two masses
+\(m_1, m_2\) joined by such a spring oscillate at</p>
+$$\omega = \sqrt{\frac{k}{\mu}}, \qquad \mu = \frac{m_1 m_2}{m_1 + m_2}, \qquad \boxed{\;\tilde\nu = \frac{1}{2\pi c}\sqrt{\frac{k}{\mu}}\;}$$
+<p>where \(\mu\) is the <b>reduced mass</b> and \(k\) the <b>force constant</b> (bond stiffness, in N/m).
+Two rules follow that organise every vibrational spectrum:</p>
+<ul>
+  <li><b>Stiffer bonds vibrate faster.</b> A triple bond (k ≈ 1600 N/m) sits higher than a double
+  bond (≈ 1000 N/m), which sits higher than a single bond (≈ 450 N/m): C≡C ≈ 2150, C=C ≈ 1650,
+  C–C ≈ 1100 cm⁻¹.</li>
+  <li><b>Light atoms vibrate faster.</b> Any bond to hydrogen has μ ≈ 1 u, so X–H stretches lie far
+  above everything else (C–H ≈ 2900, O–H ≈ 3400 cm⁻¹). Replacing H by deuterium doubles the mass and
+  divides the frequency by almost √2: C–D ≈ 2200 cm⁻¹.</li>
+</ul>
+
+<figure class="fig" data-fig="bond">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This calculator needs JavaScript.</p></noscript>
+  <figcaption><b>Where a bond vibrates, from two numbers.</b> Pick two atoms and a bond order; the
+  harmonic formula with a typical force constant places the stretch on the wavenumber axis. Notice
+  that nothing common lands between about 1800 and 2800 cm⁻¹ — the silent region of section 9.</figcaption>
+</figure>
+
+<h3>The quantum oscillator and anharmonicity</h3>
+<p>Quantum mechanics allows only discrete energies. For the harmonic potential
+\(V = \tfrac12 k (r - r_e)^2\) the Schrödinger equation gives</p>
+$$E_v = h c\,\tilde\nu\left(v + \tfrac12\right), \qquad v = 0, 1, 2, \dots$$
+<p>with equal spacings and a <b>zero-point energy</b> \(\tfrac12 hc\tilde\nu\): a bond never stops
+vibrating. Real bonds are not harmonic — stretch one far enough and it breaks. The <b>Morse
+potential</b> \(V = D_e\,[1 - e^{-a(r - r_e)}]^2\) captures this, and its levels crowd together near
+the dissociation energy:</p>
+$$E_v = hc\left[\tilde\nu_e\left(v + \tfrac12\right) - \tilde\nu_e x_e\left(v + \tfrac12\right)^2\right]$$
+<p>Anharmonicity has three visible consequences: <b>overtones</b> (v = 0 → 2, weak, at slightly less
+than twice the fundamental — the basis of near-infrared spectroscopy), <b>combination bands</b> (two
+modes excited at once), and <b>Fermi resonance</b>, where an overtone and a fundamental of the same
+symmetry and similar energy mix and share intensity (the famous CO₂ Raman doublet at 1285 and
+1388 cm⁻¹ is one) [1, 2].</p>
+
+<figure class="fig" data-fig="osc">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Harmonic and anharmonic potentials of HCl</b> (ν̃ₑ = 2990.9 cm⁻¹,
+  ν̃ₑxₑ = 52.8 cm⁻¹, rₑ = 1.275 Å). The Morse levels get closer towards the top; the calculated
+  fundamental, 2885.3 cm⁻¹, matches the measured 2885.9 cm⁻¹. Increase the anharmonicity and the
+  overtone falls further below twice the fundamental.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-modes"><span class="num">04</span>Normal modes: stretching, bending, wagging…</h2>
+
+<p>A molecule of \(N\) atoms has \(3N\) ways to move its atoms (x, y, z for each). Three of these move
+the whole molecule (translation) and three rotate it (two for a linear molecule), leaving</p>
+$$3N - 6 \text{ vibrations (non-linear)}, \qquad 3N - 5 \text{ (linear)}.$$
+<p>These are not the motions of individual bonds but <b>normal modes</b>: collective motions in which
+every atom moves in phase, at the same frequency, along its own direction. Mathematically they are the
+eigenvectors of the mass-weighted matrix of force constants [3]; physically they are the independent
+“notes” the molecule can play. Each has a name describing what it does:</p>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Motion</th><th>What happens</th><th>Typical example</th></tr>
+  <tr><td><b>Symmetric stretch</b> (ν<sub>s</sub>)</td><td>bonds lengthen and shorten together</td><td>CH₂ at ≈ 2850, CO₂ at 1333 cm⁻¹ (Raman)</td></tr>
+  <tr><td><b>Antisymmetric stretch</b> (ν<sub>as</sub>)</td><td>one bond lengthens while the other shortens</td><td>CH₂ at ≈ 2920, CO₂ at 2349 cm⁻¹ (IR)</td></tr>
+  <tr><td><b>Scissoring</b> (δ)</td><td>the angle between two bonds opens and closes, in plane</td><td>CH₂ ≈ 1440–1465, H₂O 1595 cm⁻¹</td></tr>
+  <tr><td><b>Rocking</b> (ρ)</td><td>both bonds swing the same way, in plane</td><td>long CH₂ chains ≈ 720 cm⁻¹</td></tr>
+  <tr><td><b>Wagging</b> (ω)</td><td>both atoms move out of the plane, the same way</td><td>CH₂ ≈ 1350 cm⁻¹</td></tr>
+  <tr><td><b>Twisting</b> (τ)</td><td>one atom up, the other down, out of plane</td><td>CH₂ ≈ 1300 cm⁻¹ (strong in Raman of lipids)</td></tr>
+  <tr><td><b>Ring breathing</b></td><td>an aromatic ring expands and contracts as a whole</td><td>phenylalanine 1003 cm⁻¹, benzene 992 cm⁻¹</td></tr>
+  <tr><td><b>Torsion, lattice modes</b></td><td>rotation about a bond; whole molecules moving in a crystal</td><td>&lt; 400 cm⁻¹, low-frequency Raman</td></tr>
+</table></div>
+
+<figure class="fig" data-fig="modes">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive animation</span></div>
+  <noscript><p>This animation needs JavaScript.</p></noscript>
+  <figcaption><b>Normal modes in motion.</b> Arrows show the displacement of each atom (exaggerated);
+  ⊙ and ⊗ mark motion out of and into the page. For each mode the readout says whether the dipole
+  moment changes (IR active) and whether the polarisability changes (Raman active) — the two
+  selection rules of the next sections. CO₂ shows the <b>rule of mutual exclusion</b>: in a molecule
+  with a centre of symmetry, no mode is both.</figcaption>
+</figure>
+
+<p>Some vibrations stay close to a single bond and appear at nearly the same wavenumber in any
+molecule containing it — <b>group frequencies</b> such as C=O at 1650–1750 cm⁻¹ or C–H near
+2900 cm⁻¹. Others involve the whole skeleton and are unique to each molecule; they crowd the region
+below about 1800 cm⁻¹, which is therefore called the <b>fingerprint region</b>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ir"><span class="num">05</span>Infrared absorption and FTIR</h2>
+
+<h3>The selection rule</h3>
+<p>An oscillating electric field can only drive a vibration that makes the molecule's <b>electric dipole
+moment</b> \(\boldsymbol\mu\) oscillate. Expanding the dipole moment in the normal coordinate \(Q\),</p>
+$$\boldsymbol\mu(Q) = \boldsymbol\mu_0 + \left(\frac{\partial\boldsymbol\mu}{\partial Q}\right)_0 Q + \dots
+\qquad\Rightarrow\qquad \text{IR intensity} \;\propto\; \left|\frac{\partial\boldsymbol\mu}{\partial Q}\right|^2,$$
+<p>and in the harmonic approximation only \(\Delta v = \pm1\) transitions are allowed. Polar bonds that
+stretch (C=O, O–H, N–H, P=O) absorb strongly; symmetric motions of non-polar groups (C=C in a
+symmetric environment, S–S) are weak or invisible. Absorption in a sample follows the
+<b>Beer–Lambert law</b>:</p>
+$$A = -\log_{10}\frac{I}{I_0} = \varepsilon\, c\, \ell$$
+<p>(molar absorption coefficient ε, concentration c, path length ℓ).</p>
+
+<h3>The water problem and ATR</h3>
+<p>Liquid water absorbs intensely in the mid-infrared (O–H stretch near 3400 cm⁻¹ and H–O–H bend at
+1640 cm⁻¹ — right on top of the protein amide I band). Path lengths in water must be a few
+micrometres, or the measurement done by <b>attenuated total reflection (ATR)</b>: the beam is totally
+reflected inside a diamond or germanium crystal and samples only the evanescent field, which decays
+into the sample over</p>
+$$d_p = \frac{\lambda}{2\pi n_1\sqrt{\sin^2\theta - (n_2/n_1)^2}}$$
+<p>— about 1–2 µm for diamond at 45°. The same evanescent-wave physics reappears in surface plasmon
+resonance (section 11).</p>
+
+<h3>Why every modern IR spectrometer uses a Michelson interferometer</h3>
+<p>A Fourier-transform infrared (FTIR) spectrometer sends the broadband IR light through a Michelson
+interferometer. One mirror moves, creating a path difference δ; the detector records the
+<b>interferogram</b></p>
+$$I(\delta) = \int_0^\infty B(\tilde\nu)\,\big[1 + \cos(2\pi\tilde\nu\delta)\big]\,d\tilde\nu,
+\qquad B(\tilde\nu) \propto \int I(\delta)\cos(2\pi\tilde\nu\delta)\,d\delta,$$
+<p>and the spectrum \(B(\tilde\nu)\) is its cosine (Fourier) transform. All wavelengths are measured at
+once (the <b>multiplex</b> or Fellgett advantage), without a slit (the <b>throughput</b> or Jacquinot
+advantage), and calibrated by a reference laser (the <b>Connes</b> advantage) [11]. The resolution is set by
+how far the mirror travels: \(\Delta\tilde\nu \approx 1/\delta_\text{max}\).</p>
+
+<figure class="fig" data-fig="ftir">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>From interferogram to spectrum.</b> A model spectrum with protein- and lipid-like bands
+  produces the interferogram on top (a burst at zero path difference); its Fourier transform
+  (apodised) gives the spectrum below. Shorten the mirror travel and the bands broaden into each
+  other: δ_max = 0.5 mm gives 20 cm⁻¹ resolution; 2 mm gives 5 cm⁻¹.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-raman"><span class="num">06</span>Raman scattering</h2>
+
+<p>In 1928 C. V. Raman and K. S. Krishnan reported that a small fraction of light scattered by liquids
+changes colour [4]. The explanation is simplest classically.</p>
+
+<h3>Classical picture: an oscillating polarisability mixes frequencies</h3>
+<p>The light's field \(E = E_0\cos\omega_0 t\) induces a dipole in the electron cloud,
+\(\mu_\text{ind} = \alpha E\), where \(\alpha\) is the <b>polarisability</b> — how easily the cloud is
+distorted. If the molecule vibrates, \(Q = Q_0\cos\omega_v t\), the polarisability changes with it:</p>
+$$\alpha = \alpha_0 + \left(\frac{\partial\alpha}{\partial Q}\right)_0 Q_0\cos\omega_v t$$
+<p>and the product of two cosines is a sum of two others:</p>
+$$\mu_\text{ind} = \underbrace{\alpha_0E_0\cos\omega_0 t}_{\text{Rayleigh}} \;+\; \frac{\alpha' Q_0E_0}{2}\Big[\underbrace{\cos(\omega_0-\omega_v)t}_{\text{Stokes}} + \underbrace{\cos(\omega_0+\omega_v)t}_{\text{anti-Stokes}}\Big]$$
+<p>An oscillating dipole radiates at its own frequencies, so the scattered light contains the laser
+frequency and two sidebands displaced by exactly the vibrational frequency. Hence the <b>Raman selection
+rule</b>: a vibration is Raman active only if it changes the polarisability,
+\(\partial\alpha/\partial Q \ne 0\) (α is really a 3×3 tensor; it is enough that one component
+changes) [5, 6].</p>
+
+<figure class="fig" data-fig="mix">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Where the Raman lines come from.</b> The light field (cyan) times the vibrating
+  polarisability (gold) gives the induced dipole (red), whose amplitude is modulated at the vibrational
+  frequency — and a modulated oscillation contains sidebands. Set α′ to zero (a vibration that does not
+  change the polarisability) and the sidebands vanish.</figcaption>
+</figure>
+
+<h3>Intensity, the ν⁴ law and the Stokes/anti-Stokes ratio</h3>
+<p>A dipole radiates power \(\propto \omega^4|\mu|^2\), so Raman intensity rises steeply with the
+excitation frequency:</p>
+$$I_\text{Raman} \;\propto\; (\tilde\nu_0 \mp \tilde\nu_v)^4\,\left(\frac{\partial\alpha}{\partial Q}\right)^2 N\,I_0$$
+<p>Going from a 785 nm to a 532 nm laser gives (785/532)⁴ ≈ 4.7 times more signal — but also more
+fluorescence from biological samples, which is why 785 nm is the usual compromise for tissue. The
+quantum treatment adds one more ingredient: anti-Stokes scattering starts from an excited vibrational
+level, whose population is set by the Boltzmann distribution, so</p>
+$$\frac{I_\text{aS}}{I_\text{S}} = \left(\frac{\tilde\nu_0 + \tilde\nu_v}{\tilde\nu_0 - \tilde\nu_v}\right)^4 \exp\!\left(-\frac{hc\,\tilde\nu_v}{k_BT}\right)$$
+<p>— a contact-free thermometer.</p>
+
+<figure class="fig" data-fig="ratio">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Anti-Stokes to Stokes ratio.</b> Low-wavenumber modes have strong anti-Stokes lines at
+  room temperature (silicon's 520.7 cm⁻¹ phonon: about 0.1); high-wavenumber ones essentially none
+  (C–H at 2930 cm⁻¹: 10⁻⁶). This is why Raman spectra are almost always recorded on the Stokes side.</figcaption>
+</figure>
+
+<h3>How weak Raman is</h3>
+<p>Typical Raman cross-sections are around 10⁻²⁹ cm² per molecule — some 10¹³ times smaller than the
+absorption cross-section of a good dye. Only about one photon in 10⁶–10⁸ is Raman scattered, and any
+fluorescence from the sample, even a weak one, can bury it. Two routes make Raman stronger by many
+orders of magnitude: tuning the laser to an electronic absorption (<b>resonance Raman</b>, 10³–10⁶×,
+the reason carotenoids dominate many biological spectra) and placing the molecule in the enhanced
+field near a metal nanostructure (<b>SERS</b>, section 13).</p>
+
+<figure class="fig" data-fig="xsec">
+  <div class="fig-tag">Figure 9</div>
+  <figcaption><b>Typical cross-sections, per molecule</b> (orders of magnitude, from [7, 8]). Normal
+  Raman is the weakest optical process in routine use; SERS in a hot spot brings it to the level of
+  fluorescence, which is what makes single-molecule SERS possible [9, 10].</figcaption>
+</figure>
+
+<h3>Polarisation and the depolarisation ratio</h3>
+<p>Measuring the scattered light polarised parallel and perpendicular to the laser gives the
+<b>depolarisation ratio</b> \(\rho = I_\perp/I_\parallel\). For totally symmetric vibrations
+\(\rho < 3/4\) (often close to 0); for all others \(\rho = 3/4\). It is a quick experimental way to
+tell symmetric from antisymmetric modes [5].</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-compare"><span class="num">07</span>IR, Raman and their relatives compared</h2>
+
+<p>IR and Raman see the same vibrations through different windows: IR asks whether the dipole moment
+changes, Raman whether the polarisability changes. They are <b>complementary</b>: polar, asymmetric
+motions are strong in IR; symmetric motions of polarisable groups (C=C, S–S, aromatic rings) are strong
+in Raman. In a molecule with a centre of symmetry the two sets do not overlap at all (mutual
+exclusion).</p>
+<div class="tbl-wrap"><table>
+  <tr><th></th><th>IR absorption (FTIR)</th><th>Raman scattering</th></tr>
+  <tr><td>Physical process</td><td>absorption of an IR photon</td><td>inelastic scattering of a visible/NIR photon</td></tr>
+  <tr><td>Selection rule</td><td>∂μ/∂Q ≠ 0 (dipole changes)</td><td>∂α/∂Q ≠ 0 (polarisability changes)</td></tr>
+  <tr><td>Strong for</td><td>C=O, O–H, N–H, P=O, C–O</td><td>C=C, C≡C, S–S, aromatic rings, C–C backbones</td></tr>
+  <tr><td>Water</td><td>very strong absorber: thin films or ATR</td><td>weak scatterer: aqueous and living samples are easy</td></tr>
+  <tr><td>Spatial resolution</td><td>diffraction at 3–10 µm wavelengths: ≈ 3–10 µm</td><td>visible light: ≈ 0.3–0.5 µm (Abbe: 0.61 λ / NA)</td></tr>
+  <tr><td>Main nuisance</td><td>water and CO₂ absorption</td><td>fluorescence background, weak signal</td></tr>
+  <tr><td>Glass containers</td><td>opaque</td><td>transparent (measure through a vial)</td></tr>
+  <tr><td>Signal level</td><td>strong (≈ 10⁻¹⁹ cm²)</td><td>weak (≈ 10⁻²⁹ cm²) unless resonance or SERS</td></tr>
+</table></div>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Technique</th><th>What it measures</th><th>Key physics</th><th>Typical use</th></tr>
+  <tr><td>UV–Vis absorption</td><td>electronic transitions</td><td>Beer–Lambert</td><td>concentrations, plasmon peaks of nanoparticles</td></tr>
+  <tr><td>Fluorescence</td><td>emission after electronic excitation</td><td>Stokes shift, quantum yield, lifetime [8]</td><td>labelled imaging, sensing</td></tr>
+  <tr><td>NIR spectroscopy</td><td>overtones and combinations of X–H</td><td>anharmonicity</td><td>bulk analysis of food, pharma</td></tr>
+  <tr><td>Resonance Raman</td><td>Raman of a chromophore</td><td>laser in an electronic band</td><td>haem proteins, carotenoids</td></tr>
+  <tr><td>CARS / SRS</td><td>coherent (stimulated) Raman</td><td>third-order nonlinear: \(\omega_\text{aS} = 2\omega_p - \omega_S\)</td><td>video-rate label-free imaging [12, 13]</td></tr>
+  <tr><td>SERS</td><td>Raman near metal nanostructures</td><td>plasmonic field enhancement ≈ |E|⁴</td><td>trace detection, biosensing [7]</td></tr>
+  <tr><td>TERS</td><td>SERS under a metal tip</td><td>one hot spot, scanned</td><td>nanometre-resolution chemical imaging [14]</td></tr>
+  <tr><td>SHINERS</td><td>SERS from shell-isolated particles</td><td>Au cores with ultrathin SiO₂ shells</td><td>any surface, without contact [15]</td></tr>
+</table></div>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 10</div>
+  <svg viewBox="0 0 860 300" role="img" aria-label="Raman microscope and FTIR interferometer">
+    <style>.sl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#b6acc8}.sh{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#e0a82e;letter-spacing:.12em}</style>
+    <text x="20" y="22" class="sh">RAMAN MICROSCOPE</text>
+    <rect x="20" y="60" width="70" height="30" rx="4" fill="#3b3156"/><text x="28" y="79" class="sl">laser</text>
+    <line x1="90" x2="180" y1="75" y2="75" stroke="#45bfd6" stroke-width="3"/>
+    <line x1="170" x2="200" y1="95" y2="55" stroke="#e0a82e" stroke-width="4"/><text x="150" y="48" class="sl">dichroic / edge filter</text>
+    <line x1="185" x2="185" y1="75" y2="210" stroke="#45bfd6" stroke-width="3"/>
+    <ellipse cx="185" cy="170" rx="34" ry="8" fill="none" stroke="#45bfd6" stroke-width="3"/><text x="226" y="174" class="sl">objective (NA)</text>
+    <rect x="140" y="214" width="90" height="12" fill="#a98bf0"/><text x="148" y="244" class="sl">sample</text>
+    <line x1="190" x2="190" y1="210" y2="75" stroke="#e2566e" stroke-width="2" stroke-dasharray="5 4"/>
+    <line x1="190" x2="190" y1="60" y2="20" stroke="#e2566e" stroke-width="2" stroke-dasharray="5 4"/>
+    <line x1="190" x2="300" y1="20" y2="20" stroke="#e2566e" stroke-width="2" stroke-dasharray="5 4"/>
+    <rect x="300" y="8" width="110" height="80" rx="4" fill="none" stroke="#b6acc8"/><text x="310" y="30" class="sl">spectrograph</text><text x="310" y="46" class="sl">(grating)</text>
+    <rect x="320" y="60" width="70" height="16" fill="#45bfd6" opacity=".5"/><text x="326" y="72" class="sl">CCD</text>
+    <text x="230" y="120" class="sl" fill="#e2566e">Raman light (Stokes)</text><text x="230" y="134" class="sl">laser line blocked by</text><text x="230" y="148" class="sl">the edge filter</text>
+    <text x="470" y="22" class="sh">FTIR (MICHELSON)</text>
+    <rect x="470" y="140" width="60" height="30" rx="4" fill="#3b3156"/><text x="476" y="159" class="sl">IR source</text>
+    <line x1="530" x2="640" y1="155" y2="155" stroke="#e0a82e" stroke-width="3"/>
+    <line x1="620" x2="660" y1="175" y2="135" stroke="#b6acc8" stroke-width="3"/><text x="600" y="128" class="sl">beam splitter</text>
+    <line x1="640" x2="640" y1="155" y2="60" stroke="#e0a82e" stroke-width="2"/><rect x="620" y="52" width="40" height="6" fill="#b6acc8"/><text x="668" y="58" class="sl">fixed mirror</text>
+    <line x1="640" x2="790" y1="155" y2="155" stroke="#e0a82e" stroke-width="2"/><rect x="790" y="135" width="6" height="40" fill="#b6acc8"/><text x="720" y="128" class="sl">moving mirror ↔ δ/2</text>
+    <line x1="640" x2="640" y1="155" y2="250" stroke="#e0a82e" stroke-width="2"/><rect x="612" y="230" width="56" height="10" fill="#a98bf0"/><text x="676" y="240" class="sl">sample</text>
+    <rect x="618" y="262" width="44" height="22" rx="3" fill="#3b3156"/><text x="624" y="277" class="sl">detector</text>
+  </svg>
+  <figcaption><b>The two workhorse instruments.</b> Left: a confocal Raman microscope — laser in, Raman
+  light back through the same objective, the laser line removed by an edge or notch filter, the rest
+  dispersed onto a CCD. Right: an FTIR spectrometer, which records an interferogram rather than a
+  spectrum. Both setups can be drawn as publication figures in
+  <a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-bio"><span class="num">08</span>Reading a biological spectrum</h2>
+
+<p>A cell, a tissue section or a drop of serum is a mixture of lipids, proteins, nucleic acids,
+carbohydrates and water. Its Raman spectrum is, to a good approximation, the weighted sum of theirs —
+which is why multivariate and machine-learning methods work so well on biological spectra. The
+spectrum divides naturally into three regions:</p>
+<ul>
+  <li><b>Fingerprint region, ≈ 400–1800 cm⁻¹</b>: skeletal C–C, C–O, C–N stretches, ring modes, CH
+  bends, amide bands, phosphate stretches. Dense, specific, and where most diagnostic information
+  lies.</li>
+  <li><b>Silent region, ≈ 1800–2800 cm⁻¹</b>: essentially empty for biomolecules (section 9).</li>
+  <li><b>High-wavenumber region, ≈ 2800–3700 cm⁻¹</b>: C–H stretches (strong, informative about the
+  lipid / protein ratio) and the broad O–H stretch of water.</li>
+</ul>
+
+<figure class="fig" data-fig="bio">
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A biological Raman spectrum, built band by band.</b> Each class of molecule is modelled
+  by Lorentzian bands at its literature positions (widths and heights illustrative) [16, 17]; the
+  white curve is their sum. Switch the classes on and off to see which peaks belong to whom, add
+  carotenoids (resonance-enhanced, they can dominate) or water, or put an alkyne tag in the silent
+  region.</figcaption>
+</figure>
+
+<h3>Raman bands of biomolecules</h3>
+<div class="tbl-wrap"><table>
+  <tr><th>Wavenumber (cm⁻¹)</th><th>Assignment</th><th>Mainly from</th></tr>
+  <tr><td>621, 644, 1003, 1031, 1606</td><td>phenylalanine (1003: ring breathing, a common internal standard), tyrosine (644, 1606)</td><td>proteins</td></tr>
+  <tr><td>759</td><td>tryptophan ring breathing</td><td>proteins</td></tr>
+  <tr><td>828 / 853</td><td>tyrosine Fermi doublet (its ratio reports hydrogen bonding of the OH)</td><td>proteins</td></tr>
+  <tr><td>935–940</td><td>C–C stretch of the α-helix backbone</td><td>proteins</td></tr>
+  <tr><td>1230–1300</td><td>amide III (C–N stretch + N–H bend); β-sheet ≈ 1235–1245, α-helix ≈ 1265–1300</td><td>proteins</td></tr>
+  <tr><td>1340</td><td>CH deformation; adenine and guanine</td><td>proteins, nucleic acids</td></tr>
+  <tr><td>1440–1460</td><td>CH₂ / CH₃ scissoring and deformation</td><td>lipids and proteins</td></tr>
+  <tr><td>1650–1680</td><td>amide I (C=O stretch): α-helix ≈ 1650–1658, β-sheet ≈ 1665–1680</td><td>proteins</td></tr>
+  <tr><td>720, 1065, 1080, 1128, 1300</td><td>choline C–N (720); C–C stretches of trans (1065, 1128) and gauche (1080) chains; CH₂ twist (1300)</td><td>lipids</td></tr>
+  <tr><td>1265, 1655–1660, 3010</td><td>=C–H bend, C=C stretch, =C–H stretch: unsaturation</td><td>lipids</td></tr>
+  <tr><td>1740–1745</td><td>C=O stretch of the ester bond</td><td>lipids (triglycerides, phospholipids)</td></tr>
+  <tr><td>702, 548</td><td>sterol ring</td><td>cholesterol</td></tr>
+  <tr><td>728, 1578</td><td>adenine; guanine and adenine ring</td><td>nucleic acids</td></tr>
+  <tr><td>785</td><td>O–P–O backbone stretch with cytosine / uracil ring breathing</td><td>DNA / RNA</td></tr>
+  <tr><td>1090–1095</td><td>PO₂⁻ symmetric stretch</td><td>DNA / RNA backbone, phospholipids</td></tr>
+  <tr><td>480, 850, 940, 1085, 1125</td><td>glycosidic C–O–C, C–O and C–C stretches</td><td>carbohydrates, glycogen</td></tr>
+  <tr><td>1157, 1525 (1007)</td><td>C–C and C=C stretches of the polyene chain (resonance-enhanced)</td><td>carotenoids</td></tr>
+  <tr><td>2850, 2885</td><td>CH₂ symmetric and antisymmetric stretches</td><td>lipids</td></tr>
+  <tr><td>2930–2940</td><td>CH₃ stretch</td><td>proteins</td></tr>
+  <tr><td>3200–3500</td><td>O–H stretch (hydrogen-bonded network)</td><td>water</td></tr>
+</table></div>
+<p>Assignments are from the compilations of Movasaghi et al. [16] and Butler et al. [17]; exact positions
+shift by a few cm⁻¹ with environment, instrument calibration and conformation.</p>
+
+<h3>Infrared bands of biomolecules</h3>
+<div class="tbl-wrap"><table>
+  <tr><th>Wavenumber (cm⁻¹)</th><th>Assignment</th><th>Notes</th></tr>
+  <tr><td>≈ 1650</td><td>amide I: C=O stretch of the peptide bond</td><td>the most used band for protein secondary structure [18, 19]</td></tr>
+  <tr><td>≈ 1545</td><td>amide II: N–H bend + C–N stretch</td><td>strong in IR, weak in Raman</td></tr>
+  <tr><td>1240–1300</td><td>amide III; also PO₂⁻ antisymmetric stretch near 1240</td><td>nucleic acids overlap here</td></tr>
+  <tr><td>≈ 1740</td><td>C=O ester</td><td>lipids</td></tr>
+  <tr><td>2850, 2920</td><td>CH₂ symmetric / antisymmetric stretch</td><td>lipid chains (their positions report membrane order)</td></tr>
+  <tr><td>≈ 1080</td><td>PO₂⁻ symmetric stretch</td><td>nucleic acids</td></tr>
+  <tr><td>1000–1200</td><td>C–O stretches</td><td>carbohydrates (glycogen, glucose)</td></tr>
+  <tr><td>≈ 1640, 3300</td><td>H–O–H bend, O–H stretch</td><td>water: overlaps amide I</td></tr>
+</table></div>
+<p>Amide I splits by secondary structure because the C=O oscillators of neighbouring peptide groups
+couple through hydrogen bonds — α-helix near 1650–1658 cm⁻¹, β-sheet near 1620–1640 cm⁻¹ (with a weak
+component near 1690 for antiparallel sheets), random coil near 1640–1648 cm⁻¹ in IR [18, 19]. Fitting
+the band with these components is a standard way to follow protein folding and aggregation.</p>
+
+<h3>The fingerprint region</h3>
+<p>The name is literal. Below about 1800 cm⁻¹ most vibrations are not localised on one bond but spread
+over the skeleton (C–C, C–O, C–N stretches and bends couple strongly because their frequencies are
+similar). The result is a dense pattern of bands that depends on the whole molecular structure, so two
+different molecules almost never share it — like fingerprints. It is also the region where most
+biological disease signatures appear, because it reports conformation (amide III, C–C backbone),
+composition (phosphate, phenylalanine) and saturation (C=C) at once.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-silent"><span class="num">09</span>The silent region, and why it is silent</h2>
+
+<p>Look again at Figure 3 and the formula \(\tilde\nu = \frac{1}{2\pi c}\sqrt{k/\mu}\). To vibrate between
+about 1800 and 2800 cm⁻¹ a bond must be <i>either</i> very stiff and between heavy atoms (a triple bond:
+C≡C, C≡N), <i>or</i> involve a mass between hydrogen and carbon (deuterium: C–D), <i>or</i> involve less
+common atoms (Si–H, metal carbonyls). Biomolecules have none of these in meaningful quantity:</p>
+<ul>
+  <li>single bonds between C, N, O: k ≈ 400–500 N/m, μ ≈ 6–7 u → below ≈ 1300 cm⁻¹;</li>
+  <li>double bonds C=C, C=O, C=N: k ≈ 900–1200 N/m → 1500–1800 cm⁻¹;</li>
+  <li>bonds to hydrogen: μ ≈ 1 u → 2800–3700 cm⁻¹;</li>
+  <li>the overtones and combinations that could fall in between are weak (section 3).</li>
+</ul>
+<p>So for cells and tissues the window 1800–2800 cm⁻¹ is a flat, empty baseline (apart from a weak,
+broad water combination band near 2100 cm⁻¹). That emptiness is valuable. Anything that does vibrate
+there stands out against zero background, so small molecules can be tagged with a single alkyne,
+nitrile or deuterium — tags far smaller than a fluorophore that barely perturb the molecule. Alkyne-tag
+Raman imaging (Yamakoshi et al., 2012) [20] and the multicolour “Raman dyes” of Wei et al. (2017) [21]
+are built on exactly this, and deuterated nutrients (C–D at ≈ 2100–2300 cm⁻¹) report metabolic
+activity of single cells.</p>
+
+<div class="callout tip"><b>In one sentence</b>
+<p>The silent region is silent because, by the arithmetic of masses and bond stiffnesses, no bond that
+is common in biology vibrates there — and that is why it is the best place to put a tag.</p></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-plasmon"><span class="num">10</span>Plasmonics: the free electrons of a metal</h2>
+
+<p>To understand SERS we need to understand why gold and silver nanoparticles are so good at
+concentrating light. The answer is their free electrons.</p>
+
+<h3>The Drude model</h3>
+<p>Treat the conduction electrons of a metal (density \(n\), mass \(m\), charge \(-e\)) as a gas driven by
+the light field and damped by collisions at rate \(\gamma\):</p>
+$$m\ddot{\mathbf x} + m\gamma\dot{\mathbf x} = -e\mathbf E_0 e^{-i\omega t}
+\quad\Rightarrow\quad \mathbf P = -ne\mathbf x = -\frac{ne^2}{m(\omega^2 + i\gamma\omega)}\mathbf E$$
+<p>and since \(\varepsilon = 1 + P/(\varepsilon_0E)\),</p>
+$$\boxed{\;\varepsilon(\omega) = \varepsilon_\infty - \frac{\omega_p^2}{\omega^2 + i\gamma\omega}, \qquad \omega_p^2 = \frac{ne^2}{\varepsilon_0 m}\;}$$
+<p>\(\omega_p\) is the <b>plasma frequency</b> (ħω<sub>p</sub> ≈ 9 eV for Au and Ag), and
+\(\varepsilon_\infty\) accounts for the bound d-electrons. Below \(\omega_p\) the real part of ε is
+<b>negative</b>: the electrons move out of phase with the field and screen it, which is why metals
+reflect. A negative permittivity is the ingredient every plasmonic effect needs [22, 23].</p>
+<p>The Drude model misses one thing: <b>interband transitions</b>, where light lifts d-band electrons
+into the conduction band. In gold they start below about 520 nm and add absorption — the reason gold
+looks yellow and its plasmons are damped in the blue; silver's interband edge is near 320 nm, so its
+plasmons are sharper [24].</p>
+
+<figure class="fig" data-fig="drude">
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Permittivity of gold and silver</b>, measured (Johnson & Christy [24]) and a simple Drude
+  model. Re ε crosses −2ε<sub>m</sub> (the dashed line, for water) where a small sphere resonates
+  (section 12). The Drude curve fits Im ε in the red and near-infrared but not gold's interband
+  absorption in the blue.</figcaption>
+</figure>
+
+<h3>Three kinds of plasmon</h3>
+<ul>
+  <li><b>Bulk (volume) plasmon</b>: the whole electron gas oscillating against the ions at ω<sub>p</sub>,
+  in the ultraviolet; not excited by light at normal incidence [25].</li>
+  <li><b>Surface plasmon polariton (SPP)</b>: a charge-density wave travelling along a flat metal surface,
+  bound to it by an evanescent field (section 11).</li>
+  <li><b>Localized surface plasmon (LSP)</b>: the electrons of a nanoparticle sloshing back and forth;
+  excited directly by light (section 12).</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-spp"><span class="num">11</span>Surface plasmon polaritons</h2>
+
+<p>At a flat interface between a metal (ε<sub>m</sub>) and a dielectric (ε<sub>d</sub>), Maxwell's
+equations allow a transverse-magnetic wave bound to the surface, decaying exponentially into both
+media. Matching the fields at the boundary gives its dispersion relation [23]:</p>
+$$k_\text{SPP} = \frac{\omega}{c}\sqrt{\frac{\varepsilon_m\,\varepsilon_d}{\varepsilon_m + \varepsilon_d}}$$
+<p>Because \(\varepsilon_m < -\varepsilon_d\), the square root is larger than \(\sqrt{\varepsilon_d}\): the SPP
+always has <b>more momentum than light</b> of the same frequency in the dielectric. Light hitting a smooth
+metal surface from the dielectric side can therefore never excite it. Two tricks supply the missing
+momentum: a grating (\(k_\parallel + m\,2\pi/\Lambda\)), or a prism of higher index under a thin metal film
+— the Kretschmann [26] and Otto [27] configurations. Light totally reflected in the prism has
+\(k_\parallel = n_p\,(\omega/c)\sin\theta\); at the angle where this equals \(k_\text{SPP}\) the energy is
+transferred to the plasmon and the reflectance dips sharply. Because \(k_\text{SPP}\) depends on
+\(\varepsilon_d\), that angle reports the refractive index of whatever is on the surface — <b>SPR
+biosensing</b>.</p>
+
+<figure class="fig" data-fig="spp">
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Why a prism is needed.</b> The SPP dispersion (gold) of a free-electron metal always lies to
+  the right of the light line in the dielectric (dashed): no crossing, no coupling. Light that has passed
+  through a prism (cyan) has a shallower line and crosses the SPP curve at one frequency, which moves
+  when the dielectric changes. (Frequencies in units of ω<sub>p</sub>, losses ignored.)</figcaption>
+</figure>
+
+<p>The SPP field decays into the dielectric over \(\delta_d = \frac{1}{k_0}\left|\frac{\varepsilon_m + \varepsilon_d}{\varepsilon_d^2}\right|^{1/2}\),
+typically 100–300 nm in the visible and near-infrared, and it propagates micrometres to tens of
+micrometres along the surface before absorption in the metal stops it. That short decay is why SPR
+measures binding at the surface, not the bulk solution.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-lspr"><span class="num">12</span>Localized plasmons in nanoparticles</h2>
+
+<h3>The quasi-static sphere</h3>
+<p>A sphere of radius \(R \ll \lambda\) sees a field that is uniform across it at any instant. Solving
+Laplace's equation with the boundary conditions gives a uniform field inside and, outside, the
+incident field plus that of a point dipole with polarisability [22, 23]</p>
+$$\alpha = 4\pi R^3\,\frac{\varepsilon - \varepsilon_m}{\varepsilon + 2\varepsilon_m}$$
+<p>The denominator vanishes — the response becomes resonant — when</p>
+$$\boxed{\;\mathrm{Re}\,\varepsilon(\omega) = -2\varepsilon_m\;}\qquad\text{(the Fröhlich condition)}$$
+<p>which for gold in water happens near 520–530 nm and for silver near 400 nm. Absorption and scattering
+follow from the dipole:</p>
+$$C_\text{ext} = k\,\mathrm{Im}\,\alpha, \qquad C_\text{sca} = \frac{k^4}{6\pi}|\alpha|^2, \qquad C_\text{abs} = C_\text{ext} - C_\text{sca}$$
+<p>Scattering grows as R⁶ and absorption as R³: small particles absorb (and heat), large ones scatter
+(and glow in dark-field microscopes). Because the resonance condition contains ε<sub>m</sub>, the peak
+shifts to the red as the surrounding refractive index increases — the basis of LSPR sensing.</p>
+
+<h3>Beyond quasi-statics: Mie theory</h3>
+<p>For larger particles the field varies across the particle; retardation shifts the resonance to the
+red, broadens it, and allows quadrupole and higher modes. Gustav Mie solved the sphere exactly in 1908
+by expanding the fields in vector spherical harmonics [28, 29]:</p>
+$$Q_\text{ext} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\,\mathrm{Re}(a_n + b_n), \qquad Q_\text{sca} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\left(|a_n|^2 + |b_n|^2\right), \qquad x = \frac{2\pi n_m R}{\lambda}$$
+<p>with coefficients \(a_n, b_n\) built from Riccati–Bessel functions. The figure below evaluates them
+exactly, with the measured optical constants of gold and silver.</p>
+
+<figure class="fig" data-fig="mie">
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive (exact Mie theory)</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Plasmon resonance of a gold or silver sphere.</b> A 40 nm gold sphere in water peaks near
+  530 nm and mostly absorbs; at 100 nm the peak red-shifts and broadens and scattering dominates.
+  Silver resonates in the blue with a far sharper, stronger peak. Raise the medium index to see the
+  sensing shift.</figcaption>
+</figure>
+
+<h3>The near field and hot spots</h3>
+<p>Just outside the sphere, on the axis of polarisation, the field is
+\(E = E_0(1 + 2g)\) with \(g = (\varepsilon - \varepsilon_m)/(\varepsilon + 2\varepsilon_m)\). At resonance |g| is
+large (limited only by Im ε), so the intensity is enhanced tens of times for gold and hundreds of times
+for silver — and the enhancement falls off with distance as \((R/(R+d))^3\) in field.</p>
+
+<figure class="fig" data-fig="near">
+  <div class="fig-tag">Figure 15 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Near field around a small sphere</b> (quasi-static, logarithmic colour scale), light polarised
+  vertically. The two lobes along the polarisation are where molecules feel the strongest field; tune
+  the wavelength to the resonance and watch them brighten.</figcaption>
+</figure>
+
+<p>Shape and proximity concentrate the field far more than a single sphere can. Sharp tips (nanorods,
+nanostars, triangles) act like lightning rods; and in the narrow gap between two particles the
+plasmons of both couple, the resonance red-shifts, and the field can be enhanced 10³–10⁵ times in
+intensity — a <b>hot spot</b>. These configurations have no simple formula; they are solved
+numerically (section 14). Our own
+<a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>
+Layer Studio ▸ Particles tab computes spheres, core–shells, dimers and nanorods, including the gap
+field.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-sers"><span class="num">13</span>Surface-enhanced Raman scattering (SERS)</h2>
+
+<h3>A short history</h3>
+<p>In 1974 Fleischmann, Hendra and McQuillan observed unexpectedly strong Raman spectra of pyridine on a
+roughened silver electrode [30]. In 1977 Jeanmaire and Van Duyne [31] and, independently, Albrecht and
+Creighton [32] showed that the signal was enhanced by about a million per molecule, far more than the
+extra surface area could explain. The electromagnetic theory was developed in the following years
+[33, 34], and in 1997 two groups detected Raman spectra of single molecules [9, 10].</p>
+
+<h3>The electromagnetic mechanism: why |E|⁴</h3>
+<p>A molecule near a plasmonic particle is enhanced twice. First, the local field that drives its induced
+dipole is larger than the incident field, by \(|E_\text{loc}(\omega_0)|/|E_0|\). Second, the Raman-shifted
+dipole does not radiate alone: it polarises the particle at \(\omega_R\), which radiates far more
+efficiently — by the reciprocity theorem, by the same factor that the particle would enhance a field at
+\(\omega_R\) arriving from the detector's direction. Multiplying the two intensity factors gives [7, 35]</p>
+$$\boxed{\;G_\text{SERS} \approx \frac{|E_\text{loc}(\omega_0)|^2}{|E_0|^2}\cdot\frac{|E_\text{loc}(\omega_R)|^2}{|E_0|^2} \approx \frac{|E_\text{loc}|^4}{|E_0|^4}\;}$$
+<p>— the <b>|E|⁴ approximation</b>, accurate when the Raman shift is small compared with the plasmon
+width. A field enhancement of 10 gives 10⁴; of 100, 10⁸; and in the best gaps 10¹⁰ and more, enough for
+single molecules.</p>
+
+<figure class="fig" data-fig="sers">
+  <div class="fig-tag">Figure 16 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>SERS enhancement on a single 40 nm sphere</b> (quasi-static). Top: the enhancement at the
+  surface against the laser wavelength; the best excitation lies slightly to the blue of the plasmon so
+  that the laser and the Raman line both fall on the resonance. Bottom: the enhancement against the
+  distance of the molecule from the surface, ∝ (R/(R+d))¹² — a few nanometres is enough to lose most
+  of it. Real substrates with gaps and tips reach far higher values than a single sphere.</figcaption>
+</figure>
+
+<h3>The chemical mechanism</h3>
+<p>Molecules that bind to the metal can gain a further factor of about 10–100 through
+<b>charge transfer</b>: new electronic states formed between the molecule and the metal's Fermi level
+make the scattering partly resonant, and binding changes the molecule's polarisability. This chemical
+enhancement is specific to the molecule and its binding, explains differences between molecules on the
+same substrate, and can change relative band intensities [7, 36].</p>
+
+<h3>Enhancement factors: being careful with numbers</h3>
+<p>“Enhancement factor” is used for several different quantities [37]. The <b>analytical enhancement
+factor</b> compares signals at equal concentrations,
+\(\mathrm{AEF} = (I_\text{SERS}/c_\text{SERS}) / (I_\text{RS}/c_\text{RS})\); the <b>substrate
+enhancement factor</b> divides by the number of molecules actually probed,
+\(\mathrm{SSEF} = (I_\text{SERS}/N_\text{surf}) / (I_\text{RS}/N_\text{vol})\). Averaged over a whole
+substrate, typical values are 10⁵–10⁸; the 10¹⁰ of single-molecule work belongs to the rare molecules in
+the best hot spots. A spectrum is dominated by those few — one reason SERS is powerful for detection
+and challenging for quantification.</p>
+
+<h3>Surface selection rules and what changes in a SERS spectrum</h3>
+<p>Near a metal surface the field is mostly normal to it, so vibrations whose polarisability changes
+along the surface normal are enhanced most. Together with chemical binding, this is why a SERS spectrum
+can differ from the normal Raman spectrum of the same molecule in relative intensities and by small
+shifts — something to remember when assigning bands [7].</p>
+
+<h3>From effect to measurement</h3>
+<ul>
+  <li><b>Substrates</b>: colloidal Au / Ag nanoparticles (often aggregated to make gaps), nanostructured
+  films made by lithography or deposition, particle-on-mirror gaps, and shell-isolated particles
+  (SHINERS) [15] that keep the metal away from the sample.</li>
+  <li><b>Label-free versus label-based</b>: label-free SERS reads the molecules near the surface
+  directly; label-based SERS uses nanoparticles coated with a strong reporter (often with a silent-region
+  band) as bright, multiplexable tags.</li>
+  <li><b>Reproducibility</b>: because hot spots dominate, spectra fluctuate; averaging over many spots,
+  internal standards and multivariate or machine-learning analysis turn SERS into a quantitative tool —
+  which is the direction of receptor-free diagnostic platforms.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-sim"><span class="num">14</span>Simulating spectra and plasmonic fields</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Method</th><th>Idea</th><th>Good for</th><th>Limits</th></tr>
+  <tr><td>Quasi-static (electrostatics)</td><td>Laplace's equation; size ≪ λ</td><td>insight, small particles, spheroids</td><td>no retardation: wrong for large particles</td></tr>
+  <tr><td>Mie theory [28, 29]</td><td>exact multipole series for spheres</td><td>spheres, core–shells; benchmarks</td><td>spherical shapes (and clusters of them, with multi-sphere extensions)</td></tr>
+  <tr><td>T-matrix</td><td>multipole expansion of any particle</td><td>random orientation, ensembles</td><td>very elongated or sharp particles</td></tr>
+  <tr><td>Discrete dipole approximation (DDA)</td><td>particle as a lattice of polarisable points</td><td>arbitrary shapes</td><td>slow for metals; gaps need fine grids</td></tr>
+  <tr><td>Finite-difference time domain (FDTD)</td><td>Maxwell's equations on a grid, in time</td><td>arbitrary structures, broadband</td><td>staircased surfaces; nm gaps are expensive</td></tr>
+  <tr><td>Boundary element method (BEM)</td><td>surface charges/currents only</td><td>smooth particles and narrow gaps</td><td>dense matrices for large systems</td></tr>
+  <tr><td>Finite element method (FEM)</td><td>adaptive mesh of the volume</td><td>complex devices, frequency domain</td><td>meshing effort, memory</td></tr>
+  <tr><td>Quantum chemistry (DFT)</td><td>normal modes and polarisability derivatives</td><td>assigning Raman / IR bands of a molecule</td><td>cost; anharmonicity and environment</td></tr>
+</table></div>
+<p>A sensible workflow: Mie or quasi-static models for intuition and checks; BEM, FDTD or FEM for the
+real geometry; density-functional calculations of the molecule to assign its bands; and always a
+comparison with a measured spectrum.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-practice"><span class="num">15</span>From the instrument to a clean spectrum</h2>
+<ul>
+  <li><b>Choose the laser</b>: 532 nm for strong signal and resonance with many SERS substrates; 633 nm
+  as a compromise; 785 nm for tissue and gold nanostructures (less fluorescence, deeper penetration);
+  1064 nm when fluorescence is overwhelming.</li>
+  <li><b>Calibrate</b> the Raman shift axis with silicon (520.7 cm⁻¹) or a standard such as
+  4-acetamidophenol or polystyrene, and the intensity axis with a white-light or NIST standard if spectra
+  from different instruments are compared [17].</li>
+  <li><b>Watch the power density</b>: a microscope focuses milliwatts into a micrometre — enough to
+  damage cells and to reshape metal nanostructures.</li>
+  <li><b>Pre-process</b>: remove cosmic-ray spikes, subtract the fluorescence background (polynomial or
+  asymmetric least squares), smooth gently (Savitzky–Golay), normalise (vector, area, or to a band such as
+  1003 cm⁻¹), then compare groups or train classifiers. Every step changes the numbers, so report them.
+  This is the pipeline built into
+  <a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX</a>.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-glossary"><span class="num">16</span>Glossary</h2>
+<div class="tbl-wrap"><table>
+  <tr><th>Term</th><th>Meaning</th></tr>
+  <tr><td>Wavenumber (cm⁻¹)</td><td>1/λ; proportional to photon energy</td></tr>
+  <tr><td>Raman shift</td><td>energy lost (Stokes) or gained (anti-Stokes) by scattered light, in cm⁻¹</td></tr>
+  <tr><td>Normal mode</td><td>collective vibration in which all atoms move at one frequency</td></tr>
+  <tr><td>Force constant k</td><td>stiffness of a bond (N/m)</td></tr>
+  <tr><td>Reduced mass μ</td><td>m₁m₂/(m₁ + m₂)</td></tr>
+  <tr><td>Polarisability α</td><td>how easily an electric field distorts the electron cloud</td></tr>
+  <tr><td>Fingerprint region</td><td>≈ 400–1800 cm⁻¹: skeletal vibrations unique to each molecule</td></tr>
+  <tr><td>Silent region</td><td>≈ 1800–2800 cm⁻¹: no bands from common biomolecules</td></tr>
+  <tr><td>Plasma frequency ωp</td><td>natural frequency of the free-electron gas</td></tr>
+  <tr><td>SPP / LSP</td><td>surface plasmon polariton (propagating) / localized surface plasmon (particle)</td></tr>
+  <tr><td>Fröhlich condition</td><td>Re ε = −2εm: resonance of a small sphere</td></tr>
+  <tr><td>Hot spot</td><td>region (usually a gap or tip) of very strong field enhancement</td></tr>
+  <tr><td>EF, AEF, SSEF</td><td>SERS enhancement factor; analytical; substrate</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">17</span>References</h2>
+<ol class="refs">
+  <li>G. Herzberg, <i>Molecular Spectra and Molecular Structure II: Infrared and Raman Spectra of Polyatomic Molecules</i>, Van Nostrand (1945).</li>
+  <li>P. F. Bernath, <i>Spectra of Atoms and Molecules</i>, 3rd ed., Oxford University Press (2016).</li>
+  <li>E. B. Wilson, J. C. Decius and P. C. Cross, <i>Molecular Vibrations: The Theory of Infrared and Raman Vibrational Spectra</i>, McGraw-Hill (1955); Dover reprint (1980).</li>
+  <li>C. V. Raman and K. S. Krishnan, “A new type of secondary radiation,” <i>Nature</i> <b>121</b>, 501–502 (1928).</li>
+  <li>D. A. Long, <i>The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules</i>, Wiley (2002).</li>
+  <li>E. Smith and G. Dent, <i>Modern Raman Spectroscopy: A Practical Approach</i>, Wiley (2005).</li>
+  <li>E. C. Le Ru and P. G. Etchegoin, <i>Principles of Surface-Enhanced Raman Spectroscopy and Related Plasmonic Effects</i>, Elsevier (2009).</li>
+  <li>J. R. Lakowicz, <i>Principles of Fluorescence Spectroscopy</i>, 3rd ed., Springer (2006).</li>
+  <li>K. Kneipp, Y. Wang, H. Kneipp, L. T. Perelman, I. Itzkan, R. R. Dasari and M. S. Feld, “Single molecule detection using surface-enhanced Raman scattering (SERS),” <i>Phys. Rev. Lett.</i> <b>78</b>, 1667–1670 (1997).</li>
+  <li>S. Nie and S. R. Emory, “Probing single molecules and single nanoparticles by surface-enhanced Raman scattering,” <i>Science</i> <b>275</b>, 1102–1106 (1997).</li>
+  <li>D. A. Skoog, F. J. Holler and S. R. Crouch, <i>Principles of Instrumental Analysis</i>, 7th ed., Cengage (2017).</li>
+  <li>C. W. Freudiger et al., “Label-free biomedical imaging with high sensitivity by stimulated Raman scattering microscopy,” <i>Science</i> <b>322</b>, 1857–1861 (2008).</li>
+  <li>J.-X. Cheng and X. S. Xie, “Vibrational spectroscopic imaging of living systems: an emerging platform for biology and medicine,” <i>Science</i> <b>350</b>, aaa8870 (2015).</li>
+  <li>R. M. Stöckle, Y. D. Suh, V. Deckert and R. Zenobi, “Nanoscale chemical analysis by tip-enhanced Raman spectroscopy,” <i>Chem. Phys. Lett.</i> <b>318</b>, 131–136 (2000).</li>
+  <li>J. F. Li et al., “Shell-isolated nanoparticle-enhanced Raman spectroscopy,” <i>Nature</i> <b>464</b>, 392–395 (2010).</li>
+  <li>Z. Movasaghi, S. Rehman and I. U. Rehman, “Raman spectroscopy of biological tissues,” <i>Appl. Spectrosc. Rev.</i> <b>42</b>, 493–541 (2007).</li>
+  <li>H. J. Butler et al., “Using Raman spectroscopy to characterize biological materials,” <i>Nat. Protoc.</i> <b>11</b>, 664–687 (2016).</li>
+  <li>A. Barth, “Infrared spectroscopy of proteins,” <i>Biochim. Biophys. Acta – Bioenergetics</i> <b>1767</b>, 1073–1101 (2007).</li>
+  <li>M. J. Baker et al., “Using Fourier transform IR spectroscopy to analyze biological materials,” <i>Nat. Protoc.</i> <b>9</b>, 1771–1791 (2014).</li>
+  <li>H. Yamakoshi et al., “Alkyne-tag Raman imaging for visualization of mobile small molecules in live cells,” <i>J. Am. Chem. Soc.</i> <b>134</b>, 20681–20689 (2012).</li>
+  <li>L. Wei et al., “Super-multiplex vibrational imaging,” <i>Nature</i> <b>544</b>, 465–470 (2017).</li>
+  <li>C. F. Bohren and D. R. Huffman, <i>Absorption and Scattering of Light by Small Particles</i>, Wiley (1983).</li>
+  <li>S. A. Maier, <i>Plasmonics: Fundamentals and Applications</i>, Springer (2007).</li>
+  <li>P. B. Johnson and R. W. Christy, “Optical constants of the noble metals,” <i>Phys. Rev. B</i> <b>6</b>, 4370–4379 (1972).</li>
+  <li>R. H. Ritchie, “Plasma losses by fast electrons in thin films,” <i>Phys. Rev.</i> <b>106</b>, 874–881 (1957).</li>
+  <li>E. Kretschmann and H. Raether, “Radiative decay of non-radiative surface plasmons excited by light,” <i>Z. Naturforsch. A</i> <b>23</b>, 2135–2136 (1968).</li>
+  <li>A. Otto, “Excitation of nonradiative surface plasma waves in silver by the method of frustrated total reflection,” <i>Z. Phys.</i> <b>216</b>, 398–410 (1968).</li>
+  <li>G. Mie, “Beiträge zur Optik trüber Medien, speziell kolloidaler Metallösungen,” <i>Ann. Phys.</i> <b>330</b>, 377–445 (1908).</li>
+  <li>U. Kreibig and M. Vollmer, <i>Optical Properties of Metal Clusters</i>, Springer (1995).</li>
+  <li>M. Fleischmann, P. J. Hendra and A. J. McQuillan, “Raman spectra of pyridine adsorbed at a silver electrode,” <i>Chem. Phys. Lett.</i> <b>26</b>, 163–166 (1974).</li>
+  <li>D. L. Jeanmaire and R. P. Van Duyne, “Surface Raman spectroelectrochemistry: Part I. Heterocyclic, aromatic, and aliphatic amines adsorbed on the anodized silver electrode,” <i>J. Electroanal. Chem.</i> <b>84</b>, 1–20 (1977).</li>
+  <li>M. G. Albrecht and J. A. Creighton, “Anomalously intense Raman spectra of pyridine at a silver electrode,” <i>J. Am. Chem. Soc.</i> <b>99</b>, 5215–5217 (1977).</li>
+  <li>M. Kerker, D.-S. Wang and H. Chew, “Surface enhanced Raman scattering (SERS) by molecules adsorbed at spherical particles,” <i>Appl. Opt.</i> <b>19</b>, 3373–3388 (1980).</li>
+  <li>M. Moskovits, “Surface-enhanced spectroscopy,” <i>Rev. Mod. Phys.</i> <b>57</b>, 783–826 (1985).</li>
+  <li>E. C. Le Ru and P. G. Etchegoin, “Rigorous justification of the |E|⁴ enhancement factor in surface enhanced Raman spectroscopy,” <i>Chem. Phys. Lett.</i> <b>423</b>, 63–66 (2006).</li>
+  <li>J. R. Lombardi and R. L. Birke, “A unified approach to surface-enhanced Raman spectroscopy,” <i>J. Phys. Chem. C</i> <b>112</b>, 5605–5617 (2008).</li>
+  <li>E. C. Le Ru, E. Blackie, M. Meyer and P. G. Etchegoin, “Surface enhanced Raman scattering enhancement factors: a comprehensive study,” <i>J. Phys. Chem. C</i> <b>111</b>, 13794–13803 (2007).</li>
+</ol>
+
+<hr>
+<p>The interactive figures are small simulations written for this article. The Mie calculation is exact;
+the near-field and SERS figures use the quasi-static sphere; the biological spectrum is a sum of
+Lorentzian bands at literature positions with illustrative heights. Optical constants of gold and
+silver are from Johnson & Christy [24]. Corrections and questions are welcome at
+<a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-vacuum-deposition.html">Vacuum and thin-film deposition, from first principles →</a></p>
+
+</div>
+</div>
+</article>
+
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/blog/vl-core.js"></script>
+<script src="js/blog/sp-figs.js"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
