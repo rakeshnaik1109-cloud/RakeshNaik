@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Attaching Antibodies to SPR Sensors: Chemistry, Biology and Physics | Rakesh Naik</title>
+<meta name="description" content="A from-basics guide to immobilising antibodies on SPR sensor chips for antigen capture: IgG structure, gold and SAM/dextran surfaces, physical adsorption, EDC/NHS amine coupling, Protein A/G, streptavidin–biotin, Fc-glycan and thiol coupling, tags and engineered binders, orientation, R_max, mass transport and kinetics, with interactive simulations and references.">
+<meta name="keywords" content="SPR antibody immobilization, surface plasmon resonance biosensor, EDC NHS amine coupling, Protein A Protein G, streptavidin biotin, oriented antibody, self-assembled monolayer, carboxymethyl dextran, Rmax, sensorgram kinetics, mass transport, antigen capture">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-antibody-spr.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Attaching Antibodies to SPR Sensors: Chemistry, Biology and Physics">
+<meta property="og:description" content="Every common way to attach an antibody to an SPR chip — adsorption, EDC/NHS, Protein A/G, streptavidin–biotin, glycan, thiol and tag chemistry — and the physics and kinetics that decide the signal.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-antibody-spr.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-10-25">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Attaching Antibodies to SPR Sensors: Chemistry, Biology and Physics">
+<meta name="twitter:description" content="Antibody immobilisation on SPR sensors from the very basics: chemistry, biology, physics, kinetics and interactive simulations.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Attaching Antibodies to SPR Sensors: Chemistry, Biology and Physics","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-antibody-spr.html"}]},
+{"@type":"TechArticle","headline":"Attaching Antibodies to SPR Sensors: Chemistry, Biology and Physics","datePublished":"2026-10-25","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"A from-basics guide to antibody immobilisation chemistries on SPR sensor surfaces, orientation, R_max and binding kinetics, with interactive simulations.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Putting antibodies on an SPR sensor: the chemistry, biology and physics</h1>
+    <p class="lede">An SPR biosensor is only as good as the layer of antibodies on its gold. This is a
+    ground-up guide to building that layer: what an antibody is and which parts of it matter, how gold
+    surfaces are prepared, every common way of attaching an antibody — from simple adsorption and
+    EDC/NHS amine coupling to Protein A/G, streptavidin–biotin, glycan and thiol chemistry and engineered
+    tags — and the physics and kinetics that decide how much antigen you will actually see. With the
+    reaction mechanisms, the equations and simulations to try.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Biosensing</span><span>25 October 2026</span><span>≈ 60 min read</span><span>Rakesh Naik</span></div>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-spr">How an SPR sensor sees binding</a></li>
+    <li><a href="#s-ab">The antibody: structure and the parts that matter</a></li>
+    <li><a href="#s-orient">Why orientation and density matter</a></li>
+    <li><a href="#s-gold">Preparing the gold: SAMs and hydrogels</a></li>
+    <li><a href="#s-phys">Method 1 — physical adsorption</a></li>
+    <li><a href="#s-amine">Method 2 — amine coupling with EDC/NHS</a></li>
+    <li><a href="#s-other">Method 3 — other random covalent chemistries</a></li>
+    <li><a href="#s-protg">Method 4 — Protein A / Protein G capture</a></li>
+    <li><a href="#s-biotin">Method 5 — streptavidin–biotin</a></li>
+    <li><a href="#s-glycan">Method 6 — oriented coupling through the Fc glycans</a></li>
+    <li><a href="#s-thiol">Method 7 — thiols: half-antibodies and Fab′</a></li>
+    <li><a href="#s-tags">Method 8 — tags and engineered binders</a></li>
+    <li><a href="#s-compare">The methods compared</a></li>
+    <li><a href="#s-kin">From surface to signal: R_max and kinetics</a></li>
+    <li><a href="#s-nsb">Non-specific binding, referencing and regeneration</a></li>
+    <li><a href="#s-protocol">Worked protocols</a></li>
+    <li><a href="#s-trouble">Troubleshooting</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>Surface plasmon resonance (SPR) measures molecules arriving at a gold surface without labels, in real
+time. On its own, gold does not know which molecules to catch. The selectivity comes from the
+<b>capture layer</b> — most often antibodies — and the way those antibodies are attached decides how many
+of them work, how stable the sensor is, how much non-specific signal it picks up, whether it can be
+regenerated, and finally the detection limit. This article builds that layer from the bottom up. If the
+plasmon physics is new, the companion article <a href="blog-spectroscopy.html">Vibrational spectroscopy,
+plasmonics and SERS</a> explains it from first principles. Numbers in square brackets refer to the
+<a href="#s-refs">references</a>; figures marked <b>Interactive</b> run in your browser.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-spr"><span class="num">01</span>How an SPR sensor sees binding</h2>
+
+<p>In the Kretschmann configuration [3] p-polarised light is totally reflected inside a glass prism coated
+with about 50 nm of gold. At one angle, the component of the light's wavevector along the surface matches
+that of the surface plasmon on the other side of the gold, energy flows into the plasmon, and the
+reflected intensity dips. The plasmon's field reaches into the liquid as an evanescent wave that decays
+over roughly 200 nm, so the resonance angle depends on the refractive index of whatever sits within that
+distance of the gold [1, 2]. Proteins have a higher refractive index (≈ 1.45) than water (1.333): when they
+bind, the dip moves.</p>
+
+<figure class="fig" data-fig="sprcurve">
+  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Reflectance curves of an SPR chip</b> (BK7 prism, 50 nm gold, a thin self-assembled monolayer,
+  water, 633 nm; gold optical constants from Johnson & Christy), calculated exactly with the transfer-matrix
+  method. A few nanometres of antibody shift the dip by a few tenths of a degree; the antigen adds a
+  smaller shift on top. That second shift is the measurement.</figcaption>
+</figure>
+
+<p>Instruments report the shift in <b>response units</b> (RU). For the widely used Biacore instruments,
+1 RU corresponds to about 10⁻⁴ degrees, and a calibration with radiolabelled proteins showed that
+<b>1000 RU ≈ 1 ng of protein per mm²</b> [6]. The same relation follows from the de Feijter formula, which
+converts a layer of thickness \(d\) and index \(n_\text{layer}\) into surface mass [7]:</p>
+$$\Gamma = \frac{d\,(n_\text{layer} - n_\text{buffer})}{\mathrm{d}n/\mathrm{d}c}, \qquad \frac{\mathrm{d}n}{\mathrm{d}c} \approx 0.18\text{–}0.19\ \mathrm{mL\,g^{-1}}\ \text{for proteins}$$
+<p>Because the signal is proportional to <i>mass</i>, a small antigen gives a small response — which is
+why the number of active antibodies on the surface matters so much.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ab"><span class="num">02</span>The antibody: structure and the parts that matter</h2>
+
+<p>Immunoglobulin G (IgG), the antibody used in nearly all sensors, is a 150 kDa glycoprotein made of two
+identical heavy chains (≈ 50 kDa each) and two identical light chains (≈ 25 kDa each) held together by
+disulfide bonds [29, 30]. It folds into twelve immunoglobulin domains arranged as a flexible “Y” about
+14 nm across, 8.5 nm high and 4 nm thick [29]:</p>
+<ul>
+  <li>Two <b>Fab</b> arms (fragment antigen-binding), each made of a light chain (V<sub>L</sub>, C<sub>L</sub>)
+  and the first half of a heavy chain (V<sub>H</sub>, C<sub>H</sub>1). At the tip of each arm, six loops — the
+  <b>complementarity-determining regions</b> (CDRs) — form the <b>paratope</b>, the antigen-binding site.
+  One IgG therefore has <b>two</b> binding sites.</li>
+  <li>The <b>Fc</b> stem (fragment crystallisable), the C<sub>H</sub>2 and C<sub>H</sub>3 domains of both heavy
+  chains. It carries no antigen-binding function — which makes it the ideal handle.</li>
+  <li>The <b>hinge</b>, a flexible segment with the inter-heavy-chain disulfide bonds, letting the arms move.</li>
+  <li>A conserved <b>N-glycan</b> on asparagine 297 of each C<sub>H</sub>2 domain, inside the Fc — far from the
+  binding sites, which is why the sugars are a useful attachment point (section 10).</li>
+</ul>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 2</div>
+  <svg viewBox="0 0 860 400" role="img" aria-label="Structure of an IgG antibody">
+    <style>.al{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.ah{font-family:'IBM Plex Mono',monospace;font-size:11.5px;fill:#efeaf6}</style>
+    <!-- heavy chains (blue) and light chains (cyan) as domain boxes -->
+    <g transform="translate(230 30)">
+      <!-- left Fab (light chain on the outside) -->
+      <g transform="translate(48 68) rotate(-38 134 92)">
+        <rect x="119" y="20" width="30" height="34" rx="8" fill="#5f86e6"/><rect x="119" y="58" width="30" height="34" rx="8" fill="#3f63c4"/>
+        <rect x="85" y="20" width="30" height="34" rx="8" fill="#45bfd6"/><rect x="85" y="58" width="30" height="34" rx="8" fill="#2f97ad"/>
+        <text x="125" y="41" class="al" fill="#fff">VH</text><text x="122" y="79" class="al" fill="#fff">CH1</text><text x="91" y="41" class="al" fill="#06222a">VL</text><text x="91" y="79" class="al" fill="#06222a">CL</text>
+        <path d="M100 14 q8 -10 18 -2 q6 -10 16 -2" stroke="#e0a82e" stroke-width="4" fill="none"/>
+      </g>
+      <!-- right Fab -->
+      <g transform="translate(-48 68) rotate(38 266 92)">
+        <rect x="251" y="20" width="30" height="34" rx="8" fill="#5f86e6"/><rect x="251" y="58" width="30" height="34" rx="8" fill="#3f63c4"/>
+        <rect x="285" y="20" width="30" height="34" rx="8" fill="#45bfd6"/><rect x="285" y="58" width="30" height="34" rx="8" fill="#2f97ad"/>
+        <text x="257" y="41" class="al" fill="#fff">VH</text><text x="254" y="79" class="al" fill="#fff">CH1</text><text x="291" y="41" class="al" fill="#06222a">VL</text><text x="291" y="79" class="al" fill="#06222a">CL</text>
+        <path d="M266 14 q8 -10 18 -2 q6 -10 16 -2" stroke="#e0a82e" stroke-width="4" fill="none"/>
+      </g>
+      <!-- hinge -->
+      <path d="M182 160 L182 196 M218 160 L218 196" stroke="#5f86e6" stroke-width="5"/><path d="M182 172 H218 M182 184 H218" stroke="#e2566e" stroke-width="2.5"/>
+      <!-- Fc -->
+      <rect x="166" y="198" width="32" height="40" rx="9" fill="#a98bf0"/><rect x="202" y="198" width="32" height="40" rx="9" fill="#a98bf0"/>
+      <rect x="166" y="242" width="32" height="40" rx="9" fill="#7d6fa3"/><rect x="202" y="242" width="32" height="40" rx="9" fill="#7d6fa3"/>
+      <text x="171" y="222" class="al" fill="#160c2a">CH2</text><text x="207" y="222" class="al" fill="#160c2a">CH2</text><text x="171" y="266" class="al" fill="#fff">CH3</text><text x="207" y="266" class="al" fill="#fff">CH3</text>
+      <circle cx="198" cy="210" r="5" fill="#7fd18b"/><circle cx="202" cy="222" r="5" fill="#7fd18b"/><circle cx="198" cy="232" r="4" fill="#7fd18b"/>
+    </g>
+    <text x="40" y="40" class="ah" fill="#e0a82e">paratope (CDR loops)</text><line x1="200" y1="44" x2="340" y2="122" stroke="#e0a82e"/>
+    <text x="600" y="40" class="ah" fill="#e0a82e">paratope</text><line x1="600" y1="44" x2="460" y2="122" stroke="#e0a82e"/>
+    <text x="60" y="140" class="ah">Fab arm</text><text x="60" y="156" class="al">antigen binding</text><text x="60" y="170" class="al">(≈ 50 kDa)</text>
+    <text x="520" y="214" class="ah">hinge</text><text x="520" y="230" class="al">inter-chain disulfides (red)</text><text x="520" y="244" class="al">flexible: the arms can swivel</text><line x1="516" y1="220" x2="452" y2="212" stroke="#837a94"/>
+    <text x="520" y="280" class="ah">Fc</text><text x="520" y="296" class="al">constant region (≈ 50 kDa)</text><text x="520" y="310" class="al">Protein A / G bind here</text><line x1="516" y1="284" x2="466" y2="290" stroke="#837a94"/>
+    <text x="40" y="262" class="ah" fill="#7fd18b">N-glycan (Asn297)</text><text x="40" y="278" class="al">in each CH2 domain:</text><text x="40" y="292" class="al">target for periodate</text><line x1="190" y1="262" x2="424" y2="250" stroke="#7fd18b"/>
+    <text x="40" y="350" class="al">heavy chains (blue / violet) ≈ 50 kDa each · light chains (cyan) ≈ 25 kDa each · ≈ 14 × 8.5 × 4 nm overall</text>
+    <text x="40" y="368" class="al">≈ 80–90 lysines spread over the whole surface — including near the paratopes</text>
+  </svg>
+  <figcaption><b>IgG, the workhorse capture molecule.</b> Twelve immunoglobulin domains form two Fab arms and an
+  Fc stem joined by a flexible hinge. Everything that can be used to attach the antibody is visible here:
+  lysine amines (everywhere), the hinge disulfides, the Fc glycans and the Fc itself (for Protein A/G).</figcaption>
+</figure>
+
+<h3>Chemical handles on a protein</h3>
+<div class="tbl-wrap"><table>
+  <tr><th>Group</th><th>Where on an IgG</th><th>Reacts with</th><th>Comment</th></tr>
+  <tr><td>Primary amine (–NH₂): lysine ε-amine (pKa ≈ 10.5), N-termini (pKa ≈ 8)</td><td>≈ 80–90 lysines all over the surface</td><td>NHS esters, aldehydes, epoxides</td><td>abundant → random attachment</td></tr>
+  <tr><td>Carboxylate (–COO⁻): Asp, Glu, C-termini</td><td>all over</td><td>amines after EDC activation</td><td>rarely used on the antibody side</td></tr>
+  <tr><td>Thiol (–SH): cysteine</td><td>none free; inter-chain disulfides in the hinge</td><td>gold, maleimide, iodoacetyl, pyridyl disulfide</td><td>made by mild reduction → site-directed</td></tr>
+  <tr><td>Glycan diols</td><td>N-glycans on the Fc (Asn297)</td><td>periodate → aldehyde → hydrazide, aminooxy</td><td>Fc-directed</td></tr>
+  <tr><td>The Fc as a whole</td><td>C<sub>H</sub>2–C<sub>H</sub>3</td><td>Protein A, G, A/G; anti-Fc antibodies</td><td>non-covalent, oriented</td></tr>
+</table></div>
+
+<h3>Smaller binders</h3>
+<p>Fragments trade the Fc for size and orientation: <b>F(ab′)₂</b> (≈ 110 kDa, pepsin digestion), <b>Fab′</b>
+(≈ 50 kDa, with free hinge thiols after reduction), <b>scFv</b> (≈ 27 kDa, V<sub>H</sub> and V<sub>L</sub> joined by a
+peptide linker, expressed recombinantly with a tag), and <b>nanobodies</b> (V<sub>HH</sub>, ≈ 15 kDa, the single
+variable domain of camelid heavy-chain antibodies [23]). Nucleic-acid <b>aptamers</b>, selected in vitro
+[24, 34], are an alternative non-protein capture layer.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-orient"><span class="num">03</span>Why orientation and density matter</h2>
+
+<p>An IgG on a surface can stand <b>end-on</b> (Fc down, both paratopes up — ideal), lie <b>side-on</b>
+(one arm on the surface), stand <b>head-on</b> (arms down, paratopes buried — useless) or lie
+<b>flat-on</b>. Attachment through randomly placed groups (lysines) produces all four, and a lysine inside
+or near a paratope can be modified and the site destroyed. Reviews comparing oriented and random
+immobilisation report that orientation can raise the antigen-binding capacity several-fold and improve
+detection limits accordingly [14, 15].</p>
+<p>Density is the second variable. Too few antibodies give a small signal; too many crowd each other, so
+that arms cannot reach the antigen, large antigens are excluded, and the surface becomes
+mass-transport limited (section 14). For each antibody–antigen pair there is an optimum, which is found
+experimentally.</p>
+
+<figure class="fig" data-fig="methods">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Seven ways to attach an antibody, in cross-section</b> (a cartoon, to scale only roughly). Random
+  chemistries put antibodies down in every orientation; Fc-directed ones stand them up. Red circles are
+  antigens on paratopes that can reach the solution; × marks sites that cannot. The count is from this
+  sketch and is only illustrative.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-gold"><span class="num">04</span>Preparing the gold: SAMs and hydrogels</h2>
+
+<h3>Clean gold</h3>
+<p>Gold is chosen because its plasmon is well behaved in the visible and near-infrared and because it is
+chemically inert — but organic contamination adsorbs on it within minutes. Chips are cleaned (UV–ozone,
+oxygen plasma, or piranha for bare gold, with great care) immediately before the first layer goes on.</p>
+
+<h3>Self-assembled monolayers (SAMs)</h3>
+<p>Alkanethiols, HS–(CH₂)ₙ–X, adsorb spontaneously on gold from dilute ethanolic solution [32]. The sulfur
+binds to the gold as a thiolate (Au–S, roughly 45 kcal mol⁻¹), and van der Waals forces between the chains
+order them into a dense, tilted monolayer about 1–2 nm thick within hours [8]. The terminal group X decides
+what the surface does:</p>
+<ul>
+  <li>–COOH (e.g. 11-mercaptoundecanoic acid, MUA, or 16-mercaptohexadecanoic acid): for EDC/NHS coupling;</li>
+  <li>–OH or oligo(ethylene glycol), –(OCH₂CH₂)ₙOH: protein-resistant [9, 33];</li>
+  <li>–NTA, –biotin, –maleimide, –hydrazide: for the specific chemistries below.</li>
+</ul>
+<p><b>Mixed SAMs</b> combine a minority of reactive thiols (e.g. 10 % COOH-terminated OEG thiol) with a
+majority of OEG thiols. They control the antibody density, keep the antibodies apart, and resist
+non-specific adsorption [9, 33].</p>
+
+<h3>Carboxymethylated dextran</h3>
+<p>The most widely used commercial SPR chip carries a 100–200 nm carboxymethylated dextran hydrogel on a
+linker SAM [4, 5]. It offers a three-dimensional, hydrophilic, low-fouling matrix with many carboxyl
+groups, so far more antibody can be coupled per mm² than on a flat monolayer. The price: large analytes
+diffuse more slowly into the gel, and the gel's charge (carboxyl pKa ≈ 3.5) attracts positively charged
+proteins — which is exploited during coupling (Figure 5) and must be managed during measurement.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-phys"><span class="num">05</span>Method 1 — physical adsorption</h2>
+<p>Proteins adsorb on bare gold or hydrophobic SAMs within minutes through hydrophobic, electrostatic and
+van der Waals interactions. It needs no chemistry and is still used for quick tests, but: orientation is
+random; proteins partly unfold on hydrophobic surfaces, losing activity; the layer slowly exchanges with
+other proteins in the sample (the Vroman effect) and leaches during washing and regeneration; and the bare
+spaces between antibodies adsorb everything else. For quantitative work covalent or affinity attachment is
+preferred.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-amine"><span class="num">06</span>Method 2 — amine coupling with EDC/NHS</h2>
+<p>This is the default method for COOH surfaces (dextran or SAM) and works for almost any protein [5, 10].</p>
+
+<h3>The chemistry, step by step</h3>
+<ol>
+  <li><b>Activation by EDC.</b> The water-soluble carbodiimide EDC
+  (1-ethyl-3-(3-dimethylaminopropyl)carbodiimide) reacts with a carboxylate to form an
+  <b>O-acylisourea</b> — a highly reactive but short-lived intermediate that would also simply hydrolyse
+  back to the acid, or rearrange to an unreactive N-acylurea.</li>
+  <li><b>Stabilisation by NHS.</b> N-hydroxysuccinimide (or its sulfonated, more water-soluble version,
+  sulfo-NHS) displaces the urea to give an <b>NHS ester</b>, which is much more stable in water (half-life
+  of hours at pH 7 and 0 °C, minutes at pH 8.6) but still reacts readily with amines [10, 11, 12].</li>
+  <li><b>Coupling.</b> An unprotonated primary amine of the antibody attacks the ester and forms a stable
+  <b>amide bond</b>, releasing NHS. Only the neutral –NH₂ form reacts, so the rate depends on pH through the
+  fraction \(1/(1 + 10^{\,\mathrm{p}K_a - \mathrm{pH}})\); lysine (pKa ≈ 10.5) is mostly protonated near
+  neutral pH, but enough unprotonated amine exists, and there are many lysines.</li>
+  <li><b>Deactivation.</b> Excess ethanolamine (1 M, pH 8.5) reacts with the remaining esters, so no reactive
+  sites are left, and washes away loosely bound protein.</li>
+</ol>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 4</div>
+  <svg viewBox="0 0 860 300" role="img" aria-label="EDC/NHS amine coupling mechanism">
+    <style>.ch{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#efeaf6}.cn{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#b6acc8}</style>
+    <defs><marker id="ea" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#e0a82e"/></marker></defs>
+    <rect x="10" y="40" width="160" height="70" rx="8" fill="#211735" stroke="rgba(255,255,255,.2)"/><text x="22" y="70" class="ch">Surface–COO⁻</text><text x="22" y="92" class="cn">carboxyl (dextran / SAM)</text>
+    <line x1="170" y1="75" x2="230" y2="75" stroke="#e0a82e" stroke-width="2" marker-end="url(#ea)"/><text x="176" y="62" class="cn">+ EDC</text><text x="176" y="96" class="cn">pH 4.5–6</text>
+    <rect x="232" y="40" width="190" height="70" rx="8" fill="#211735" stroke="#e2566e"/><text x="244" y="66" class="ch">–C(=O)–O–C(=NR)NHR′</text><text x="244" y="88" class="cn">O-acylisourea (unstable)</text>
+    <line x1="422" y1="75" x2="482" y2="75" stroke="#e0a82e" stroke-width="2" marker-end="url(#ea)"/><text x="428" y="62" class="cn">+ NHS</text><text x="428" y="96" class="cn">– urea</text>
+    <rect x="484" y="40" width="170" height="70" rx="8" fill="#211735" stroke="#7fd18b"/><text x="496" y="66" class="ch">–C(=O)–O–NSu</text><text x="496" y="88" class="cn">NHS ester (semi-stable)</text>
+    <line x1="654" y1="75" x2="704" y2="75" stroke="#e0a82e" stroke-width="2" marker-end="url(#ea)"/><text x="666" y="62" class="cn">+ Ab</text><text x="652" y="94" class="cn">Lys–NH₂</text>
+    <rect x="706" y="40" width="144" height="70" rx="8" fill="#211735" stroke="#45bfd6"/><text x="718" y="66" class="ch">–C(=O)–NH–Ab</text><text x="718" y="88" class="cn">amide bond</text>
+    <path d="M327 112 Q 327 170 250 175" stroke="#e2566e" fill="none" stroke-dasharray="4 3" marker-end="url(#ea)"/><text x="80" y="190" class="cn" fill="#e2566e">hydrolysis back to –COOH (s)</text><text x="80" y="206" class="cn" fill="#e2566e">or rearrangement to N-acylurea (dead end)</text>
+    <path d="M569 112 Q 569 170 640 180" stroke="#e2566e" fill="none" stroke-dasharray="4 3" marker-end="url(#ea)"/><text x="645" y="186" class="cn" fill="#e2566e">slow hydrolysis (min–h)</text>
+    <text x="10" y="250" class="cn">Then: 1 M ethanolamine, pH 8.5 caps the unreacted esters (–C(=O)–NH–CH₂CH₂OH) and removes loosely bound protein.</text>
+    <text x="10" y="270" class="cn">Typical chip protocol: 0.4 M EDC + 0.1 M NHS (1 : 1), 7 min · antibody 10–50 µg/mL in 10 mM acetate, pH 4.0–5.5 · ethanolamine 7 min.</text>
+  </svg>
+  <figcaption><b>Carbodiimide coupling.</b> EDC turns a carboxyl into an unstable O-acylisourea; NHS converts it into
+  an amine-reactive ester that survives long enough in water for the antibody to arrive; the product is an
+  amide bond. “Zero-length”: no atoms of the reagents remain between surface and protein [11].</figcaption>
+</figure>
+
+<h3>Electrostatic pre-concentration: the trick behind high immobilisation levels</h3>
+<p>On a dextran chip the antibody is injected in a low-ionic-strength buffer at a pH <b>below its isoelectric
+point</b> but above the pKa of the carboxyl groups. The protein is then positively charged and the dextran
+negatively charged, so the antibody accumulates in the gel at concentrations far above the injected one,
+and coupling is fast and efficient even from 10–50 µg/mL [5]. If the pH is too high (protein negative), it is
+repelled; too low, and the dextran carboxyls are protonated and the esters hydrolyse faster. A pH scouting
+run (injecting the antibody at pH 4.0, 4.5, 5.0, 5.5 without activating the surface) shows which pH
+attracts it best.</p>
+
+<figure class="fig" data-fig="charge">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Net charge against pH</b> for a model antibody (counts of ionisable groups typical of an IgG,
+  textbook pKa values; illustrative) and for carboxymethyl dextran. Pre-concentration works in the green
+  window, between the dextran's pKa and the antibody's isoelectric point. Shift the pKa values to mimic a
+  more acidic or basic antibody.</figcaption>
+</figure>
+
+<h3>Strengths and weaknesses</h3>
+<p>Amine coupling is robust, universal, cheap, and gives a covalent, stable layer that tolerates harsh
+regeneration. Its drawbacks are random orientation, possible modification of lysines in or near the
+paratopes, and the requirement for amine-free buffers (no Tris, no glycine, no azide-free BSA-containing
+stocks) during coupling. Antibodies with low isoelectric points pre-concentrate poorly.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-other"><span class="num">07</span>Method 3 — other random covalent chemistries</h2>
+<ul>
+  <li><b>Aldehyde surfaces + reductive amination.</b> Lysines form Schiff bases (imines) with surface
+  aldehydes; sodium cyanoborohydride reduces them to stable secondary amines [10].</li>
+  <li><b>Epoxide surfaces.</b> React slowly with amines, thiols and hydroxyls; simple but slow.</li>
+  <li><b>Glutaraldehyde</b> on amine surfaces: a long-used, poorly defined cross-linker that can polymerise.</li>
+  <li><b>Maleimide–thiol after thiolation.</b> Lysines are first converted to thiols (Traut's reagent) or the
+  surface carries maleimides for native thiols. All are still random, with the same orientation problem as
+  amine coupling [10, 35].</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-protg"><span class="num">08</span>Method 4 — Protein A / Protein G capture</h2>
+<p><b>Protein A</b> from <i>Staphylococcus aureus</i> [17] and <b>Protein G</b> from group C and G streptococci [16]
+are bacterial proteins that bind the Fc of IgG with high affinity, at the C<sub>H</sub>2–C<sub>H</sub>3 interface.
+Immobilised on the chip (usually by amine coupling — they have no antigen-binding site to damage), they
+capture antibodies Fc-down, leaving both Fab arms free [14, 15].</p>
+<ul>
+  <li><b>Species and subclass matter.</b> Protein A binds human IgG1, 2 and 4 and rabbit IgG strongly, but
+  human IgG3 and mouse IgG1 weakly; Protein G binds a broader range, including human IgG3 and mouse IgG1.
+  Recombinant Protein A/G fusions combine both. Check the table for your antibody before choosing.</li>
+  <li><b>Capture is reversible.</b> A low-pH pulse (10 mM glycine-HCl, pH 1.5–2) strips antibody and antigen
+  together, and fresh antibody is captured for every cycle — a clean, reproducible surface every time, at the
+  cost of antibody consumption and a small baseline drift as the antibody slowly dissociates.</li>
+  <li><b>Making it permanent.</b> After capture, the antibody can be cross-linked to Protein A/G (e.g. with
+  dimethyl pimelimidate or a short EDC/NHS pulse) to stop it leaving, keeping most of the orientation.</li>
+  <li><b>Cost and size</b>: an extra ≈ 40–50 kDa protein layer, and Protein A/G will also capture any IgG present
+  in a serum sample — a real problem for clinical matrices, unless it is cross-linked and blocked.</li>
+</ul>
+<p>A related, very common format captures antibodies with an immobilised <b>anti-Fc antibody</b> (for example
+anti-human or anti-mouse Fc), which is highly specific for one species and regenerable.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-biotin"><span class="num">09</span>Method 5 — streptavidin–biotin</h2>
+<p>Streptavidin, a 53 kDa tetramer from <i>Streptomyces avidinii</i>, binds the small vitamin biotin with
+a dissociation constant of about 10⁻¹⁴ M — one of the strongest non-covalent interactions in biology [18, 19].
+Each tetramer has four biotin sites, two facing the surface and two facing the solution when it is
+immobilised. A biotinylated antibody captured on a streptavidin surface is, for practical purposes,
+permanently attached; regeneration removes the antigen but not the antibody.</p>
+<ul>
+  <li><b>How the antibody is biotinylated decides the orientation.</b> NHS-biotin labels lysines — random again
+  (aim for a few biotins per antibody, not dozens). Biotin-hydrazide on periodate-oxidised Fc glycans, or
+  enzymatic site-specific biotinylation of an engineered tag (Avi-tag), gives Fc-directed attachment.</li>
+  <li><b>Spacers</b> (long-chain or PEG-biotin) let the biotin reach the buried binding pocket of streptavidin.</li>
+  <li><b>Advantages</b>: very stable, uniform, modular (many different biotinylated binders on the same chip);
+  biotin–streptavidin works in almost any buffer.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-glycan"><span class="num">10</span>Method 6 — oriented coupling through the Fc glycans</h2>
+<p>The two N-glycans in the Fc contain sugars with neighbouring hydroxyls (cis-diols). Mild sodium periodate
+(around 1–10 mM NaIO₄, cold, in the dark, minutes to half an hour) cleaves these C–C bonds and turns them
+into <b>aldehydes</b>. The oxidised antibody is then coupled to a <b>hydrazide</b> surface (a hydrazone,
+–CH=N–NH–C(=O)–, often reduced with NaCNBH₃ for stability) or an aminooxy surface (an oxime) [10, 13].
+Because the glycans are in the Fc, the attachment points are far from the paratopes and the antibody stands
+Fc-down, covalently.</p>
+<p>Cautions: periodate can also oxidise methionine, tryptophan and N-terminal serine/threonine at higher
+concentrations, so the conditions must be mild; glycosylation varies between antibody batches and
+expression systems; and aglycosylated (e.g. bacterially expressed) antibodies have nothing to oxidise.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-thiol"><span class="num">11</span>Method 7 — thiols: half-antibodies and Fab′</h2>
+<p>The disulfide bonds in the hinge are the most accessible ones in an IgG. Mild reducing agents such as
+2-mercaptoethylamine (2-MEA) cleave them selectively, giving <b>half-antibodies</b> (one heavy + one light
+chain, ≈ 75 kDa) with free thiols at the hinge; digesting with pepsin first and then reducing gives
+<b>Fab′</b> fragments with hinge thiols [10]. These thiols then bind:</p>
+<ul>
+  <li><b>gold directly</b>, as a thiolate, through the same chemistry as SAMs [8];</li>
+  <li><b>maleimide</b> surfaces (a stable thioether, pH 6.5–7.5);</li>
+  <li><b>pyridyl-disulfide</b> surfaces (a disulfide, cleavable by reduction).</li>
+</ul>
+<p>Since the thiols sit at the hinge, opposite the paratopes, the fragments are oriented and pack densely.
+Reduction must be controlled carefully (too strong and the light–heavy disulfide breaks too), and the
+fragments have one binding site instead of two.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-tags"><span class="num">12</span>Method 8 — tags and engineered binders</h2>
+<ul>
+  <li><b>His-tag on Ni²⁺–NTA.</b> Recombinant scFv, Fab or nanobodies with a hexahistidine tag bind
+  nitrilotriacetic-acid surfaces loaded with Ni²⁺ [20, 21]. Oriented and easily regenerated (EDTA or
+  imidazole), but His₆–NTA binding is only micromolar and the protein slowly leaks; tris-NTA surfaces, or a
+  short EDC/NHS step after capture, fix it.</li>
+  <li><b>SpyTag/SpyCatcher</b> and similar protein-ligation pairs form a spontaneous covalent isopeptide bond
+  between a short peptide tag on the binder and its partner protein on the surface [22] — oriented and
+  permanent.</li>
+  <li><b>Nanobodies</b> (≈ 15 kDa) [23] are small, stable and easily tagged, so they pack densely in a defined
+  orientation; their single domain also keeps the capture layer thin, which helps SPR since the antigen then
+  sits higher in the evanescent field.</li>
+  <li><b>DNA-directed immobilisation</b>: binders conjugated to oligonucleotides hybridise to complementary
+  strands on the chip — reversible and addressable.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-compare"><span class="num">13</span>The methods compared</h2>
+<div class="tbl-wrap"><table>
+  <tr><th>Method</th><th>Orientation</th><th>Bond</th><th>Stability</th><th>Regeneration</th><th>Needs</th></tr>
+  <tr><td>Physical adsorption</td><td>random</td><td>non-covalent</td><td>poor (leaching, exchange)</td><td>no</td><td>nothing</td></tr>
+  <tr><td>EDC/NHS amine coupling</td><td>random</td><td>amide</td><td>excellent</td><td>antigen only (harsh conditions tolerated)</td><td>COOH surface, amine-free buffer, pI above ≈ 5</td></tr>
+  <tr><td>Aldehyde / epoxide</td><td>random</td><td>secondary amine / various</td><td>excellent</td><td>antigen only</td><td>reactive surface</td></tr>
+  <tr><td>Protein A / G (or anti-Fc)</td><td>Fc-down</td><td>affinity</td><td>moderate (slow loss) unless cross-linked</td><td>whole antibody, fresh each cycle</td><td>compatible species / subclass</td></tr>
+  <tr><td>Streptavidin–biotin</td><td>random or Fc-down</td><td>affinity, K_D ≈ 10⁻¹⁴ M</td><td>excellent</td><td>antigen only</td><td>biotinylated antibody</td></tr>
+  <tr><td>Fc glycans → hydrazide</td><td>Fc-down</td><td>hydrazone (reducible)</td><td>excellent</td><td>antigen only</td><td>glycosylated antibody, oxidation step</td></tr>
+  <tr><td>Hinge thiols (half-IgG, Fab′)</td><td>hinge-down</td><td>Au–S / thioether</td><td>good</td><td>antigen only</td><td>controlled reduction, fragments</td></tr>
+  <tr><td>His-tag / NTA</td><td>tag-down</td><td>coordination</td><td>weak (μM) unless multivalent or fixed</td><td>whole binder (imidazole, EDTA)</td><td>recombinant tagged binder</td></tr>
+  <tr><td>SpyTag/SpyCatcher</td><td>tag-down</td><td>isopeptide</td><td>excellent</td><td>antigen only</td><td>engineered binder and surface</td></tr>
+</table></div>
+<p>A practical rule: start with amine coupling (fast, universal) to learn whether the antibody works at all;
+move to Protein A/G or anti-Fc capture for kinetics and when antibody is plentiful; and use an oriented
+covalent method (biotin on the glycans, hydrazide, thiols, tags) for a permanent sensor that must be as
+sensitive as possible.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-kin"><span class="num">14</span>From surface to signal: R_max and kinetics</h2>
+
+<h3>How much antigen can the surface bind?</h3>
+<p>Because the SPR response is proportional to mass, the maximum antigen response follows from the amount of
+antibody immobilised:</p>
+$$R_\text{max} = \frac{M_\text{antigen}}{M_\text{antibody}} \times R_\text{antibody} \times n \times f_\text{active}$$
+<p>with \(n = 2\) binding sites per IgG and \(f_\text{active}\) the fraction of sites that work — the number
+orientation is about. Comparing a measured R_max with this formula is the simplest way to estimate
+\(f_\text{active}\) for a given immobilisation method.</p>
+
+<figure class="fig" data-fig="rmax">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This calculator needs JavaScript.</p></noscript>
+  <figcaption><b>Expected R_max.</b> 5000 RU of IgG (5 ng/mm², about one antibody per 50 nm²) can bind at most
+  about 3300 RU of a 50 kDa antigen if every site works; with 40 % active sites, 1300 RU. Small antigens give
+  small signals — a 1 kDa molecule on the same surface, at most 27 RU.</figcaption>
+</figure>
+
+<h3>Binding kinetics</h3>
+<p>For a 1 : 1 interaction between surface sites and an analyte at concentration \(C\) (the Langmuir model),
+the response obeys</p>
+$$\frac{\mathrm dR}{\mathrm dt} = k_a\,C\,(R_\text{max} - R) - k_d\,R, \qquad K_D = \frac{k_d}{k_a}, \qquad R_\text{eq} = \frac{R_\text{max}\,C}{C + K_D}$$
+<p>During injection the signal rises towards \(R_\text{eq}\) with rate \(k_\text{obs} = k_aC + k_d\); afterwards it
+decays as \(R(t) = R_0e^{-k_d t}\). Fitting a series of concentrations gives \(k_a\), \(k_d\) and \(K_D\) [27].</p>
+
+<h3>Mass transport: when the surface is too good</h3>
+<p>Analyte reaches the surface by flow and diffusion through a thin unstirred layer. If binding is faster
+than delivery, the surface depletes the solution next to it and the measured curves report diffusion, not
+chemistry. The two-compartment model captures this with a transport coefficient \(k_m\) [26]:</p>
+$$\frac{\mathrm dR}{\mathrm dt} = k_m\,(C - C_s) = k_a\,C_s\,(R_\text{max} - R) - k_d\,R$$
+<p>where \(C_s\) is the concentration at the surface. When \(k_aR_\text{max}/k_m \gtrsim 1\) the association
+straightens, dissociation slows (analyte rebinds before escaping) and fitted rate constants are wrong.
+Remedies: <b>lower immobilisation levels</b> (R_max of tens to a few hundred RU for kinetics), higher flow
+rates, and checking that k_a does not change with flow.</p>
+
+<figure class="fig" data-fig="sensorgram">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This simulator needs JavaScript.</p></noscript>
+  <figcaption><b>Sensorgrams for five concentrations</b> (0.1 to 10 × K_D) from the two-compartment model. Raise
+  R_max or k_a, or lower k_m, and the curves become mass-transport limited: straight association phases and
+  dissociation that is slower than k_d alone would give.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-nsb"><span class="num">15</span>Non-specific binding, referencing and regeneration</h2>
+<ul>
+  <li><b>Block what is left.</b> After coupling, remaining reactive groups are capped (ethanolamine) and bare
+  areas blocked with an inert protein (BSA, casein) — though blockers add their own layer and can interact
+  with the analyte.</li>
+  <li><b>Design for low fouling.</b> Oligo(ethylene glycol) SAMs [9, 33] and zwitterionic polymers such as
+  poly(carboxybetaine) [28] bind a tightly held hydration layer that proteins cannot displace, and keep
+  non-specific adsorption low even from serum.</li>
+  <li><b>Reference channel.</b> A second flow cell, treated identically but with an irrelevant antibody (or
+  none), measures bulk refractive-index changes and non-specific binding; subtracting it, and then
+  subtracting buffer-only injections (<b>double referencing</b>), removes most artefacts [25].</li>
+  <li><b>Running buffer.</b> Match the sample buffer closely (salt, DMSO, detergent such as 0.005–0.05 % Tween
+  20), because a refractive-index mismatch of 10⁻⁴ is already ≈ 100 RU of bulk signal.</li>
+  <li><b>Regeneration.</b> Remove the antigen without damaging the antibody: short pulses of 10 mM
+  glycine-HCl (pH 1.5–3), high salt, or mild base, chosen by scouting from gentle to harsh. A good
+  regeneration returns the baseline and keeps the binding capacity constant over many cycles.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-protocol"><span class="num">16</span>Worked protocols</h2>
+<p>Generic starting points, to be adapted to the instrument's manual and the antibody.</p>
+<h3>A · Amine coupling on a carboxymethyl-dextran chip</h3>
+<ol>
+  <li>Running buffer HBS-EP (10 mM HEPES, 150 mM NaCl, 3 mM EDTA, 0.005 % surfactant P20, pH 7.4), 5–10 µL/min.</li>
+  <li>pH scouting: inject antibody at 10–20 µg/mL in 10 mM sodium acetate at pH 5.5, 5.0, 4.5, 4.0 over the
+  <i>non-activated</i> surface; pick the highest pH that gives strong, rapid electrostatic accumulation.</li>
+  <li>Activate: inject a fresh 1 : 1 mixture of 0.4 M EDC and 0.1 M NHS for 7 min.</li>
+  <li>Couple: inject the antibody in the chosen acetate buffer until the target level is reached (thousands of RU
+  for concentration assays, a few hundred for kinetics).</li>
+  <li>Deactivate: 1 M ethanolamine-HCl, pH 8.5, 7 min.</li>
+  <li>Prepare the reference cell the same way with an irrelevant antibody or with activation and
+  deactivation only.</li>
+  <li>Condition with 2–3 regeneration pulses before measuring.</li>
+</ol>
+<h3>B · Capture on Protein G</h3>
+<ol>
+  <li>Immobilise Protein G (or A/G) by amine coupling (as above, typically at pH 4–4.5).</li>
+  <li>Each cycle: capture the antibody (1–5 µg/mL, 1–2 min) to a fixed level, inject antigen, dissociate,
+  regenerate with 10 mM glycine-HCl pH 1.5–2.0 (30–60 s), which removes both.</li>
+  <li>For a permanent sensor, cross-link the captured antibody once and skip the per-cycle capture.</li>
+</ol>
+<h3>C · Mixed SAM on bare gold, then EDC/NHS</h3>
+<ol>
+  <li>Clean the gold (UV–ozone or plasma), immerse overnight in 1 mM total thiol in ethanol (e.g. 1 : 9
+  COOH-terminated to OH- or OEG-terminated thiol), rinse with ethanol and water, dry under nitrogen.</li>
+  <li>Activate with EDC/NHS in MES buffer (pH 5–6), couple the antibody in PBS (pH 7.4) or acetate, block with
+  ethanolamine and, if needed, BSA.</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-trouble"><span class="num">17</span>Troubleshooting</h2>
+<div class="tbl-wrap"><table>
+  <tr><th>Symptom</th><th>Likely cause</th><th>What to try</th></tr>
+  <tr><td>Antibody does not accumulate during coupling</td><td>pH above the antibody's pI; amine or high-salt buffer</td><td>lower pH (pH scouting); desalt into 10 mM acetate; remove Tris / glycine</td></tr>
+  <tr><td>Good immobilisation, little antigen binding</td><td>random orientation, lysines in the paratope, crowding</td><td>oriented method; lower density; check antibody activity in solution</td></tr>
+  <tr><td>Baseline drifts down</td><td>captured antibody dissociating; adsorbed protein leaching</td><td>cross-link after capture; covalent method; longer conditioning</td></tr>
+  <tr><td>Signal in the reference channel</td><td>non-specific binding, bulk index mismatch</td><td>low-fouling surface, add surfactant / salt, match buffers, double referencing</td></tr>
+  <tr><td>Association curves straight, K_D depends on density</td><td>mass-transport limitation</td><td>lower R_max, higher flow, fit with a transport term</td></tr>
+  <tr><td>Capacity falls cycle by cycle</td><td>regeneration too harsh</td><td>scout milder conditions; shorter pulses</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">18</span>References</h2>
+<ol class="refs">
+  <li>J. Homola, “Surface plasmon resonance sensors for detection of chemical and biological species,” <i>Chem. Rev.</i> <b>108</b>, 462–493 (2008).</li>
+  <li>B. Liedberg, C. Nylander and I. Lundström, “Surface plasmon resonance for gas detection and biosensing,” <i>Sens. Actuators</i> <b>4</b>, 299–304 (1983).</li>
+  <li>E. Kretschmann and H. Raether, “Radiative decay of non-radiative surface plasmons excited by light,” <i>Z. Naturforsch. A</i> <b>23</b>, 2135–2136 (1968).</li>
+  <li>S. Löfås and B. Johnsson, “A novel hydrogel matrix on gold surfaces in surface plasmon resonance sensors for fast and efficient covalent immobilization of ligands,” <i>J. Chem. Soc., Chem. Commun.</i>, 1526–1528 (1990).</li>
+  <li>B. Johnsson, S. Löfås and G. Lindquist, “Immobilization of proteins to a carboxymethyldextran-modified gold surface for biospecific interaction analysis in surface plasmon resonance sensors,” <i>Anal. Biochem.</i> <b>198</b>, 268–277 (1991).</li>
+  <li>E. Stenberg, B. Persson, H. Roos and C. Urbaniczky, “Quantitative determination of surface concentration of protein with surface plasmon resonance using radiolabeled proteins,” <i>J. Colloid Interface Sci.</i> <b>143</b>, 513–526 (1991).</li>
+  <li>J. A. de Feijter, J. Benjamins and F. A. Veer, “Ellipsometry as a tool to study the adsorption behavior of synthetic and biopolymers at the air–water interface,” <i>Biopolymers</i> <b>17</b>, 1759–1772 (1978).</li>
+  <li>J. C. Love, L. A. Estroff, J. K. Kriebel, R. G. Nuzzo and G. M. Whitesides, “Self-assembled monolayers of thiolates on metals as a form of nanotechnology,” <i>Chem. Rev.</i> <b>105</b>, 1103–1169 (2005).</li>
+  <li>K. L. Prime and G. M. Whitesides, “Self-assembled organic monolayers: model systems for studying adsorption of proteins at surfaces,” <i>Science</i> <b>252</b>, 1164–1167 (1991).</li>
+  <li>G. T. Hermanson, <i>Bioconjugate Techniques</i>, 3rd ed., Academic Press (2013).</li>
+  <li>Z. Grabarek and J. Gergely, “Zero-length crosslinking procedure with the use of active esters,” <i>Anal. Biochem.</i> <b>185</b>, 131–135 (1990).</li>
+  <li>J. V. Staros, R. W. Wright and D. M. Swingle, “Enhancement by N-hydroxysulfosuccinimide of water-soluble carbodiimide-mediated coupling reactions,” <i>Anal. Biochem.</i> <b>156</b>, 220–222 (1986).</li>
+  <li>D. J. O'Shannessy, M. Brigham-Burke and K. Peck, “Immobilization chemistries suitable for use in the BIAcore surface plasmon resonance detector,” <i>Anal. Biochem.</i> <b>205</b>, 132–136 (1992).</li>
+  <li>A. K. Trilling, J. Beekwilder and H. Zuilhof, “Antibody orientation on biosensor surfaces: a minireview,” <i>Analyst</i> <b>138</b>, 1619–1627 (2013).</li>
+  <li>A. Makaraviciute and A. Ramanaviciene, “Site-directed antibody immobilization techniques for immunosensors,” <i>Biosens. Bioelectron.</i> <b>50</b>, 460–471 (2013).</li>
+  <li>L. Björck and G. Kronvall, “Purification and some properties of streptococcal protein G, a novel IgG-binding reagent,” <i>J. Immunol.</i> <b>133</b>, 969–974 (1984).</li>
+  <li>A. Forsgren and J. Sjöquist, “‘Protein A’ from S. aureus. I. Pseudo-immune reaction with human γ-globulin,” <i>J. Immunol.</i> <b>97</b>, 822–827 (1966).</li>
+  <li>N. M. Green, “Avidin,” <i>Adv. Protein Chem.</i> <b>29</b>, 85–133 (1975).</li>
+  <li>P. C. Weber, D. H. Ohlendorf, J. J. Wendoloski and F. R. Salemme, “Structural origins of high-affinity biotin binding to streptavidin,” <i>Science</i> <b>243</b>, 85–88 (1989).</li>
+  <li>E. Hochuli, H. Döbeli and A. Schacher, “New metal chelate adsorbent selective for proteins and peptides containing neighbouring histidine residues,” <i>J. Chromatogr.</i> <b>411</b>, 177–184 (1987).</li>
+  <li>L. Nieba et al., “BIACORE analysis of histidine-tagged proteins using a chelating NTA sensor chip,” <i>Anal. Biochem.</i> <b>252</b>, 217–228 (1997).</li>
+  <li>B. Zakeri et al., “Peptide tag forming a rapid covalent bond to a protein, through engineering a bacterial adhesin,” <i>Proc. Natl. Acad. Sci. USA</i> <b>109</b>, E690–E697 (2012).</li>
+  <li>S. Muyldermans, “Nanobodies: natural single-domain antibodies,” <i>Annu. Rev. Biochem.</i> <b>82</b>, 775–797 (2013).</li>
+  <li>C. Tuerk and L. Gold, “Systematic evolution of ligands by exponential enrichment: RNA ligands to bacteriophage T4 DNA polymerase,” <i>Science</i> <b>249</b>, 505–510 (1990).</li>
+  <li>D. G. Myszka, “Improving biosensor analysis,” <i>J. Mol. Recognit.</i> <b>12</b>, 279–284 (1999).</li>
+  <li>D. G. Myszka, X. He, M. Dembo, T. A. Morton and B. Goldstein, “Extending the range of rate constants available from BIACORE: interpreting mass transport-influenced binding data,” <i>Biophys. J.</i> <b>75</b>, 583–594 (1998).</li>
+  <li>R. Karlsson and A. Fält, “Experimental design for kinetic analysis of protein–protein interactions with surface plasmon resonance biosensors,” <i>J. Immunol. Methods</i> <b>200</b>, 121–133 (1997).</li>
+  <li>S. Jiang and Z. Cao, “Ultralow-fouling, functionalizable, and hydrolyzable zwitterionic materials and their derivatives for biological applications,” <i>Adv. Mater.</i> <b>22</b>, 920–932 (2010).</li>
+  <li>L. J. Harris, S. B. Larson, K. W. Hasel and A. McPherson, “Refined structure of an intact IgG2a monoclonal antibody,” <i>Biochemistry</i> <b>36</b>, 1581–1597 (1997).</li>
+  <li>K. Murphy and C. Weaver, <i>Janeway's Immunobiology</i>, 9th ed., Garland Science (2016).</li>
+  <li>R. B. M. Schasfoort (ed.), <i>Handbook of Surface Plasmon Resonance</i>, 2nd ed., Royal Society of Chemistry (2017).</li>
+  <li>R. G. Nuzzo and D. L. Allara, “Adsorption of bifunctional organic disulfides on gold surfaces,” <i>J. Am. Chem. Soc.</i> <b>105</b>, 4481–4483 (1983).</li>
+  <li>E. Ostuni, R. G. Chapman, R. E. Holmlin, S. Takayama and G. M. Whitesides, “A survey of structure–property relationships of surfaces that resist the adsorption of protein,” <i>Langmuir</i> <b>17</b>, 5605–5620 (2001).</li>
+  <li>A. D. Ellington and J. W. Szostak, “In vitro selection of RNA molecules that bind specific ligands,” <i>Nature</i> <b>346</b>, 818–822 (1990).</li>
+  <li>S. K. Vashist, “Comparison of 1-ethyl-3-(3-dimethylaminopropyl) carbodiimide based strategies to crosslink antibodies on amine-functionalized platforms for immunodiagnostic applications,” <i>Diagnostics</i> <b>2</b>, 23–33 (2012).</li>
+</ol>
+
+<hr>
+<p>The SPR curves are calculated exactly (transfer-matrix method, Johnson & Christy gold); the immobilisation
+cartoons, the model antibody's charge and the active fractions are illustrative; the sensorgrams follow the
+two-compartment model of [26]. Protocols are generic starting points — follow your instrument's and reagents'
+instructions. Corrections and questions are welcome at
+<a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a></p>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/blog/vl-core.js"></script>
+<script src="js/blog/ab-figs.js"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
