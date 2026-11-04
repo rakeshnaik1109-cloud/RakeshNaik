@@ -165,8 +165,8 @@
 
 /* ── Wide screens: contents sidebar + wider reading column + full-width figures ── */
 .toc-side { display: none; }
-@media (min-width: 1200px) {
-  .article .wrap.has-side { max-width: calc(1500px + var(--gut) * 2); display: grid; grid-template-columns: 250px minmax(0, 1fr); column-gap: clamp(32px, 3.5vw, 64px); align-items: start; }
+@media (min-width: 1100px) {
+  .article .wrap.has-side { max-width: calc(1500px + var(--gut) * 2); display: grid; grid-template-columns: clamp(210px, 17vw, 250px) minmax(0, 1fr); column-gap: clamp(28px, 3.5vw, 64px); align-items: start; }
   .has-side .toc-side { display: block; position: sticky; top: 92px; max-height: calc(100vh - 116px); overflow-y: auto; padding: 4px 4px 12px 0; scrollbar-width: thin; }
   .toc-side h2 { font-family: var(--mono); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--au); margin: 0 0 12px; }
   .toc-side ol { list-style: none; padding: 0; margin: 0; counter-reset: ts; border-left: 1px solid var(--hairline); }
@@ -181,6 +181,6 @@
   .has-side .prose > .fig, .has-side .prose > .tbl-wrap { max-width: 1180px; margin-left: auto; margin-right: auto; }
   .has-side .prose > .tbl-wrap { width: 100%; }
   .has-side .prose p, .has-side .prose li { font-size: 1.04rem; }
-  .article-head .wrap.narrow.has-side-head { max-width: calc(1500px + var(--gut) * 2); padding-left: calc(var(--gut) + 250px + clamp(32px, 3.5vw, 64px)); }
+  .article-head .wrap.narrow.has-side-head { max-width: calc(1500px + var(--gut) * 2); padding-left: calc(var(--gut) + clamp(210px, 17vw, 250px) + clamp(28px, 3.5vw, 64px)); }
   .article-head .wrap.narrow.has-side-head > * { margin-left: max(0px, calc((100% - 920px) / 2)); }
 }
