@@ -57,6 +57,53 @@
     reset(1); render();
   };
 
+  /* ═══ 1b. a plane electromagnetic wave in 3D (animated) ═══ */
+  // Oblique projection: z (propagation) to the right, x (E) up, y (B) out of the page towards the reader,
+  // so that x̂ × ŷ = ẑ (E × B points along the direction of travel).
+  F.emwave = function (fig) {
+    var ctl = VL.part(fig, 'vl-controls'), host = VL.part(fig, 'vl-plot'), phase = 0;
+    var W = 880, H = 390, ox = 165, oy = 205, Lz = 540, A = 110, waves = 2.5, K = 2 * Math.PI * waves;
+    var draw = function () {
+      var ang = view.get() * Math.PI / 180, yd = [Math.cos(ang), Math.sin(ang)], tilt = 0.12, showV = vec.get() === 'yes';
+      // world (x, y, z) → screen; z in [0, 1] along the travel axis, x and y in units of the amplitude
+      var P = function (x, y, z) { return [ox + z * Lz + y * A * 0.95 * yd[0], oy - x * A + y * A * 0.95 * yd[1] - z * Lz * tilt * 0.25]; };
+      var p2 = function (q) { return q[0].toFixed(1) + ' ' + q[1].toFixed(1); };
+      var line = function (a, b, col, w, extra) { return '<line x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' + b[0].toFixed(1) + '" y2="' + b[1].toFixed(1) + '" stroke="' + col + '" stroke-width="' + w + '"' + (extra || '') + '/>'; };
+      var head = function (a, b, col, size) { var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, s = size || 9, w = s * 0.45; return '<path d="M ' + p2(b) + ' L ' + (b[0] - ux * s + uy * w).toFixed(1) + ' ' + (b[1] - uy * s - ux * w).toFixed(1) + ' L ' + (b[0] - ux * s - uy * w).toFixed(1) + ' ' + (b[1] - uy * s + ux * w).toFixed(1) + ' Z" fill="' + col + '"/>'; };
+      var arrow = function (a, b, col, w, s) { var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy); if (L < 2) return ''; var hs = Math.min(s || 7, L * 0.6), e = [b[0] - dx / L * hs * 0.7, b[1] - dy / L * hs * 0.7]; return line(a, e, col, w) + head(a, b, col, hs); };
+      var red = C.red, cyan = C.cyan, s = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="plot" role="img" aria-label="A plane electromagnetic wave in three dimensions">';
+      // planes in which the two fields oscillate
+      var plane = function (u, col) { var c = [u(-1, 0), u(1, 0), u(1, 1), u(-1, 1)]; return '<path d="M ' + c.map(p2).join(' L ') + ' Z" fill="' + col + '" fill-opacity="0.07" stroke="' + col + '" stroke-opacity="0.25" stroke-dasharray="4 4"/>'; };
+      s += plane(function (v, z) { return P(v, 0, z); }, red) + plane(function (v, z) { return P(0, v, z); }, cyan);
+      var N = 240, ns = Math.round(waves * 16), Ecurve = [], Bcurve = [], vE = '', vB = '';
+      for (var i = 0; i <= N; i++) { var z = i / N, f = Math.cos(K * z - phase); Ecurve.push(P(f, 0, z)); Bcurve.push(P(0, f, z)); }
+      if (showV) for (var j = 0; j <= ns; j++) { var zz = j / ns, g = Math.cos(K * zz - phase); vE += arrow(P(0, 0, zz), P(g, 0, zz), red, 1.4, 6); vB += arrow(P(0, 0, zz), P(0, g, zz), cyan, 1.4, 6); }
+      var path = function (pts, col) { return '<path d="M ' + pts.map(p2).join(' L ') + '" fill="none" stroke="' + col + '" stroke-width="2.6" stroke-linejoin="round"/>'; };
+      // axes
+      var ax = C.text2, o = P(0, 0, 0);
+      s += arrow(P(0, 0, -0.04), P(0, 0, 1.08), ax, 1.6, 11) + arrow(P(-1.25, 0, 0), P(1.35, 0, 0), ax, 1.6, 11) + arrow(P(0, -1.25, 0), P(0, 1.45, 0), ax, 1.6, 11);
+      var lab = function (q, txt, col, dx, dy) { return '<text x="' + (q[0] + (dx || 0)).toFixed(1) + '" y="' + (q[1] + (dy || 0)).toFixed(1) + '" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" fill="' + col + '">' + txt + '</text>'; };
+      // depth order: B behind the axis first, then E, then B in front
+      s += vB + path(Bcurve, cyan) + vE + path(Ecurve, red);
+      s += lab(P(0, 0, 1.08), 'z (k)', C.text, 6, 20) + lab(P(1.35, 0, 0), 'x', C.text, 8, 4) + lab(P(0, 1.45, 0), 'y', C.text, 8, 16);
+      s += lab(P(1.05, 0, 0.06), 'E (along x)', red, 6, -8) + lab(P(0, 1.1, 0.17), 'B (along y)', cyan, 4, 18);
+      // one wavelength, marked along the axis
+      var z0 = 1 / waves, a1 = P(-1.32, 0, 0.6), a2 = P(-1.32, 0, 0.6 + z0);
+      s += arrow(a1, a2, C.au, 1.2, 8) + arrow(a2, a1, C.au, 1.2, 8) + lab([(a1[0] + a2[0]) / 2, (a1[1] + a2[1]) / 2], 'λ', C.au, -4, -8);
+      // a right-angle triad: E × B = direction of travel
+      var t0 = [W - 120, 96], tx = [t0[0], t0[1] - 42], tz = [t0[0] + 46, t0[1] - 4], ty = [t0[0] + yd[0] * 40, t0[1] + yd[1] * 40];
+      s += arrow(t0, tx, red, 2, 8) + arrow(t0, ty, cyan, 2, 8) + arrow(t0, tz, C.au, 2, 8) + lab(tx, 'E', red, 4, 2) + lab(ty, 'B', cyan, -14, 14) + lab(tz, 'k', C.au, 4, 4);
+      s += '<text x="' + (W - 178) + '" y="28" font-family="IBM Plex Mono, monospace" font-size="11" fill="' + C.text3 + '">E × B ∥ k, all at 90°</text>';
+      host.innerHTML = s + '</svg>';
+    };
+    var loop = VL.loop(host, function (dt) { if (!dt) return; phase += dt * 2 * Math.PI * speed.get(); draw(); });
+    var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { btn.textContent = loop.toggle() ? 'Stop' : 'Start'; }, 'primary');
+    var speed = VL.slider(ctl, { label: 'Speed', min: 0.1, max: 1.5, step: 0.05, value: 0.5, fmt: function (v) { return v.toFixed(2) + ' cycles/s'; } });
+    var view = VL.slider(ctl, { label: 'View angle of the y axis', min: 115, max: 160, step: 1, value: 140, fmt: function (v) { return v + '°'; }, on: draw });
+    var vec = VL.select(ctl, { label: 'Field arrows', value: 'yes', options: [['yes', 'Shown'], ['no', 'Hidden']], on: draw });
+    draw();
+  };
+
   /* ═══ 2. polarisation ellipse ═══ */
   F.pol = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
