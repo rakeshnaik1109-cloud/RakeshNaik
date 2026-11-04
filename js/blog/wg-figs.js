@@ -119,7 +119,7 @@
       var kind = Math.abs(chi) < 0.5 ? 'linear' : Math.abs(Math.abs(chi) - 45) < 0.5 ? 'circular' : 'elliptical', hand = Math.abs(chi) < 0.5 ? '' : (chi > 0 ? ' — left-handed (counter-clockwise, seen facing the source)' : ' — right-handed (clockwise, seen facing the source)');
       read.innerHTML = '<div><b>' + kind + '</b><span>polarisation' + hand + '</span></div><div><b>' + psi.toFixed(1) + '°</b><span>orientation ψ of the major axis</span></div><div><b>' + chi.toFixed(1) + '°</b><span>ellipticity angle χ (0 linear, ±45° circular)</span></div><div><b>(' + A.toFixed(2) + ', ' + B.toFixed(2) + ' e^{i' + Math.round(dl * 180 / Math.PI) + '°})</b><span>Jones vector</span></div>';
     };
-    var ang = VL.slider(ctl, { label: 'Amplitude split atan(E_y/E_x)', min: 0, max: 90, step: 1, value: 45, fmt: function (v) { return v + '°'; }, on: draw });
+    var ang = VL.slider(ctl, { label: 'Amplitude split θ', min: 0, max: 90, step: 1, value: 45, fmt: function (v) { return v + '°'; }, on: draw });
     var ph = VL.slider(ctl, { label: 'Phase difference δ', min: -180, max: 180, step: 1, value: 60, fmt: function (v) { return v + '°'; }, on: draw });
     draw();
   };
@@ -144,8 +144,8 @@
       read.innerHTML = '<div><b>' + e[0].toFixed(2) + (e[1] >= 0 ? ' + ' : ' − ') + Math.abs(e[1]).toFixed(2) + 'i</b><span>permittivity ε at ' + L + ' nm</span></div><div><b>' + z[0].toFixed(3) + ' + ' + z[1].toFixed(3) + 'i</b><span>complex index n + iκ</span></div><div><b>' + (100 * R).toFixed(1) + ' %</b><span>reflectance at normal incidence from air</span></div><div><b>' + (isFinite(dpen) ? (dpen < 1000 ? dpen.toFixed(1) + ' nm' : VL.fmtLen(dpen * 1e-9)) : '∞') + '</b><span>intensity penetration depth 1/α' + (metal ? ' (skin depth for the field: twice this)' : '') + '</span></div>';
     };
     var mdl = VL.select(ctl, { label: 'Material model', value: 'diel', options: [['diel', 'Dielectric (Lorentz oscillator)'], ['metal', 'Metal (Drude, gold-like)']], on: draw });
-    var res = VL.slider(ctl, { label: 'Resonance wavelength (dielectric)', min: 150, max: 900, step: 5, value: 300, fmt: function (v) { return v + ' nm'; }, on: draw });
-    var str = VL.slider(ctl, { label: 'Oscillator strength (dielectric)', min: 0.2, max: 4, step: 0.05, value: 1.2, fmt: function (v) { return v.toFixed(2); }, on: draw });
+    var res = VL.slider(ctl, { label: 'Resonance (dielectric)', min: 150, max: 900, step: 5, value: 300, fmt: function (v) { return v + ' nm'; }, on: draw });
+    var str = VL.slider(ctl, { label: 'Strength (dielectric)', min: 0.2, max: 4, step: 0.05, value: 1.2, fmt: function (v) { return v.toFixed(2); }, on: draw });
     var lam = VL.slider(ctl, { label: 'Read values at', min: 150, max: 2000, step: 5, value: 633, fmt: function (v) { return v + ' nm'; }, on: draw });
     draw();
   };
@@ -168,8 +168,8 @@
       var R = rr(n1, n2, T), s = n1 * Math.sin(T * Math.PI / 180), dp = s > n2 ? 0.633 / (2 * Math.PI * Math.sqrt(s * s - n2 * n2)) : null;
       read.innerHTML = '<div><b>' + (100 * R[0]).toFixed(1) + ' % · ' + (100 * R[1]).toFixed(1) + ' %</b><span>R_s · R_p at ' + T + '°</span></div><div><b>' + tb.toFixed(2) + '°</b><span>Brewster angle: p light is not reflected</span></div><div><b>' + (tc ? tc.toFixed(2) + '°' : '—') + '</b><span>critical angle for total internal reflection</span></div><div><b>' + (dp ? (dp * 1000).toFixed(0) + ' nm' : '—') + '</b><span>evanescent field decay length at 633 nm (1/e of the field)</span></div>';
     };
-    var a = VL.slider(ctl, { label: 'Index of the incident medium n₁', min: 1, max: 3.5, step: 0.01, value: 1.5, fmt: function (v) { return v.toFixed(2); }, on: draw });
-    var b = VL.slider(ctl, { label: 'Index of the second medium n₂', min: 1, max: 3.5, step: 0.01, value: 1.0, fmt: function (v) { return v.toFixed(2); }, on: draw });
+    var a = VL.slider(ctl, { label: 'Incident medium n₁', min: 1, max: 3.5, step: 0.01, value: 1.5, fmt: function (v) { return v.toFixed(2); }, on: draw });
+    var b = VL.slider(ctl, { label: 'Second medium n₂', min: 1, max: 3.5, step: 0.01, value: 1.0, fmt: function (v) { return v.toFixed(2); }, on: draw });
     var ang = VL.slider(ctl, { label: 'Angle of incidence', min: 0, max: 89, step: 0.5, value: 45, fmt: function (v) { return v + '°'; }, on: draw });
     draw();
   };
