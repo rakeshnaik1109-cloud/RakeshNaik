@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Label-free and Labelled SERS: Direct Detection versus Raman Reporters | Rakesh Naik</title>
+<meta name="description" content="A first-principles guide to label-free (direct) and labelled (indirect) surface-enhanced Raman scattering: the enhancement physics, distance dependence, adsorption chemistry and Langmuir isotherms, partition layers and SHINERS, SERS tags and Raman reporters, SERRS and silent-region reporters, sandwich assays, multiplex unmixing, hot-spot statistics, internal standards and enhancement factors, with interactive simulations and references.">
+<meta name="keywords" content="label-free SERS, direct SERS, indirect SERS, SERS tags, Raman reporter, extrinsic Raman label, SERRS, silent region alkyne tag, SHINERS, partition layer, SERS immunoassay, multiplex unmixing, hot spot, internal standard, enhancement factor">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-label-free.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Label-free and Labelled SERS: Direct Detection versus Raman Reporters">
+<meta property="og:description" content="Label-free versus labelled SERS from first principles: the physics, surface chemistry, Raman reporters, assays, multiplexing and quantification, with advantages and disadvantages.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-label-free.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-11-04">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Label-free and Labelled SERS: Direct Detection versus Raman Reporters">
+<meta name="twitter:description" content="Label-free versus labelled SERS from first principles: the physics, surface chemistry, Raman reporters, assays, multiplexing and quantification, with advantages and disadvantages.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/article.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Label-free and Labelled SERS: Direct Detection versus Raman Reporters","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-label-free.html"}]},
+{"@type":"TechArticle","headline":"Label-free and Labelled SERS: Direct Detection versus Raman Reporters","datePublished":"2026-11-04","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"Label-free versus labelled SERS from first principles: the physics, surface chemistry, Raman reporters, assays, multiplexing and quantification, with advantages and disadvantages.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Label-free and labelled SERS: reading a molecule directly, or through a Raman reporter</h1>
+    <p class="lede">Surface-enhanced Raman scattering can be used in two very different ways. In
+    <b>label-free</b> (direct) SERS the molecule you care about sits on the metal and its own vibrations
+    give the spectrum. In <b>labelled</b> (indirect) SERS the analyte is recognised by an antibody, aptamer
+    or other receptor, and a nanoparticle coated with a bright <b>Raman reporter</b> tells you it is there.
+    This article builds both from first principles — the physics that sets the signal, the surface chemistry
+    that decides which molecules are seen, the reporter chemistry behind SERS tags, and the mathematics of
+    calibration, detection limits, multiplexing and hot-spot statistics — and ends with when to use which.
+    With simulations to try and references to the primary literature.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · SERS</span><span>4 November 2026</span><span>≈ 55 min read</span><span>Rakesh Naik</span></div>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-why">Why we need SERS at all</a></li>
+    <li><a href="#s-two">Two ways to read a molecule: direct and indirect</a></li>
+    <li><a href="#s-phys">The physics both share</a></li>
+    <li><a href="#s-dist">Distance: the rule that shapes every design</a></li>
+    <li><a href="#s-adsorb">Label-free SERS I — getting the molecule onto the metal</a></li>
+    <li><a href="#s-surface">Label-free SERS II — surfaces, aggregation and partition layers</a></li>
+    <li><a href="#s-lfapps">Label-free SERS III — what it can read, and what goes wrong</a></li>
+    <li><a href="#s-tags">Labelled SERS I — anatomy of a SERS tag</a></li>
+    <li><a href="#s-rep">Labelled SERS II — the chemistry of Raman reporters</a></li>
+    <li><a href="#s-formats">Labelled SERS III — assay formats and imaging</a></li>
+    <li><a href="#s-multi">The mathematics of multiplexing</a></li>
+    <li><a href="#s-quant">Quantification: hot spots, internal standards and enhancement factors</a></li>
+    <li><a href="#s-compare">Advantages, disadvantages and how to choose</a></li>
+    <li><a href="#s-practice">Good practice and troubleshooting</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>This is the third article in a series. The first, <a href="blog-spectroscopy.html">Vibrational
+spectroscopy, plasmonics and SERS</a>, explains from scratch where Raman bands come from and why a metal
+nanostructure enhances them; where this article needs those ideas it links to the relevant section rather
+than repeating it. The second, <a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor</a>,
+covers antibodies and the surface chemistry used to attach them, which the labelled assays below rely on.
+Numbers in square brackets refer to the <a href="#s-refs">references</a>; figures marked
+<b>Interactive</b> run in your browser.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-why"><span class="num">01</span>Why we need SERS at all</h2>
+
+<p>A Raman spectrum is a fingerprint: each band is a vibration of the molecule, its position fixed by
+bond strengths and atomic masses, its intensity by how much the vibration modulates the electron cloud
+(<a href="blog-spectroscopy.html#s-raman">Raman scattering, from first principles</a>). Water scatters
+weakly, so Raman works in aqueous and biological samples where infrared absorption struggles; one visible
+or near-infrared laser excites every band at once; and the bands are narrow, 10–20 cm⁻¹ wide.</p>
+
+<p>The price is sensitivity. The incident field \(E_0\) induces a dipole \(\mathbf p = \alpha\mathbf E\);
+because the polarisability depends on the vibrational coordinate,
+\(\alpha(Q) = \alpha_0 + (\partial\alpha/\partial Q)_0\,Q\), the dipole contains components at
+\(\omega_0 \pm \omega_v\) whose radiated power scales as</p>
+$$I_\text{Raman} \;\propto\; \omega_s^{4}\,\Big|\Big(\frac{\partial\alpha}{\partial Q}\Big)_0\Big|^2 \langle Q^2\rangle\, I_0 .$$
+<p>For an ordinary molecule the differential Raman cross-section is of order
+10⁻³⁰–10⁻²⁹ cm² sr⁻¹, whereas a good fluorophore absorbs with a cross-section near 10⁻¹⁶ cm² [5]. Roughly one
+photon in 10⁷–10⁹ is Raman-scattered. Detecting a few molecules — or the nanomolar and picomolar
+concentrations of biomarkers in blood — is impossible with normal Raman.</p>
+
+<p>SERS closes that gap. Near gold or silver nanostructures the Raman signal grows by factors of
+10⁴–10⁸ on average and 10¹⁰ or more in the best gaps, enough to see single molecules [9, 10]. The effect was
+first seen as unexpectedly strong pyridine spectra on roughened silver [1] and recognised as a true
+per-molecule enhancement in 1977 [2, 3]. But the enhancement only acts on molecules within a few nanometres
+of the metal. Everything in this article follows from that one restriction: either you bring the analyte
+itself into the near field (label-free), or you put a molecule that is <i>designed</i> to be bright there
+and connect it to the analyte by molecular recognition (labelled).</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-two"><span class="num">02</span>Two ways to read a molecule: direct and indirect</h2>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 1</div>
+  <svg viewBox="0 0 860 380" role="img" aria-label="Label-free versus labelled SERS">
+    <style>.sl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.sh{font-family:'IBM Plex Mono',monospace;font-size:12.5px;fill:#efeaf6}</style>
+    <!-- left: label-free -->
+    <text x="215" y="26" class="sh" text-anchor="middle" fill="#7fd18b">Label-free (direct) SERS</text>
+    <rect x="40" y="250" width="350" height="22" fill="#5a4a2a"/><rect x="40" y="246" width="350" height="5" fill="#e0a82e"/>
+    <circle cx="120" cy="226" r="22" fill="#e0a82e"/><circle cx="168" cy="226" r="22" fill="#e0a82e"/><circle cx="262" cy="226" r="22" fill="#e0a82e"/><circle cx="310" cy="226" r="22" fill="#e0a82e"/>
+    <ellipse cx="144" cy="214" rx="9" ry="16" fill="#e2566e" opacity=".55"/><ellipse cx="286" cy="214" rx="9" ry="16" fill="#e2566e" opacity=".55"/>
+    <g fill="#7fd18b"><path d="M139 196 l5 -9 l5 9 z"/><path d="M281 196 l5 -9 l5 9 z"/><path d="M200 196 l5 -9 l5 9 z"/></g>
+    <g fill="#837a94"><circle cx="230" cy="150" r="5"/><circle cx="95" cy="160" r="4"/><circle cx="350" cy="140" r="6"/><circle cx="180" cy="120" r="4"/></g>
+    <text x="60" y="300" class="sl">analyte (green) adsorbs in the gaps (hot spots, red)</text>
+    <text x="60" y="316" class="sl">its own vibrations give the spectrum</text>
+    <text x="60" y="332" class="sl">matrix molecules (grey) compete for the surface</text>
+    <path d="M60 100 q12 -30 24 0 t24 0 t24 0" fill="none" stroke="#7fd18b" stroke-width="2"/><text x="146" y="104" class="sl">analyte fingerprint</text>
+    <!-- right: labelled -->
+    <text x="645" y="26" class="sh" text-anchor="middle" fill="#45bfd6">Labelled (indirect) SERS</text>
+    <rect x="470" y="250" width="350" height="22" fill="#2b3d33"/>
+    <g stroke="#a98bf0" stroke-width="5" stroke-linecap="round"><path d="M560 250 v-24 M560 226 l-11 -14 M560 226 l11 -14"/><path d="M730 250 v-24 M730 226 l-11 -14 M730 226 l11 -14"/></g>
+    <circle cx="560" cy="200" r="9" fill="#7fd18b"/><circle cx="730" cy="200" r="9" fill="#7fd18b"/>
+    <g stroke="#45bfd6" stroke-width="5" stroke-linecap="round"><path d="M560 190 v-14 M560 176 l-10 10 M560 176 l10 10"/><path d="M730 190 v-14 M730 176 l-10 10 M730 176 l10 10"/></g>
+    <circle cx="560" cy="140" r="34" fill="#e0a82e"/><circle cx="560" cy="140" r="38" fill="none" stroke="#e2566e" stroke-width="3" stroke-dasharray="3 3"/><circle cx="560" cy="140" r="44" fill="none" stroke="#45bfd6" stroke-opacity=".5" stroke-width="4"/>
+    <circle cx="730" cy="140" r="34" fill="#e0a82e"/><circle cx="730" cy="140" r="38" fill="none" stroke="#e2566e" stroke-width="3" stroke-dasharray="3 3"/><circle cx="730" cy="140" r="44" fill="none" stroke="#45bfd6" stroke-opacity=".5" stroke-width="4"/>
+    <text x="490" y="300" class="sl">capture antibody · antigen (green) · detection antibody</text>
+    <text x="490" y="316" class="sl">gold core + reporter monolayer (red) + shell (cyan)</text>
+    <text x="490" y="332" class="sl">the reporter's spectrum says “antigen present”</text>
+    <path d="M620 70 l6 0 l4 -30 l4 30 l40 0 l4 -18 l4 18 l30 0" fill="none" stroke="#e2566e" stroke-width="2"/><text x="740" y="74" class="sl">reporter bands</text>
+    <line x1="430" y1="40" x2="430" y2="350" stroke="rgba(255,255,255,.12)"/>
+  </svg>
+  <figcaption><b>The two modes of SERS.</b> Left: in label-free SERS the analyte itself must reach the
+  enhancing gaps; the spectrum carries its structure, but every other molecule in the sample competes for
+  the same sites. Right: in labelled SERS a recognition element (here a sandwich of two antibodies) holds
+  a <i>SERS tag</i> — a nanoparticle carrying a dense layer of reporter molecules, protected by a shell —
+  next to the analyte. The spectrum identifies the tag, not the analyte. (Schematic, not to scale.)</figcaption>
+</figure>
+
+<p>The words in the literature vary. <b>Direct</b>, <b>label-free</b> or <b>intrinsic</b> SERS records the
+vibrational spectrum of the target molecule itself. <b>Indirect</b>, <b>labelled</b> or <b>extrinsic</b>
+SERS records a reporter whose presence is tied to the target; the particles that carry the reporter are
+called <b>SERS tags</b>, SERS nanoprobes or extrinsic Raman labels (ERLs) [23, 24]. A third, intermediate
+family uses a reporter whose <i>spectrum changes</i> with its surroundings — a pH-sensitive reporter, or a
+receptor layer whose bands shift on binding — and so reads the environment rather than the presence of a
+tag [32].</p>
+
+<div class="callout info"><b>The key difference in one line</b>
+<p>Label-free SERS asks “what molecule is this?” and gets a structural answer at the cost of selectivity
+and reproducibility. Labelled SERS asks “is my target here, and how much?” and gets a bright, designed,
+multiplexable answer at the cost of losing the target's own spectrum.</p></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-phys"><span class="num">03</span>The physics both share</h2>
+
+<h3>The SERS intensity equation</h3>
+<p>For \(N\) molecules in the laser spot, each with Raman cross-section \(\sigma_\text{ads}\) in its adsorbed
+state, illuminated with laser intensity \(I_L\), the detected SERS signal can be written [4, 5]</p>
+$$I_\text{SERS} = \eta_\text{det}\, N\, \sigma_\text{ads}\, \langle G\rangle\, I_L ,$$
+<p>where \(\eta_\text{det}\) collects the collection optics and detector, and \(\langle G\rangle\) is the
+enhancement averaged over the molecules. Each factor is a design lever: <b>label-free</b> work can only
+change \(N\) (by getting more analyte to the surface) and \(G\) (better substrates); <b>labelled</b> work
+also chooses \(\sigma_\text{ads}\), by picking a reporter with a large, possibly resonant, cross-section, and
+packs \(N\) as a dense monolayer of reporter on every tag.</p>
+
+<h3>Electromagnetic enhancement</h3>
+<p>The dominant mechanism is electromagnetic. A localized surface plasmon concentrates the field near the
+particle (<a href="blog-spectroscopy.html#s-lspr">localized plasmons</a>); the molecule is driven by the
+enhanced local field at the laser frequency, and its Raman-shifted dipole radiates through the particle at
+the scattered frequency. Both steps scale with the intensity enhancement, giving the well-known
+fourth-power law derived in the first article (<a href="blog-spectroscopy.html#s-sers">SERS section</a>):</p>
+$$G_\text{EM} \approx \frac{|E_\text{loc}(\omega_0)|^2\,|E_\text{loc}(\omega_s)|^2}{|E_0|^4} \approx \Big|\frac{E_\text{loc}}{E_0}\Big|^4 .$$
+<p>For a small sphere the field factor is set by \(g = (\varepsilon - \varepsilon_m)/(\varepsilon + 2\varepsilon_m)\),
+which is large when \(\mathrm{Re}\,\varepsilon \approx -2\varepsilon_m\) and \(\mathrm{Im}\,\varepsilon\) is small —
+the reason silver and gold dominate. In the gap between two particles the fields of both add and \(|E/E_0|\)
+can exceed 100, so \(G\) exceeds 10⁸; these <b>hot spots</b> are tiny and dominate the signal (section 12).</p>
+
+<h3>Chemical enhancement</h3>
+<p>A molecule bonded to the metal is not the same molecule as in solution. Bonding mixes its orbitals with
+the metal's states and can open a <b>charge-transfer</b> transition between the metal Fermi level and the
+molecular orbitals; when the laser is near that transition, the scattering becomes partly resonant.
+Lombardi and Birke showed that plasmon, charge-transfer and molecular resonances can be written in one
+expression whose numerator couples them through Herzberg–Teller vibronic terms [7]; schematically,</p>
+$$R(\omega) \;\propto\; \frac{\mu_\text{PR}\,\mu_\text{K}\,\mu_\text{CT}\,h_\text{IK}}{\big[(\varepsilon_1(\omega)+2\varepsilon_m)^2+\varepsilon_2^2\big]\,\big(\omega_\text{FK}^2-\omega^2+\gamma_\text{FK}^2\big)\big(\omega_\text{IK}^2-\omega^2+\gamma_\text{IK}^2\big)} ,$$
+<p>with one denominator for the plasmon, one for the charge-transfer transition and one for the molecular
+transition. The practical lessons are that chemical enhancement (typically 10–100) depends on how the
+molecule binds, varies between molecules on the same substrate, and can change relative band intensities.
+For label-free work it is a nuisance to be understood; for reporters it is one more reason to choose
+molecules that bind covalently and reproducibly.</p>
+
+<h3>Surface selection rules</h3>
+<p>The enhanced field at a metal surface is mostly normal to it. Vibrations whose polarisability changes
+along the surface normal (\(\alpha_{zz}\)) are therefore enhanced more than those polarised parallel to it
+[8]. The same molecule standing up or lying flat gives different relative intensities. This is why a
+label-free SERS spectrum need not match the reference Raman spectrum of the pure compound, and why band
+assignment should use SERS references measured under similar conditions.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-dist"><span class="num">04</span>Distance: the rule that shapes every design</h2>
+
+<p>The dipolar near field of a sphere of radius \(r\) falls as \((r/(r+d))^3\) with distance \(d\) from its
+surface; the intensity as the sixth power; and the SERS enhancement, the square of the intensity
+enhancement, as the twelfth [4]:</p>
+$$\frac{G(d)}{G(0)} = \Big(\frac{r}{r+d}\Big)^{12}, \qquad d_{1/2} = r\,\big(2^{1/12} - 1\big) \approx 0.059\,r .$$
+<p>For a 20 nm radius of curvature half the enhancement is gone after only 1.2 nm. Real surfaces have a
+fast short-range component and a slower long-range tail: atomic-layer-deposited alumina spacers on silver
+film-over-nanosphere substrates showed both, with signal still measurable through about 3 nm of oxide
+[12]. Sharp tips and gaps decay faster still.</p>
+
+<figure class="fig" data-fig="sersdist">
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>How much enhancement survives a spacer.</b> The \((r/(r+d))^{12}\) law (gold) and, for
+  comparison, a slower tenth-power decay (dashed). The dots mark typical distances: an analyte adsorbed
+  directly, an analyte on a thiol linker, a 2 nm SHINERS shell, an aptamer, and an antigen on top of an
+  antibody layer. The antibody layer alone costs about 99 % of the enhancement.</figcaption>
+</figure>
+
+<p>Three design rules follow directly.</p>
+<ul>
+  <li><b>Label-free sensing needs contact.</b> The analyte must adsorb on the metal or sit within a
+  nanometre or two of it. A receptor layer that holds the analyte far away — a 10 nm antibody — leaves
+  little enhancement for the analyte's own bands. Label-free biosensing therefore uses small receptors
+  (short thiols, aptamers) or none.</li>
+  <li><b>Reporters belong right on the metal.</b> A SERS tag puts its reporter as a covalently bound
+  monolayer at \(d \approx 0\), where the enhancement is largest, and only <i>then</i> adds shells and
+  antibodies on the outside, where distance no longer matters.</li>
+  <li><b>Shells can be thin and still useful.</b> A 2 nm pinhole-free silica or alumina shell isolates the
+  metal from the sample while keeping most of the enhancement — the idea behind shell-isolated
+  nanoparticle-enhanced Raman spectroscopy, SHINERS [13].</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-adsorb"><span class="num">05</span>Label-free SERS I — getting the molecule onto the metal</h2>
+
+<p>In label-free SERS the surface chemistry <i>is</i> the selectivity. Whatever binds to the metal is seen;
+whatever does not, is not. Three kinds of interaction decide this.</p>
+<ul>
+  <li><b>Covalent-like chemisorption.</b> Thiols and disulfides bond to gold and silver through sulfur with
+  a strength of roughly 40–50 kcal mol⁻¹; isothiocyanates, selenols and some N-heterocycles also bind strongly.
+  Molecules with these groups (thiol drugs, thiopurines, many pesticides) are easy targets.</li>
+  <li><b>Coordination.</b> Lone pairs of amines and pyridine-type nitrogens, carboxylates and phosphates
+  coordinate to surface atoms or adsorbed ions. Pyridine on silver — the molecule of the discovery [1] — binds
+  this way.</li>
+  <li><b>Electrostatics and hydrophobicity.</b> Colloids are usually stabilised by a charged layer: citrate
+  makes gold and silver negative. Cations approach easily, anions are repelled. Hydrophobic molecules may
+  adsorb from water simply to escape it.</li>
+</ul>
+
+<h3>The Langmuir isotherm</h3>
+<p>If adsorption and desorption balance on a fixed number of equivalent sites, with rate constants
+\(k_a\) and \(k_d\) and surface coverage \(\theta\),</p>
+$$k_a\,C\,(1-\theta) = k_d\,\theta \quad\Longrightarrow\quad \theta = \frac{K C}{1 + K C}, \qquad K = \frac{k_a}{k_d} = \frac{1}{c^\circ}\,e^{-\Delta G^\circ_\text{ads}/RT} .$$
+<p>Since the SERS signal is proportional to the number of adsorbed molecules, \(I \propto \theta\): linear
+at \(C \ll 1/K\), saturating at \(C \gg 1/K\). A free energy of adsorption of −34 kJ mol⁻¹ gives
+\(K \approx 10^6\ \mathrm{M^{-1}}\) at room temperature and a linear range ending near 100 nM. This is why
+label-free SERS calibration curves bend over and why they span only a few decades.</p>
+
+<h3>Competition with the matrix</h3>
+<p>Real samples contain other molecules that adsorb. For an analyte A and a competitor B on the same sites,</p>
+$$\theta_A = \frac{K_A C_A}{1 + K_A C_A + K_B C_B} .$$
+<p>At low analyte concentration the sensitivity falls by the factor \(1 + K_B C_B\). Serum proteins at
+mg mL⁻¹ concentrations, salts that change the surface, and the citrate itself can win the competition and
+hide the analyte completely. The next figure lets you see how fast this happens.</p>
+
+<figure class="fig" data-fig="langmuir">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Adsorption isotherms behind a label-free calibration.</b> Green: Langmuir coverage of the
+  analyte alone. Red: the same analyte in the presence of a competing molecule; the curve shifts to higher
+  concentration by \(1 + K_B C_B\) (×11 at the default settings). Dashed: the sites the competitor occupies. Raise the competitor's affinity
+  or concentration to see a matrix effect wipe out low-concentration detection.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-surface"><span class="num">06</span>Label-free SERS II — surfaces, aggregation and partition layers</h2>
+
+<h3>Colloids and why they are aggregated</h3>
+<p>The workhorse label-free substrate is a silver or gold colloid, often made by citrate reduction [34].
+Isolated spheres give only modest enhancement; the strong signal comes from gaps between particles.
+Adding salt or an aggregating agent compresses the electrical double layer — for a 1:1 electrolyte in water
+at 25 °C the Debye length is \(\kappa^{-1} \approx 0.304\ \mathrm{nm}/\sqrt{I/\mathrm{M}}\), about 1 nm at
+0.1 M — so van der Waals attraction wins and particles cluster, trapping analyte in the junctions. The
+price is that aggregation is a <i>process</i>: the signal rises, peaks and falls as clusters grow and
+sediment, so measurements must be made at a fixed, reproducible time.</p>
+
+<h3>Cleaning the surface</h3>
+<p>Citrate, its oxidation products and adventitious carbon occupy sites and add their own bands. Iodide
+adsorbs very strongly on silver, displaces citrate and leaves a clean, uniform surface. With iodide-modified
+silver nanoparticles and Mg²⁺ added to aggregate them and bring the negatively charged DNA to the surface,
+Xu and co-workers recorded reproducible label-free spectra of DNA sensitive to single-base changes [16].</p>
+
+<h3>Partition layers: making a weak adsorber stick</h3>
+<p>Glucose is the textbook difficult analyte: a small Raman cross-section and almost no affinity for bare
+silver [14]. Van Duyne and co-workers solved this by coating the silver with a self-assembled monolayer that
+<i>partitions</i> glucose into the first nanometre or so of the surface, much like the stationary phase in
+chromatography. A mixed decanethiol/mercaptohexanol layer on silver film-over-nanosphere substrates allowed
+reversible, real-time glucose measurement in bovine plasma, with multivariate calibration [15]. The analyte
+is still read by its own spectrum — the method is label-free — but a designed layer now supplies selectivity.
+Thiol monolayer chemistry is described in the <a href="blog-antibody-spr.html#s-gold">antibody article</a>.</p>
+
+<h3>Shell isolation</h3>
+<p>SHINERS particles carry an ultrathin, pinhole-free silica or alumina shell [13]. The shell keeps the
+metal from reacting with or perturbing the sample, stops the particles from fusing, and lets the same
+particles be spread over any surface — electrodes, crystals, leaves, cells — to record the spectrum of what
+lies beneath. It is label-free in that the sample's own spectrum is recorded, but by a probe that never
+touches the sample.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-lfapps"><span class="num">07</span>Label-free SERS III — what it can read, and what goes wrong</h2>
+
+<h3>What it reads well</h3>
+<ul>
+  <li><b>Small molecules with an anchoring group</b> — drugs, dyes, pesticides, explosives, metabolites — at
+  trace levels, usually against a simple matrix.</li>
+  <li><b>Nucleic acids.</b> The bases dominate; adenine's ring-breathing band near 736 cm⁻¹ is especially
+  strong. Barhoumi and Halas replaced adenine with 2-aminopurine in the capture strand so that hybridisation
+  with a target could be read from the reappearance of the adenine band, without labels [17]. With clean
+  surfaces, differences of a single base are detectable [16].</li>
+  <li><b>Bacteria and cells.</b> Multivariate analysis of SERS spectra of bacteria on silver colloids
+  discriminated species and, for <i>E. coli</i>, strains [18]. The spectrum is a sum over whatever adsorbs
+  from the cell envelope and its secretions, so discrimination is statistical rather than a band-by-band
+  assignment.</li>
+  <li><b>Proteins</b>, with caveats. Large proteins expose only a small part of themselves to the metal; the
+  spectrum shows the residues in contact (aromatic side chains, disulfides, the amide backbone) and can
+  change as the protein unfolds on the surface. The bands that matter in biological spectra are summarised in
+  <a href="blog-spectroscopy.html#s-bio">reading a biological spectrum</a>.</li>
+</ul>
+
+<h3>What goes wrong</h3>
+<ul>
+  <li><b>Selectivity is borrowed from adsorption.</b> The molecules with the highest \(K\) and the largest
+  cross-section dominate, not the ones you want. In serum, proteins form a corona on the particles within
+  minutes.</li>
+  <li><b>Photochemistry on the surface.</b> Hot electrons and local heating drive reactions. The classic
+  example: 4-aminothiophenol, long assigned on the basis of “b₂ modes” enhanced by charge transfer, is
+  oxidised during the measurement to 4,4′-dimercaptoazobenzene, whose bands were being observed; defocusing the
+  laser avoided the reaction [19]. Any label-free spectrum that changes with laser power or time should be
+  suspected of this.</li>
+  <li><b>Spectra differ from references</b>, because of binding, orientation and selection rules
+  (section 3).</li>
+  <li><b>Reproducibility and quantification</b> are limited by hot-spot statistics (section 12) and by
+  aggregation kinetics. Most applications therefore combine label-free SERS with chemometrics and machine
+  learning, which brings its own risks: models must be validated on independent samples, substrates and days,
+  not on spectra from the same batch [20, 22].</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-tags"><span class="num">08</span>Labelled SERS I — anatomy of a SERS tag</h2>
+
+<p>A SERS tag turns the weaknesses of label-free SERS around. Instead of hoping that the analyte binds the
+metal and scatters strongly, it places a molecule chosen to do both on a particle chosen to enhance it, and
+leaves selectivity to biology [23].</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 4</div>
+  <svg viewBox="0 0 860 360" role="img" aria-label="Structure of a SERS tag">
+    <style>.tl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.th{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#efeaf6}</style>
+    <g transform="translate(190 180)">
+      <circle r="150" fill="none" stroke="#a98bf0" stroke-opacity=".25" stroke-width="2" stroke-dasharray="4 5"/>
+      <circle r="118" fill="#45bfd6" fill-opacity=".14" stroke="#45bfd6" stroke-opacity=".6"/>
+      <circle r="86" fill="#e2566e" fill-opacity=".18"/>
+      <circle r="78" fill="#e0a82e"/>
+      <circle r="78" fill="url(#tgrad)"/>
+      <defs><radialGradient id="tgrad" cx=".35" cy=".35" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity=".2"/></radialGradient></defs>
+      <g stroke="#e2566e" stroke-width="2.2">
+        <line x1="78" y1="0" x2="88" y2="0"/><line x1="-78" y1="0" x2="-88" y2="0"/><line x1="0" y1="78" x2="0" y2="88"/><line x1="0" y1="-78" x2="0" y2="-88"/>
+        <line x1="55" y1="55" x2="62" y2="62"/><line x1="-55" y1="55" x2="-62" y2="62"/><line x1="55" y1="-55" x2="62" y2="-62"/><line x1="-55" y1="-55" x2="-62" y2="-62"/>
+      </g>
+      <g stroke="#a98bf0" stroke-width="4.5" stroke-linecap="round" fill="none">
+        <path d="M0 -118 v-18 M0 -136 l-9 -11 M0 -136 l9 -11"/><path d="M118 0 h18 M136 0 l11 -9 M136 0 l11 9"/><path d="M-84 84 l13 -13" transform="translate(-13 13)"/><path d="M-97 97 l-4 -14 M-97 97 l14 4"/>
+      </g>
+      <text x="0" y="5" class="th" text-anchor="middle" fill="#160c2a">Au / Ag core</text>
+      <text x="0" y="21" class="tl" text-anchor="middle" fill="#3a2a10">30–100 nm</text>
+    </g>
+    <line x1="240" y1="140" x2="440" y2="70" stroke="#e0a82e"/><text x="446" y="66" class="th" fill="#e0a82e">1 Plasmonic core</text>
+    <text x="446" y="82" class="tl">sphere, star, rod, Au@Ag or core–gap–shell;</text>
+    <text x="446" y="96" class="tl">sets the enhancement and the laser wavelength</text>
+    <line x1="273" y1="150" x2="440" y2="134" stroke="#e2566e"/><text x="446" y="138" class="th" fill="#e2566e">2 Raman reporter monolayer</text>
+    <text x="446" y="154" class="tl">thiol / isothiocyanate anchored at d ≈ 0;</text>
+    <text x="446" y="168" class="tl">large cross-section, few sharp bands</text>
+    <line x1="302" y1="200" x2="440" y2="208" stroke="#45bfd6"/><text x="446" y="212" class="th" fill="#45bfd6">3 Protective shell</text>
+    <text x="446" y="228" class="tl">silica, PEG or protein: locks the reporter</text>
+    <text x="446" y="242" class="tl">in, keeps sample molecules out</text>
+    <line x1="332" y1="180" x2="440" y2="280" stroke="#a98bf0"/><text x="446" y="284" class="th" fill="#a98bf0">4 Recognition element</text>
+    <text x="446" y="300" class="tl">antibody, aptamer, peptide or ligand;</text>
+    <text x="446" y="314" class="tl">gives specificity (and non-specific binding)</text>
+  </svg>
+  <figcaption><b>Anatomy of a SERS tag.</b> Each layer solves one of the problems of label-free SERS: the core
+  provides enhancement, the reporter provides a large, known cross-section at the surface, the shell removes
+  competition and drift, and the recognition element provides selectivity. (Schematic, not to scale.)</figcaption>
+</figure>
+
+<h3>The core</h3>
+<p>Gold is chosen for stability and biocompatibility and for red and near-infrared excitation; silver, or a
+silver shell on gold (Au@Ag), for higher enhancement in the visible. Anisotropic cores (stars, rods) put
+hot spots on the particle itself. The most reproducible tags build the gap <i>inside</i> the particle:
+gold nanoparticles with a 1 nm interior gap, bridged by DNA, with the reporter placed in the gap, gave
+enhancement factors above 10⁸ with a narrow particle-to-particle distribution [29]. Such
+<b>gap-enhanced Raman tags</b> do not need aggregation, which removes the largest source of variation in
+label-free SERS.</p>
+
+<h3>The shell</h3>
+<p>A silica shell (grown by Stöber chemistry after a silane primer) or a dense PEG layer stops reporter
+desorption and exchange, keeps proteins and salts from reaching the metal, prevents aggregation, and gives
+a surface for attaching recognition molecules with standard chemistry — amine coupling and EDC/NHS on
+carboxylated shells (<a href="blog-antibody-spr.html#s-amine">EDC/NHS chemistry</a>), maleimide–thiol, or
+streptavidin–biotin. In vivo tags of this kind have been reported to be more than 200 times brighter than
+near-infrared quantum dots [27].</p>
+
+<h3>The recognition element</h3>
+<p>Antibodies are the usual choice; their structure and how to orient them are covered in the
+<a href="blog-antibody-spr.html#s-ab">antibody article</a>. Aptamers are smaller and chemically defined;
+peptides and small ligands (folate, RGD) target receptors on cells. Because the reporter is already
+at the metal, the size of this layer no longer costs signal — but it does decide non-specific binding.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-rep"><span class="num">09</span>Labelled SERS II — the chemistry of Raman reporters</h2>
+
+<p>A good reporter has (i) a large Raman cross-section — aromatic, conjugated, and ideally resonant with the
+laser; (ii) a group that binds the metal strongly and in a defined orientation — thiol, disulfide or
+isothiocyanate; (iii) a few strong, narrow bands that do not overlap those of other reporters or the sample;
+(iv) photostability and no surface photochemistry; and (v) for multiplexing, a family of related molecules
+whose bands can be shifted by design [23].</p>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Reporter (type)</th><th>Anchor</th><th>Main bands, cm⁻¹ (approx.)</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>4-Mercaptobenzoic acid (4-MBA)</td><td>thiol</td><td>≈ 1075, 1585</td><td>simple, stable; the carboxylate also makes it a pH sensor [32]</td></tr>
+    <tr><td>4-Aminothiophenol (4-ATP)</td><td>thiol</td><td>≈ 1080, 1590</td><td>amine for coupling; can be photo-oxidised to DMAB, adding bands near 1140, 1390, 1430 [19]</td></tr>
+    <tr><td>4-Nitrothiophenol (4-NTP)</td><td>thiol</td><td>≈ 1335 (NO₂ sym. stretch)</td><td>strong nitro band; can be photoreduced on hot metals</td></tr>
+    <tr><td>DTNB / DSNB (nitrobenzoate disulfides)</td><td>disulfide</td><td>≈ 1335</td><td>disulfide cleaves on gold; the NHS-ester form (DSNB) couples antibodies directly — the basis of extrinsic Raman labels [24, 25]</td></tr>
+    <tr><td>2-Naphthalenethiol, biphenyl-4-thiol</td><td>thiol</td><td>≈ 1380 / ≈ 1590 and ring modes</td><td>distinct aromatic fingerprints for multiplex sets</td></tr>
+    <tr><td>Malachite green isothiocyanate, crystal violet</td><td>NCS / adsorption</td><td>≈ 1175, 1615</td><td>resonant with red excitation: SERRS</td></tr>
+    <tr><td>Rhodamine 6G</td><td>adsorption</td><td>≈ 1360, 1510, 1650</td><td>resonant at 532 nm; classic single-molecule dye [10]</td></tr>
+    <tr><td>Nile blue, cyanines (Cy3, Cy5, NIR cyanines)</td><td>adsorption / thiol linker</td><td>dye-specific</td><td>choose the dye whose absorption matches the laser</td></tr>
+    <tr><td>Alkynes (e.g. 4-ethynylbenzenethiol derivatives)</td><td>thiol</td><td>C≡C ≈ 2000–2200</td><td>single band in the cell-silent region, tunable by substitution [30]</td></tr>
+    <tr><td>Nitriles (e.g. 4-mercaptobenzonitrile)</td><td>thiol</td><td>C≡N ≈ 2220</td><td>silent-region band; sensitive to local electric field</td></tr>
+    <tr><td>Deuterated reporters</td><td>thiol</td><td>C–D ≈ 2100–2300</td><td>isotopic twins of a reporter: same chemistry, shifted bands</td></tr>
+  </tbody>
+</table></div>
+
+<h3>Resonance: SERRS</h3>
+<p>If the laser falls inside the reporter's electronic absorption, the Raman cross-section itself rises by
+resonance — typically by factors of 10²–10⁶ — on top of the plasmonic enhancement. This is surface-enhanced
+<b>resonance</b> Raman scattering, SERRS. The fluorescence that would normally swamp a resonant dye is
+quenched by the metal. With dye-labelled oligonucleotides and two excitation wavelengths, Faulds, Graham and
+co-workers detected five DNA sequences quantitatively in one mixture, without separation [26].</p>
+
+<h3>The silent region</h3>
+<p>Biological samples have almost no Raman bands between about 1800 and 2800 cm⁻¹: no common bond in
+proteins, lipids or nucleic acids vibrates there (<a href="blog-spectroscopy.html#s-silent">why the silent
+region is silent</a>). A triple bond does: C≡C near 2100–2200 cm⁻¹, C≡N near 2220 cm⁻¹, and C–D bonds a little
+lower. Reporters with such bands appear against a flat background, even inside cells. Changing the substituents
+on a 4-ethynylbenzenethiol core shifts the alkyne band in steps of a few tens of cm⁻¹, producing a
+“palette” of distinct single-band reporters for interference-free multiplex cell imaging [30].</p>
+
+<h3>The reporter as a sensor</h3>
+<p>Some reporters change with their environment, and are used for that. The carboxylate band of 4-MBA
+grows and the C=O band of the acid fades as pH rises; the ratio, measured on silver nanoparticles taken up
+by cells, reported intracellular pH over roughly pH 6–8 [32]. The tag is then reading a property of its
+surroundings — the intermediate case between label-free and labelled.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-formats"><span class="num">10</span>Labelled SERS III — assay formats and imaging</h2>
+
+<h3>Sandwich immunoassays</h3>
+<p>A capture antibody on a gold or glass surface binds the antigen; a SERS tag carrying a second antibody
+binds another epitope; the reporter's band is read. Grubisha, Porter and co-workers used gold particles
+labelled with a nitro reporter and an antibody to detect prostate-specific antigen down to about 1 pg/mL in
+human serum [25]. The tag also adds the plasmonic coupling between the particle and the gold surface below
+it — a particle-on-mirror gap — which brightens the signal further. The capture surface is built exactly as on
+an SPR chip (<a href="blog-antibody-spr.html#s-amine">immobilisation chemistries</a>).</p>
+
+<p>The binding of antigen to the surface follows the same Langmuir form as section 5, now with the antibody
+dissociation constant \(K_D\). With a background \(S_\text{blank}\) from tags that stick non-specifically,</p>
+$$S(C) = S_\text{blank} + S_\text{max}\,\frac{C}{K_D + C}, \qquad \mathrm{LOD}: \; S(C_\text{LOD}) = S_\text{blank} + 3\sigma_\text{blank} .$$
+<p>Solving,</p>
+$$C_\text{LOD} = K_D\,\frac{3\sigma_\text{blank}}{S_\text{max} - 3\sigma_\text{blank}} \;\approx\; \frac{3\sigma_\text{blank}}{S_\text{max}/K_D} = \frac{3\sigma_\text{blank}}{\text{slope}} .$$
+<p>The detection limit is set by the <i>noise of the blank</i>, which comes mostly from non-specific tag
+binding (<a href="blog-antibody-spr.html#s-nsb">non-specific binding</a>), not by how bright a single tag is.
+Brighter tags help only until the background they create dominates.</p>
+
+<figure class="fig" data-fig="assay">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Calibration and detection limit of a sandwich SERS immunoassay.</b> The ideal response
+  (gold), simulated replicate measurements, the blank level set by non-specific tags, and the
+  blank + 3σ threshold. Lowering \(K_D\) moves the curve left; lowering the blank's variability lowers the LOD
+  in proportion. All values are in arbitrary units; the model is the one in the text.</figcaption>
+</figure>
+
+<h3>Lateral-flow and point-of-care tests</h3>
+<p>Replacing the gold particles of a lateral-flow strip with SERS tags keeps the simple format while reading
+the test line with a Raman reader instead of the eye; the narrow bands let several analytes share one line.
+The same caution applies: the detection limit is decided by the blank of the strip.</p>
+
+<h3>Imaging in cells and tissue</h3>
+<p>Tags are bright, photostable and multiplexable, which makes them attractive for imaging. Antibody-fragment
+tags with a near-infrared resonant reporter targeted tumours in living mice [27]. Gold–silica tags combining
+MRI, photoacoustic and Raman contrast delineated brain-tumour margins in mice, the Raman signal resolving
+residual tumour at the edge of the resection [28]. Combining SERS with spatially offset Raman spectroscopy
+(SESORS) recovered signals of four kinds of tags through about 20 mm of tissue [33].</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-multi"><span class="num">11</span>The mathematics of multiplexing</h2>
+
+<p>Why can SERS read many labels at once when fluorescence struggles beyond four or five? Compare widths in
+the same units. A fluorophore's emission band is typically 30–60 nm wide; at 650 nm a width \(\Delta\lambda\)
+corresponds to</p>
+$$\Delta\tilde\nu = \frac{\Delta\lambda}{\lambda^2} = \frac{50\ \mathrm{nm}}{(650\ \mathrm{nm})^2} \approx 1200\ \mathrm{cm^{-1}},$$
+<p>while a Raman band is 10–20 cm⁻¹ wide. Within the 400–2400 cm⁻¹ window covered by one spectrometer, many
+reporters can be told apart, all excited by one laser.</p>
+
+<h3>Linear unmixing</h3>
+<p>If the reporters do not interact, the measured spectrum is a weighted sum of their reference spectra
+plus a background and noise. Writing the spectrum as a vector \(\mathbf y\) (one entry per wavenumber), the
+reference spectra as the columns of \(\mathbf S\), and the background as a few smooth basis functions
+\(\mathbf B\),</p>
+$$\mathbf y = \mathbf S\,\mathbf c + \mathbf B\,\mathbf b + \boldsymbol\varepsilon .$$
+<p>Least squares gives the amounts directly:</p>
+$$\hat{\mathbf c} = (\mathbf A^\mathsf T\mathbf A)^{-1}\mathbf A^\mathsf T\mathbf y, \qquad \mathbf A = [\,\mathbf S\;\mathbf B\,], \qquad \mathrm{Cov}(\hat{\mathbf c}) = \sigma^2(\mathbf A^\mathsf T\mathbf A)^{-1} .$$
+<p>The covariance shows what limits multiplexing: when two reference spectra overlap, \(\mathbf A^\mathsf T\mathbf A\)
+approaches singularity and noise in the estimates grows. Because amounts cannot be negative, non-negative
+least squares (constrained \(\mathbf c \ge 0\)) is usually used; the figure removes negative components and
+refits.</p>
+
+<figure class="fig" data-fig="unmix">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Unmixing three SERS tags in a biological background.</b> The measured mixture (grey), the
+  least-squares fit (dashed), and the recovered contribution of each tag (coloured, offset to the baseline).
+  The two aromatic tags share bands near 1075 and 1585 cm⁻¹ with each other and sit on top of protein bands;
+  the alkyne tag's single band lies in the silent region and is recovered cleanly even when it is weak.
+  Spectra are synthetic.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-quant"><span class="num">12</span>Quantification: hot spots, internal standards and enhancement factors</h2>
+
+<h3>Hot-spot statistics</h3>
+<p>Enhancement is not shared fairly. Fang, Seong and Dlott measured the distribution of site enhancements on a
+silver film-over-nanosphere substrate and found a power law, \(p(\eta) \propto \eta^{-1.75}\), spanning
+2.8 × 10⁴ to 4.1 × 10¹⁰; the 63 hottest sites in a million produced 24 % of the signal [11]. For such a
+heavy-tailed distribution the variance is dominated by rare, very bright sites, so the relative standard
+deviation of a sum of \(N\) molecules falls much more slowly than the \(1/\sqrt N\) of ordinary statistics.
+At low coverage the signal from one spot to the next can vary several-fold — and in the single-molecule limit
+it blinks on and off [9, 10].</p>
+
+<h3>Internal standards</h3>
+<p>Some variations multiply all signals in a spot equally: laser power, focus, local particle density,
+aggregation state. Dividing the analyte band by a band from an internal standard measured in the same spot
+cancels them:</p>
+$$\frac{I_A}{I_\text{IS}} = \frac{N_A\,\sigma_A\,\langle G\rangle_A}{N_\text{IS}\,\sigma_\text{IS}\,\langle G\rangle_\text{IS}} .$$
+<p>The ratio is reliable only if \(\langle G\rangle_A \approx \langle G\rangle_\text{IS}\), i.e. if the standard
+samples the same hot spots. That is why the best internal standards are placed <i>inside</i> the
+nanostructure — core–shell particles with an embedded reporter [31] — or are isotopically labelled versions
+of the analyte, which adsorb identically. A standard that sits on different sites still cancels the shared
+factors but not the hot-spot lottery: when a few molecules in the best gaps dominate, the analyte and the
+standard draw different winners, and the ratio scatters as much as the raw signal. The figure shows both cases,
+and the alternative of making the hot spots uniform in the first place.</p>
+
+<figure class="fig" data-fig="hotspot">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Spot-to-spot SERS signals and the internal standard.</b> Each spot contains a number of
+  molecules whose enhancements are drawn either from the power law measured in [11] or from a narrow distribution
+  (uniform nanogap particles [29]), multiplied by a spot-wide factor (focus, aggregation, laser power) and with 3 %
+  read-out noise. Gold: raw signal; cyan: ratio to an internal standard that shares the spot-wide factor. A
+  standard on its own sites cannot cancel the hot-spot lottery — with power-law hot spots it can even add scatter —
+  while a standard embedded in the same hot spots, or a uniform substrate, brings the ratio down to the read-out
+  noise.</figcaption>
+</figure>
+
+<h3>Calibration in practice</h3>
+<ul>
+  <li>Average over many spots or scan the laser, so that \(N\) in the statistics is large.</li>
+  <li>Use the ratio to an internal standard, ideally embedded or isotopic [31].</li>
+  <li>Fit the calibration with the isotherm, not a straight line, outside the low-concentration limit.</li>
+  <li>Report the detection limit from the blank's standard deviation, measured on independent substrates.</li>
+</ul>
+
+<h3>Enhancement factors: a worked example</h3>
+<p>Two definitions are common [6, 20]. The <b>analytical enhancement factor</b> compares signals per unit
+concentration, \(\mathrm{AEF} = (I_\text{SERS}/c_\text{SERS})/(I_\text{RS}/c_\text{RS})\); it is what matters for a
+detection method. The <b>substrate enhancement factor</b> compares signals per molecule,
+\(\mathrm{SSEF} = (I_\text{SERS}/N_\text{surf})/(I_\text{RS}/N_\text{vol})\), and describes the substrate. An
+illustrative calculation:</p>
+<div class="callout tip"><b>Worked example (illustrative numbers)</b>
+<p>Normal Raman of a 0.1 M solution with an effective scattering volume of 100 µm³ (10⁻¹³ L):
+\(N_\text{vol} = 0.1 \times 10^{-13} \times 6.02\times10^{23} = 6.0\times10^{9}\) molecules, giving
+\(I_\text{RS} = 200\) counts s⁻¹.</p>
+<p>SERS of a full monolayer (0.4 nm² per molecule) in a 1 µm² laser spot on a flat-equivalent surface:
+\(N_\text{surf} = 10^{6}\ \mathrm{nm^2}/0.4\ \mathrm{nm^2} = 2.5\times10^{6}\), giving \(I_\text{SERS} = 2\times10^{4}\)
+counts s⁻¹ under the same conditions.</p>
+<p>\(\mathrm{SSEF} = (2\times10^{4}/2.5\times10^{6})/(200/6.0\times10^{9}) \approx 2.4\times10^{5}\).
+The real metal area (roughness) and the fraction of molecules in hot spots are the usual sources of
+order-of-magnitude disagreement between reported values — state them.</p></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-compare"><span class="num">13</span>Advantages, disadvantages and how to choose</h2>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th></th><th>Label-free (direct) SERS</th><th>Labelled (indirect) SERS</th></tr></thead>
+  <tbody>
+    <tr><td>What is measured</td><td>the analyte's own vibrational spectrum</td><td>the reporter's spectrum, tied to the analyte by recognition</td></tr>
+    <tr><td>Information</td><td>structure, identity, chemical changes, unknowns</td><td>presence and amount of a pre-defined target</td></tr>
+    <tr><td>Selectivity from</td><td>adsorption affinity, partition layers, chemometrics</td><td>antibodies, aptamers, ligands</td></tr>
+    <tr><td>Sensitivity</td><td>depends on the analyte's affinity and cross-section; excellent for some, poor for many</td><td>high for every target (bright reporters, SERRS); limited by non-specific binding</td></tr>
+    <tr><td>Multiplexing</td><td>implicit, in the full spectrum; needs multivariate analysis</td><td>explicit, one reporter per target; simple unmixing; silent-region reporters</td></tr>
+    <tr><td>Matrix effects</td><td>strong: competition, protein corona, salts</td><td>weak at the reporter (shielded by a shell); remain at the recognition step</td></tr>
+    <tr><td>Reproducibility</td><td>difficult: hot spots, aggregation kinetics, orientation</td><td>better: one batch of tags, internal gaps, embedded standards</td></tr>
+    <tr><td>Sample preparation</td><td>minimal — mix and measure</td><td>tag synthesis, conjugation, incubations, washing</td></tr>
+    <tr><td>Artefacts</td><td>photochemistry, spectra differing from references, contamination</td><td>reporter desorption or exchange, tag aggregation, steric hindrance from large tags</td></tr>
+    <tr><td>Needs prior knowledge?</td><td>no — can find what you did not look for</td><td>yes — a receptor for each target</td></tr>
+    <tr><td>Typical uses</td><td>trace chemicals, drugs, pesticides, DNA, bacteria and cell fingerprinting, catalysis and electrochemistry</td><td>immunoassays, lateral-flow tests, multiplex biomarkers, cell and in vivo imaging, deep-tissue SESORS</td></tr>
+  </tbody>
+</table></div>
+
+<h3>A short decision guide</h3>
+<ul>
+  <li><b>You need to know what the molecule is</b>, or to follow a chemical change: label-free.</li>
+  <li><b>The target binds the metal and is present at more than about 10⁻⁸ M in a clean matrix</b>: label-free,
+  probably with an internal standard.</li>
+  <li><b>The target is a protein, at pM in serum</b>: labelled, almost always. Its own spectrum would be weak,
+  far from the metal behind an antibody, and outcompeted by albumin.</li>
+  <li><b>You need many targets at once, or imaging in cells and tissue</b>: labelled, with a reporter family
+  designed for separation (silent-region or resonant).</li>
+  <li><b>A weak adsorber in a complex matrix</b>, with no good receptor: label-free with a partition layer, or a
+  receptor that changes its own spectrum when it binds.</li>
+  <li><b>Unknown samples, screening, diagnostics without a defined marker</b>: label-free with
+  multivariate analysis — validated across substrates and days.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-practice"><span class="num">14</span>Good practice and troubleshooting</h2>
+
+<p>The 2020 consensus guidance on quantitative SERS [20] and recent reviews [21, 22] converge on a short
+list that applies to both modes:</p>
+<ul>
+  <li>Characterise every substrate batch (extinction spectrum, electron microscopy) and report the excitation
+  wavelength, power density, acquisition time and objective.</li>
+  <li>Always measure blanks: substrate alone, matrix alone, and for tags, the full assay without target.</li>
+  <li>Report how spectra were selected — averaged over the whole area, not the brightest spots.</li>
+  <li>State which enhancement factor is quoted and how \(N\) was estimated.</li>
+  <li>Validate chemometric and machine-learning models on samples, substrates and days kept out of training.</li>
+  <li>Check that spectra do not change with laser power or exposure time.</li>
+</ul>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Symptom</th><th>Likely cause</th><th>What to try</th></tr></thead>
+  <tbody>
+    <tr><td>No analyte bands, only citrate or carbon bands</td><td>analyte does not adsorb, or surface occupied</td><td>change the charge (pH, cationic/anionic aggregant), clean with halides, try a partition layer</td></tr>
+    <tr><td>Signal rises then falls during measurement</td><td>aggregation proceeding, sedimentation</td><td>measure at a fixed time after mixing; control salt; use solid substrates</td></tr>
+    <tr><td>New bands appear with laser power</td><td>surface photochemistry or heating</td><td>reduce power density, defocus or scan, check against a reaction product's spectrum [19]</td></tr>
+    <tr><td>Large spot-to-spot variation</td><td>few molecules in heterogeneous hot spots</td><td>average many spots, use an internal standard, move to uniform substrates or nanogap tags</td></tr>
+    <tr><td>High blank in a tag assay</td><td>non-specific tag adsorption</td><td>PEG or protein blocking, zwitterionic shells, more stringent washing, fewer antibodies per tag</td></tr>
+    <tr><td>Tag signal falls with storage</td><td>reporter desorption or exchange, aggregation</td><td>add or thicken the shell, store cold in low-salt buffer, check extinction spectrum</td></tr>
+  </tbody>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">15</span>References</h2>
+<ol class="refs">
+  <li>M. Fleischmann, P. J. Hendra and A. J. McQuillan, “Raman spectra of pyridine adsorbed at a silver electrode,” <i>Chem. Phys. Lett.</i> <b>26</b>, 163–166 (1974).</li>
+  <li>D. L. Jeanmaire and R. P. Van Duyne, “Surface Raman spectroelectrochemistry: Part I. Heterocyclic, aromatic, and aliphatic amines adsorbed on the anodized silver electrode,” <i>J. Electroanal. Chem.</i> <b>84</b>, 1–20 (1977).</li>
+  <li>M. G. Albrecht and J. A. Creighton, “Anomalously intense Raman spectra of pyridine at a silver electrode,” <i>J. Am. Chem. Soc.</i> <b>99</b>, 5215–5217 (1977).</li>
+  <li>M. Moskovits, “Surface-enhanced spectroscopy,” <i>Rev. Mod. Phys.</i> <b>57</b>, 783–826 (1985).</li>
+  <li>E. C. Le Ru and P. G. Etchegoin, <i>Principles of Surface-Enhanced Raman Spectroscopy and Related Plasmonic Effects</i>, Elsevier, Amsterdam (2009).</li>
+  <li>E. C. Le Ru, E. Blackie, M. Meyer and P. G. Etchegoin, “Surface enhanced Raman scattering enhancement factors: a comprehensive study,” <i>J. Phys. Chem. C</i> <b>111</b>, 13794–13803 (2007).</li>
+  <li>J. R. Lombardi and R. L. Birke, “A unified approach to surface-enhanced Raman spectroscopy,” <i>J. Phys. Chem. C</i> <b>112</b>, 5605–5617 (2008).</li>
+  <li>M. Moskovits and J. S. Suh, “Surface selection rules for surface-enhanced Raman spectroscopy: calculations and application to the surface-enhanced Raman spectrum of phthalazine on silver,” <i>J. Phys. Chem.</i> <b>88</b>, 5526–5530 (1984).</li>
+  <li>K. Kneipp, Y. Wang, H. Kneipp, L. T. Perelman, I. Itzkan, R. R. Dasari and M. S. Feld, “Single molecule detection using surface-enhanced Raman scattering (SERS),” <i>Phys. Rev. Lett.</i> <b>78</b>, 1667–1670 (1997).</li>
+  <li>S. Nie and S. R. Emory, “Probing single molecules and single nanoparticles by surface-enhanced Raman scattering,” <i>Science</i> <b>275</b>, 1102–1106 (1997).</li>
+  <li>Y. Fang, N.-H. Seong and D. D. Dlott, “Measurement of the distribution of site enhancements in surface-enhanced Raman scattering,” <i>Science</i> <b>321</b>, 388–392 (2008).</li>
+  <li>S. S. Masango et al., “High-resolution distance dependence study of surface-enhanced Raman scattering enabled by atomic layer deposition,” <i>Nano Lett.</i> <b>16</b>, 4251–4259 (2016).</li>
+  <li>J. F. Li et al., “Shell-isolated nanoparticle-enhanced Raman spectroscopy,” <i>Nature</i> <b>464</b>, 392–395 (2010).</li>
+  <li>K. E. Shafer-Peltier, C. L. Haynes, M. R. Glucksberg and R. P. Van Duyne, “Toward a glucose biosensor based on surface-enhanced Raman scattering,” <i>J. Am. Chem. Soc.</i> <b>125</b>, 588–593 (2003).</li>
+  <li>O. Lyandres et al., “Real-time glucose sensing by surface-enhanced Raman spectroscopy in bovine plasma facilitated by a mixed decanethiol/mercaptohexanol partition layer,” <i>Anal. Chem.</i> <b>77</b>, 6134–6139 (2005).</li>
+  <li>L.-J. Xu et al., “Label-free surface-enhanced Raman spectroscopy detection of DNA with single-base sensitivity,” <i>J. Am. Chem. Soc.</i> <b>137</b>, 5149–5154 (2015).</li>
+  <li>A. Barhoumi and N. J. Halas, “Label-free detection of DNA hybridization using surface enhanced Raman spectroscopy,” <i>J. Am. Chem. Soc.</i> <b>132</b>, 12792–12793 (2010).</li>
+  <li>R. M. Jarvis and R. Goodacre, “Discrimination of bacteria using surface-enhanced Raman spectroscopy,” <i>Anal. Chem.</i> <b>76</b>, 40–47 (2004).</li>
+  <li>Y.-F. Huang, H.-P. Zhu, G.-K. Liu, D.-Y. Wu, B. Ren and Z.-Q. Tian, “When the signal is not from the original molecule to be detected: chemical transformation of para-aminothiophenol on Ag during the SERS measurement,” <i>J. Am. Chem. Soc.</i> <b>132</b>, 9244–9246 (2010).</li>
+  <li>S. E. J. Bell, G. Charron, E. Cortés, J. Kneipp, M. Lamy de la Chapelle, J. Langer, M. Procházka, V. Tran and S. Schlücker, “Towards reliable and quantitative surface-enhanced Raman scattering (SERS): from key parameters to good analytical practice,” <i>Angew. Chem. Int. Ed.</i> <b>59</b>, 5454–5462 (2020).</li>
+  <li>J. Langer et al., “Present and future of surface-enhanced Raman scattering,” <i>ACS Nano</i> <b>14</b>, 28–117 (2020).</li>
+  <li>C. Zong et al., “Surface-enhanced Raman spectroscopy for bioanalysis: reliability and challenges,” <i>Chem. Rev.</i> <b>118</b>, 4946–4980 (2018).</li>
+  <li>Y. Wang, B. Yan and L. Chen, “SERS tags: novel optical nanoprobes for bioanalysis,” <i>Chem. Rev.</i> <b>113</b>, 1391–1428 (2013).</li>
+  <li>M. D. Porter, R. J. Lipert, L. M. Siperko, G. Wang and R. Narayanan, “SERS as a bioassay platform: fundamentals, design, and applications,” <i>Chem. Soc. Rev.</i> <b>37</b>, 1001–1011 (2008).</li>
+  <li>D. S. Grubisha, R. J. Lipert, H.-Y. Park, J. Driskell and M. D. Porter, “Femtomolar detection of prostate-specific antigen: an immunoassay based on surface-enhanced Raman scattering and immunogold labels,” <i>Anal. Chem.</i> <b>75</b>, 5936–5943 (2003).</li>
+  <li>K. Faulds, F. McKenzie, W. E. Smith and D. Graham, “Quantitative simultaneous multianalyte detection of DNA by dual-wavelength surface-enhanced resonance Raman scattering,” <i>Angew. Chem. Int. Ed.</i> <b>46</b>, 1829–1831 (2007).</li>
+  <li>X. Qian et al., “In vivo tumor targeting and spectroscopic detection with surface-enhanced Raman nanoparticle tags,” <i>Nat. Biotechnol.</i> <b>26</b>, 83–90 (2008).</li>
+  <li>M. F. Kircher et al., “A brain tumor molecular imaging strategy using a new triple-modality MRI-photoacoustic-Raman nanoparticle,” <i>Nat. Med.</i> <b>18</b>, 829–834 (2012).</li>
+  <li>D.-K. Lim, K.-S. Jeon, J.-H. Hwang, H. Kim, S. Kwon, Y. D. Suh and J.-M. Nam, “Highly uniform and reproducible surface-enhanced Raman scattering from DNA-tailorable nanoparticles with 1-nm interior gap,” <i>Nat. Nanotechnol.</i> <b>6</b>, 452–460 (2011).</li>
+  <li>Y. Chen, J.-Q. Ren, X.-G. Zhang, D.-Y. Wu, A.-G. Shen and J.-M. Hu, “Alkyne-modulated surface-enhanced Raman scattering-palette for optical interference-free and multiplex cellular imaging,” <i>Anal. Chem.</i> <b>88</b>, 6115–6119 (2016).</li>
+  <li>W. Shen et al., “Reliable quantitative SERS analysis facilitated by core–shell nanoparticles with embedded internal standards,” <i>Angew. Chem. Int. Ed.</i> <b>54</b>, 7308–7312 (2015).</li>
+  <li>C. E. Talley, L. Jusinski, C. W. Hollars, S. M. Lane and T. Huser, “Intracellular pH sensors based on surface-enhanced Raman scattering,” <i>Anal. Chem.</i> <b>76</b>, 7064–7068 (2004).</li>
+  <li>N. Stone, M. Kerssens, G. R. Lloyd, K. Faulds, D. Graham and P. Matousek, “Surface enhanced spatially offset Raman spectroscopic (SESORS) imaging – the next dimension,” <i>Chem. Sci.</i> <b>2</b>, 776–780 (2011).</li>
+  <li>P. C. Lee and D. Meisel, “Adsorption and surface-enhanced Raman of dyes on silver and gold sols,” <i>J. Phys. Chem.</i> <b>86</b>, 3391–3395 (1982).</li>
+</ol>
+
+<hr>
+<p>The distance law, isotherms, assay model, hot-spot statistics and unmixing are the textbook models given in
+the text; all spectra and numbers in the figures are synthetic and illustrative, and band positions in the
+reporter table are approximate (they shift with substrate and environment). Corrections and questions are
+welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a> · <a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor →</a></p>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/blog/vl-core.js"></script>
+<script src="js/blog/sers-figs.js"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -62,6 +62,12 @@
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-label-free.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <url>
     <loc>https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectroscopy.html</loc>
