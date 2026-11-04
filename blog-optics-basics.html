@@ -29,8 +29,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
-<link rel="stylesheet" href="css/site.css?v=20261104f">
-<link rel="stylesheet" href="css/article.css?v=20261104f">
+<link rel="stylesheet" href="css/site.css?v=20261104g">
+<link rel="stylesheet" href="css/article.css?v=20261104g">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
@@ -101,7 +101,7 @@
     <li><a href="#s-fields">Charges and fields: the language of the theory</a></li>
     <li><a href="#s-maxwell">Maxwell's equations, one by one</a></li>
     <li><a href="#s-wave">The wave equation and the speed of light</a></li>
-    <li><a href="#s-pol">Polarisation</a></li>
+    <li><a href="#s-pol">Polarisation and Jones calculus</a></li>
     <li><a href="#s-energy">Energy, momentum and photons in a beam</a></li>
     <li><a href="#s-linear">Light in a linear medium: refractive index and dispersion</a></li>
     <li><a href="#s-aniso">Anisotropic media: birefringence</a></li>
@@ -259,18 +259,23 @@ infrared (micrometres), visible light (400–700 nm), ultraviolet, X-rays and ga
 wave equation; only the wavelength, and hence how the wave interacts with matter, changes.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-pol"><span class="num">05</span>Polarisation</h2>
+<h2 id="s-pol"><span class="num">05</span>Polarisation and Jones calculus</h2>
 
-<p>The transverse field has two independent directions. Writing the complex amplitude as a two-component
-<b>Jones vector</b>,</p>
-$$\tilde{\mathbf E}_0 = E_0\begin{pmatrix}\cos\theta\\ \sin\theta\,e^{i\delta}\end{pmatrix}, \qquad E_x = E_0\cos\theta\cos(\omega t),\ \ E_y = E_0\sin\theta\cos(\omega t - \delta)$$
-<p>(at a fixed point, \(z = 0\)), the tip of \(\mathbf E\) traces a line if the phase difference \(\delta = 0\) or \(\pi\)
-(<b>linear</b> polarisation), a circle if \(\theta = 45°\) and \(\delta = \pm 90°\) (<b>circular</b>), and an ellipse
-otherwise. The orientation \(\psi\) and ellipticity \(\chi\) of the ellipse follow from</p>
+<p>Because the field of a plane wave is transverse, it has two independent directions in which to oscillate. How the
+two components move together — in step, out of step, with equal or unequal amplitudes — is the <b>polarisation</b>.
+Almost every optical instrument manipulates it, deliberately (polarisers, wave plates, isolators, ellipsometers,
+liquid-crystal displays) or accidentally (mirrors, fibres, stressed glass). A compact algebra introduced by R. C.
+Jones in 1941 [25] describes all of this with 2-component vectors and 2 × 2 matrices.</p>
+
+<h3>The polarisation ellipse</h3>
+<p>For a wave travelling along \(z\), write the complex amplitude as a two-component <b>Jones vector</b>,</p>
+$$\mathbf J = \begin{pmatrix}E_x\\ E_y\end{pmatrix} = E_0\begin{pmatrix}\cos\theta\\ \sin\theta\,e^{i\delta}\end{pmatrix}, \qquad E_x(t) = E_0\cos\theta\cos(\omega t),\ \ E_y(t) = E_0\sin\theta\cos(\omega t - \delta)$$
+<p>(at a fixed point \(z = 0\), with fields written as \(\mathrm{Re}[\mathbf J\,e^{i(kz - \omega t)}]\)). Here \(\theta\) sets the ratio of the
+amplitudes and \(\delta\) the phase difference between \(E_y\) and \(E_x\). The tip of \(\mathbf E\) traces a line if
+\(\delta = 0\) or \(\pi\) (<b>linear</b> polarisation), a circle if \(\theta = 45°\) and \(\delta = \pm 90°\) (<b>circular</b>), and an
+ellipse otherwise. The orientation \(\psi\) of its major axis and its ellipticity angle \(\chi\) (\(\tan\chi\) = minor/major axis
+ratio, signed by the sense of rotation) follow from</p>
 $$\tan 2\psi = \tan 2\theta\,\cos\delta, \qquad \sin 2\chi = \sin 2\theta\,\sin\delta .$$
-<p>Optical elements act on Jones vectors as 2 × 2 matrices: a polariser projects, a wave plate adds a phase between
-two axes (a quarter-wave plate turns linear into circular light). Unpolarised light, such as sunlight, is a random
-mixture with no fixed \(\delta\).</p>
 
 <figure class="fig" data-fig="pol">
   <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
@@ -279,6 +284,135 @@ mixture with no fixed \(\delta\).</p>
   optical period, for the chosen amplitude split \(\theta\) and phase difference \(\delta\). The red segment shows the
   direction of rotation.</figcaption>
 </figure>
+
+<h3>Jones vectors: the standard states</h3>
+<p>Only relative amplitudes and the relative phase matter; an overall phase factor \(e^{i\varphi}\) changes nothing measurable,
+and vectors are usually normalised so that the intensity \(I \propto |E_x|^2 + |E_y|^2 = \mathbf J^\dagger\mathbf J\) equals 1.</p>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>State</th><th>Jones vector</th><th>E-vector path</th></tr></thead>
+  <tbody>
+    <tr><td>Horizontal (H)</td><td>\(\begin{pmatrix}1\\0\end{pmatrix}\)</td><td>line along \(x\)</td></tr>
+    <tr><td>Vertical (V)</td><td>\(\begin{pmatrix}0\\1\end{pmatrix}\)</td><td>line along \(y\)</td></tr>
+    <tr><td>Linear at angle \(\alpha\)</td><td>\(\begin{pmatrix}\cos\alpha\\ \sin\alpha\end{pmatrix}\)</td><td>line at \(\alpha\) to \(x\)</td></tr>
+    <tr><td>Diagonal (D, +45°) / anti-diagonal (A, −45°)</td><td>\(\tfrac{1}{\sqrt2}\begin{pmatrix}1\\ \pm1\end{pmatrix}\)</td><td>lines at ±45°</td></tr>
+    <tr><td>Left circular (L)</td><td>\(\tfrac{1}{\sqrt2}\begin{pmatrix}1\\ i\end{pmatrix}\)</td><td>counter-clockwise, looking towards the source</td></tr>
+    <tr><td>Right circular (R)</td><td>\(\tfrac{1}{\sqrt2}\begin{pmatrix}1\\ -i\end{pmatrix}\)</td><td>clockwise, looking towards the source</td></tr>
+  </tbody>
+</table></div>
+<p>Two states are <b>orthogonal</b> if \(\mathbf J_1^\dagger\mathbf J_2 = 0\) (\(\dagger\) = complex-conjugate transpose): H and V, D and A,
+R and L. Any orthogonal pair is a basis, so every state can be written in any of them — for example
+\(\mathrm H = (\mathrm R + \mathrm L)/\sqrt2\): linear light is an equal mixture of the two circular states, which is why a
+medium that delays one circular state relative to the other (an optically active sugar solution, or a Faraday
+rotator) <i>rotates</i> linear polarisation. The intensity that a polariser for state \(\mathbf J_a\) transmits from state
+\(\mathbf J\) is \(|\mathbf J_a^\dagger\mathbf J|^2\).</p>
+
+<h3>Jones matrices of optical elements</h3>
+<p>A linear, non-depolarising element changes \(\mathbf J\) into \(\mathbf J' = \mathbf M\mathbf J\), where \(\mathbf M\) is a 2 × 2 complex matrix.
+An element whose axis is at angle \(\theta\) to \(x\) is obtained from its matrix \(\mathbf M_0\) in its own axes by rotating into
+those axes, acting, and rotating back:</p>
+$$\mathbf M(\theta) = \mathbf R(-\theta)\,\mathbf M_0\,\mathbf R(\theta), \qquad \mathbf R(\theta) = \begin{pmatrix}\cos\theta & \sin\theta\\ -\sin\theta & \cos\theta\end{pmatrix} .$$
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Element</th><th>Jones matrix</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>Linear polariser, axis at \(\theta\)</td><td>\(\begin{pmatrix}\cos^2\theta & \sin\theta\cos\theta\\ \sin\theta\cos\theta & \sin^2\theta\end{pmatrix}\)</td><td>keeps the component along \(\theta\), removes the rest</td></tr>
+    <tr><td>Retarder (wave plate), fast axis along \(x\), retardance \(\Gamma\)</td><td>\(\begin{pmatrix}e^{-i\Gamma/2} & 0\\ 0 & e^{i\Gamma/2}\end{pmatrix}\)</td><td>delays the slow-axis component by \(\Gamma = 2\pi(n_s - n_f)d/\lambda\)</td></tr>
+    <tr><td>Quarter-wave plate (\(\Gamma = \pi/2\)), fast axis \(x\)</td><td>\(e^{-i\pi/4}\begin{pmatrix}1 & 0\\ 0 & i\end{pmatrix}\)</td><td>linear at 45° ↔ circular</td></tr>
+    <tr><td>Half-wave plate (\(\Gamma = \pi\)), fast axis at \(\theta\)</td><td>\(-i\begin{pmatrix}\cos2\theta & \sin2\theta\\ \sin2\theta & -\cos2\theta\end{pmatrix}\)</td><td>mirrors the polarisation about its axis: linear at \(\alpha\) → \(2\theta - \alpha\)</td></tr>
+    <tr><td>Rotator (optical activity, Faraday rotator) by \(\phi\)</td><td>\(\begin{pmatrix}\cos\phi & -\sin\phi\\ \sin\phi & \cos\phi\end{pmatrix}\)</td><td>rotates every linear state by \(\phi\)</td></tr>
+    <tr><td>Reflection at an interface (s = y, p = x in the plane of incidence)</td><td>\(\begin{pmatrix}r_p & 0\\ 0 & r_s\end{pmatrix}\)</td><td>Fresnel coefficients of section 9; changes ellipticity unless the light is pure s or p</td></tr>
+    <tr><td>Partial polariser (diattenuator)</td><td>\(\begin{pmatrix}t_x & 0\\ 0 & t_y\end{pmatrix}\), \(|t_x| \ne |t_y|\)</td><td>e.g. a tilted glass plate, a dichroic film</td></tr>
+  </tbody>
+</table></div>
+<p>A train of elements multiplies <b>from right to left</b> in the order the light meets them:
+\(\mathbf J_\text{out} = \mathbf M_N\cdots\mathbf M_2\mathbf M_1\mathbf J_\text{in}\). Matrices do not commute — a polariser followed by a
+wave plate is not a wave plate followed by a polariser. The <b>eigenvectors</b> of \(\mathbf M\) are its eigenpolarisations, the
+states it leaves unchanged apart from a factor: the fast and slow axes of a wave plate, the transmission axis of a
+polariser, the two circular states of a rotator.</p>
+
+<h3>Worked examples</h3>
+<p><b>1. Malus's law.</b> Linear light along \(x\) through a polariser at \(\theta\):
+\(\mathbf J' = \cos\theta\,(\cos\theta, \sin\theta)^\mathsf T\), so \(I' = I\cos^2\theta\). Unpolarised light through any polariser keeps half
+its intensity.</p>
+<p><b>2. Three polarisers.</b> Crossed polarisers (0° and 90°) transmit nothing. Insert a third at 45° between them:
+\(I = I_1\cos^2 45°\cos^2 45° = I_1/4\), where \(I_1\) is the intensity after the first polariser. Adding a polariser lets light
+through — because the middle one projects the light onto a direction that has a component along 90° again.</p>
+<p><b>3. A half-wave plate rotates linear polarisation.</b> With the matrix above, linear light at angle \(\alpha\) leaves at
+\(2\theta - \alpha\). Turning the plate by \(\theta\) turns the polarisation by \(2\theta\): a half-wave plate at 22.5° rotates
+horizontal light to 45°, at 45° to vertical. Combined with a polarising beam splitter, this is the standard variable
+attenuator and power divider of a laser lab.</p>
+<p><b>4. A quarter-wave plate turns linear into circular — and back.</b> For horizontal light and the plate's fast axis at
+45°, the two components along the plate's axes are equal and the plate delays one by 90°, so the light leaves circular.
+At other angles it leaves elliptical. Conversely, circular light through a quarter-wave plate leaves linear at ±45° to its
+axes, which is how circular polarisation is analysed.</p>
+<p><b>5. A retarder between crossed polarisers.</b> With a retarder of retardance \(\Gamma\) at angle \(\theta\) between a polariser at 0°
+and an analyser at 90°,</p>
+$$T = \sin^2 2\theta\,\sin^2\frac{\Gamma}{2} .$$
+<p>Nothing passes when the retarder's axis is along either polariser; at \(\theta = 45°\) the transmission is
+\(\sin^2(\Gamma/2)\). A liquid-crystal pixel changes \(\Gamma\) with voltage and switches from dark to bright; stressed glass or
+plastic between crossed polarisers shows coloured fringes of equal retardance (photoelasticity); a polarising microscope
+identifies birefringent crystals the same way.</p>
+<p><b>6. Optical isolators.</b> A laser must be protected from its own reflected light. In a <b>Faraday isolator</b>, light passes
+a polariser at 0°, a Faraday rotator turns it by +45°, and an output polariser at 45° transmits it. Reflected light returns
+through the rotator and is turned by <i>another</i> +45° — the Faraday effect, set by a magnetic field, does not reverse with the
+direction of travel — arriving at 90° to the input polariser and blocked. A cheaper, polarisation-specific version uses a
+polariser and a quarter-wave plate at 45°: passing the plate twice is equivalent to a half-wave plate, which turns the
+returning light into the orthogonal state, rejected by the polariser.</p>
+<p><b>7. Mirrors and ellipsometry.</b> Reflection multiplies the s and p components by different complex Fresnel
+coefficients. A metal mirror at 45° therefore turns linear light at 45° into elliptical light, while pure s or pure p stay
+linear — keep the polarisation along s or p at every mirror of a polarisation-sensitive setup. Ellipsometry turns this into
+a measurement: it records \(\tan\Psi\,e^{i\Delta} = r_p/r_s\) and from it the thickness and optical constants of thin films.</p>
+<p><b>8. Turning circular polarisation round.</b> At normal incidence a mirror reverses the direction of travel but not the
+rotation of the field in space, so — seen from the new direction of travel — right circular light comes back left circular.
+This is used in circular-polarisation optical isolators, and is the reason why, in the Jones description of a reflection, the
+coordinate system must be defined carefully.</p>
+
+<p>The calculator below assembles these examples: choose an input state and up to three elements, and follow the state after
+each one — as the path of the field vector and as a point on the Poincaré sphere introduced next.</p>
+
+<figure class="fig" data-fig="jones">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A polarisation bench in Jones calculus.</b> Each panel shows the path of the electric-field vector after one
+  more element, with the field vector moving around it during an optical period; the intensity and state are written below.
+  On the Poincaré sphere (right) each state is a point: linear states on the equator, circular states at the poles. Choose
+  an example — Malus's law, three polarisers, half- and quarter-wave plates, a liquid-crystal pixel, two kinds of isolator —
+  or set the elements yourself.</figcaption>
+</figure>
+
+<h3>Partially polarised light: Stokes parameters and the Poincaré sphere</h3>
+<p>Jones vectors describe light that is <i>fully</i> polarised. Sunlight, LEDs and light scattered from tissue are partly or
+completely unpolarised: the relative phase wanders randomly faster than any detector can follow. Such light is described by
+the four <b>Stokes parameters</b>, which are measurable intensities [26]:</p>
+$$S_0 = I_x + I_y, \quad S_1 = I_x - I_y, \quad S_2 = I_{+45} - I_{-45}, \quad S_3 = I_L - I_R ,$$
+<p>where \(I_x\), \(I_y\), \(I_{\pm45}\) are the intensities transmitted by polarisers at 0°, 90°, ±45°, and \(I_L\), \(I_R\) those of left and
+right circular analysers. For fully polarised light \(S_0^2 = S_1^2 + S_2^2 + S_3^2\), and from the Jones vector
+\(S_1 = |E_x|^2 - |E_y|^2\), \(S_2 = 2\,\mathrm{Re}(E_x^*E_y)\), \(S_3 = 2\,\mathrm{Im}(E_x^*E_y)\). In general the <b>degree of
+polarisation</b> is \(P = \sqrt{S_1^2 + S_2^2 + S_3^2}/S_0\), between 0 (unpolarised) and 1.</p>
+<p>The normalised vector \((S_1, S_2, S_3)/S_0\) is a point on (or, for partial polarisation, inside) the <b>Poincaré sphere</b>.
+Linear states lie on the equator (H and V opposite, D and A between them), circular states at the poles, elliptical states in
+between, and orthogonal states at opposite ends of a diameter. Its coordinates are the ellipse angles of the start of this
+section: longitude \(2\psi\), latitude \(2\chi\). Every wave plate is a <b>rotation of the sphere</b> by its retardance \(\Gamma\) about the
+axis through its fast-axis state — which makes the effect of any sequence of plates easy to picture. Elements that
+depolarise or partially polarise need 4 × 4 <b>Mueller matrices</b> acting on the Stokes vector; for a fully polarised beam
+through non-depolarising elements they give the same result as Jones matrices.</p>
+
+<h3>Measuring polarisation</h3>
+<ul>
+  <li><b>Linear analysis:</b> rotate a polariser in front of a detector; the intensity varies as \(\tfrac12[S_0 + S_1\cos2\phi + S_2\sin2\phi]\)
+  for analyser angle \(\phi\), giving \(S_0, S_1, S_2\) but not the handedness.</li>
+  <li><b>Rotating quarter-wave plate polarimeter:</b> a quarter-wave plate rotating in front of a fixed polariser modulates the
+  intensity at \(2\omega\) and \(4\omega\); the Fourier coefficients give all four Stokes parameters.</li>
+  <li><b>Polarisation cameras</b> carry a micro-polariser grid at 0°, 45°, 90° and 135° over the pixels and image \(S_0\)–\(S_2\) in one
+  shot.</li>
+</ul>
+
+<div class="callout warn"><b>Conventions differ</b>
+<p>Whether a state is called “right” or “left” circular depends on two choices: the sign in the wave's phase
+(\(e^{i(kz-\omega t)}\), used here, or \(e^{i(\omega t - kz)}\), common in engineering and in many optics books), and whether the
+rotation is judged looking towards the source or along the direction of travel. With the convention of this article, a
+state with \(\delta = +90°\) rotates counter-clockwise when viewed facing the source, has \(S_3 &gt; 0\), and is called left circular.
+Other texts call the same state right circular. When it matters — in chiral spectroscopy, circular dichroism, or
+specifying a component — state the convention, or give the Jones vector and the sign of the phase.</p></div>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <h2 id="s-energy"><span class="num">06</span>Energy, momentum and photons in a beam</h2>
@@ -332,7 +466,7 @@ the visible. Real materials have several resonances; summing them gives the Sell
 and imaginary parts are linked by the Kramers–Kronig relations: absorption somewhere implies dispersion everywhere.</p>
 
 <figure class="fig" data-fig="lorentz">
-  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Refractive index and extinction from a model material.</b> Dielectric: one Lorentz oscillator —
   absorption (κ) peaks at the resonance, \(n\) rises towards it (normal dispersion) and drops through it (anomalous
@@ -381,7 +515,7 @@ reflection coefficients for <b>s</b> polarisation (\(\mathbf E\) perpendicular t
 </ul>
 
 <figure class="fig" data-fig="fresnel">
-  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Reflectance at an interface</b> from the Fresnel equations, for s and p polarisation. With
   \(n_1 &gt; n_2\) (glass to air by default) reflection becomes total beyond the critical angle; p-reflection vanishes at
@@ -415,7 +549,7 @@ TE = \(\mathbf E\) in the plane of periodicity — the <i>opposite</i> label for
 which way \(\mathbf E\) points.</p></div>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 6</div>
+  <div class="fig-tag">Figure 7</div>
   <svg viewBox="0 0 880 330" role="img" aria-label="Decision diagram for TE and TM">
     <style>.dq{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}.da{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.dt{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:700}</style>
     <rect x="300" y="12" width="280" height="44" rx="8" fill="#211735" stroke="#e0a82e"/><text x="440" y="39" class="dq" text-anchor="middle">What is the structure?</text>
@@ -534,7 +668,7 @@ the most common source of TE/TM mistakes.</p>
 oscillating field vectors of the chosen polarisation.</p>
 
 <figure class="fig" data-fig="tetm">
-  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>TE and TM in nine structures.</b> Red arrows: the electric field, oscillating as the wave travels;
   cyan (optional): the magnetic field. For the surface and the gratings the gold plane is the plane of incidence and the
@@ -545,7 +679,7 @@ oscillating field vectors of the chosen polarisation.</p>
 
 <h3>Test yourself</h3>
 <figure class="fig" data-fig="tetmquiz">
-  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>TE, TM or neither?</b> Fourteen situations from the lab and the literature, each with the reasoning
   behind the answer.</figcaption>
@@ -577,7 +711,7 @@ almost entirely reflected. This is why metals are shiny and why a few tens of na
 also absorbs in the blue through interband transitions, giving its colour [9].</p>
 <p>Negative permittivity also allows a new kind of wave bound to the surface of a metal: the <b>surface plasmon
 polariton</b>, and in small particles the localised surface plasmon — the subject of the
-<a href="blog-spectroscopy.html#s-spp">spectroscopy article</a> and the basis of SPR sensors and SERS. Switch Figure 4
+<a href="blog-spectroscopy.html#s-spp">spectroscopy article</a> and the basis of SPR sensors and SERS. Switch Figure 5
 to the metal model to see \(n\), \(\kappa\), the reflectance and the penetration depth of a Drude metal.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -610,7 +744,7 @@ exist: <b>birefringent phase matching</b>, choosing the angle and polarisations 
 harmonic is reset in step before it can flow back [13].</p>
 
 <figure class="fig" data-fig="shg">
-  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Second-harmonic power along a crystal.</b> With perfect phase matching the power grows as \(L^2\);
   with a mismatch it oscillates and never exceeds its value at one coherence length (logarithmic scale); with quasi-phase matching (domains
@@ -636,7 +770,7 @@ internal reflection: a core of higher index \(n_1\) surrounded by a cladding of 
 boundary beyond the critical angle.</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 10</div>
+  <div class="fig-tag">Figure 11</div>
   <svg viewBox="0 0 860 260" role="img" aria-label="Ray picture of a slab waveguide">
     <style>.rl{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#b6acc8}.rh{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;fill:#efeaf6}</style>
     <rect x="60" y="40" width="760" height="50" fill="#45bfd6" opacity=".10"/><rect x="60" y="90" width="760" height="80" fill="#e0a82e" opacity=".18"/><rect x="60" y="170" width="760" height="50" fill="#45bfd6" opacity=".10"/>
@@ -678,7 +812,7 @@ of \(2V/\pi\) plus one, and the guide is <b>single-mode</b> for \(V < \pi/2\). T
 symmetric slab; it has no cut-off. TM modes follow similarly with a factor \(n_1^2/n_2^2\) in the matching condition.</p>
 
 <figure class="fig" data-fig="slab">
-  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The TE modes of a symmetric slab waveguide</b>, from the exact dispersion equations above. Mode \(m\)
   has \(m\) zeros in the core; higher modes have lower effective indices and longer evanescent tails. Thin the core, lower
@@ -706,7 +840,7 @@ close to a Gaussian with mode-field diameter \(2w\), \(w/a \approx 0.65 + 1.619V
 illumination and spectroscopy.</p>
 
 <figure class="fig" data-fig="fibre">
-  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Single-mode or multimode?</b> The V number of a step-index fibre against wavelength. Below
   \(V = 2.405\) (to the right of the cut-off wavelength) only one mode is guided. The default resembles a standard
@@ -731,7 +865,7 @@ illumination and spectroscopy.</p>
 <p>On a chip, guides are patterned by lithography into thin films. Their cross-sections give them their names:</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 13</div>
+  <div class="fig-tag">Figure 14</div>
   <svg viewBox="0 0 880 300" role="img" aria-label="Cross-sections of waveguide types">
     <style>.gl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.gh{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}</style>
     <!-- row 1 -->
@@ -765,7 +899,7 @@ transmits all wavelengths except those fitting a whole number of times around it
 integrated optics, and also of evanescent-field biosensors.</p>
 
 <figure class="fig" data-fig="coupler">
-  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 15 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>A directional coupler.</b> Power in the input guide (gold) and the second guide (cyan) oscillates between the two parallel guides with period set by \(\kappa\); a
   mismatch \(\delta\) between the guides speeds up the oscillation and limits the transfer to \(\kappa^2/(\kappa^2 + \delta^2)\) —
@@ -872,6 +1006,8 @@ waveguides is what makes on-chip frequency combs possible.</p>
   <li>J. D. Joannopoulos, S. G. Johnson, J. N. Winn and R. D. Meade, <i>Photonic Crystals: Molding the Flow of Light</i>, 2nd ed., Princeton University Press (2008).</li>
   <li>A. W. Snyder and J. D. Love, <i>Optical Waveguide Theory</i>, Chapman and Hall, London (1983).</li>
   <li>K. Okamoto, <i>Fundamentals of Optical Waveguides</i>, 2nd ed., Academic Press, Burlington (2006).</li>
+  <li>R. C. Jones, “A new calculus for the treatment of optical systems. I. Description and discussion of the calculus,” <i>J. Opt. Soc. Am.</i> <b>31</b>, 488–493 (1941).</li>
+  <li>E. Collett, <i>Field Guide to Polarization</i>, SPIE Press, Bellingham (2005).</li>
 </ol>
 
 <hr>
@@ -929,9 +1065,9 @@ Drude models, coupled-mode theory, the Marcuse mode-field formula). Corrections 
   </div>
 </footer>
 
-<script src="js/site.js?v=20261104f"></script>
-<script src="js/blog/vl-core.js?v=20261104f"></script>
-<script src="js/blog/wg-figs.js?v=20261104f"></script>
+<script src="js/site.js?v=20261104g"></script>
+<script src="js/blog/vl-core.js?v=20261104g"></script>
+<script src="js/blog/wg-figs.js?v=20261104g"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

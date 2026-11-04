@@ -124,6 +124,93 @@
     draw();
   };
 
+  /* ═══ 2b. Jones calculator: an optical bench of polarisation elements (animated) ═══ */
+  // Convention: E = Re[J e^{i(kz − ωt)}], J = (E_x, E_y). A retarder with its fast axis along x is diag(e^{−iΓ/2}, e^{iΓ/2}).
+  var J2 = {
+    mul: function (M, v) { return [cadd(cmul(M[0][0], v[0]), cmul(M[0][1], v[1])), cadd(cmul(M[1][0], v[0]), cmul(M[1][1], v[1]))]; },
+    mm: function (A, B) { var r = [[0, 0], [0, 0]]; for (var i = 0; i < 2; i++) for (var j = 0; j < 2; j++) r[i][j] = cadd(cmul(A[i][0], B[0][j]), cmul(A[i][1], B[1][j])); return r; },
+    R: function (th) { var c = Math.cos(th), s = Math.sin(th); return [[[c, 0], [s, 0]], [[-s, 0], [c, 0]]]; },
+    pol: function (th) { var c = Math.cos(th), s = Math.sin(th); return [[[c * c, 0], [c * s, 0]], [[c * s, 0], [s * s, 0]]]; },
+    ret: function (G, th) { var D = [[[Math.cos(G / 2), -Math.sin(G / 2)], [0, 0]], [[0, 0], [Math.cos(G / 2), Math.sin(G / 2)]]]; return J2.mm(J2.R(-th), J2.mm(D, J2.R(th))); },
+    rot: function (ph) { var c = Math.cos(ph), s = Math.sin(ph); return [[[c, 0], [-s, 0]], [[s, 0], [c, 0]]]; }
+  };
+  function cadd(a, b) { return [a[0] + b[0], a[1] + b[1]]; }
+  var JIN = { H: [[1, 0], [0, 0]], V: [[0, 0], [1, 0]], D: [[Math.SQRT1_2, 0], [Math.SQRT1_2, 0]], A: [[Math.SQRT1_2, 0], [-Math.SQRT1_2, 0]], R: [[Math.SQRT1_2, 0], [0, -Math.SQRT1_2]], L: [[Math.SQRT1_2, 0], [0, Math.SQRT1_2]] };
+  var JNAME = { H: 'horizontal (H)', V: 'vertical (V)', D: 'diagonal +45° (D)', A: 'anti-diagonal −45° (A)', R: 'right circular (R)', L: 'left circular (L)' };
+  var stokes = function (J) { var ex = J[0], ey = J[1], s0 = cabs2(ex) + cabs2(ey), s1 = cabs2(ex) - cabs2(ey), p = cmul([ex[0], -ex[1]], ey); return [s0, s1, 2 * p[0], 2 * p[1]]; };
+  var describe = function (J) {
+    var S = stokes(J); if (S[0] < 1e-6) return { I: 0, txt: 'blocked (no light)' };
+    var psi = 0.5 * Math.atan2(S[2], S[1]) * 180 / Math.PI, chi = 0.5 * Math.asin(Math.max(-1, Math.min(1, S[3] / S[0]))) * 180 / Math.PI;
+    var kind = Math.abs(chi) < 0.5 ? 'linear ' + (Math.abs(psi) < 0.5 ? '0° (H)' : Math.abs(Math.abs(psi) - 90) < 0.5 ? '90° (V)' : psi.toFixed(1) + '°') : Math.abs(Math.abs(chi) - 45) < 0.5 ? (chi > 0 ? 'left circular' : 'right circular') : (chi > 0 ? 'left' : 'right') + ' elliptical, axis ' + psi.toFixed(0) + '°';
+    return { I: S[0], txt: kind, S: S, psi: psi, chi: chi };
+  };
+  var JPRESETS = {
+    malus: { name: "Malus's law: one polariser", input: 'H', els: [['pol', 30], ['none', 0], ['none', 0]], G: 90, note: 'Rotate element 1: the transmitted intensity is cos²θ.' },
+    crossed: { name: 'Crossed polarisers', input: 'H', els: [['pol', 0], ['pol', 90], ['none', 0]], G: 90, note: 'Nothing gets through two polarisers at 90°.' },
+    three: { name: 'Three polarisers (the paradox)', input: 'H', els: [['pol', 0], ['pol', 45], ['pol', 90]], G: 90, note: 'Adding a polariser at 45° between crossed ones lets 1/4 of the light after the first through: the middle one re-creates a component along 90°. Set element 2 to “none” to block it again.' },
+    hwp: { name: 'Half-wave plate rotates polarisation', input: 'H', els: [['hwp', 22.5], ['none', 0], ['none', 0]], G: 90, note: 'A half-wave plate at θ turns linear light at 0° into linear light at 2θ: 22.5° → 45°.' },
+    qwp: { name: 'Quarter-wave plate: linear → circular', input: 'H', els: [['qwp', 45], ['none', 0], ['none', 0]], G: 90, note: 'Linear light at 45° to the axes of a quarter-wave plate leaves circular. At any other angle it leaves elliptical.' },
+    circlin: { name: 'Quarter-wave plate: circular → linear', input: 'R', els: [['qwp', 0], ['none', 0], ['none', 0]], G: 90, note: 'The same plate turns circular light back into linear light at ±45° to its axes.' },
+    lcd: { name: 'Retarder between crossed polarisers (LCD pixel)', input: 'H', els: [['pol', 0], ['ret', 45], ['pol', 90]], G: 120, note: 'T = sin²(2θ)·sin²(Γ/2): change the retardance Γ, as a liquid crystal does with voltage, to switch the pixel from dark to bright.' },
+    qwpiso: { name: 'Quarter-wave-plate isolator (double pass)', input: 'H', els: [['qwp', 45], ['qwp', 45], ['pol', 0]], G: 90, note: 'Unfolded double pass: going through a quarter-wave plate twice equals a half-wave plate at 45°, so H returns as V and the input polariser blocks it.' },
+    faraday: { name: 'Faraday isolator, backward pass', input: 'D', els: [['rot', 45], ['pol', 0], ['none', 0]], G: 90, note: 'Light that went forward through a 45° Faraday rotator (H → D) is rotated another 45° on the way back — the Faraday effect does not reverse — arriving at 90° and blocked.' },
+    ellip: { name: 'General retarder: elliptical light', input: 'D', els: [['ret', 0], ['none', 0], ['none', 0]], G: 60, note: 'A retardance that is neither λ/4 nor λ/2 gives elliptical light; the state moves around the Poincaré sphere about the plate axis.' }
+  };
+  F.jones = function (fig) {
+    var ctl = VL.part(fig, 'vl-controls'), host = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout'), wt = 0;
+    var ELN = { none: 'none', pol: 'polariser', hwp: 'half-wave plate', qwp: 'quarter-wave plate', ret: 'retarder Γ', rot: 'rotator' };
+    var mat = function (k, deg) { var th = deg * Math.PI / 180; return k === 'pol' ? J2.pol(th) : k === 'hwp' ? J2.ret(Math.PI, th) : k === 'qwp' ? J2.ret(Math.PI / 2, th) : k === 'ret' ? J2.ret(gam.get() * Math.PI / 180, th) : k === 'rot' ? J2.rot(th) : null; };
+    var draw = function () {
+      var states = [JIN[inp.get()]], labels = ['Input: ' + inp.get()];
+      for (var i = 0; i < 3; i++) { var k = els[i].sel.get(), M = mat(k, els[i].ang.get()); if (!M) continue; states.push(J2.mul(M, states[states.length - 1])); labels.push((states.length - 1) + ': ' + ELN[k].replace('retarder Γ', 'retarder ' + gam.get() + '°') + (k === 'none' ? '' : ' @ ' + els[i].ang.get() + '°')); }
+      var Wd = 980, Hd = 300, pw = 168, ns = states.length, s = '<svg viewBox="0 0 ' + Wd + ' ' + Hd + '" class="plot" role="img" aria-label="Polarisation after each element">';
+      var cols = [C.text, C.au, C.cyan, C.green];
+      states.forEach(function (J, i) {
+        var x0 = 8 + i * (pw + 10), cx0 = x0 + pw / 2, cy0 = 150, R = 62, d = describe(J), col = cols[i % cols.length];
+        s += '<rect x="' + x0 + '" y="40" width="' + pw + '" height="220" rx="8" fill="rgba(255,255,255,.02)" stroke="rgba(255,255,255,.12)"/>';
+        s += '<text x="' + cx0 + '" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="' + col + '">' + labels[i] + '</text>';
+        s += '<line x1="' + (cx0 - 72) + '" y1="' + cy0 + '" x2="' + (cx0 + 72) + '" y2="' + cy0 + '" stroke="rgba(255,255,255,.18)"/><line x1="' + cx0 + '" y1="' + (cy0 - 72) + '" x2="' + cx0 + '" y2="' + (cy0 + 72) + '" stroke="rgba(255,255,255,.18)"/>';
+        s += '<text x="' + (cx0 + 70) + '" y="' + (cy0 - 4) + '" font-family="IBM Plex Mono, monospace" font-size="10" fill="' + C.text3 + '">x</text><text x="' + (cx0 + 4) + '" y="' + (cy0 - 66) + '" font-family="IBM Plex Mono, monospace" font-size="10" fill="' + C.text3 + '">y</text>';
+        if (d.I > 1e-6) {
+          var pts = []; for (var q = 0; q <= 120; q++) { var t = 2 * Math.PI * q / 120, ex = J[0][0] * Math.cos(t) + J[0][1] * Math.sin(t), ey = J[1][0] * Math.cos(t) + J[1][1] * Math.sin(t); pts.push((cx0 + R * ex).toFixed(1) + ' ' + (cy0 - R * ey).toFixed(1)); }
+          s += '<path d="M ' + pts.join(' L ') + '" fill="none" stroke="' + col + '" stroke-width="2.2"/>';
+          var exn = J[0][0] * Math.cos(wt) + J[0][1] * Math.sin(wt), eyn = J[1][0] * Math.cos(wt) + J[1][1] * Math.sin(wt), tx = cx0 + R * exn, ty = cy0 - R * eyn;
+          s += '<line x1="' + cx0 + '" y1="' + cy0 + '" x2="' + tx.toFixed(1) + '" y2="' + ty.toFixed(1) + '" stroke="' + C.red + '" stroke-width="2"/><circle cx="' + tx.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="4.5" fill="' + C.red + '"/>';
+        } else s += '<text x="' + cx0 + '" y="' + (cy0 + 4) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="' + C.red + '">blocked</text>';
+        s += '<text x="' + cx0 + '" y="236" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="' + C.text2 + '">I = ' + d.I.toFixed(3) + '</text><text x="' + cx0 + '" y="251" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="' + C.text3 + '">' + d.txt + '</text>';
+      });
+      // Poincaré sphere
+      var cxs = Wd - 125, cys = 160, rs = 100, az = 35 * Math.PI / 180, el = 18 * Math.PI / 180;
+      var Pp = function (S1, S2, S3) { var X = S2 * Math.cos(az) - S1 * Math.sin(az), dep = S2 * Math.sin(az) + S1 * Math.cos(az), Y = S3 * Math.cos(el) - dep * Math.sin(el); return [cxs + rs * X, cys - rs * Y, dep]; };
+      var ring = function (f, dash) { var p = []; for (var q = 0; q <= 90; q++) { var t = 2 * Math.PI * q / 90, v = f(t), r = Pp(v[0], v[1], v[2]); p.push(r[0].toFixed(1) + ' ' + r[1].toFixed(1)); } return '<path d="M ' + p.join(' L ') + '" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"' + (dash ? ' stroke-dasharray="3 3"' : '') + '/>'; };
+      s += '<circle cx="' + cxs + '" cy="' + cys + '" r="' + rs + '" fill="rgba(69,191,214,.05)" stroke="rgba(255,255,255,.35)"/>';
+      s += ring(function (t) { return [Math.cos(t), Math.sin(t), 0]; }) + ring(function (t) { return [Math.cos(t), 0, Math.sin(t)]; }, true) + ring(function (t) { return [0, Math.cos(t), Math.sin(t)]; }, true);
+      [[1, 0, 0, 'H'], [-1, 0, 0, 'V'], [0, 1, 0, 'D'], [0, -1, 0, 'A'], [0, 0, 1, 'L'], [0, 0, -1, 'R']].forEach(function (a) { var p = Pp(a[0] * 1.16, a[1] * 1.16, a[2] * 1.16); s += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="' + C.text2 + '">' + a[3] + '</text>'; });
+      s += '<text x="' + cxs + '" y="22" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="600" fill="' + C.text2 + '">Poincaré sphere</text>';
+      var prev = null;
+      states.forEach(function (J, i) { var d = describe(J); if (d.I < 1e-6) { prev = null; return; } var S = d.S, p = Pp(S[1] / S[0], S[2] / S[0], S[3] / S[0]);
+        if (prev) s += '<line x1="' + prev[0].toFixed(1) + '" y1="' + prev[1].toFixed(1) + '" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '" stroke="rgba(255,255,255,.35)" stroke-dasharray="3 3"/>';
+        s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + (p[2] >= 0 ? 6 : 4.5) + '" fill="' + cols[i % cols.length] + '" fill-opacity="' + (p[2] >= 0 ? 1 : 0.55) + '" stroke="#0f0a18"/><text x="' + (p[0] + 7).toFixed(1) + '" y="' + (p[1] - 6).toFixed(1) + '" font-family="IBM Plex Mono, monospace" font-size="10" fill="' + cols[i % cols.length] + '">' + i + '</text>'; prev = p; });
+      host.innerHTML = s + '</svg>';
+      var out = states[states.length - 1], d = describe(out), fmt = function (z) { return (Math.abs(z[0]) < 5e-4 ? '0' : z[0].toFixed(3)) + (Math.abs(z[1]) < 5e-4 ? '' : (z[1] >= 0 ? ' + ' : ' − ') + Math.abs(z[1]).toFixed(3) + 'i'); };
+      var p0 = JPRESETS[pre.get()];
+      read.innerHTML = '<div><b>' + d.I.toFixed(3) + '</b><span>transmitted intensity (input = 1)</span></div><div><b>(' + fmt(out[0]) + ', ' + fmt(out[1]) + ')</b><span>output Jones vector (E_x, E_y)</span></div><div><b>' + d.txt + '</b><span>output state</span></div>' + (p0 ? '<div style="grid-column:1/-1"><b>' + p0.name + '</b><span>' + p0.note + '</span></div>' : '');
+    };
+    var pre = VL.select(ctl, { label: 'Example', value: 'three', options: Object.keys(JPRESETS).map(function (k) { return [k, JPRESETS[k].name]; }).concat([['custom', 'Custom (set the elements yourself)']]), on: function (v) { apply(v); } });
+    var applying = false, manual = function () { if (!applying && pre.get() !== 'custom') pre.el.value = 'custom'; draw(); };
+    var inp = VL.select(ctl, { label: 'Input light', value: 'H', options: Object.keys(JNAME).map(function (k) { return [k, JNAME[k]]; }), on: manual });
+    var els = [0, 1, 2].map(function (i) {
+      var sel = VL.select(ctl, { label: 'Element ' + (i + 1), value: 'none', options: Object.keys(ELN).map(function (k) { return [k, ELN[k]]; }), on: manual });
+      var ang = VL.slider(ctl, { label: 'Angle of element ' + (i + 1), min: -90, max: 90, step: 0.5, value: 0, fmt: function (v) { return v + '°'; }, on: manual });
+      return { sel: sel, ang: ang };
+    });
+    var gam = VL.slider(ctl, { label: 'Retardance Γ of “retarder”', min: 0, max: 360, step: 1, value: 90, fmt: function (v) { return v + '°'; }, on: function () { draw(); } });
+    var apply = function (k) { var p = JPRESETS[k]; if (!p) { draw(); return; } applying = true; inp.el.value = p.input; p.els.forEach(function (e, i) { els[i].sel.el.value = e[0]; els[i].ang.set(e[1]); }); gam.set(p.G); applying = false; draw(); };
+    var loop = VL.loop(host, function (dt) { if (!dt) return; wt += dt * 2 * Math.PI * 0.4; draw(); });
+    var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { btn.textContent = loop.toggle() ? 'Stop' : 'Start'; }, 'primary');
+    apply('three');
+  };
+
   /* ═══ 3. Lorentz dielectric and Drude metal ═══ */
   F.lorentz = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
