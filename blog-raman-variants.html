@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The Many Faces of Raman: Confocal, FT, Resonance, SERS, TERS, CARS, SRS and SORS | Rakesh Naik</title>
+<meta name="description" content="A first-principles tutorial on the variants of Raman spectroscopy — confocal Raman microscopy, FT-Raman at 1064 nm, resonance Raman, SERS, tip-enhanced Raman (TERS), coherent anti-Stokes (CARS) and stimulated Raman scattering (SRS), and spatially offset Raman (SORS): why each was needed, how it works, what it gains over the previous one and what it costs, with interactive simulations and references.">
+<meta name="keywords" content="Raman spectroscopy variants, confocal Raman microscopy, FT-Raman 1064 nm, resonance Raman, SERS, TERS tip-enhanced Raman, CARS, stimulated Raman scattering SRS, SORS spatially offset Raman, coherent Raman imaging, fluorescence background">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-raman-variants.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Many Faces of Raman: Confocal, FT, Resonance, SERS, TERS, CARS, SRS and SORS">
+<meta property="og:description" content="Why each Raman variant exists, how it works from first principles, and what it gains over the one before — confocal, FT, resonance, SERS, TERS, CARS, SRS and SORS.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-raman-variants.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-08-08">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Many Faces of Raman: Confocal, FT, Resonance, SERS, TERS, CARS, SRS and SORS">
+<meta name="twitter:description" content="Why each Raman variant exists, how it works from first principles, and what it gains over the one before — confocal, FT, resonance, SERS, TERS, CARS, SRS and SORS.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261104c">
+<link rel="stylesheet" href="css/article.css?v=20261104c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"The Many Faces of Raman: Confocal, FT, Resonance, SERS, TERS, CARS, SRS and SORS","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-raman-variants.html"}]},
+{"@type":"TechArticle","headline":"The Many Faces of Raman: Confocal, FT, Resonance, SERS, TERS, CARS, SRS and SORS","datePublished":"2026-08-08","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"Why each Raman variant exists, how it works from first principles, and what it gains over the one before — confocal, FT, resonance, SERS, TERS, CARS, SRS and SORS.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>The many faces of Raman: confocal, FT, resonance, SERS, TERS, CARS, SRS and SORS</h1>
+    <p class="lede">Ordinary Raman scattering is a superb fingerprint and a poor signal: weak, easily buried by
+    fluorescence, limited by diffraction, blind below the surface and slow to image. Every well-known variant of
+    Raman spectroscopy exists because it removes one of those limits. This tutorial starts from the physics of
+    spontaneous Raman scattering and builds each variant from it — what problem it solves, how it works, what it
+    gains over the previous method and what it costs — so that by the end you can choose the right one for a
+    question.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Raman</span><span>8 August 2026</span><span>≈ 50 min read</span><span>Rakesh Naik</span></div>
+    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 2 of 7</span><a class="sn-prev" href="blog-spectroscopy.html">← Part 1 · Vibrational spectroscopy, plasmonics and SERS</a><a class="sn-next" href="blog-sers-label-free.html">Part 3 · Label-free and labelled SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-base">The starting point: spontaneous Raman and its five limits</a></li>
+    <li><a href="#s-map">A map of the variants</a></li>
+    <li><a href="#s-confocal">Confocal Raman microscopy — where in the sample?</a></li>
+    <li><a href="#s-fluo">Why fluorescence buries Raman</a></li>
+    <li><a href="#s-ft">FT-Raman — escaping fluorescence at 1064 nm</a></li>
+    <li><a href="#s-rr">Resonance Raman — borrowing an electronic transition</a></li>
+    <li><a href="#s-sers">SERS — borrowing a plasmon</a></li>
+    <li><a href="#s-ters">TERS — a hot spot you can move</a></li>
+    <li><a href="#s-crs">Coherent Raman — driving the molecules in step</a></li>
+    <li><a href="#s-cars">CARS — fast, directional, but with a background</a></li>
+    <li><a href="#s-srs">SRS — the background-free answer</a></li>
+    <li><a href="#s-sors">SORS — reading beneath the surface</a></li>
+    <li><a href="#s-choose">Comparison and how to choose</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>This is the second article in the series. It assumes the ideas of the first,
+<a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS, from first principles</a> —
+in particular <a href="blog-spectroscopy.html#s-raman">how Raman scattering arises</a> from a vibration that
+modulates the polarisability, and <a href="blog-spectroscopy.html#s-lspr">how a metal nanoparticle concentrates
+light</a>. Where those are needed, the link points there rather than repeating them. Numbers in square brackets
+refer to the <a href="#s-refs">references</a>; figures marked <b>Interactive</b> run in your browser.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-base"><span class="num">01</span>The starting point: spontaneous Raman and its five limits</h2>
+
+<p>When light of frequency \(\omega_L\) meets a molecule, its electric field \(\mathbf E\) induces a dipole
+\(\mathbf p = \alpha\mathbf E\), where \(\alpha\) is the polarisability. If a vibration of frequency \(\omega_v\)
+changes \(\alpha\), the dipole oscillates also at \(\omega_L \pm \omega_v\) and radiates there: the Stokes and
+anti-Stokes Raman lines [1, 2] (derived step by step in the <a href="blog-spectroscopy.html#s-raman">first
+article</a>). The power scattered by \(N\) molecules into the detector is</p>
+$$P_\text{Raman} = N\,\sigma\,I_L\,\eta, \qquad \sigma \propto \omega_s^4\,\Big|\frac{\partial\alpha}{\partial Q}\Big|^2 ,$$
+<p>where \(\sigma\) is the Raman cross-section of the band, \(I_L\) the laser intensity (power per area),
+\(\eta\) the collection and detection efficiency, \(\omega_s\) the scattered frequency and \(Q\) the vibrational
+coordinate. Because each molecule acts alone and with a random phase, the signal is <b>incoherent</b>: it grows in
+proportion to \(N\) and goes out in all directions.</p>
+
+<p>That simple picture already contains five limits:</p>
+<ol>
+  <li><b>Weak signal.</b> Typical cross-sections are about 10⁻³⁰–10⁻²⁹ cm² per molecule, some 10¹⁴ times smaller
+  than the absorption cross-section of a good dye. Roughly one photon in 10⁷–10⁹ is Raman-scattered.</li>
+  <li><b>Fluorescence.</b> If the laser is absorbed by anything in the sample, its fluorescence — far stronger —
+  can bury the Raman bands completely.</li>
+  <li><b>Diffraction.</b> A lens cannot focus light below about half a wavelength, so ordinary Raman cannot
+  resolve structures smaller than a few hundred nanometres.</li>
+  <li><b>Surface only.</b> In turbid samples (tissue, powders, plastics) light is scattered within a fraction of a
+  millimetre, and a conventional instrument mostly sees the surface.</li>
+  <li><b>Speed.</b> With weak, incoherent signals, a good spectrum takes 0.1–10 s, so a 500 × 500 pixel image takes
+  hours.</li>
+</ol>
+<p>Each variant below attacks one or two of these limits — and usually pays for it with another.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-map"><span class="num">02</span>A map of the variants</h2>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Family</th><th>Techniques</th><th>Limit attacked</th><th>Main advantage</th></tr></thead>
+  <tbody>
+    <tr><td>Subsurface &amp; spatial</td><td>Confocal Raman microscopy (CRM)</td><td>where the signal comes from</td><td>3D chemical maps with sub-micrometre resolution</td></tr>
+    <tr><td></td><td>Spatially offset Raman (SORS)</td><td>surface only</td><td>reads through opaque layers, packaging, skin and bone</td></tr>
+    <tr><td>Fluorescence clearance</td><td>FT-Raman (1064 nm)</td><td>fluorescence</td><td>near-infrared excitation that most samples do not absorb</td></tr>
+    <tr><td>Signal amplification</td><td>Resonance Raman (RRS)</td><td>weak signal</td><td>10³–10⁶ stronger, and selective for one chromophore</td></tr>
+    <tr><td></td><td>SERS</td><td>weak signal</td><td>10⁴–10¹⁰ stronger, down to single molecules</td></tr>
+    <tr><td></td><td>TERS</td><td>weak signal + diffraction</td><td>nanoscale chemical imaging (tens of nm, below 1 nm in vacuum)</td></tr>
+    <tr><td>Coherent &amp; nonlinear</td><td>CARS</td><td>speed</td><td>strong, directional, anti-Stokes signal; video-rate imaging</td></tr>
+    <tr><td></td><td>SRS</td><td>speed + CARS background</td><td>background-free, quantitative, video-rate imaging</td></tr>
+  </tbody>
+</table></div>
+<p>The sections follow the order in which the problems usually appear in practice: first find <i>where</i> to
+measure, then get rid of fluorescence, then make the signal stronger, then make it fast, and finally reach below
+the surface.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-confocal"><span class="num">03</span>Confocal Raman microscopy — where in the sample?</h2>
+
+<h3>Why it is needed</h3>
+<p>A macro Raman probe collects light from a volume of perhaps a cubic millimetre. For a single cell, a
+multilayer film or an inclusion in a crystal, that averages the interesting part with everything around it.
+Confocal Raman microscopy (CRM) makes each spectrum come from a volume of about a cubic micrometre, and so turns
+spectroscopy into chemical imaging in three dimensions — the method behind single-cell Raman since the work on
+living cells and chromosomes in 1990 [3].</p>
+
+<h3>How it works</h3>
+<p>A high-numerical-aperture objective focuses the laser to a diffraction-limited spot. The scattered light is
+imaged back onto a small <b>pinhole</b> (or the core of a fibre, or a slit and a few CCD rows) placed in a plane
+conjugate to the focus. Light from the focal spot passes; light from above or below the focus arrives defocused
+and is mostly blocked. Scanning the sample or the beam then builds an image, and moving the focus builds depth
+profiles. For an ideal confocal system with a small pinhole the resolutions (full width at half maximum) are
+approximately</p>
+$$\delta_\text{lat} \approx 0.37\,\frac{\lambda}{\mathrm{NA}}, \qquad \delta_\text{ax} \approx \frac{0.64\,\lambda}{n - \sqrt{n^2 - \mathrm{NA}^2}} ,$$
+<p>where \(\lambda\) is the wavelength (of the Raman light), NA the numerical aperture of the objective
+(\(\mathrm{NA} = n\sin\theta\), with \(\theta\) the half-angle of the cone of light it accepts) and \(n\) the refractive
+index of the immersion medium. With 532 nm excitation and NA 0.9 in air, \(\delta_\text{lat}\) is about 230 nm and
+\(\delta_\text{ax}\) about 0.6 µm — in practice 1.5–2 times worse with a realistic pinhole.</p>
+
+<figure class="fig" data-fig="confocal">
+  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>What a confocal Raman microscope can resolve.</b> Lateral and axial resolution (ideal pinhole)
+  against numerical aperture. Depth resolution improves as 1/NA² and is always several times worse than lateral
+  resolution. Immersion (higher \(n\)) allows higher NA.</figcaption>
+</figure>
+
+<h3>Advantage over plain Raman, and the catches</h3>
+<p>The gain is localisation: maps of lipid droplets, nuclei and mitochondria in a living cell, layers in a
+polymer laminate, phases in a mineral. The catches are worth knowing. Mapping is slow (one spectrum per voxel),
+which coherent Raman will address below. And when a dry objective focuses into a sample of higher refractive index,
+refraction stretches and shifts the focal volume: apparent depths and thicknesses of buried layers can be
+wrong by a factor of about two, and the depth resolution much worse than the formula suggests — oil or water
+immersion matched to the sample helps a great deal [4].</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fluo"><span class="num">04</span>Why fluorescence buries Raman</h2>
+
+<p>Fluorescence is absorption followed by emission. Its strength is the absorption cross-section times the
+fluorescence quantum yield \(\Phi_F\): for a dye about \(10^{-16}\ \text{cm}^2 \times \Phi_F\). Raman is a
+scattering process with \(\sigma \approx 10^{-30}\) cm². Even an impurity with \(\Phi_F = 10^{-4}\) at a concentration
+10⁶ times lower than the analyte gives a fluorescence background comparable to, or larger than, the Raman signal —
+and its shot noise remains even after the smooth background is subtracted. The noise on a background of \(B\)
+counts is \(\sqrt B\), so the signal-to-noise ratio of a Raman band with \(S\) counts is</p>
+$$\mathrm{SNR} = \frac{S}{\sqrt{S + B + D}},$$
+<p>with \(D\) the detector noise contribution. A background a hundred times stronger than the band reduces the SNR
+about tenfold, however long you measure. Biological samples, polymers, pharmaceuticals and many minerals fluoresce
+under visible excitation. There are three ways out: excite where nothing absorbs (the near-infrared — next
+section), excite so far in the ultraviolet that fluorescence is emitted well away from the Raman lines (deep-UV
+Raman), or use the timing or the shape of the signal (pulsed gating, shifted-excitation subtraction). The figure
+shows the trade-offs as a function of the laser wavelength.</p>
+
+<figure class="fig" data-fig="excite">
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Choosing the laser.</b> The Raman signal falls as ν⁴ towards the infrared (gold); autofluorescence
+  overlapping the Raman bands (red, an illustrative model for a biological sample) is strongest for visible
+  excitation and small in the deep UV and beyond about 1000 nm. With a chromophore, resonance (cyan) multiplies the
+  Raman signal near its absorption band. The best wavelength is a compromise among the three — which is why 785 nm
+  is popular for tissue and 1064 nm for strongly fluorescent samples.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ft"><span class="num">05</span>FT-Raman — escaping fluorescence at 1064 nm</h2>
+
+<h3>Why it is needed</h3>
+<p>Very few molecules absorb at 1064 nm, the line of the Nd:YAG laser: electronic transitions of organic
+molecules and most impurities lie at shorter wavelengths. Exciting there removes most fluorescence at its
+source, which made Raman routine for dyes, polymers, natural products and pharmaceuticals in the 1980s and 1990s.</p>
+
+<h3>The price, and why Fourier transform</h3>
+<p>Two penalties come with 1064 nm. The ν⁴ factor: compared with 785 nm, a band at 1000 cm⁻¹ is about 4 times
+weaker, compared with 532 nm about 20 times (the ratio of the fourth powers of the scattered frequencies). And the Raman light, at 1100–1500 nm, lies beyond the sensitivity of
+silicon detectors; InGaAs or cooled germanium detectors are noisier. A dispersive spectrometer with a single
+noisy detector would have to scan the spectrum point by point and would collect most of the time only one
+wavelength. A Michelson interferometer instead sends all wavelengths to the detector at once, with a large
+circular aperture rather than a slit — the multiplex (Fellgett) and throughput (Jacquinot) advantages described for
+FTIR in the <a href="blog-spectroscopy.html#s-ir">first article</a>. When the detector noise dominates, measuring
+everything at once wins, which is exactly the near-infrared Raman situation [5]. The spectrum is recovered as the
+cosine transform of the interferogram, and the wavenumber axis is calibrated by a reference laser.</p>
+
+<h3>Advantage over visible dispersive Raman</h3>
+<p>Fluorescence-free spectra of strongly fluorescent samples, excellent wavenumber accuracy, and a large sampling
+volume (useful for heterogeneous solids). The disadvantages: weaker signal, larger laser powers (heating of dark
+samples), lower spatial resolution, and water absorption overtones near 1.4 µm. Today 785 nm dispersive Raman with
+deep-depletion silicon CCDs is the usual compromise; 1064 nm is chosen when 785 nm still fluoresces, increasingly
+with dispersive InGaAs arrays as well as FT instruments.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-rr"><span class="num">06</span>Resonance Raman — borrowing an electronic transition</h2>
+
+<h3>Why it is needed</h3>
+<p>FT-Raman removes the background but leaves the signal weak. The opposite strategy is to make the signal
+stronger by moving the laser <i>towards</i> an electronic absorption of the molecule of interest.</p>
+
+<h3>From first principles</h3>
+<p>Quantum mechanically, the Raman polarisability for a transition from the initial vibrational state \(|i\rangle\)
+to the final state \(|f\rangle\) is a sum over all excited states \(|r\rangle\) — the Kramers–Heisenberg–Dirac
+expression [6]:</p>
+$$\alpha_{\rho\sigma} = \frac{1}{\hbar}\sum_r\left[\frac{\langle f|\mu_\rho|r\rangle\langle r|\mu_\sigma|i\rangle}{\omega_{ri} - \omega_L - i\Gamma_r} + \frac{\langle f|\mu_\sigma|r\rangle\langle r|\mu_\rho|i\rangle}{\omega_{rf} + \omega_L + i\Gamma_r}\right] ,$$
+<p>where \(\mu_\rho, \mu_\sigma\) are components of the dipole-moment operator, \(\omega_{ri}\) the frequency of the
+transition from \(|i\rangle\) to \(|r\rangle\), \(\Gamma_r\) the damping (line width) of state \(r\), and \(\hbar\) the
+reduced Planck constant. Far from any absorption all terms are small and comparable — ordinary Raman. When
+\(\omega_L\) approaches an electronic transition, the first denominator nearly vanishes and that state dominates.
+In the Albrecht “A-term” approximation [6] the enhanced amplitude is</p>
+$$\alpha_A \propto \frac{|\mu_{eg}|^2}{\hbar}\sum_v \frac{\langle f|v\rangle\langle v|i\rangle}{\omega_{vi} - \omega_L - i\Gamma} ,$$
+<p>with \(\mu_{eg}\) the electronic transition dipole and \(\langle f|v\rangle\) Franck–Condon overlaps between
+ground- and excited-state vibrational levels \(v\). Only vibrations whose equilibrium geometry changes in the excited
+state (displaced oscillators) have large overlaps — so resonance Raman is enhanced by 10³–10⁶ and, just as
+importantly, <b>selective</b>: it shows the vibrations of the chromophore and hides the rest of the sample.</p>
+
+<h3>Advantage over plain Raman, and the costs</h3>
+<p>The heme of haemoglobin or cytochromes, carotenoids, retinal in rhodopsin and many dyes give strong, selective
+spectra at micromolar concentrations; deep-UV excitation (around 200–260 nm) puts aromatic amino acids, the peptide
+backbone and nucleobases in resonance, while fluorescence is emitted far to the red of the Raman lines [7]. The
+costs: the sample absorbs the laser (photodegradation, heating), fluorescence is usually close by in the visible,
+the spectrum can be self-absorbed, and a tunable or UV laser is often needed. Resonance and SERS combine in SERRS,
+used for the brightest SERS tags (<a href="blog-sers-label-free.html#s-rep">Raman reporters</a>).</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-sers"><span class="num">07</span>SERS — borrowing a plasmon</h2>
+
+<p>Resonance requires a chromophore. Surface-enhanced Raman scattering enhances <i>any</i> molecule close enough to a
+gold or silver nanostructure: the localised surface plasmon concentrates the field, and the enhancement of the
+Raman intensity scales roughly as the fourth power of the local field,</p>
+$$G_\text{SERS} \approx \left|\frac{E_\text{loc}(\omega_L)}{E_0}\right|^2\left|\frac{E_\text{loc}(\omega_s)}{E_0}\right|^2 \approx \left|\frac{E_\text{loc}}{E_0}\right|^4 ,$$
+<p>where \(E_0\) is the incident field and \(E_\text{loc}\) the local field at the molecule [8, 9]. Average
+enhancements are 10⁴–10⁸; in the narrow gaps between particles (“hot spots”) they reach 10¹⁰, enough for single
+molecules [10, 11]. Metals also quench fluorescence. The physics is derived in the
+<a href="blog-spectroscopy.html#s-sers">first article</a>; the chemistry — how molecules reach the surface, Raman
+reporters, quantification — is the subject of the next one,
+<a href="blog-sers-label-free.html">Label-free and labelled SERS</a>.</p>
+<p><b>Advantage over resonance Raman:</b> no chromophore needed, larger enhancement, fluorescence quenched.
+<b>Costs:</b> the molecule must be within a few nanometres of the metal, the enhancement varies strongly from spot to
+spot, and the spectrum reports only what adsorbs — and it tells you nothing about <i>where</i> on the surface the
+signal came from.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ters"><span class="num">08</span>TERS — a hot spot you can move</h2>
+
+<h3>Why it is needed</h3>
+<p>A SERS substrate has millions of hot spots at unknown places, and the far-field optics that collect the light are
+still limited by diffraction. Tip-enhanced Raman scattering puts a <i>single</i> hot spot at the apex of a sharp gold
+or silver tip — an atomic-force or scanning-tunnelling microscope probe — and scans it over the sample [12]. The
+Raman signal is now enhanced only under the tip, so the spatial resolution is set by the size of the apex and the
+tip–sample gap, not by the wavelength.</p>
+
+<h3>How it works</h3>
+<p>The laser illuminates the tip with its field along the tip axis; the tip apex acts as an optical antenna, and in
+the gap between the tip and a metal substrate (“gap mode”) the field is strongest. The enhancement follows the same
+\(|E_\text{loc}/E_0|^4\) law as SERS, with typical values of 10³–10⁷. Because the laser spot also produces ordinary
+Raman from the surrounding area, two quantities are used: the measured <b>contrast</b> and the
+enhancement factor it implies,</p>
+$$C = \frac{I_\text{tip in}}{I_\text{tip out}} - 1, \qquad \mathrm{EF}_\text{TERS} = C\,\frac{A_\text{focus}}{A_\text{tip}} ,$$
+<p>where \(I_\text{tip in}\) and \(I_\text{tip out}\) are the signals with the tip engaged and retracted, and
+\(A_\text{focus}/A_\text{tip}\) the ratio of the laser focus area to the area under the tip. A contrast of only 1
+from a 10 nm tip in a 500 nm focus already means an enhancement of about 2500: the near-field signal must beat the
+far-field signal from a far larger area.</p>
+
+<h3>Advantage over SERS, and the costs</h3>
+<p>Chemical imaging at 10–20 nm under ambient conditions, and in ultra-high vacuum at low temperature down to
+sub-nanometre resolution, resolving the inside of a single molecule [13]. TERS images carbon nanotubes, graphene
+defects, DNA, membranes and catalytic surfaces molecule by molecule. The costs are practical ones: tips are hard to
+make reproducibly and degrade, scans are slow, topography and optical signals can mix, and the near-field signal
+from a monolayer is weak in absolute terms.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-crs"><span class="num">09</span>Coherent Raman — driving the molecules in step</h2>
+
+<p>All the methods so far keep Raman scattering spontaneous: each molecule scatters independently, so the signal
+is weak and imaging is slow. Coherent Raman scattering takes a different route. Two lasers, a <b>pump</b> at
+\(\omega_p\) and a <b>Stokes</b> beam at \(\omega_s\), are tuned so that their difference matches a vibration,
+\(\omega_p - \omega_s = \Omega_R\). The beat between the two fields drives that vibration like a pushed swing —
+all molecules in the focus oscillate <i>in phase</i>. Their scattered fields then add coherently: the signal grows as
+\(N^2\) instead of \(N\), goes into a well-defined direction, and needs no spectrometer for imaging at one band.</p>
+
+<p>The response is described by the third-order nonlinear susceptibility \(\chi^{(3)}\), the material property that
+relates the induced polarisation to the product of three fields. Near a Raman band it has a resonant part with a
+Lorentzian shape and a non-resonant part \(\chi_\text{NR}\) from the electrons of every molecule, resonant or not:</p>
+$$\chi^{(3)}(\omega_p - \omega_s) = \chi_\text{NR} + \frac{A}{\Omega_R - (\omega_p - \omega_s) - i\Gamma} ,$$
+<p>where \(A\) is proportional to the number density of the molecules and their Raman cross-section, and \(\Gamma\) the
+half-width of the band. Two kinds of experiment measure two different parts of it: CARS and SRS.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-cars"><span class="num">10</span>CARS — fast, directional, but with a background</h2>
+
+<p>In coherent anti-Stokes Raman scattering the driven vibration scatters a second pump photon to the anti-Stokes
+frequency</p>
+$$\omega_\text{as} = 2\omega_p - \omega_s, \qquad I_\text{CARS} \propto \big|\chi^{(3)}\big|^2\, I_p^2\, I_s ,$$
+<p>which is emitted only along the phase-matched direction, \(\Delta\mathbf k = 2\mathbf k_p - \mathbf k_s - \mathbf k_\text{as} \approx 0\) (\(\mathbf k\)
+being the wave vectors); with tightly focused collinear beams the condition is fulfilled automatically in the small
+focal volume [14]. Its advantages over spontaneous Raman are large: signals many orders of magnitude stronger,
+blue-shifted from the lasers so that one-photon fluorescence does not overlap them, and intrinsic 3D sectioning
+because the signal only arises where both beams are focused. CARS microscopy reached video rate in living tissue,
+imaging lipids through their strong CH₂ stretch near 2850 cm⁻¹ [15].</p>
+
+<p>The weakness is visible in the formula: the signal is \(|\chi_R + \chi_\text{NR}|^2\). The non-resonant part
+produces a background everywhere — also from water — and interferes with the resonant part, so the band appears
+distorted (a peak shifted to lower wavenumber followed by a dip) and its height is not proportional to concentration
+(\(|\chi|^2\) grows as \(N^2\) and contains a cross term).</p>
+
+<figure class="fig" data-fig="coherent">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Why SRS spectra look like Raman spectra and CARS spectra do not.</b> Line shapes near a band at
+  2850 cm⁻¹ from the \(\chi^{(3)}\) model in the text. Raise the non-resonant background: the CARS peak shifts, a dip
+  appears on its high-wavenumber side and a constant background rises. The SRS line shape stays identical to the
+  spontaneous Raman band.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-srs"><span class="num">11</span>SRS — the background-free answer</h2>
+
+<h3>How it works</h3>
+<p>In stimulated Raman scattering nothing new is generated at a new frequency. Instead, when \(\omega_p - \omega_s\)
+matches a vibration, energy flows from the pump beam to the Stokes beam through the molecules: the pump loses a little
+intensity (stimulated Raman loss, SRL) and the Stokes beam gains the same number of photons (stimulated Raman gain,
+SRG):</p>
+$$\Delta I_s \propto \mathrm{Im}\,\chi^{(3)}\, I_p\, I_s, \qquad \Delta I_p \propto -\,\mathrm{Im}\,\chi^{(3)}\, I_p\, I_s .$$
+<p>Only the imaginary part of \(\chi^{(3)}\) appears, and \(\chi_\text{NR}\) is real — so the non-resonant background
+vanishes. \(\mathrm{Im}\,\chi^{(3)}\) is exactly the spontaneous Raman line shape, so SRS spectra can be compared
+directly with Raman libraries, and the signal is <b>linear in concentration</b>. The change is tiny,
+\(\Delta I/I \approx 10^{-4}\)–\(10^{-8}\), so one beam is modulated at megahertz frequencies and the change is picked
+out of the other beam with a lock-in amplifier, beyond the low-frequency laser noise [16].</p>
+
+<h3>Advantage over CARS, and what it enabled</h3>
+<p>Background-free, quantitative contrast at the same speed. SRS microscopy reached video rate in vivo [17], and a
+fibre-laser SRS microscope taken into the operating room produced virtual haematoxylin-and-eosin images of
+unprocessed brain-tumour specimens in minutes, with diagnoses in near-perfect agreement with conventional histology
+[18]. Combined with alkyne, nitrile or deuterium labels in the cell-silent region
+(<a href="blog-spectroscopy.html#s-silent">why it is silent</a>), SRS images drugs and metabolites with minimal
+perturbation [19, 20]. The costs of both coherent methods are two synchronised pulsed lasers, more complex optics, and
+— at a single frequency pair — only one band at a time unless broadband or hyperspectral schemes are used.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-sors"><span class="num">12</span>SORS — reading beneath the surface</h2>
+
+<h3>Why it is needed</h3>
+<p>Confocal Raman reaches perhaps a hundred micrometres into a clear sample and much less into a turbid one. In
+tissue, powders and plastics, photons are scattered every 0.1 mm or so and quickly forget their direction. Most
+Raman light collected at the laser spot was generated near the surface — the container wall, the tablet coating, the
+skin — and drowns the signal from what lies beneath.</p>
+
+<h3>How it works</h3>
+<p>Diffusing photons that travel further sideways have, on average, also travelled deeper. Spatially offset Raman
+spectroscopy collects the Raman light at a distance \(\Delta s\) from the laser spot [21]. As the offset grows, the
+contribution of deeper layers rises relative to the surface. Two spectra, at zero and at a large offset, can then be
+combined by scaled subtraction,</p>
+$$S_\text{deep} \approx S(\Delta s) - k\,S(0) ,$$
+<p>with \(k\) chosen to remove the bands of the surface layer, leaving the spectrum of the layer below. A related
+geometry, transmission Raman, collects on the opposite side of the sample and averages over its whole thickness.</p>
+
+<figure class="fig" data-fig="sors">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>SORS by random walk.</b> Photons perform a three-dimensional random walk in a turbid two-layer
+  sample (isotropic steps of one transport mean free path, weak absorption); the Raman light each photon brings back
+  is taken as proportional to the path it spent in each layer. The share of signal from the buried layer grows with
+  the offset, while the total signal falls — the trade-off every SORS measurement balances.</figcaption>
+</figure>
+
+<h3>Advantage over conventional and confocal Raman, and the costs</h3>
+<p>Depths of millimetres to centimetres, through barriers: liquids in coloured plastic bottles at airport security
+[22], counterfeit drugs through packaging, bone through skin, and the prospect of non-invasive diagnosis of tissue
+[23]. Combined with SERS nanoparticles (SESORS), signals have been recovered through about 2 cm of tissue
+[24]. The costs are lower total signal at large offsets, depth information that is statistical rather than a sharp
+section, and the need for careful processing to separate the layers.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-choose"><span class="num">13</span>Comparison and how to choose</h2>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Technique</th><th>Solves</th><th>Gain over its predecessor</th><th>Pays with</th><th>Typical use</th></tr></thead>
+  <tbody>
+    <tr><td>Spontaneous Raman</td><td>—</td><td>label-free vibrational fingerprint, works in water</td><td>weak, fluorescence-prone, slow</td><td>identification, QC</td></tr>
+    <tr><td>Confocal Raman (CRM)</td><td>where</td><td>~0.3 µm lateral, ~1 µm depth, 3D maps</td><td>slow mapping; refraction artefacts in depth</td><td>cells, films, inclusions</td></tr>
+    <tr><td>FT-Raman (1064 nm)</td><td>fluorescence</td><td>fluorescence largely gone; accurate wavenumbers</td><td>ν⁴ loss; noisy NIR detectors; heating</td><td>dyes, polymers, pharma, natural products</td></tr>
+    <tr><td>Resonance Raman</td><td>weak signal</td><td>10³–10⁶ stronger; selective for one chromophore</td><td>photodamage; fluorescence; tunable/UV laser</td><td>heme proteins, carotenoids, UV for proteins and DNA</td></tr>
+    <tr><td>SERS</td><td>weak signal</td><td>any molecule; 10⁴–10¹⁰; fluorescence quenched</td><td>must touch the metal; reproducibility</td><td>trace detection, biosensing</td></tr>
+    <tr><td>TERS</td><td>diffraction</td><td>one movable hot spot: ~10 nm, sub-nm in UHV</td><td>tips; slow; weak absolute signal</td><td>2D materials, single molecules, surfaces</td></tr>
+    <tr><td>CARS</td><td>speed</td><td>coherent, directional, anti-Stokes; video rate</td><td>non-resonant background; distorted bands; N² scaling</td><td>lipid and myelin imaging</td></tr>
+    <tr><td>SRS</td><td>CARS background</td><td>background-free, linear, Raman-like spectra</td><td>two pulsed lasers; lock-in detection</td><td>quantitative cell and tissue imaging, histology</td></tr>
+    <tr><td>SORS</td><td>surface only</td><td>mm–cm depth through barriers</td><td>less signal; statistical depth</td><td>security, pharma, bone and tissue</td></tr>
+  </tbody>
+</table></div>
+
+<div class="callout tip"><b>A quick decision guide</b>
+<p><b>Is the sample fluorescent?</b> Try 785 nm; if it still glows, 1064 nm (FT or dispersive InGaAs), deep-UV, or
+SERS (the metal quenches fluorescence).</p>
+<p><b>Too little signal?</b> If the target has a chromophore, tune into resonance; otherwise SERS — and SERRS for the
+brightest labels.</p>
+<p><b>Need to know where?</b> Micrometres: confocal Raman. Nanometres: TERS.</p>
+<p><b>Need to image fast, living samples?</b> CARS for strong bands such as lipids; SRS when you need quantitative,
+background-free contrast or Raman-library-like spectra.</p>
+<p><b>Is the target under something?</b> SORS or transmission Raman; SESORS with nanoparticle labels for deep tissue.</p></div>
+
+<p>The variants combine: confocal SERS maps, resonance-enhanced SERS (SERRS), SRS with Raman tags, SESORS. The next
+article, <a href="blog-sers-label-free.html">Label-free and labelled SERS</a>, looks closely at the variant most used
+for sensing — and at the chemistry that decides what it sees.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">14</span>References</h2>
+<ol class="refs">
+  <li>C. V. Raman and K. S. Krishnan, “A new type of secondary radiation,” <i>Nature</i> <b>121</b>, 501–502 (1928).</li>
+  <li>D. A. Long, <i>The Raman Effect: A Unified Treatment of the Theory of Raman Scattering by Molecules</i>, Wiley, Chichester (2002).</li>
+  <li>G. J. Puppels, F. F. M. de Mul, C. Otto, J. Greve, M. Robert-Nicoud, D. J. Arndt-Jovin and T. M. Jovin, “Studying single living cells and chromosomes by confocal Raman microspectroscopy,” <i>Nature</i> <b>347</b>, 301–303 (1990).</li>
+  <li>N. J. Everall, “Confocal Raman microscopy: why the depth resolution and spatial accuracy can be much worse than you think,” <i>Appl. Spectrosc.</i> <b>54</b>, 1515–1520 (2000).</li>
+  <li>T. Hirschfeld and B. Chase, “FT-Raman spectroscopy: development and justification,” <i>Appl. Spectrosc.</i> <b>40</b>, 133–137 (1986).</li>
+  <li>A. C. Albrecht, “On the theory of Raman intensities,” <i>J. Chem. Phys.</i> <b>34</b>, 1476–1484 (1961).</li>
+  <li>S. A. Asher, “UV resonance Raman studies of molecular structure and dynamics: applications in physical and biophysical chemistry,” <i>Annu. Rev. Phys. Chem.</i> <b>39</b>, 537–588 (1988).</li>
+  <li>M. Moskovits, “Surface-enhanced spectroscopy,” <i>Rev. Mod. Phys.</i> <b>57</b>, 783–826 (1985).</li>
+  <li>E. C. Le Ru and P. G. Etchegoin, <i>Principles of Surface-Enhanced Raman Spectroscopy and Related Plasmonic Effects</i>, Elsevier, Amsterdam (2009).</li>
+  <li>K. Kneipp, Y. Wang, H. Kneipp, L. T. Perelman, I. Itzkan, R. R. Dasari and M. S. Feld, “Single molecule detection using surface-enhanced Raman scattering (SERS),” <i>Phys. Rev. Lett.</i> <b>78</b>, 1667–1670 (1997).</li>
+  <li>S. Nie and S. R. Emory, “Probing single molecules and single nanoparticles by surface-enhanced Raman scattering,” <i>Science</i> <b>275</b>, 1102–1106 (1997).</li>
+  <li>R. M. Stöckle, Y. D. Suh, V. Deckert and R. Zenobi, “Nanoscale chemical analysis by tip-enhanced Raman spectroscopy,” <i>Chem. Phys. Lett.</i> <b>318</b>, 131–136 (2000).</li>
+  <li>R. Zhang, Y. Zhang, Z. C. Dong, S. Jiang, C. Zhang, L. G. Chen, L. Zhang, Y. Liao, J. Aizpurua, Y. Luo, J. L. Yang and J. G. Hou, “Chemical mapping of a single molecule by plasmon-enhanced Raman scattering,” <i>Nature</i> <b>498</b>, 82–86 (2013).</li>
+  <li>A. Zumbusch, G. R. Holtom and X. S. Xie, “Three-dimensional vibrational imaging by coherent anti-Stokes Raman scattering,” <i>Phys. Rev. Lett.</i> <b>82</b>, 4142–4145 (1999).</li>
+  <li>C. L. Evans, E. O. Potma, M. Puoris'haag, D. Côté, C. P. Lin and X. S. Xie, “Chemical imaging of tissue in vivo with video-rate coherent anti-Stokes Raman scattering microscopy,” <i>Proc. Natl. Acad. Sci. USA</i> <b>102</b>, 16807–16812 (2005).</li>
+  <li>C. W. Freudiger, W. Min, B. G. Saar, S. Lu, G. R. Holtom, C. He, J. C. Tsai, J. X. Kang and X. S. Xie, “Label-free biomedical imaging with high sensitivity by stimulated Raman scattering microscopy,” <i>Science</i> <b>322</b>, 1857–1861 (2008).</li>
+  <li>B. G. Saar, C. W. Freudiger, J. Reichman, C. M. Stanley, G. R. Holtom and X. S. Xie, “Video-rate molecular imaging in vivo with stimulated Raman scattering,” <i>Science</i> <b>330</b>, 1368–1370 (2010).</li>
+  <li>D. A. Orringer et al., “Rapid intraoperative histology of unprocessed surgical specimens via fibre-laser-based stimulated Raman scattering microscopy,” <i>Nat. Biomed. Eng.</i> <b>1</b>, 0027 (2017).</li>
+  <li>J.-X. Cheng and X. S. Xie, “Vibrational spectroscopic imaging of living systems: an emerging platform for biology and medicine,” <i>Science</i> <b>350</b>, aaa8870 (2015).</li>
+  <li>C. H. Camp Jr and M. T. Cicerone, “Chemically sensitive bioimaging with coherent Raman scattering,” <i>Nat. Photonics</i> <b>9</b>, 295–305 (2015).</li>
+  <li>P. Matousek, I. P. Clark, E. R. C. Draper, M. D. Morris, A. E. Goodship, N. Everall, M. Towrie, W. F. Finney and A. W. Parker, “Subsurface probing in diffusely scattering media using spatially offset Raman spectroscopy,” <i>Appl. Spectrosc.</i> <b>59</b>, 393–400 (2005).</li>
+  <li>C. Eliasson, N. A. Macleod and P. Matousek, “Noninvasive detection of concealed liquid explosives using Raman spectroscopy,” <i>Anal. Chem.</i> <b>79</b>, 8185–8189 (2007).</li>
+  <li>P. Matousek and N. Stone, “Development of deep subsurface Raman spectroscopy for medical diagnosis and disease monitoring,” <i>Chem. Soc. Rev.</i> <b>45</b>, 1794–1802 (2016).</li>
+  <li>N. Stone, M. Kerssens, G. R. Lloyd, K. Faulds, D. Graham and P. Matousek, “Surface enhanced spatially offset Raman spectroscopic (SESORS) imaging – the next dimension,” <i>Chem. Sci.</i> <b>2</b>, 776–780 (2011).</li>
+</ol>
+
+<hr>
+<p>The figures use the simple models stated in their captions — an illustrative fluorescence model, the
+\(\chi^{(3)}\) line shape, a photon random walk and ideal confocal formulas — for teaching, not instrument design.
+Corrections and questions are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+
+<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 2 of 7</span><a class="sn-prev" href="blog-spectroscopy.html">← Part 1 · Vibrational spectroscopy, plasmonics and SERS</a><a class="sn-next" href="blog-sers-label-free.html">Part 3 · Label-free and labelled SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261104c"></script>
+<script src="js/blog/vl-core.js?v=20261104c"></script>
+<script src="js/blog/rv-figs.js?v=20261104c"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
