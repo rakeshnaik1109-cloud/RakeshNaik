@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>The Future of SERS in Clinical Diagnostics | Rakesh Naik</title>
+<meta name="description" content="A perspective on surface-enhanced Raman scattering in clinical diagnostics: tag-based immunoassays and lateral-flow tests, intraoperative imaging, biofluid, breath, exosome and pathogen fingerprints, receptor-free sensing, the statistics of diagnostic accuracy, machine-learning pitfalls, reproducibility, and the evidence a test needs before clinical use — with interactive simulations and references.">
+<meta name="keywords" content="SERS clinical diagnostics, surface-enhanced Raman diagnostics, point-of-care SERS, SERS lateral flow, liquid biopsy SERS, label-free SERS biofluids, receptor-free biosensor, machine learning Raman, data leakage, diagnostic accuracy, STARD, SERS reproducibility">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-clinical.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Future of SERS in Clinical Diagnostics">
+<meta property="og:description" content="Where SERS diagnostics stand, what stands between a promising paper and a trusted clinical test, and why receptor-free sensing is the hardest road.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-clinical.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-11-04">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Future of SERS in Clinical Diagnostics">
+<meta name="twitter:description" content="Where SERS diagnostics stand, what stands between a promising paper and a trusted clinical test, and why receptor-free sensing is the hardest road.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261104c">
+<link rel="stylesheet" href="css/article.css?v=20261104c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"The Future of SERS in Clinical Diagnostics","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-sers-clinical.html"}]},
+{"@type":"TechArticle","headline":"The Future of SERS in Clinical Diagnostics","datePublished":"2026-11-04","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"Where SERS diagnostics stand, what stands between a promising paper and a trusted clinical test, and why receptor-free sensing is the hardest road.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>The future of SERS in clinical diagnostics</h1>
+    <p class="lede">Surface-enhanced Raman scattering can see a few molecules, read many targets at once from one
+    laser, and fit in a handheld reader. Fifty years after its discovery it is still rarely used to make a
+    clinical decision. This article looks at where SERS diagnostics stand today — tag-based assays, imaging in
+    surgery, pathogen and cancer tests, breath and biofluids — what stands between a promising paper and a test a
+    clinician can trust, and why removing the recognition element altogether is both the most attractive and the
+    hardest road. With the statistics every diagnostic study has to face, two simulations, and the literature.</p>
+    <div class="article-meta"><span class="post-tag">Research · Perspective</span><span>4 November 2026</span><span>≈ 35 min read</span><span>Rakesh Naik</span></div>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-why">What a clinic needs from a test</a></li>
+    <li><a href="#s-roads">Two roads: reporters and fingerprints</a></li>
+    <li><a href="#s-tags">Where tag-based SERS is close to the clinic</a></li>
+    <li><a href="#s-surgery">Seeing cancer during surgery</a></li>
+    <li><a href="#s-fluids">Fingerprints of disease in biofluids, breath and pathogens</a></li>
+    <li><a href="#s-receptor">Receptor-free sensing: why removing the antibody is the hard part</a></li>
+    <li><a href="#s-stats">The statistics every diagnostic study has to face</a></li>
+    <li><a href="#s-ml">Machine learning without fooling yourself</a></li>
+    <li><a href="#s-repro">Reproducibility and standardisation</a></li>
+    <li><a href="#s-ladder">From proof of concept to clinical use</a></li>
+    <li><a href="#s-next">What the next decade is likely to bring</a></li>
+    <li><a href="#s-checklist">What a receptor-free SERS test has to prove</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>This article builds on three earlier posts. The physics of Raman scattering and of the plasmonic enhancement is
+derived in <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS</a>; the chemistry of
+label-free and labelled SERS — adsorption, Raman reporters, tags, hot spots — in
+<a href="blog-sers-label-free.html">Label-free and labelled SERS</a>; and antibody capture layers in
+<a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor</a>. Here the question is different: not
+how SERS works, but what it takes for it to change a clinical decision. Numbers in square brackets refer to the
+<a href="#s-refs">references</a>; figures marked <b>Interactive</b> run in your browser.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-why"><span class="num">01</span>What a clinic needs from a test</h2>
+
+<p>A diagnostic test earns its place when it answers a clinical question <i>faster, cheaper, closer to the
+patient or more completely</i> than what is already used — and does so reliably enough that a decision can rest
+on it. Today's workhorses set the bar: PCR for nucleic acids, immunoassays (ELISA, chemiluminescence and the
+lateral-flow strip) for proteins and antigens, culture and mass spectrometry for microbes, histology for tissue.</p>
+
+<p>SERS brings four properties that none of these combine [1–4]:</p>
+<ul>
+  <li><b>Sensitivity</b> down to single molecules in the best hot spots, and picomolar to femtomolar detection
+  limits in well-designed assays.</li>
+  <li><b>Multiplexing</b> from one excitation: Raman bands are 10–20 cm⁻¹ wide, so many reporters, or the many
+  bands of one sample, can be read in one spectrum (<a href="blog-sers-label-free.html#s-multi">the mathematics of
+  multiplexing</a>).</li>
+  <li><b>Molecular specificity without a label</b>: the spectrum is a vibrational fingerprint of what sits on the
+  metal (<a href="blog-spectroscopy.html#s-raman">Raman scattering</a>).</li>
+  <li><b>Portability</b>: handheld Raman spectrometers and printed or colloidal substrates are cheap enough for
+  the point of care.</li>
+</ul>
+<p>The same reviews list the obstacles just as consistently: variable substrates, sample matrices that foul the
+surface, quantification that depends on rare hot spots, and validation studies that are too small. The rest of
+this article is about those two lists.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-roads"><span class="num">02</span>Two roads: reporters and fingerprints</h2>
+
+<p>Clinical SERS follows the two roads described in detail in the
+<a href="blog-sers-label-free.html#s-two">previous article</a>:</p>
+<ul>
+  <li><b>Labelled (indirect) SERS</b>: an antibody, aptamer or other receptor recognises the target, and a
+  nanoparticle carrying a bright Raman reporter reports it. The selectivity comes from biology, the signal from
+  chemistry, and the format looks like an immunoassay with a better readout.</li>
+  <li><b>Label-free (direct) SERS</b>: the sample — serum, urine, saliva, breath, cells — is put on the metal, and
+  its own spectrum is recorded. No receptor is needed, so one measurement can carry information about many
+  molecules at once; but the selectivity must now come from the spectrum itself and from the analysis.</li>
+</ul>
+<p>The two are at very different distances from the clinic, and they face different problems.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-tags"><span class="num">03</span>Where tag-based SERS is close to the clinic</h2>
+
+<p>Tag-based assays inherit decades of immunoassay practice: the clinical question (is this protein above a
+cut-off?) and the validation path are familiar. An early landmark used gold particles carrying a nitro reporter
+and a detection antibody in a sandwich assay for prostate-specific antigen, reaching about 1 pg/mL in human serum
+[7] — the format and its mathematics are described in <a href="blog-sers-label-free.html#s-formats">assay
+formats</a>.</p>
+
+<p>The most practical vehicle is the <b>lateral-flow strip</b>. Replacing the coloured gold particles of a rapid
+test with SERS tags keeps the cheap format but turns a yes/no line into a number, read by a portable Raman
+reader, and allows several targets on one line [8]. The detection limit of such assays is set less by tag
+brightness than by the blank — tags that stick where they should not — which is why the surface chemistry of
+<a href="blog-antibody-spr.html#s-nsb">non-specific binding</a> matters as much as the plasmonics.</p>
+
+<p>Two other uses are close to routine need. <b>Therapeutic drug monitoring</b> — measuring the blood level of
+drugs with a narrow therapeutic window such as some chemotherapeutics, immunosuppressants and antibiotics — needs
+fast, cheap, quantitative tests at the bedside, and SERS can measure many drugs directly [18]. The open issues
+are the same as everywhere: substrate-to-substrate variation and a method to validate for each drug.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-surgery"><span class="num">04</span>Seeing cancer during surgery</h2>
+
+<p>The most striking demonstrations of SERS in medicine are in imaging. Nanoparticles combining MRI,
+photoacoustic and Raman contrast delineated brain-tumour margins in mice, with the Raman signal revealing residual
+tumour at the edge of the resection [9]. Gold nanostars with a near-infrared resonant reporter reached a detection
+limit of 1.5 fM and imaged both large and microscopic tumours, including premalignant lesions, in several mouse
+cancer models without any targeting molecule [10]. Combining SERS with spatially offset Raman spectroscopy
+recovered signals of several tags through about 2 cm of tissue [12].</p>
+
+<p>The clinic has already accepted Raman itself in this setting: a handheld Raman probe — without nanoparticles —
+distinguished brain cancer from normal brain during surgery in patients [11]. The step from there to SERS imaging
+is not the optics; it is the nanoparticles. An injected gold–silica particle is a drug as far as regulators are
+concerned, and its toxicity, clearance and long-term fate must be established in humans before it can be used.
+That makes imaging the most dramatic and, at the same time, the slowest of the clinical roads [5].</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fluids"><span class="num">05</span>Fingerprints of disease in biofluids, breath and pathogens</h2>
+
+<p>Label-free SERS of body fluids is where most clinical papers are published. Blood plasma or serum, urine,
+saliva and tears are mixed with silver or gold colloids or dropped on a substrate, and the spectra of patients and
+controls are compared. The spectra are dominated by a few small molecules that adsorb strongly and scatter well —
+in blood often purine metabolites such as uric acid and hypoxanthine — and differences between groups are
+usually found by multivariate analysis rather than by a single band [6]. The same review argues that the most
+realistic first role for biofluid SERS is low-cost <b>screening</b>, not definitive diagnosis.</p>
+
+<p>Three recent lines show where the field is heading:</p>
+<ul>
+  <li><b>Exosomes and liquid biopsy.</b> SERS spectra of exosomes isolated from plasma, analysed by deep
+  learning, separated lung-cancer patients from controls with an area under the ROC curve of about 0.91, also for
+  stage I disease [15]. A follow-up study extended the approach to six cancer types in one test, reporting 90 %
+  sensitivity at 94 % specificity and a prediction of the tissue of origin for most positive patients — in a
+  retrospective study [16].</li>
+  <li><b>Breath.</b> A handheld breathalyser with a chip of three receptor-modified SERS sensors on silver
+  nanocubes, read by a portable spectrometer, screened 501 people for COVID-19 at hospitals and airports and
+  reported more than 95 % sensitivity and specificity, with a result in under five minutes [17].</li>
+  <li><b>Pathogens.</b> Deep learning on Raman spectra of bacteria identified 30 common pathogens and chose the
+  right antibiotic treatment for clinical isolates with 99.7 % accuracy using ten spectra per isolate [13] — a
+  Raman (not SERS) study, but the template for what SERS adds in speed and sensitivity. In our own work, a single
+  measurement on a receptor-free SERS platform, analysed by machine learning, detected and classified five
+  respiratory viruses [14].</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-receptor"><span class="num">06</span>Receptor-free sensing: why removing the antibody is the hard part</h2>
+
+<p>Removing the receptor is attractive for clinical reasons. Antibodies and aptamers must be developed for every
+new target, are expensive, vary from batch to batch, need cold storage and can be blind to a new variant. A
+receptor-free sensor can, in principle, read a new pathogen or panel of markers by retraining a model, and one
+measurement contains information about everything that reached the surface.</p>
+
+<p>But the receptor did a job, and removing it moves that job somewhere else:</p>
+<ul>
+  <li><b>Selectivity moves to the surface chemistry.</b> Without a capture layer, whatever adsorbs most strongly
+  and scatters most efficiently dominates the spectrum — usually not the analyte of interest. The competition is
+  described by the Langmuir isotherm with competing species
+  (<a href="blog-sers-label-free.html#s-adsorb">getting the molecule onto the metal</a>).</li>
+  <li><b>Specificity moves to the data analysis.</b> The disease signal is a small change in a large, variable
+  spectrum. A model must find it — and must be shown to find <i>it</i>, not differences between days, batches of
+  substrate, spectrometers or the people who prepared the samples.</li>
+  <li><b>Quantification moves to the statistics of hot spots.</b> Spot-to-spot variation is large because a few
+  sites dominate the signal; averaging and internal standards are needed
+  (<a href="blog-sers-label-free.html#s-quant">hot spots and internal standards</a>).</li>
+  <li><b>Interpretation becomes harder.</b> A band assignment in a complex fluid is a hypothesis, and the bands a
+  classifier uses should be checked against reference spectra
+  (<a href="blog-spectroscopy.html#s-bio">reading a biological spectrum</a>).</li>
+</ul>
+<p>Every one of these can be handled, but none can be skipped. The sections below are about how.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-stats"><span class="num">07</span>The statistics every diagnostic study has to face</h2>
+
+<p>A diagnostic test is compared with a <b>reference standard</b> (PCR, culture, histology). Counting the four
+outcomes — true and false positives (TP, FP) and negatives (TN, FN) — gives the two properties of the test itself:</p>
+$$\text{sensitivity} = \frac{TP}{TP + FN}, \qquad \text{specificity} = \frac{TN}{TN + FP} .$$
+<p>Sensitivity is the fraction of diseased people the test finds; specificity the fraction of healthy people it
+correctly clears. A clinician, however, holds a result and wants the reverse: given a positive, how likely is
+disease? That is the <b>positive predictive value</b>, and by Bayes' theorem it depends on the
+<b>prevalence</b> \(p\) — the fraction of the tested population that actually has the disease:</p>
+$$\mathrm{PPV} = \frac{\mathrm{Se}\,p}{\mathrm{Se}\,p + (1 - \mathrm{Sp})(1 - p)}, \qquad \mathrm{NPV} = \frac{\mathrm{Sp}\,(1 - p)}{\mathrm{Sp}\,(1 - p) + (1 - \mathrm{Se})\,p} ,$$
+<p>where Se and Sp are the sensitivity and specificity as fractions and NPV is the negative predictive value, the
+probability that a negative result is truly negative. A test with 95 % sensitivity and specificity sounds
+excellent; screening a population with 1 % prevalence, it gives about five false positives for every true one.</p>
+
+<figure class="fig" data-fig="ppv">
+  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The same test in different populations.</b> Positive and negative predictive values against
+  prevalence for the chosen sensitivity and specificity, from Bayes' theorem. In a symptomatic clinic population
+  (prevalence of tens of per cent) a positive is usually right; in population screening (a fraction of a per cent)
+  most positives are false unless the specificity is very close to 100 %. This is why screening tests need far
+  higher specificity than diagnostic ones.</figcaption>
+</figure>
+
+<p>Two more quantities appear in nearly every paper. Most classifiers output a score, and moving the decision
+threshold trades sensitivity against specificity; the <b>ROC curve</b> plots one against the other over all
+thresholds, and the <b>area under it</b> (AUC) is the probability that a randomly chosen patient scores higher
+than a randomly chosen control — 0.5 for a coin toss, 1 for a perfect test. An AUC summarises a model but does not
+choose an operating point; the clinical use decides which error is worse. And the analytical
+<b>limit of detection</b> — the lowest concentration distinguishable from a blank, \(3\sigma_\text{blank}\) divided
+by the calibration slope (<a href="blog-sers-label-free.html#s-formats">derived here</a>) — matters only relative to
+the clinical cut-off: an assay at femtomolar sensitivity for a marker whose decision level is nanomolar has gained
+nothing clinically, but may have gained new ways to be fooled by contamination.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ml"><span class="num">08</span>Machine learning without fooling yourself</h2>
+
+<p>Label-free clinical SERS depends on multivariate statistics and machine learning — PCA with discriminant
+analysis, support vector machines, random forests and, increasingly, deep neural networks [19, 20]. The most
+common way such studies overestimate their performance is not the choice of algorithm but the way the data are
+split.</p>
+
+<p>Each patient usually contributes many spectra (several spots, several replicates). Spectra of one patient
+resemble each other for reasons that have nothing to do with the disease: their own biochemistry, the substrate
+piece, the day of measurement. If the spectra are shuffled and split at random into training and test sets, the
+same patient appears on both sides, and the model can score well by <i>recognising the patient</i>. The test then
+measures memory, not diagnosis. The figure shows how large the effect can be.</p>
+
+<figure class="fig" data-fig="leak">
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Data leakage, simulated.</b> Synthetic patients in two classes; each spectrum is the class
+  signal plus that patient's own offset plus measurement noise. A nearest-neighbour classifier is trained on
+  70 % of the data and tested on the rest. Split by spectrum (red), spectra of every patient are in both sets and
+  the accuracy is high even when the real disease signal is weak; split by patient (green), the model meets new
+  people and the accuracy falls to what the disease signal supports. Set the disease signal to zero: the leaky
+  split still reports a working test.</figcaption>
+</figure>
+
+<p>The remedies are well established and described in detail in a protocol for Raman chemometrics [19]:</p>
+<ul>
+  <li>Split by <b>patient</b> (and, better, by day, substrate batch and instrument), never by spectrum; do every
+  preprocessing step that learns from data — normalisation statistics, feature selection, hyperparameters —
+  inside the training folds only.</li>
+  <li>Keep an <b>independent test set</b>, ideally from another centre or time period, that is used once.</li>
+  <li>Report <b>confidence intervals</b>; with 40 patients a 95 % accuracy has a wide uncertainty.</li>
+  <li>Check what the model uses — loadings, saliency maps — against <b>known chemistry</b>; a classifier that
+  relies on a substrate band is learning the substrate.</li>
+  <li>Make preprocessing transparent and reproducible: baselines and normalisations change spectra enough to
+  change a classifier. (This was one of the reasons for writing
+  <a href="blog-software-story.html">our own processing software</a>.)</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-repro"><span class="num">09</span>Reproducibility and standardisation</h2>
+
+<p>Clinical laboratories run the same test on thousands of samples, on several instruments, for years. SERS has a
+reputation problem here, and the community has started to address it directly. The first large interlaboratory
+study of quantitative SERS involved 15 laboratories and 44 researchers measuring the same analyte with different
+substrates and instruments, and proposed a methodology for assessing reproducibility and trueness across
+laboratories [21]. A consensus paper by leading groups set out the key parameters and good analytical practice for
+reliable, quantitative SERS: how to report enhancement factors, controls, blanks and substrate characterisation
+[22].</p>
+
+<p>For a clinical assay this translates into concrete requirements:</p>
+<ul>
+  <li><b>Substrate quality control</b>: lot-to-lot acceptance criteria, shelf-life data, and a reference
+  measurement on every lot.</li>
+  <li><b>Internal standards and calibrators</b> measured with every sample, so drifts in laser power, focus and
+  substrate activity cancel (<a href="blog-sers-label-free.html#s-quant">why they help and when they do not</a>).</li>
+  <li><b>Instrument transfer</b>: a model trained on one spectrometer must be calibrated or transferred to
+  another — part of the modelling protocol in [19].</li>
+  <li><b>Sample handling</b>: collection tubes, anticoagulants, storage time and freeze–thaw cycles change
+  biofluid spectra and must be fixed and reported.</li>
+</ul>
+<p>Two developments may ease the quantification problem itself. <b>Digital SERS</b> counts single-molecule events
+instead of averaging intensities, turning the hot-spot lottery into Poisson statistics; a protocol for it reached
+picomolar quantification of antibiotics [23]. <b>Uniform substrates</b> and gap-enhanced tags narrow the spread of
+enhancement factors, so fewer spectra are needed for a reliable average.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ladder"><span class="num">10</span>From proof of concept to clinical use</h2>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 3</div>
+  <svg viewBox="0 0 880 300" role="img" aria-label="Evidence ladder for a diagnostic test">
+    <style>.ll{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#d9d2e6}.lh{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#ffffff}</style>
+    <rect x="8" y="232" width="136" height="56" rx="6" fill="#2b3d33"/><text x="76" y="252" class="lh" text-anchor="middle">Proof of concept</text><text x="76" y="270" class="ll" text-anchor="middle">spiked samples,</text><text x="76" y="284" class="ll" text-anchor="middle">cell lines</text>
+    <rect x="153" y="188" width="136" height="100" rx="6" fill="#2e4a5a"/><text x="221" y="208" class="lh" text-anchor="middle">Retrospective</text><text x="221" y="226" class="ll" text-anchor="middle">stored samples,</text><text x="221" y="240" class="ll" text-anchor="middle">split by patient</text>
+    <rect x="298" y="144" width="136" height="144" rx="6" fill="#3b3e6b"/><text x="366" y="164" class="lh" text-anchor="middle">Prospective</text><text x="366" y="182" class="ll" text-anchor="middle">consecutive</text><text x="366" y="196" class="ll" text-anchor="middle">patients, blinded</text>
+    <rect x="443" y="100" width="136" height="188" rx="6" fill="#4e3a6b"/><text x="511" y="120" class="lh" text-anchor="middle">Multicentre</text><text x="511" y="138" class="ll" text-anchor="middle">other sites,</text><text x="511" y="152" class="ll" text-anchor="middle">instruments, lots</text>
+    <rect x="588" y="56" width="136" height="232" rx="6" fill="#5e3550"/><text x="656" y="76" class="lh" text-anchor="middle">Regulatory</text><text x="656" y="94" class="ll" text-anchor="middle">analytical and</text><text x="656" y="108" class="ll" text-anchor="middle">clinical evidence</text>
+    <rect x="733" y="12" width="136" height="276" rx="6" fill="#6b4a1f"/><text x="801" y="32" class="lh" text-anchor="middle">Clinical utility</text><text x="801" y="50" class="ll" text-anchor="middle">changes decisions</text><text x="801" y="64" class="ll" text-anchor="middle">and outcomes?</text>
+    <text x="12" y="20" class="ll" fill="#e0a82e" style="fill:#e0a82e">most SERS papers</text><path d="M 70 28 L 150 160" stroke="#e0a82e" stroke-dasharray="3 3" fill="none"/>
+  </svg>
+  <figcaption><b>The evidence ladder of a diagnostic test</b> (schematic). Each step answers a question the previous
+  one cannot: does it work on real samples, on patients as they arrive, elsewhere, to a regulator's standard, and
+  does it improve care? Most published SERS diagnostics stand on the first two steps.</figcaption>
+</figure>
+
+<p>Diagnostic accuracy studies have their own reporting standard, STARD, which lists what a paper must state for
+its results to be interpretable: how patients were recruited, the reference standard, blinding, flow of
+participants, and the uncertainty of the estimates [24]. Many SERS studies fall short of it — small, single-centre,
+case–control cohorts with clear-cut cases and healthy volunteers, which inflate accuracy compared with the mixed
+population a test meets in practice [4].</p>
+
+<p>Beyond the evidence, a test has to fit a workflow. Who prepares the sample, how long it takes, what it costs per
+test, how a result is reported and acted on, and what happens when the substrate lot changes are questions that
+decide adoption as much as sensitivity does. SERS tests that reuse established formats — lateral-flow strips,
+cartridge readers, microplates — have the shortest path.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-next"><span class="num">11</span>What the next decade is likely to bring</h2>
+
+<p>Predictions are cheap; here are the directions the literature points to [1, 4, 8, 20], with the caveat that each
+still needs the evidence of the previous section.</p>
+<ul>
+  <li><b>Point-of-care readers.</b> Handheld spectrometers with smartphone-level interfaces, reading SERS
+  lateral-flow strips or cartridges quantitatively and for several targets at once.</li>
+  <li><b>Hybrid assays.</b> A receptor to pull the target out of the matrix, combined with label-free reading of
+  its spectrum — keeping selectivity while gaining structural information (for example on variants or
+  modifications).</li>
+  <li><b>Explainable, well-validated machine learning.</b> Models trained on multicentre data, tested
+  prospectively, with the spectral features they rely on linked to known biochemistry; spectral libraries and
+  shared datasets to train them.</li>
+  <li><b>Standard substrates and reference materials</b>, so that a spectrum measured in one laboratory means the
+  same in another, and digital SERS for robust quantification at very low concentrations.</li>
+  <li><b>Microfluidics</b> that integrate sample preparation — separating cells, concentrating exosomes or
+  pathogens — with the SERS readout, removing the operator from the most variable step.</li>
+  <li><b>Imaging and deep-tissue SERS</b> (SESORS) for surgery and endoscopy, once biocompatible probes clear
+  safety evaluation [5, 12].</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-checklist"><span class="num">12</span>What a receptor-free SERS test has to prove</h2>
+
+<div class="callout tip"><b>A checklist before anyone should trust it in a clinic</b>
+<p><b>1. It sees the disease, not the batch.</b> Performance holds when the test set comes from other days,
+substrate lots, instruments and operators, and the model's important bands make chemical sense.</p>
+<p><b>2. It meets new patients.</b> Accuracy is reported on patients never seen in training, with confidence
+intervals, from a population like the one it is meant for — not only clear cases and healthy volunteers.</p>
+<p><b>3. It is compared with the reference standard</b>, blinded, and reported following STARD [24].</p>
+<p><b>4. It is reproducible as a measurement</b>: substrate QC, internal standards, defined sample handling, and
+repeatability and reproducibility figures in the sense of [21, 22].</p>
+<p><b>5. Its operating point fits the use.</b> Sensitivity, specificity and predictive values are given for the
+intended prevalence (Figure 1), and the threshold is chosen for the clinical cost of each error.</p>
+<p><b>6. It is robust to the unexpected</b>: other infections or diseases, medication, diet, sample age — the
+confounders a clinic will supply.</p>
+<p><b>7. It adds something</b> — speed, cost, access or information — that changes a decision.</p></div>
+
+<p>None of these is unique to SERS; they are what every diagnostic is asked. What is unique is the combination of
+sensitivity, multiplexing and molecular information that SERS can bring once it meets them. That is why we work on
+it, and why we try to hold our own receptor-free platforms to this list.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">13</span>References</h2>
+<ol class="refs">
+  <li>J. Langer et al., “Present and future of surface-enhanced Raman scattering,” <i>ACS Nano</i> <b>14</b>, 28–117 (2020).</li>
+  <li>C. Zong et al., “Surface-enhanced Raman spectroscopy for bioanalysis: reliability and challenges,” <i>Chem. Rev.</i> <b>118</b>, 4946–4980 (2018).</li>
+  <li>D. Cialla-May, X.-S. Zheng, K. Weber and J. Popp, “Recent progress in surface-enhanced Raman spectroscopy for biological and biomedical applications: from cells to clinics,” <i>Chem. Soc. Rev.</i> <b>46</b>, 3945–3961 (2017).</li>
+  <li>D. Cialla-May, A. Bonifacio, T. Bocklitz, A. Markin, N. Markina, S. Fornasaro, A. Dwivedi, T. Dib, E. Farnesi, C. Liu, A. Ghosh and J. Popp, “Biomedical SERS – the current state and future trends,” <i>Chem. Soc. Rev.</i> <b>53</b>, 8957–8979 (2024).</li>
+  <li>S. Laing, L. E. Jamieson, K. Faulds and D. Graham, “Surface-enhanced Raman spectroscopy for in vivo biosensing,” <i>Nat. Rev. Chem.</i> <b>1</b>, 0060 (2017).</li>
+  <li>A. Bonifacio, S. Cervo and V. Sergo, “Label-free surface-enhanced Raman spectroscopy of biofluids: fundamental aspects and diagnostic applications,” <i>Anal. Bioanal. Chem.</i> <b>407</b>, 8265–8277 (2015).</li>
+  <li>D. S. Grubisha, R. J. Lipert, H.-Y. Park, J. Driskell and M. D. Porter, “Femtomolar detection of prostate-specific antigen: an immunoassay based on surface-enhanced Raman scattering and immunogold labels,” <i>Anal. Chem.</i> <b>75</b>, 5936–5943 (2003).</li>
+  <li>S. Sloan-Dennison, E. O'Connor, J. W. Dear, D. Graham and K. Faulds, “Towards quantitative point of care detection using SERS lateral flow immunoassays,” <i>Anal. Bioanal. Chem.</i> <b>414</b>, 4541–4549 (2022).</li>
+  <li>M. F. Kircher et al., “A brain tumor molecular imaging strategy using a new triple-modality MRI-photoacoustic-Raman nanoparticle,” <i>Nat. Med.</i> <b>18</b>, 829–834 (2012).</li>
+  <li>S. Harmsen et al., “Surface-enhanced resonance Raman scattering nanostars for high-precision cancer imaging,” <i>Sci. Transl. Med.</i> <b>7</b>, 271ra7 (2015).</li>
+  <li>M. Jermyn et al., “Intraoperative brain cancer detection with Raman spectroscopy in humans,” <i>Sci. Transl. Med.</i> <b>7</b>, 274ra19 (2015).</li>
+  <li>N. Stone, M. Kerssens, G. R. Lloyd, K. Faulds, D. Graham and P. Matousek, “Surface enhanced spatially offset Raman spectroscopic (SESORS) imaging – the next dimension,” <i>Chem. Sci.</i> <b>2</b>, 776–780 (2011).</li>
+  <li>C.-S. Ho, N. Jean, C. A. Hogan, L. Blackmon, S. S. Jeffrey, M. Holodniy, N. Banaei, A. A. E. Saleh, S. Ermon and J. Dionne, “Rapid identification of pathogenic bacteria using Raman spectroscopy and deep learning,” <i>Nat. Commun.</i> <b>10</b>, 4927 (2019).</li>
+  <li>A. Yadav, R. Naik, E. Gupta, P. P. Roy and S. K. Srivastava, “Single-shot, receptor-free, rapid detection and classification of five respiratory viruses by machine learning integrated SERS sensing platform,” <i>Biosens. Bioelectron.</i> <b>279</b>, 117394 (2025).</li>
+  <li>H. Shin et al., “Early-stage lung cancer diagnosis by deep learning-based spectroscopic analysis of circulating exosomes,” <i>ACS Nano</i> <b>14</b>, 5435–5444 (2020).</li>
+  <li>H. Shin, B. H. Choi et al., “Single test-based diagnosis of multiple cancer types using Exosome-SERS-AI for early stage cancers,” <i>Nat. Commun.</i> <b>14</b>, 1644 (2023).</li>
+  <li>S. X. Leong et al., “Noninvasive and point-of-care surface-enhanced Raman scattering (SERS)-based breathalyzer for mass screening of coronavirus disease 2019 (COVID-19) under 5 min,” <i>ACS Nano</i> <b>16</b>, 2629–2639 (2022).</li>
+  <li>A. Jaworska, S. Fornasaro, V. Sergo and A. Bonifacio, “Potential of surface enhanced Raman spectroscopy (SERS) in therapeutic drug monitoring (TDM). A critical review,” <i>Biosensors</i> <b>6</b>, 47 (2016).</li>
+  <li>S. Guo, J. Popp and T. Bocklitz, “Chemometric analysis in Raman spectroscopy from experimental design to machine learning–based modeling,” <i>Nat. Protoc.</i> <b>16</b>, 5426–5459 (2021).</li>
+  <li>F. Lussier, V. Thibault, B. Charron, G. Q. Wallace and J.-F. Masson, “Deep learning and artificial intelligence methods for Raman and surface-enhanced Raman scattering,” <i>TrAC Trends Anal. Chem.</i> <b>124</b>, 115796 (2020).</li>
+  <li>S. Fornasaro et al., “Surface enhanced Raman spectroscopy for quantitative analysis: results of a large-scale European multi-instrument interlaboratory study,” <i>Anal. Chem.</i> <b>92</b>, 4053–4064 (2020).</li>
+  <li>S. E. J. Bell, G. Charron, E. Cortés, J. Kneipp, M. Lamy de la Chapelle, J. Langer, M. Procházka, V. Tran and S. Schlücker, “Towards reliable and quantitative surface-enhanced Raman scattering (SERS): from key parameters to good analytical practice,” <i>Angew. Chem. Int. Ed.</i> <b>59</b>, 5454–5462 (2020).</li>
+  <li>C. D. L. de Albuquerque, R. G. Sobral-Filho, R. J. Poppi and A. G. Brolo, “Digital protocol for chemical analysis at ultralow concentrations by surface-enhanced Raman scattering,” <i>Anal. Chem.</i> <b>90</b>, 1248–1254 (2018).</li>
+  <li>P. M. Bossuyt et al., “STARD 2015: an updated list of essential items for reporting diagnostic accuracy studies,” <i>BMJ</i> <b>351</b>, h5527 (2015).</li>
+</ol>
+
+<hr>
+<p>The simulations use the textbook models stated in their captions with synthetic data; performance figures quoted
+from studies are those reported by their authors. This article is a perspective, not clinical guidance. Corrections
+and questions are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-sers-label-free.html">Label-free and labelled SERS →</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a></p>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261104c"></script>
+<script src="js/blog/vl-core.js?v=20261104c"></script>
+<script src="js/blog/clin-figs.js?v=20261104c"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
