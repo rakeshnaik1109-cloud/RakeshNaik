@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Light from First Principles: Maxwell&#39;s Equations, Light in Matter and Waveguides | Rakesh Naik</title>
+<meta name="description" content="A first-principles optics tutorial: wave–particle duality and photons, Maxwell&#39;s equations term by term, the wave equation and the speed of light, polarisation, energy and momentum, light in dielectrics (Lorentz model, dispersion), birefringence, Fresnel equations and total internal reflection, metals (Drude model, skin depth), nonlinear optics (SHG, phase matching, Kerr effect), and waveguides — slab modes, optical fibres, integrated and coupled waveguides, metallic, plasmonic and photonic-crystal guides — with interactive simulations and references.">
+<meta name="keywords" content="Maxwell equations, electromagnetic wave equation, wave particle duality, photon, polarisation Jones vector, refractive index dispersion, Lorentz oscillator, Drude model, Fresnel equations, total internal reflection, evanescent wave, nonlinear optics, second harmonic generation, phase matching, Kerr effect, optical waveguide, slab waveguide modes, optical fibre V number, silicon photonics, directional coupler, plasmonic waveguide, photonic crystal fibre">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-optics-basics.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Light from First Principles: Maxwell&#39;s Equations, Light in Matter and Waveguides">
+<meta property="og:description" content="From photons and Maxwell&#39;s equations to light in glass, metals and nonlinear crystals, and on to slab waveguides, fibres, silicon photonics, plasmonic and photonic-crystal guides.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-optics-basics.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-07-03">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Light from First Principles: Maxwell&#39;s Equations, Light in Matter and Waveguides">
+<meta name="twitter:description" content="From photons and Maxwell&#39;s equations to light in glass, metals and nonlinear crystals, and on to slab waveguides, fibres, silicon photonics, plasmonic and photonic-crystal guides.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261104c">
+<link rel="stylesheet" href="css/article.css?v=20261104c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Light from First Principles: Maxwell's Equations, Light in Matter and Waveguides","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-optics-basics.html"}]},
+{"@type":"TechArticle","headline":"Light from First Principles: Maxwell's Equations, Light in Matter and Waveguides","datePublished":"2026-07-03","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"From photons and Maxwell's equations to light in glass, metals and nonlinear crystals, and on to slab waveguides, fibres, silicon photonics, plasmonic and photonic-crystal guides.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Light from first principles: Maxwell's equations, light in matter and waveguides</h1>
+    <p class="lede">Everything else in this series — Raman scattering, plasmons, SERS, SPR sensors, optical setups —
+    rests on one set of four equations. This tutorial starts from what light is (a wave, a particle, both), writes
+    down Maxwell's equations term by term, derives the wave equation and the speed of light from them, and then
+    follows light into matter: through glass, onto an interface, into a metal and into a nonlinear crystal. The
+    second half explains how light can be trapped and guided — slab waveguides, optical fibres, silicon photonic
+    wires, metallic and plasmonic guides and photonic crystals — with the equations, the diagrams and simulations
+    to explore.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Optics</span><span>3 July 2026</span><span>≈ 90 min read</span><span>Rakesh Naik</span></div>
+    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 1 of 8</span><span class="sn-prev sn-none">Start of the reading path</span><a class="sn-next" href="blog-spectroscopy.html">Part 2 · Vibrational spectroscopy, plasmonics and SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-what">What is light? Waves, particles and photons</a></li>
+    <li><a href="#s-fields">Charges and fields: the language of the theory</a></li>
+    <li><a href="#s-maxwell">Maxwell's equations, one by one</a></li>
+    <li><a href="#s-wave">The wave equation and the speed of light</a></li>
+    <li><a href="#s-pol">Polarisation</a></li>
+    <li><a href="#s-energy">Energy, momentum and photons in a beam</a></li>
+    <li><a href="#s-linear">Light in a linear medium: refractive index and dispersion</a></li>
+    <li><a href="#s-aniso">Anisotropic media: birefringence</a></li>
+    <li><a href="#s-interface">At an interface: Snell, Fresnel, Brewster and total internal reflection</a></li>
+    <li><a href="#s-metal">Light in metals</a></li>
+    <li><a href="#s-nonlinear">Nonlinear media</a></li>
+    <li><a href="#s-guide">Why guide light, and how: total internal reflection</a></li>
+    <li><a href="#s-slab">Modes of a slab waveguide</a></li>
+    <li><a href="#s-fibre">Optical fibres</a></li>
+    <li><a href="#s-integrated">Integrated waveguides and couplers</a></li>
+    <li><a href="#s-metalwg">Metallic and plasmonic waveguides</a></li>
+    <li><a href="#s-pc">Photonic-crystal waveguides and fibres</a></li>
+    <li><a href="#s-loss">Loss and dispersion in waveguides</a></li>
+    <li><a href="#s-summary">The waveguide family at a glance</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>This is the first article in the series and needs no prior optics, only a little calculus. Later parts build
+on it: <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS</a> continues from the
+Drude model and the surface plasmon, and <a href="blog-raman-variants.html">The many faces of Raman</a> uses the
+nonlinear optics introduced here. Numbers in square brackets refer to the <a href="#s-refs">references</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-what"><span class="num">01</span>What is light? Waves, particles and photons</h2>
+
+<p>For two centuries the question had two answers. Newton described light as a stream of corpuscles, which
+explained straight-line propagation and sharp shadows; Huygens described it as a wave, each point of a wavefront
+sending out secondary wavelets. In 1801–1803 Thomas Young passed light through two narrow slits and saw bright and
+dark bands on a screen — <b>interference</b>, which only waves can do [1]. Fresnel's theory of diffraction and the
+measurement that light travels more slowly in water than in air settled the matter for the nineteenth century:
+light is a wave. In 1865 Maxwell showed what is waving — electric and magnetic fields — and that their speed is
+the speed of light [2].</p>
+
+<p>The answer did not last. Light ejects electrons from a metal only above a threshold <i>frequency</i>, however
+intense it is, and the electrons' energy grows with the frequency, not the intensity. Einstein explained this
+photoelectric effect in 1905 by proposing that light is absorbed in packets — <b>photons</b> — each with energy and
+momentum [3]</p>
+$$E = h\nu = \hbar\omega, \qquad p = \frac{h}{\lambda} = \hbar k ,$$
+<p>where \(h = 6.626\times10^{-34}\) J s is Planck's constant, \(\hbar = h/2\pi\), \(\nu\) the frequency,
+\(\omega = 2\pi\nu\) the angular frequency, \(\lambda\) the wavelength and \(k = 2\pi/\lambda\) the wavenumber (the
+magnitude of the wave vector). A green photon (530 nm) carries \(3.7\times10^{-19}\) J, or 2.3 eV.</p>
+
+<p>So which is it? Both, in a precise sense. Light is emitted and absorbed in whole photons, but how it gets from
+source to detector is described by a wave whose intensity gives the <i>probability</i> of finding a photon. Send
+photons through two slits one at a time, and each arrives as a single dot; after many, the dots build up Young's
+fringes [4]. A single photon cannot be split between the slits, yet the pattern needs both open: it is the
+probability amplitudes from the two paths that add. The same is true of electrons and atoms, which have a de Broglie
+wavelength \(\lambda = h/p\) [5].</p>
+
+<figure class="fig" data-fig="dslit">
+  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Young's experiment one photon at a time.</b> Each photon lands at one point, chosen at random with
+  probability \(|\psi_1 + \psi_2|^2\), the squared sum of the wave amplitudes from the two slits. A few photons look
+  random; thousands reveal the fringes. Close one slit and the fringes vanish, leaving the single-slit envelope.</figcaption>
+</figure>
+
+<p>For almost everything in this article — refraction, reflection, guiding — the wave description is exact and the
+photon picture adds nothing. Photons matter when light is created or absorbed, and when it is counted: in
+detectors, lasers and Raman scattering. We therefore build the wave theory, keeping in mind that its intensity is a
+photon flux.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fields"><span class="num">02</span>Charges and fields: the language of the theory</h2>
+
+<p>A charge \(q\) at rest pushes or pulls other charges. Instead of an action at a distance, we say the charge
+creates an <b>electric field</b> \(\mathbf E\) everywhere around it, and a test charge feels the force
+\(\mathbf F = q\mathbf E\). Moving charges — currents — also create a <b>magnetic field</b> \(\mathbf B\), which pushes on
+other moving charges. Together these give the Lorentz force on a charge moving with velocity \(\mathbf v\):</p>
+$$\mathbf F = q\,(\mathbf E + \mathbf v\times\mathbf B) .$$
+
+<p>Fields are described locally with two derivatives. The <b>divergence</b> \(\nabla\cdot\mathbf E\) measures how much
+field flows out of a small volume — a source or sink. The <b>curl</b> \(\nabla\times\mathbf E\) measures how much the
+field circulates around a point. With \(\nabla = (\partial_x, \partial_y, \partial_z)\),</p>
+$$\nabla\cdot\mathbf E = \frac{\partial E_x}{\partial x} + \frac{\partial E_y}{\partial y} + \frac{\partial E_z}{\partial z}, \qquad
+\nabla\times\mathbf E = \Big(\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z},\ \frac{\partial E_x}{\partial z} - \frac{\partial E_z}{\partial x},\ \frac{\partial E_y}{\partial x} - \frac{\partial E_x}{\partial y}\Big) .$$
+<p>Two theorems connect these local statements to measurements on loops and surfaces: Gauss's theorem
+(\(\oint_S \mathbf E\cdot d\mathbf A = \int_V \nabla\cdot\mathbf E\,dV\), the flux through a closed surface equals the total
+divergence inside) and Stokes' theorem (\(\oint_C \mathbf E\cdot d\boldsymbol\ell = \int_S (\nabla\times\mathbf E)\cdot d\mathbf A\),
+the circulation around a loop equals the curl through any surface it bounds).</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-maxwell"><span class="num">03</span>Maxwell's equations, one by one</h2>
+
+<p>Four experimental laws, put together and completed by Maxwell [2, 6, 7]:</p>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Law</th><th>Differential form</th><th>Integral form</th><th>What it says</th></tr></thead>
+  <tbody>
+    <tr><td>Gauss (electric)</td><td>\(\nabla\cdot\mathbf E = \rho/\varepsilon_0\)</td><td>\(\oint\mathbf E\cdot d\mathbf A = Q_\text{in}/\varepsilon_0\)</td><td>charges are the sources of electric field</td></tr>
+    <tr><td>Gauss (magnetic)</td><td>\(\nabla\cdot\mathbf B = 0\)</td><td>\(\oint\mathbf B\cdot d\mathbf A = 0\)</td><td>there are no magnetic charges; field lines close</td></tr>
+    <tr><td>Faraday</td><td>\(\nabla\times\mathbf E = -\partial\mathbf B/\partial t\)</td><td>\(\oint\mathbf E\cdot d\boldsymbol\ell = -\frac{d}{dt}\int\mathbf B\cdot d\mathbf A\)</td><td>a changing magnetic field creates a circulating electric field</td></tr>
+    <tr><td>Ampère–Maxwell</td><td>\(\nabla\times\mathbf B = \mu_0\mathbf J + \mu_0\varepsilon_0\,\partial\mathbf E/\partial t\)</td><td>\(\oint\mathbf B\cdot d\boldsymbol\ell = \mu_0 I + \mu_0\varepsilon_0\frac{d}{dt}\int\mathbf E\cdot d\mathbf A\)</td><td>currents <i>and changing electric fields</i> create circulating magnetic field</td></tr>
+  </tbody>
+</table></div>
+<p>Here \(\rho\) is the charge density (C m⁻³), \(\mathbf J\) the current density (A m⁻²), \(Q_\text{in}\) the charge enclosed,
+\(I\) the current through the loop, \(\varepsilon_0 = 8.854\times10^{-12}\) F m⁻¹ the permittivity of vacuum and
+\(\mu_0 = 4\pi\times10^{-7}\) H m⁻¹ (to excellent approximation) the permeability of vacuum.</p>
+
+<h3>The term Maxwell added</h3>
+<p>Ampère's original law read \(\nabla\times\mathbf B = \mu_0\mathbf J\). Take its divergence: the divergence of a curl is
+always zero, so it demands \(\nabla\cdot\mathbf J = 0\) — charge could never pile up anywhere. But charge is conserved,
+\(\nabla\cdot\mathbf J = -\partial\rho/\partial t\) (the continuity equation), and while a capacitor charges, \(\rho\) on its
+plates changes. Using Gauss's law, \(\partial\rho/\partial t = \varepsilon_0\,\nabla\cdot\partial\mathbf E/\partial t\), so the
+combination \(\mathbf J + \varepsilon_0\partial\mathbf E/\partial t\) always has zero divergence. Maxwell added
+\(\varepsilon_0\,\partial\mathbf E/\partial t\) — the <b>displacement current</b> — and in doing so made light possible: a
+changing \(\mathbf E\) now makes \(\mathbf B\), just as a changing \(\mathbf B\) makes \(\mathbf E\). Each can sustain the other in
+empty space, without any charges at all.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-wave"><span class="num">04</span>The wave equation and the speed of light</h2>
+
+<p>In empty space \(\rho = 0\) and \(\mathbf J = 0\). Take the curl of Faraday's law and substitute Ampère–Maxwell:</p>
+$$\nabla\times(\nabla\times\mathbf E) = -\frac{\partial}{\partial t}\nabla\times\mathbf B = -\mu_0\varepsilon_0\frac{\partial^2\mathbf E}{\partial t^2} .$$
+<p>The vector identity \(\nabla\times(\nabla\times\mathbf E) = \nabla(\nabla\cdot\mathbf E) - \nabla^2\mathbf E\), with
+\(\nabla\cdot\mathbf E = 0\) in empty space, gives the <b>wave equation</b></p>
+$$\nabla^2\mathbf E = \mu_0\varepsilon_0\,\frac{\partial^2\mathbf E}{\partial t^2}, \qquad c = \frac{1}{\sqrt{\mu_0\varepsilon_0}} = 2.998\times10^{8}\ \mathrm{m\,s^{-1}} ,$$
+<p>where \(\nabla^2 = \partial_x^2 + \partial_y^2 + \partial_z^2\) is the Laplacian. The same equation holds for \(\mathbf B\). Any
+disturbance satisfying it travels at speed \(c\) — and \(c\) comes out as a combination of two constants measured
+with capacitors and coils. When Maxwell found that this number equalled the measured speed of light, he concluded
+that light is an electromagnetic wave [2].</p>
+
+<h3>Plane waves</h3>
+<p>The simplest solution is a plane wave travelling along \(z\),</p>
+$$\mathbf E(z, t) = \mathbf E_0\cos(kz - \omega t + \varphi) = \mathrm{Re}\big[\tilde{\mathbf E}_0\,e^{i(kz - \omega t)}\big], \qquad \omega = c\,k ,$$
+<p>with amplitude \(\mathbf E_0\), phase \(\varphi\) and \(\tilde{\mathbf E}_0 = \mathbf E_0 e^{i\varphi}\) the complex amplitude (the complex
+form is used throughout because derivatives become multiplications: \(\partial_t \to -i\omega\), \(\nabla \to i\mathbf k\)).
+Putting it into Maxwell's equations shows three things:</p>
+<ul>
+  <li>\(\nabla\cdot\mathbf E = 0\) gives \(\mathbf k\cdot\mathbf E_0 = 0\): the field is <b>transverse</b>, perpendicular to the direction
+  of travel.</li>
+  <li>Faraday's law gives \(\mathbf B = \frac{1}{\omega}\mathbf k\times\mathbf E\): \(\mathbf B\) is perpendicular to both, in phase with
+  \(\mathbf E\), and \(|\mathbf B| = |\mathbf E|/c\).</li>
+  <li>\(\mathbf E\), \(\mathbf B\) and \(\mathbf k\) form a right-handed set.</li>
+</ul>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 2</div>
+  <svg viewBox="0 0 860 300" role="img" aria-label="A plane electromagnetic wave">
+    <style>.wl{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#b6acc8}.wh{font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:600}</style>
+    <line x1="60" y1="160" x2="820" y2="160" stroke="#837a94" stroke-width="1.5"/><path d="M820 160 l-12 -5 v10 z" fill="#837a94"/>
+    <text x="800" y="182" class="wh" fill="#efeaf6">k (z)</text>
+    <path id="eW" d="M80 160 C 117.5 40, 117.5 40, 155 160 S 192.5 280, 230 160 S 267.5 40, 305 160 S 342.5 280, 380 160 S 417.5 40, 455 160 S 492.5 280, 530 160 S 567.5 40, 605 160 S 642.5 280, 680 160 S 717.5 40, 755 160" fill="none" stroke="#e2566e" stroke-width="2.6"/>
+    <path d="M80 160 C 107 200, 117 210, 155 160 S 203 110, 230 160 S 278 210, 305 160 S 353 110, 380 160 S 428 210, 455 160 S 503 110, 530 160 S 578 210, 605 160 S 653 110, 680 160 S 728 210, 755 160" fill="none" stroke="#45bfd6" stroke-width="2.6" opacity=".9"/>
+    <g stroke="#e2566e" stroke-width="1" opacity=".55"><line x1="117" y1="160" x2="117" y2="70"/><line x1="267" y1="160" x2="267" y2="70"/><line x1="417" y1="160" x2="417" y2="70"/><line x1="567" y1="160" x2="567" y2="70"/><line x1="717" y1="160" x2="717" y2="70"/></g>
+    <text x="118" y="56" class="wh" fill="#e2566e">E (x)</text><text x="175" y="222" class="wh" fill="#45bfd6">B (y), drawn in perspective</text>
+    <line x1="155" y1="270" x2="305" y2="270" stroke="#e0a82e"/><line x1="155" y1="264" x2="155" y2="276" stroke="#e0a82e"/><line x1="305" y1="264" x2="305" y2="276" stroke="#e0a82e"/>
+    <text x="230" y="292" class="wl" text-anchor="middle" style="fill:#e0a82e">λ = 2π/k</text>
+    <text x="600" y="60" class="wl">E ⟂ B ⟂ k,  |B| = |E|/c,  in phase</text>
+  </svg>
+  <figcaption><b>A linearly polarised plane wave.</b> The electric field (red) oscillates along \(x\), the magnetic
+  field (cyan) along \(y\), both in phase and perpendicular to the direction of travel \(z\). The pattern moves along
+  \(z\) at speed \(c\).</figcaption>
+</figure>
+
+<p>Frequencies span an enormous range — the electromagnetic spectrum: radio (metres), microwaves (centimetres),
+infrared (micrometres), visible light (400–700 nm), ultraviolet, X-rays and gamma rays. They are all the same
+wave equation; only the wavelength, and hence how the wave interacts with matter, changes.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-pol"><span class="num">05</span>Polarisation</h2>
+
+<p>The transverse field has two independent directions. Writing the complex amplitude as a two-component
+<b>Jones vector</b>,</p>
+$$\tilde{\mathbf E}_0 = E_0\begin{pmatrix}\cos\theta\\ \sin\theta\,e^{i\delta}\end{pmatrix}, \qquad E_x = E_0\cos\theta\cos(\omega t),\ \ E_y = E_0\sin\theta\cos(\omega t - \delta)$$
+<p>(at a fixed point, \(z = 0\)), the tip of \(\mathbf E\) traces a line if the phase difference \(\delta = 0\) or \(\pi\)
+(<b>linear</b> polarisation), a circle if \(\theta = 45°\) and \(\delta = \pm 90°\) (<b>circular</b>), and an ellipse
+otherwise. The orientation \(\psi\) and ellipticity \(\chi\) of the ellipse follow from</p>
+$$\tan 2\psi = \tan 2\theta\,\cos\delta, \qquad \sin 2\chi = \sin 2\theta\,\sin\delta .$$
+<p>Optical elements act on Jones vectors as 2 × 2 matrices: a polariser projects, a wave plate adds a phase between
+two axes (a quarter-wave plate turns linear into circular light). Unpolarised light, such as sunlight, is a random
+mixture with no fixed \(\delta\).</p>
+
+<figure class="fig" data-fig="pol">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The polarisation ellipse.</b> The path of the electric-field vector at a fixed point during one
+  optical period, for the chosen amplitude split \(\theta\) and phase difference \(\delta\). The red segment shows the
+  direction of rotation.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-energy"><span class="num">06</span>Energy, momentum and photons in a beam</h2>
+
+<p>Electric and magnetic fields store energy with density \(u = \tfrac12\varepsilon_0E^2 + \tfrac{1}{2\mu_0}B^2\). From
+Maxwell's equations follows an energy balance (Poynting's theorem): energy flows with the <b>Poynting vector</b></p>
+$$\mathbf S = \frac{1}{\mu_0}\,\mathbf E\times\mathbf B, \qquad I = \langle |\mathbf S|\rangle = \tfrac12\,c\,\varepsilon_0\,n\,|E_0|^2 ,$$
+<p>where \(I\) is the <b>intensity</b> (time-averaged power per area, W m⁻²) and \(n\) the refractive index of the medium
+(1 in vacuum; introduced below). The wave also carries momentum, \(I/c\) per unit area and time, which appears as
+radiation pressure — the basis of optical tweezers and solar sails. Dividing by the photon energy gives the photon
+flux \(I/\hbar\omega\): a 1 mW laser pointer at 532 nm emits \(2.7\times10^{15}\) photons per second.</p>
+<p>A useful sense of scale: focusing that 1 mW into a 1 µm spot gives about 10⁹ W m⁻², and a field amplitude of about
+10⁶ V m⁻¹ — still about a million times smaller than the fields inside atoms (~5 × 10¹¹ V m⁻¹), which is why ordinary optics is linear and
+why nonlinear optics (section 11) needs pulsed lasers.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-linear"><span class="num">07</span>Light in a linear medium: refractive index and dispersion</h2>
+
+<h3>Polarisation of matter</h3>
+<p>Matter is made of charges. A light field pushes electrons one way and nuclei the other, creating tiny dipoles.
+Their dipole moment per unit volume is the <b>polarisation</b> \(\mathbf P\) (not to be confused with the polarisation
+of the light). In a <b>linear</b> medium it is proportional to the field,</p>
+$$\mathbf P = \varepsilon_0\,\chi\,\mathbf E, \qquad \mathbf D = \varepsilon_0\mathbf E + \mathbf P = \varepsilon_0\,\varepsilon\,\mathbf E, \qquad \varepsilon = 1 + \chi ,$$
+<p>with \(\chi\) the electric <b>susceptibility</b>, \(\varepsilon\) the relative <b>permittivity</b> (dielectric function) and
+\(\mathbf D\) the displacement field. The bound charges enter Maxwell's equations through \(\mathbf P\); repeating the
+derivation of section 4 with \(\varepsilon_0 \to \varepsilon_0\varepsilon\) (and \(\mu \approx 1\) at optical frequencies) gives
+waves travelling at</p>
+$$v = \frac{c}{n}, \qquad n = \sqrt{\varepsilon\mu} \approx \sqrt{\varepsilon}, \qquad k = n\,\frac{\omega}{c} = n\,k_0 ,$$
+<p>where \(n\) is the <b>refractive index</b> and \(k_0 = \omega/c = 2\pi/\lambda_0\) the vacuum wavenumber. The frequency stays
+the same in the medium; the wavelength shortens to \(\lambda_0/n\).</p>
+
+<h3>Absorption: a complex index</h3>
+<p>If the medium absorbs, \(\varepsilon = \varepsilon' + i\varepsilon''\) is complex, and so is the index, \(\tilde n = n + i\kappa\), with
+\(\kappa\) the <b>extinction coefficient</b>. A plane wave then becomes</p>
+$$E \propto e^{i(\tilde n k_0 z - \omega t)} = e^{-\kappa k_0 z}\,e^{i(n k_0 z - \omega t)}, \qquad I(z) = I_0\,e^{-\alpha z}, \quad \alpha = \frac{4\pi\kappa}{\lambda_0} ,$$
+<p>the Beer–Lambert law, with \(\alpha\) the absorption coefficient (its chemistry form appears in the
+<a href="blog-spectroscopy.html#s-ir">spectroscopy article</a>).</p>
+
+<h3>Where n comes from: the Lorentz oscillator</h3>
+<p>Model a bound electron (charge \(-e\), mass \(m\)) as a damped spring with resonance \(\omega_0\) and damping \(\gamma\),
+driven by the light field:</p>
+$$m\ddot x + m\gamma\dot x + m\omega_0^2 x = -eE_0e^{-i\omega t} \quad\Rightarrow\quad x = \frac{-e E/m}{\omega_0^2 - \omega^2 - i\gamma\omega} .$$
+<p>With \(N\) such electrons per volume, \(P = -Nex\) and</p>
+$$\varepsilon(\omega) = 1 + \frac{Ne^2}{\varepsilon_0 m}\,\frac{1}{\omega_0^2 - \omega^2 - i\gamma\omega} = 1 + \frac{f\,\omega_0^2}{\omega_0^2 - \omega^2 - i\gamma\omega} ,$$
+<p>where \(f\) collects the oscillator strength. Below the resonance (\(\omega < \omega_0\)) the electrons follow the field,
+\(\varepsilon > 1\) and \(n\) rises with frequency — <b>normal dispersion</b>: blue light bends more than red in a prism. Near
+\(\omega_0\) the medium absorbs strongly and \(n\) falls with frequency (anomalous dispersion). Above it the electrons cannot
+keep up. Glass has its resonances in the ultraviolet and the infrared, so it is transparent and normally dispersive in
+the visible. Real materials have several resonances; summing them gives the Sellmeier formula
+\(n^2 = 1 + \sum_j B_j\lambda^2/(\lambda^2 - C_j)\) used for optical glasses [8]. Because \(\varepsilon(\omega)\) is causal, its real
+and imaginary parts are linked by the Kramers–Kronig relations: absorption somewhere implies dispersion everywhere.</p>
+
+<figure class="fig" data-fig="lorentz">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Refractive index and extinction from a model material.</b> Dielectric: one Lorentz oscillator —
+  absorption (κ) peaks at the resonance, \(n\) rises towards it (normal dispersion) and drops through it (anomalous
+  dispersion). Metal: the Drude model of section 10 — below the plasma frequency κ is large, the metal reflects and
+  light penetrates only tens of nanometres.</figcaption>
+</figure>
+
+<h3>Phase velocity, group velocity and dispersion</h3>
+<p>A pulse is a group of frequencies. Its envelope travels at the <b>group velocity</b>, not at \(c/n\):</p>
+$$v_g = \frac{d\omega}{dk} = \frac{c}{n_g}, \qquad n_g = n - \lambda_0\frac{dn}{d\lambda_0}, \qquad \beta_2 = \frac{d^2k}{d\omega^2} ,$$
+<p>with \(n_g\) the group index and \(\beta_2\) the group-velocity dispersion: different colours of a short pulse travel at
+different speeds, and the pulse spreads. For fused silica at 800 nm, \(n = 1.453\) but \(n_g \approx 1.467\). Dispersion
+limits ultrafast optics and fibre communications, and is put to use in pulse compressors and spectrometers.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-aniso"><span class="num">08</span>Anisotropic media: birefringence</h2>
+
+<p>In a crystal the electrons may be easier to displace along some directions than others; then \(\chi\) is a tensor and
+\(\mathbf P\) need not be parallel to \(\mathbf E\). In a uniaxial crystal (calcite, quartz, lithium niobate) light polarised
+perpendicular to the optic axis sees the ordinary index \(n_o\), and light with a component along it sees an
+extraordinary index between \(n_o\) and \(n_e\). Two polarisations travel at two speeds — <b>birefringence</b> — which
+splits beams, makes wave plates (a plate of thickness \(d\) delays one polarisation by \(\Delta\varphi = 2\pi(n_e - n_o)d/\lambda\)) and,
+as section 11 shows, makes efficient frequency conversion possible.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-interface"><span class="num">09</span>At an interface: Snell, Fresnel, Brewster and total internal reflection</h2>
+
+<p>At a boundary between media 1 and 2, Maxwell's equations in integral form demand that the tangential components
+of \(\mathbf E\) and \(\mathbf H = \mathbf B/\mu\) are continuous. Matching a plane wave on both sides at every point of the
+boundary requires the tangential wave vector to be the same — which is <b>Snell's law</b> — and fixes the amplitudes of
+the reflected and transmitted waves — the <b>Fresnel equations</b> [6, 8]:</p>
+$$n_1\sin\theta_1 = n_2\sin\theta_2, \qquad r_s = \frac{n_1\cos\theta_1 - n_2\cos\theta_2}{n_1\cos\theta_1 + n_2\cos\theta_2}, \qquad r_p = \frac{n_2\cos\theta_1 - n_1\cos\theta_2}{n_2\cos\theta_1 + n_1\cos\theta_2} ,$$
+<p>where \(\theta_1, \theta_2\) are the angles of incidence and refraction from the normal, \(r_s\) and \(r_p\) the amplitude
+reflection coefficients for <b>s</b> polarisation (\(\mathbf E\) perpendicular to the plane of incidence, also called TE) and
+<b>p</b> polarisation (\(\mathbf E\) in the plane, TM), and the reflectance is \(R = |r|^2\). At normal incidence
+\(R = \big((n_1 - n_2)/(n_1 + n_2)\big)^2\): 4 % for air–glass.</p>
+<ul>
+  <li><b>Brewster's angle</b>, \(\tan\theta_B = n_2/n_1\): \(r_p = 0\), so reflected light is purely s-polarised — used in
+  laser windows and polarisers.</li>
+  <li><b>Total internal reflection</b>: going from a denser to a rarer medium (\(n_1 > n_2\)), above the critical angle
+  \(\sin\theta_c = n_2/n_1\) there is no real refraction angle, and \(R = 1\) for both polarisations.</li>
+  <li>Even then the field does not stop abruptly: an <b>evanescent wave</b> decays into medium 2 as \(e^{-z/d_p}\) with
+  \(d_p = \lambda_0 / \big(2\pi\sqrt{n_1^2\sin^2\theta_1 - n_2^2}\big)\), typically a few hundred nanometres. It carries no energy on
+  average, but anything placed within it can absorb or scatter light — the basis of ATR spectroscopy, TIRF microscopy,
+  SPR sensors (<a href="blog-antibody-spr.html#s-spr">how an SPR sensor sees binding</a>) and of light guiding.</li>
+</ul>
+
+<figure class="fig" data-fig="fresnel">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Reflectance at an interface</b> from the Fresnel equations, for s and p polarisation. With
+  \(n_1 &gt; n_2\) (glass to air by default) reflection becomes total beyond the critical angle; p-reflection vanishes at
+  Brewster's angle. Swap the indices to see external reflection, where R only reaches 1 at grazing incidence.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-metal"><span class="num">10</span>Light in metals</h2>
+
+<p>A metal has free electrons with no restoring force: set \(\omega_0 = 0\) in the Lorentz model and the result is the
+<b>Drude model</b>,</p>
+$$\varepsilon(\omega) = \varepsilon_\infty - \frac{\omega_p^2}{\omega^2 + i\gamma\omega}, \qquad \omega_p^2 = \frac{Ne^2}{\varepsilon_0 m} ,$$
+<p>where \(\omega_p\) is the <b>plasma frequency</b> (about 9 eV, ultraviolet, for gold and silver), \(\gamma\) the electron
+collision rate and \(\varepsilon_\infty\) the contribution of the bound electrons (derived in more detail in the
+<a href="blog-spectroscopy.html#s-plasmon">spectroscopy article</a>). Below \(\omega_p\) the real part of \(\varepsilon\) is
+negative. Then \(\tilde n\) is almost purely imaginary: the wave cannot propagate, it decays inside the metal within the
+<b>skin depth</b> \(\delta = c/(\kappa\omega) = \lambda_0/(2\pi\kappa)\) (for the field) — about 25 nm for gold in the red — and is
+almost entirely reflected. This is why metals are shiny and why a few tens of nanometres of gold make a mirror. Above
+\(\omega_p\) the electrons cannot follow and metals become transparent (alkali metals transmit ultraviolet). Real gold
+also absorbs in the blue through interband transitions, giving its colour [9].</p>
+<p>Negative permittivity also allows a new kind of wave bound to the surface of a metal: the <b>surface plasmon
+polariton</b>, and in small particles the localised surface plasmon — the subject of the
+<a href="blog-spectroscopy.html#s-spp">spectroscopy article</a> and the basis of SPR sensors and SERS. Switch Figure 4
+to the metal model to see \(n\), \(\kappa\), the reflectance and the penetration depth of a Drude metal.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-nonlinear"><span class="num">11</span>Nonlinear media</h2>
+
+<p>The linear relation \(\mathbf P = \varepsilon_0\chi\mathbf E\) is the first term of an expansion valid while the light field is small
+compared with the fields inside atoms (~10¹¹ V m⁻¹). Intense laser pulses reach a fraction of that, and the next terms
+appear [10, 11]:</p>
+$$P = \varepsilon_0\left(\chi^{(1)}E + \chi^{(2)}E^2 + \chi^{(3)}E^3 + \dots\right) ,$$
+<p>with \(\chi^{(2)}\) and \(\chi^{(3)}\) the second- and third-order susceptibilities (each term roughly
+\(10^{-11}\)–\(10^{-12}\) times smaller per V m⁻¹ than the previous one). Products of fields oscillate at sums and differences
+of their frequencies, so a nonlinear medium <b>creates new colours</b>.</p>
+
+<h3>Second-order effects</h3>
+<p>For \(E = E_0\cos\omega t\), the term \(\chi^{(2)}E^2 = \tfrac12\chi^{(2)}E_0^2(1 + \cos 2\omega t)\) radiates at \(2\omega\):
+<b>second-harmonic generation</b> (SHG), first seen in 1961 by focusing a ruby laser into quartz [12]. With two input
+frequencies the same term gives sum- and difference-frequency generation and, with one strong pump, optical parametric
+amplification and oscillation (tunable sources). \(\chi^{(2)}\) vanishes in any material with a centre of inversion symmetry —
+glasses, liquids, silicon — so it needs non-centrosymmetric crystals such as β-barium borate, potassium titanyl phosphate
+or lithium niobate.</p>
+
+<h3>Phase matching</h3>
+<p>The second harmonic generated at each point of the crystal adds up only if it stays in step with the harmonic already
+generated. Because of dispersion, \(n(2\omega) \ne n(\omega)\), and the phase mismatch is</p>
+$$\Delta k = k(2\omega) - 2k(\omega) = \frac{2\omega}{c}\big[n(2\omega) - n(\omega)\big], \qquad I_{2\omega}(L) \propto I_\omega^2\,L^2\,\mathrm{sinc}^2\!\Big(\frac{\Delta k L}{2}\Big) ,$$
+<p>where \(L\) is the crystal length and \(\mathrm{sinc}\,x = \sin x/x\). Unless \(\Delta k = 0\), the harmonic grows only over the
+<b>coherence length</b> \(L_c = \pi/\Delta k\) (typically micrometres) and then flows back into the fundamental. Two solutions
+exist: <b>birefringent phase matching</b>, choosing the angle and polarisations so that \(n_e(2\omega) = n_o(\omega)\), and
+<b>quasi-phase matching</b>, reversing the sign of \(\chi^{(2)}\) every \(L_c\) (periodically poled crystals) so that the
+harmonic is reset in step before it can flow back [13].</p>
+
+<figure class="fig" data-fig="shg">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Second-harmonic power along a crystal.</b> With perfect phase matching the power grows as \(L^2\);
+  with a mismatch it oscillates and never exceeds its value at one coherence length (logarithmic scale); with quasi-phase matching (domains
+  reversed every \(L_c\)) it grows as \(L^2\) again, reduced by \((2/\pi)^2\), computed by integrating the generated field
+  along the crystal.</figcaption>
+</figure>
+
+<h3>Third-order effects</h3>
+<p>\(\chi^{(3)}\) is present in every material. Its most important consequence is the <b>optical Kerr effect</b>: the refractive
+index depends on the intensity, \(n = n_0 + n_2 I\) (for silica \(n_2 \approx 2.6\times10^{-20}\) m² W⁻¹). A pulse then changes its
+own phase (self-phase modulation, which broadens its spectrum), a beam with a bell-shaped profile focuses itself
+(self-focusing), and in fibres the Kerr effect balanced against dispersion gives solitons — pulses that keep their shape
+[14]. \(\chi^{(3)}\) also gives third-harmonic generation, four-wave mixing and the coherent Raman methods CARS and SRS, in
+which the vibrational resonance appears in \(\chi^{(3)}\) (<a href="blog-raman-variants.html#s-crs">coherent Raman</a>).</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-guide"><span class="num">12</span>Why guide light, and how: total internal reflection</h2>
+
+<p>A beam cannot stay narrow in free space. A Gaussian beam of waist radius \(w_0\) doubles its area after the Rayleigh
+range \(z_R = \pi w_0^2 n/\lambda_0\): a beam of 5 µm waist radius at 1.55 µm doubles its area after about 50 µm. To carry light over kilometres,
+around corners on a chip, or into a millimetre-long nonlinear crystal, it has to be <b>guided</b>. The idea is total
+internal reflection: a core of higher index \(n_1\) surrounded by a cladding of lower index \(n_2\) traps rays that meet the
+boundary beyond the critical angle.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 7</div>
+  <svg viewBox="0 0 860 260" role="img" aria-label="Ray picture of a slab waveguide">
+    <style>.rl{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#b6acc8}.rh{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;fill:#efeaf6}</style>
+    <rect x="60" y="40" width="760" height="50" fill="#45bfd6" opacity=".10"/><rect x="60" y="90" width="760" height="80" fill="#e0a82e" opacity=".18"/><rect x="60" y="170" width="760" height="50" fill="#45bfd6" opacity=".10"/>
+    <line x1="60" y1="90" x2="820" y2="90" stroke="#e0a82e" stroke-width="1.2"/><line x1="60" y1="170" x2="820" y2="170" stroke="#e0a82e" stroke-width="1.2"/>
+    <text x="70" y="70" class="rl">cladding n₂</text><text x="70" y="135" class="rl" fill="#e0a82e" style="fill:#e0a82e">core n₁ &gt; n₂</text><text x="70" y="205" class="rl">cladding n₂</text>
+    <polyline points="140,150 240,92 340,168 440,92 540,168 640,92 740,168 800,133" fill="none" stroke="#e2566e" stroke-width="2.4"/>
+    <path d="M800 133 l-11 1 l5 -9 z" fill="#e2566e"/>
+    <line x1="240" y1="92" x2="240" y2="150" stroke="#efeaf6" stroke-dasharray="3 3" opacity=".6"/><path d="M240 120 A 28 28 0 0 0 225 101" fill="none" stroke="#efeaf6"/><text x="190" y="128" class="rl">θ &gt; θ_c</text>
+    <polyline points="140,110 210,170 260,240" fill="none" stroke="#837a94" stroke-width="1.6" stroke-dasharray="5 4"/><text x="270" y="245" class="rl">steeper ray: refracted out, lost</text>
+    <text x="560" y="30" class="rh">guided ray: total internal reflection</text>
+    <text x="60" y="30" class="rl">mode: a ray angle whose round trip is in phase</text>
+  </svg>
+  <figcaption><b>Ray picture of guiding.</b> Rays inside the core that hit the boundary beyond the critical angle are
+  totally reflected and stay in the core; steeper rays leak out. Not every guided angle is allowed: only those that
+  interfere constructively with themselves after a round trip — the modes.</figcaption>
+</figure>
+
+<p>Two quantities follow directly. The largest angle of acceptance from air is the <b>numerical aperture</b>,
+\(\mathrm{NA} = \sin\theta_\text{max} = \sqrt{n_1^2 - n_2^2}\). And a guided ray at angle \(\theta\) to the axis travels along the guide with
+propagation constant \(\beta = n_1k_0\cos\theta\); one defines the <b>effective index</b> \(n_\text{eff} = \beta/k_0\), which always lies
+between \(n_2\) and \(n_1\). Rays are not enough, though: a ray bouncing between the walls overlaps with itself, and only
+angles for which the round trip adds up in phase survive,</p>
+$$2\,n_1k_0\,d\,\sin\theta - 2\phi_r = 2\pi m, \qquad m = 0, 1, 2, \dots ,$$
+<p>where \(d\) is the core thickness and \(\phi_r\) the phase shift on total internal reflection (from the Fresnel
+coefficients). Each integer \(m\) is a <b>mode</b>: a field pattern that keeps its shape as it travels.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-slab"><span class="num">13</span>Modes of a slab waveguide</h2>
+
+<p>The wave picture is exact. For a slab (core of thickness \(d\) in \(x\), infinite in \(y\)), look for fields
+\(E_y(x)\,e^{i(\beta z - \omega t)}\) (TE modes). The wave equation becomes</p>
+$$\frac{d^2E_y}{dx^2} + \big(n^2(x)k_0^2 - \beta^2\big)E_y = 0 .$$
+<p>In the core \(n_1^2k_0^2 > \beta^2\) and the solutions oscillate (cosines and sines); in the cladding \(\beta^2 > n_2^2k_0^2\) and they
+decay exponentially — the evanescent tails of section 9. Matching \(E_y\) and \(dE_y/dx\) at \(x = \pm d/2\) gives, with
+\(u = \tfrac{d}{2}\sqrt{n_1^2k_0^2 - \beta^2}\) and \(w = \tfrac{d}{2}\sqrt{\beta^2 - n_2^2k_0^2}\),</p>
+$$w = u\tan u\ \ \text{(even modes)}, \qquad w = -u\cot u\ \ \text{(odd modes)}, \qquad u^2 + w^2 = V^2 = \Big(\frac{k_0 d}{2}\Big)^2(n_1^2 - n_2^2) .$$
+<p>The single number \(V\) — the normalised frequency — decides everything: the number of guided modes is the integer part
+of \(2V/\pi\) plus one, and the guide is <b>single-mode</b> for \(V < \pi/2\). The fundamental mode TE₀ is always guided in a
+symmetric slab; it has no cut-off. TM modes follow similarly with a factor \(n_1^2/n_2^2\) in the matching condition.</p>
+
+<figure class="fig" data-fig="slab">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The TE modes of a symmetric slab waveguide</b>, from the exact dispersion equations above. Mode \(m\)
+  has \(m\) zeros in the core; higher modes have lower effective indices and longer evanescent tails. Thin the core, lower
+  the index contrast or lengthen the wavelength to reach single-mode operation — the default is a weakly guiding,
+  multimode glass slab; try a silicon core (n₁ = 3.48 on silica, n₂ = 1.44) of 0.22 µm.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fibre"><span class="num">14</span>Optical fibres</h2>
+
+<p>An optical fibre is a cylindrical waveguide: a glass core of radius \(a\) inside a glass cladding of slightly lower
+index (index difference typically 0.3–1 %). In 1966 Kao and Hockham argued that if the impurities in glass could be
+removed, losses below 20 dB/km were possible, enough for communication [15]; modern fibres reach 0.15–0.2 dB/km at
+1550 nm — light loses half its power only after 15–20 km.</p>
+
+<h3>Modes of a step-index fibre</h3>
+<p>Solving the wave equation in cylindrical coordinates gives Bessel functions in the core and modified Bessel
+functions in the cladding. For the small index differences of real fibres the modes group into nearly degenerate
+<b>linearly polarised (LP) modes</b> [16], and the controlling parameter is again a V number,</p>
+$$V = \frac{2\pi a}{\lambda_0}\,\mathrm{NA} = \frac{2\pi a}{\lambda_0}\sqrt{n_1^2 - n_2^2} .$$
+<p>For \(V < 2.405\) (the first zero of the Bessel function \(J_0\)) only the fundamental LP₀₁ mode is guided: the fibre is
+<b>single-mode</b>, which is what telecommunications use (core diameter about 8–9 µm at 1550 nm). Its intensity profile is
+close to a Gaussian with mode-field diameter \(2w\), \(w/a \approx 0.65 + 1.619V^{-3/2} + 2.879V^{-6}\) [17]. Multimode fibres
+(50–62.5 µm cores, \(V\) of tens) carry about \(V^2/2\) modes, are easy to couple into, and are used for short links,
+illumination and spectroscopy.</p>
+
+<figure class="fig" data-fig="fibre">
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Single-mode or multimode?</b> The V number of a step-index fibre against wavelength. Below
+  \(V = 2.405\) (to the right of the cut-off wavelength) only one mode is guided. The default resembles a standard
+  telecom fibre: single-mode at 1310 and 1550 nm, multimode in the visible.</figcaption>
+</figure>
+
+<h3>Other fibres</h3>
+<ul>
+  <li><b>Graded-index fibres</b>: the core index falls smoothly from the centre, so rays travelling further also travel
+  faster; modal dispersion almost cancels.</li>
+  <li><b>Polarisation-maintaining fibres</b>: stress rods make the fibre birefringent, so a polarisation launched on an axis
+  stays there.</li>
+  <li><b>Photonic-crystal and hollow-core fibres</b>: a pattern of air holes forms the cladding (section 17), allowing
+  endlessly single-mode guiding, extreme nonlinearity or guiding in air [18].</li>
+  <li><b>Fibre probes</b> for Raman and fluorescence, fibre Bragg gratings (a periodic index change in the core that
+  reflects one wavelength — sensors of strain and temperature), and fibre lasers doped with erbium or ytterbium.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-integrated"><span class="num">15</span>Integrated waveguides and couplers</h2>
+
+<p>On a chip, guides are patterned by lithography into thin films. Their cross-sections give them their names:</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 10</div>
+  <svg viewBox="0 0 880 300" role="img" aria-label="Cross-sections of waveguide types">
+    <style>.gl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.gh{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}</style>
+    <!-- row 1 -->
+    <g transform="translate(20 20)"><rect width="190" height="110" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><rect x="10" y="50" width="170" height="16" fill="#e0a82e"/><rect x="10" y="30" width="170" height="20" fill="#45bfd6" opacity=".2"/><rect x="10" y="66" width="170" height="30" fill="#45bfd6" opacity=".2"/><text x="95" y="20" class="gh" text-anchor="middle">Slab (planar)</text><text x="95" y="108" class="gl" text-anchor="middle">confines in one direction</text></g>
+    <g transform="translate(235 20)"><rect width="190" height="110" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><rect x="10" y="66" width="170" height="30" fill="#45bfd6" opacity=".25"/><rect x="10" y="58" width="170" height="8" fill="#e0a82e"/><rect x="70" y="44" width="50" height="14" fill="#e0a82e"/><text x="95" y="20" class="gh" text-anchor="middle">Rib / ridge</text><text x="95" y="108" class="gl" text-anchor="middle">partial etch; low loss</text></g>
+    <g transform="translate(450 20)"><rect width="190" height="110" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><rect x="10" y="66" width="170" height="30" fill="#45bfd6" opacity=".25"/><rect x="72" y="46" width="46" height="20" fill="#e0a82e"/><text x="95" y="20" class="gh" text-anchor="middle">Strip (photonic wire)</text><text x="95" y="108" class="gl" text-anchor="middle">Si on SiO₂: tight bends</text></g>
+    <g transform="translate(665 20)"><rect width="195" height="110" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><rect x="10" y="66" width="175" height="30" fill="#45bfd6" opacity=".25"/><rect x="62" y="46" width="28" height="20" fill="#e0a82e"/><rect x="104" y="46" width="28" height="20" fill="#e0a82e"/><rect x="90" y="46" width="14" height="20" fill="#e2566e" opacity=".55"/><text x="97" y="20" class="gh" text-anchor="middle">Slot</text><text x="97" y="108" class="gl" text-anchor="middle">field concentrated in the gap</text></g>
+    <!-- row 2 -->
+    <g transform="translate(20 160)"><rect width="190" height="120" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><circle cx="95" cy="70" r="40" fill="#45bfd6" opacity=".2"/><circle cx="95" cy="70" r="12" fill="#e0a82e"/><text x="95" y="20" class="gh" text-anchor="middle">Optical fibre</text><text x="95" y="116" class="gl" text-anchor="middle">core / cladding, cylindrical</text></g>
+    <g transform="translate(235 160)"><rect width="190" height="120" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><circle cx="95" cy="70" r="42" fill="#45bfd6" opacity=".2"/><g fill="#0f0a18" stroke="rgba(255,255,255,.3)"><circle cx="95" cy="48" r="7"/><circle cx="76" cy="59" r="7"/><circle cx="114" cy="59" r="7"/><circle cx="76" cy="81" r="7"/><circle cx="114" cy="81" r="7"/><circle cx="95" cy="92" r="7"/><circle cx="57" cy="70" r="7"/><circle cx="133" cy="70" r="7"/></g><circle cx="95" cy="70" r="8" fill="#e0a82e"/><text x="95" y="20" class="gh" text-anchor="middle">Photonic-crystal fibre</text><text x="95" y="116" class="gl" text-anchor="middle">air holes form the cladding</text></g>
+    <g transform="translate(450 160)"><rect width="190" height="120" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><rect x="45" y="40" width="100" height="56" fill="none" stroke="#b9bec8" stroke-width="7"/><rect x="49" y="44" width="92" height="48" fill="#e0a82e" opacity=".15"/><text x="95" y="20" class="gh" text-anchor="middle">Metallic (hollow)</text><text x="95" y="116" class="gl" text-anchor="middle">microwaves, THz; cut-off</text></g>
+    <g transform="translate(665 160)"><rect width="195" height="120" rx="6" fill="#171026" stroke="rgba(255,255,255,.12)"/><rect x="20" y="42" width="155" height="20" fill="#b9bec8"/><rect x="20" y="78" width="155" height="20" fill="#b9bec8"/><rect x="20" y="62" width="155" height="16" fill="#e2566e" opacity=".6"/><text x="97" y="20" class="gh" text-anchor="middle">Plasmonic (MIM, SPP)</text><text x="97" y="116" class="gl" text-anchor="middle">below the diffraction limit, lossy</text></g>
+  </svg>
+  <figcaption><b>The waveguide family in cross-section</b> (schematic). Gold: the high-index core where most of the light
+  travels; cyan: lower-index cladding; grey: metal; red: where the field is concentrated in slot and plasmonic guides.</figcaption>
+</figure>
+
+<p>High <b>index contrast</b> is the key design choice. Silicon (\(n \approx 3.48\)) on silica (\(n \approx 1.44\)) confines a mode to a
+wire about 450 × 220 nm and allows bends of a few micrometres radius, packing thousands of components on a chip — silicon
+photonics. Silicon nitride (\(n \approx 2.0\)) gives lower loss and works in the visible, which matters for on-chip Raman and
+biosensing; lithium niobate adds fast electro-optic modulation and \(\chi^{(2)}\) nonlinearity.</p>
+
+<h3>Coupled waveguides</h3>
+<p>Two guides placed close together share light through their overlapping evanescent tails. Coupled-mode theory [19]
+describes the amplitudes \(a_1, a_2\) of the two modes along \(z\):</p>
+$$\frac{da_1}{dz} = i\delta\,a_1 + i\kappa\,a_2, \qquad \frac{da_2}{dz} = i\kappa\,a_1 - i\delta\,a_2 \quad\Rightarrow\quad P_2(z) = \frac{\kappa^2}{\kappa^2 + \delta^2}\,\sin^2\!\big(\sqrt{\kappa^2 + \delta^2}\,z\big) ,$$
+<p>with \(\kappa\) the coupling coefficient (set by the gap) and \(2\delta = \beta_1 - \beta_2\) the mismatch of the propagation constants.
+Identical guides exchange all their power over the coupling length \(L_c = \pi/2\kappa\); stopping halfway makes a 50 : 50 splitter.
+Directional couplers, Mach–Zehnder interferometers and <b>ring resonators</b> (a loop coupled to a straight guide that
+transmits all wavelengths except those fitting a whole number of times around it [20]) are the building blocks of
+integrated optics, and also of evanescent-field biosensors.</p>
+
+<figure class="fig" data-fig="coupler">
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A directional coupler.</b> Power in the input guide (gold) and the second guide (cyan) oscillates between the two parallel guides with period set by \(\kappa\); a
+  mismatch \(\delta\) between the guides speeds up the oscillation and limits the transfer to \(\kappa^2/(\kappa^2 + \delta^2)\) —
+  which is how couplers act as wavelength filters and switches.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-metalwg"><span class="num">16</span>Metallic and plasmonic waveguides</h2>
+
+<p>Before fibres, electromagnetic waves were guided in <b>hollow metal tubes</b>. At microwave frequencies metals are almost
+perfect conductors, the tangential \(\mathbf E\) vanishes at the walls, and a rectangular guide of width \(a\) and height \(b\)
+supports modes TEₘₙ and TMₘₙ with cut-off frequencies</p>
+$$f_{c,mn} = \frac{c}{2}\sqrt{\Big(\frac{m}{a}\Big)^2 + \Big(\frac{n}{b}\Big)^2} ;$$
+<p>below the lowest, TE₁₀ (\(f_c = c/2a\)), nothing propagates. Such guides carry radar and the waves in MRI scanners and
+particle accelerators; they fail at optical frequencies because metals become lossy.</p>
+<p>At optical frequencies the metal itself can guide: the <b>surface plasmon polariton</b> travels along a single metal–dielectric
+interface, and a thin dielectric gap between two metals (<b>metal–insulator–metal</b>, MIM) or a metal stripe or nanowire
+confines light to dimensions far below the wavelength [21]. The price is loss: propagation lengths are micrometres to
+millimetres, and the tighter the confinement, the shorter. Plasmonic guides are therefore used where confinement matters
+more than distance — in sensors (SPR), nanofocusing tips (<a href="blog-raman-variants.html#s-ters">TERS</a>), and
+compact modulators and detectors.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-pc"><span class="num">17</span>Photonic-crystal waveguides and fibres</h2>
+
+<p>Total internal reflection is not the only way to trap light. A material whose index varies periodically on the scale of
+the wavelength — a <b>photonic crystal</b> — reflects light by Bragg interference, and for a range of frequencies (a
+photonic band gap) no light can propagate through it in any direction, as electrons cannot propagate at energies in the band
+gap of a semiconductor [22]. Removing one row of holes from a two-dimensional photonic crystal leaves a line defect in which
+light is guided because it has nowhere else to go — even around sharp corners, and even in a core of <i>lower</i> index than
+its surroundings.</p>
+<p>The same idea in fibres gives <b>photonic-crystal fibres</b> [18]: silica fibres with a lattice of air holes. With a solid
+core they guide by a modified total internal reflection and can be single-mode at every wavelength; with a hollow core
+they guide light in air by band-gap or anti-resonant reflection, with low nonlinearity, low latency, and the possibility of
+filling the core with gases or liquids for spectroscopy. Near the band edge, photonic-crystal waveguides also slow light
+down by factors of tens, enhancing light–matter interaction.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-loss"><span class="num">18</span>Loss and dispersion in waveguides</h2>
+
+<p>Waveguide loss is quoted in decibels, \(\text{loss (dB)} = -10\log_{10}(P_\text{out}/P_\text{in})\): 3 dB halves the power. The
+contributions are</p>
+<ul>
+  <li><b>Absorption</b> by the material (ultraviolet electronic and infrared vibrational absorption; OH impurities near 1.38 µm
+  in silica).</li>
+  <li><b>Scattering</b>: Rayleigh scattering from frozen density fluctuations in glass, scaling as \(\lambda^{-4}\) (why fibre loss is lowest
+  near 1550 nm), and scattering from sidewall roughness in chip waveguides, worse at high index contrast.</li>
+  <li><b>Bending loss</b>: on a bend, the outer part of the evanescent tail would have to travel faster than light in the
+  cladding and radiates away; it grows exponentially as the radius shrinks.</li>
+  <li><b>Coupling loss</b> at inputs, outputs and junctions, from mismatch of mode sizes.</li>
+</ul>
+<p>Dispersion has three sources in a guide: <b>material dispersion</b> (\(n(\lambda)\), section 7), <b>waveguide dispersion</b> (the mode's
+\(n_\text{eff}\) changes with wavelength because the field distribution does) and, in multimode guides, <b>modal dispersion</b>
+(different modes travel at different speeds). In standard single-mode fibre, material and waveguide dispersion cancel near
+1310 nm; dispersion-shifted designs move the zero to 1550 nm, and the same engineering in silicon and silicon nitride
+waveguides is what makes on-chip frequency combs possible.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-summary"><span class="num">19</span>The waveguide family at a glance</h2>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Guide</th><th>Guiding mechanism</th><th>Typical size</th><th>Loss</th><th>Strength</th><th>Used for</th></tr></thead>
+  <tbody>
+    <tr><td>Slab</td><td>total internal reflection, one direction</td><td>µm thick film</td><td>low</td><td>simplest; analysis model</td><td>planar devices, lasers</td></tr>
+    <tr><td>Rib / ridge</td><td>TIR, two directions (weak lateral)</td><td>1–5 µm</td><td>low</td><td>low loss, large modes</td><td>modulators, lasers</td></tr>
+    <tr><td>Strip / photonic wire</td><td>TIR, high contrast</td><td>~0.5 µm</td><td>1–3 dB/cm (Si)</td><td>µm bends, dense integration</td><td>silicon photonics, sensors</td></tr>
+    <tr><td>Slot</td><td>TIR + field enhancement in a low-index gap</td><td>~100 nm gap</td><td>higher</td><td>strong field in the gap</td><td>sensing, nonlinear optics</td></tr>
+    <tr><td>Step-index fibre</td><td>TIR, cylindrical</td><td>8 µm (SM) – 1 mm</td><td>0.2 dB/km</td><td>very long distances</td><td>telecom, probes, lasers</td></tr>
+    <tr><td>Graded-index fibre</td><td>continuous refraction</td><td>50–62.5 µm</td><td>low</td><td>low modal dispersion</td><td>data centres</td></tr>
+    <tr><td>Photonic-crystal fibre</td><td>modified TIR or band gap</td><td>µm core, air holes</td><td>low–moderate</td><td>endlessly single-mode, hollow core</td><td>supercontinuum, gas sensing</td></tr>
+    <tr><td>Photonic-crystal waveguide</td><td>photonic band gap</td><td>line defect</td><td>moderate</td><td>sharp bends, slow light</td><td>research, compact devices</td></tr>
+    <tr><td>Hollow metal</td><td>conducting walls</td><td>cm (microwave)</td><td>low at GHz</td><td>high power</td><td>radar, accelerators</td></tr>
+    <tr><td>Plasmonic (SPP, MIM)</td><td>surface plasmons</td><td>tens of nm</td><td>high</td><td>below the diffraction limit</td><td>sensing, nanofocusing</td></tr>
+  </tbody>
+</table></div>
+
+<p>From here the series turns from how light travels to what it tells us about molecules:
+<a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">20</span>References</h2>
+<ol class="refs">
+  <li>T. Young, “The Bakerian Lecture: On the theory of light and colours,” <i>Phil. Trans. R. Soc. Lond.</i> <b>92</b>, 12–48 (1802).</li>
+  <li>J. C. Maxwell, “A dynamical theory of the electromagnetic field,” <i>Phil. Trans. R. Soc. Lond.</i> <b>155</b>, 459–512 (1865).</li>
+  <li>A. Einstein, “Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt,” <i>Ann. Phys.</i> <b>17</b>, 132–148 (1905).</li>
+  <li>G. I. Taylor, “Interference fringes with feeble light,” <i>Proc. Camb. Phil. Soc.</i> <b>15</b>, 114–115 (1909).</li>
+  <li>L. de Broglie, “Recherches sur la théorie des quanta,” <i>Ann. Phys. (Paris)</i> <b>3</b>, 22–128 (1925).</li>
+  <li>J. D. Jackson, <i>Classical Electrodynamics</i>, 3rd ed., Wiley, New York (1999).</li>
+  <li>D. J. Griffiths, <i>Introduction to Electrodynamics</i>, 4th ed., Cambridge University Press (2017).</li>
+  <li>M. Born and E. Wolf, <i>Principles of Optics</i>, 7th ed., Cambridge University Press (1999).</li>
+  <li>P. B. Johnson and R. W. Christy, “Optical constants of the noble metals,” <i>Phys. Rev. B</i> <b>6</b>, 4370–4379 (1972).</li>
+  <li>R. W. Boyd, <i>Nonlinear Optics</i>, 3rd ed., Academic Press, Burlington (2008).</li>
+  <li>B. E. A. Saleh and M. C. Teich, <i>Fundamentals of Photonics</i>, 2nd ed., Wiley, Hoboken (2007).</li>
+  <li>P. A. Franken, A. E. Hill, C. W. Peters and G. Weinreich, “Generation of optical harmonics,” <i>Phys. Rev. Lett.</i> <b>7</b>, 118–119 (1961).</li>
+  <li>J. A. Armstrong, N. Bloembergen, J. Ducuing and P. S. Pershan, “Interactions between light waves in a nonlinear dielectric,” <i>Phys. Rev.</i> <b>127</b>, 1918–1939 (1962).</li>
+  <li>G. P. Agrawal, <i>Nonlinear Fiber Optics</i>, 5th ed., Academic Press, Oxford (2013).</li>
+  <li>K. C. Kao and G. A. Hockham, “Dielectric-fibre surface waveguides for optical frequencies,” <i>Proc. IEE</i> <b>113</b>, 1151–1158 (1966).</li>
+  <li>D. Gloge, “Weakly guiding fibers,” <i>Appl. Opt.</i> <b>10</b>, 2252–2258 (1971).</li>
+  <li>D. Marcuse, “Loss analysis of single-mode fiber splices,” <i>Bell Syst. Tech. J.</i> <b>56</b>, 703–718 (1977).</li>
+  <li>J. C. Knight, T. A. Birks, P. St. J. Russell and D. M. Atkin, “All-silica single-mode optical fiber with photonic crystal cladding,” <i>Opt. Lett.</i> <b>21</b>, 1547–1549 (1996).</li>
+  <li>A. Yariv, “Coupled-mode theory for guided-wave optics,” <i>IEEE J. Quantum Electron.</i> <b>9</b>, 919–933 (1973).</li>
+  <li>W. Bogaerts, P. De Heyn, T. Van Vaerenbergh, K. De Vos, S. Kumar Selvaraja, T. Claes, P. Dumon, P. Bienstman, D. Van Thourhout and R. Baets, “Silicon microring resonators,” <i>Laser Photonics Rev.</i> <b>6</b>, 47–73 (2012).</li>
+  <li>S. A. Maier, <i>Plasmonics: Fundamentals and Applications</i>, Springer, New York (2007).</li>
+  <li>J. D. Joannopoulos, S. G. Johnson, J. N. Winn and R. D. Meade, <i>Photonic Crystals: Molding the Flow of Light</i>, 2nd ed., Princeton University Press (2008).</li>
+  <li>A. W. Snyder and J. D. Love, <i>Optical Waveguide Theory</i>, Chapman and Hall, London (1983).</li>
+  <li>K. Okamoto, <i>Fundamentals of Optical Waveguides</i>, 2nd ed., Academic Press, Burlington (2006).</li>
+</ol>
+
+<hr>
+<p>The figures evaluate the closed-form results given in the text (exact slab-mode equations, Fresnel equations, Lorentz and
+Drude models, coupled-mode theory, the Marcuse mode-field formula). Corrections and questions are welcome at
+<a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+
+<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 1 of 8</span><span class="sn-prev sn-none">Start of the reading path</span><a class="sn-next" href="blog-spectroscopy.html">Part 2 · Vibrational spectroscopy, plasmonics and SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261104c"></script>
+<script src="js/blog/vl-core.js?v=20261104c"></script>
+<script src="js/blog/wg-figs.js?v=20261104c"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
