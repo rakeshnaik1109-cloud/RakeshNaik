@@ -134,7 +134,10 @@ square brackets point to the <a href="#s-refs">references</a> at the end.</p>
 to each other and to the direction of travel. Quantum mechanically it comes in packets, <b>photons</b>,
 each with an energy fixed by its frequency \(\nu\):</p>
 $$E = h\nu = \frac{hc}{\lambda} = hc\,\tilde\nu, \qquad \tilde\nu = \frac{1}{\lambda}$$
-<p>where \(h = 6.626\times10^{-34}\) J s is Planck's constant and \(c\) the speed of light. The last
+<p>where \(E\) is the photon energy, \(\nu\) its frequency (oscillations per second, Hz), \(\lambda\) its
+wavelength, \(h = 6.626\times10^{-34}\) J s Planck's constant and \(c = 2.998\times10^{8}\) m s⁻¹ the speed of
+light. (Elsewhere in this article \(E\) also denotes the electric field of the light; the context makes clear
+which.) The last
 form introduces the spectroscopist's favourite unit, the <b>wavenumber</b> \(\tilde\nu\) in cm⁻¹: the
 number of wavelengths per centimetre. It is proportional to energy, so energy differences are simple
 subtractions — which is exactly what Raman spectroscopy measures.</p>
@@ -142,8 +145,8 @@ subtractions — which is exactly what Raman spectroscopy measures.</p>
   <tr><th>Quantity</th><th>Conversion</th><th>Example</th></tr>
   <tr><td>wavelength ↔ wavenumber</td><td>\(\tilde\nu\,[\mathrm{cm^{-1}}] = 10^7 / \lambda\,[\mathrm{nm}]\)</td><td>532 nm = 18 797 cm⁻¹</td></tr>
   <tr><td>wavenumber ↔ energy</td><td>1 cm⁻¹ = 1.2398 × 10⁻⁴ eV</td><td>3000 cm⁻¹ = 0.37 eV</td></tr>
-  <tr><td>thermal energy at 295 K</td><td>\(k_BT/hc\) ≈ 205 cm⁻¹</td><td>levels above this are mostly empty</td></tr>
-  <tr><td>Raman shift</td><td>\(\Delta\tilde\nu = 10^7/\lambda_0 - 10^7/\lambda_s\)</td><td>785 nm laser, 1003 cm⁻¹ → 852.1 nm</td></tr>
+  <tr><td>thermal energy at 295 K</td><td>\(k_BT/hc\) ≈ 205 cm⁻¹ (\(k_B\): Boltzmann constant, \(T\): temperature)</td><td>levels above this are mostly empty</td></tr>
+  <tr><td>Raman shift</td><td>\(\Delta\tilde\nu = 10^7/\lambda_0 - 10^7/\lambda_s\) (laser wavelength \(\lambda_0\) and scattered wavelength \(\lambda_s\) in nm)</td><td>785 nm laser, 1003 cm⁻¹ → 852.1 nm</td></tr>
 </table></div>
 
 <figure class="fig" data-fig="emspec">
@@ -161,6 +164,9 @@ subtractions — which is exactly what Raman spectroscopy measures.</p>
 the nuclei move (the <b>Born–Oppenheimer approximation</b>). The energy of a molecule then separates,
 to a good approximation, into an electronic part, a vibrational part and a rotational part:</p>
 $$E \approx E_\text{el} + E_\text{vib} + E_\text{rot}, \qquad \text{typical spacings: } 10^4\text{–}10^5,\;\; 10^2\text{–}10^3,\;\; 1\text{–}10\ \mathrm{cm^{-1}}$$
+<p>Here \(E\) is the total energy of the molecule and \(E_\text{el}\), \(E_\text{vib}\), \(E_\text{rot}\) its
+electronic, vibrational and rotational parts; the spacings are the typical gaps between neighbouring levels
+of each kind, quoted in wavenumbers.</p>
 <p>A photon can interact with these levels in three fundamentally different ways:</p>
 <ul>
   <li><b>Absorption</b>: the photon disappears and its energy lifts the molecule to a higher level. It
@@ -215,10 +221,14 @@ $$E \approx E_\text{el} + E_\text{vib} + E_\text{rot}, \qquad \text{typical spac
 
 <h3>The classical oscillator</h3>
 <p>Near its equilibrium length \(r_e\), the energy of a bond rises roughly quadratically when it is
-stretched or compressed — exactly like a spring obeying Hooke's law, \(F = -k\,x\). Two masses
+stretched or compressed — exactly like a spring obeying Hooke's law, \(F = -k\,x\), where \(F\) is the
+restoring force, \(x = r - r_e\) the stretch of the bond length \(r\) away from equilibrium, and \(k\) the spring
+(force) constant. Two masses
 \(m_1, m_2\) joined by such a spring oscillate at</p>
 $$\omega = \sqrt{\frac{k}{\mu}}, \qquad \mu = \frac{m_1 m_2}{m_1 + m_2}, \qquad \boxed{\;\tilde\nu = \frac{1}{2\pi c}\sqrt{\frac{k}{\mu}}\;}$$
-<p>where \(\mu\) is the <b>reduced mass</b> and \(k\) the <b>force constant</b> (bond stiffness, in N/m).
+<p>where \(\omega\) is the angular frequency of the vibration (rad s⁻¹; \(\omega = 2\pi\nu\)), \(\tilde\nu\) the same
+frequency as a wavenumber (\(c\) in cm s⁻¹ gives cm⁻¹), \(m_1\) and \(m_2\) the masses of the two atoms,
+\(\mu\) the <b>reduced mass</b> and \(k\) the <b>force constant</b> (bond stiffness, in N/m).
 Two rules follow that organise every vibrational spectrum:</p>
 <ul>
   <li><b>Stiffer bonds vibrate faster.</b> A triple bond (k ≈ 1600 N/m) sits higher than a double
@@ -241,12 +251,16 @@ Two rules follow that organise every vibrational spectrum:</p>
 <p>Quantum mechanics allows only discrete energies. For the harmonic potential
 \(V = \tfrac12 k (r - r_e)^2\) the Schrödinger equation gives</p>
 $$E_v = h c\,\tilde\nu\left(v + \tfrac12\right), \qquad v = 0, 1, 2, \dots$$
-<p>with equal spacings and a <b>zero-point energy</b> \(\tfrac12 hc\tilde\nu\): a bond never stops
+<p>where \(V\) is the potential energy, \(E_v\) the energy of vibrational level \(v\), and \(v\) the
+<b>vibrational quantum number</b> (0 for the ground state). The levels have equal spacings and a <b>zero-point energy</b> \(\tfrac12 hc\tilde\nu\): a bond never stops
 vibrating. Real bonds are not harmonic — stretch one far enough and it breaks. The <b>Morse
 potential</b> \(V = D_e\,[1 - e^{-a(r - r_e)}]^2\) captures this, and its levels crowd together near
 the dissociation energy:</p>
 $$E_v = hc\left[\tilde\nu_e\left(v + \tfrac12\right) - \tilde\nu_e x_e\left(v + \tfrac12\right)^2\right]$$
-<p>Anharmonicity has three visible consequences: <b>overtones</b> (v = 0 → 2, weak, at slightly less
+<p>In the Morse potential \(D_e\) is the depth of the potential well (the dissociation energy measured from
+its bottom) and \(a\) sets its width; in the level formula \(\tilde\nu_e\) is the harmonic wavenumber and
+\(x_e\) the dimensionless <b>anharmonicity constant</b> (typically 0.005–0.02), which makes successive
+levels close up. Anharmonicity has three visible consequences: <b>overtones</b> (v = 0 → 2, weak, at slightly less
 than twice the fundamental — the basis of near-infrared spectroscopy), <b>combination bands</b> (two
 modes excited at once), and <b>Fermi resonance</b>, where an overtone and a fundamental of the same
 symmetry and similar energy mix and share intensity (the famous CO₂ Raman doublet at 1285 and
@@ -307,12 +321,18 @@ below about 1800 cm⁻¹, which is therefore called the <b>fingerprint region</b
 moment</b> \(\boldsymbol\mu\) oscillate. Expanding the dipole moment in the normal coordinate \(Q\),</p>
 $$\boldsymbol\mu(Q) = \boldsymbol\mu_0 + \left(\frac{\partial\boldsymbol\mu}{\partial Q}\right)_0 Q + \dots
 \qquad\Rightarrow\qquad \text{IR intensity} \;\propto\; \left|\frac{\partial\boldsymbol\mu}{\partial Q}\right|^2,$$
-<p>and in the harmonic approximation only \(\Delta v = \pm1\) transitions are allowed. Polar bonds that
+<p>where \(\boldsymbol\mu_0\) is the permanent dipole moment at the equilibrium geometry and
+\((\partial\boldsymbol\mu/\partial Q)_0\) how much the dipole changes as the molecule moves along the normal
+coordinate \(Q\) (the collective displacement of the atoms in that vibration, section 4). A vibration is
+infrared-active only if this derivative is non-zero; in the harmonic approximation only \(\Delta v = \pm1\)
+transitions (one quantum gained or lost) are allowed. Polar bonds that
 stretch (C=O, O–H, N–H, P=O) absorb strongly; symmetric motions of non-polar groups (C=C in a
 symmetric environment, S–S) are weak or invisible. Absorption in a sample follows the
 <b>Beer–Lambert law</b>:</p>
 $$A = -\log_{10}\frac{I}{I_0} = \varepsilon\, c\, \ell$$
-<p>(molar absorption coefficient ε, concentration c, path length ℓ).</p>
+<p>where \(A\) is the absorbance, \(I_0\) and \(I\) the intensities entering and leaving the sample, ε the molar
+absorption coefficient (L mol⁻¹ cm⁻¹), \(c\) the concentration (mol L⁻¹) and ℓ the path length (cm).
+(This ε is unrelated to the permittivity ε used later for metals.)</p>
 
 <h3>The water problem and ATR</h3>
 <p>Liquid water absorbs intensely in the mid-infrared (O–H stretch near 3400 cm⁻¹ and H–O–H bend at
@@ -321,7 +341,10 @@ micrometres, or the measurement done by <b>attenuated total reflection (ATR)</b>
 reflected inside a diamond or germanium crystal and samples only the evanescent field, which decays
 into the sample over</p>
 $$d_p = \frac{\lambda}{2\pi n_1\sqrt{\sin^2\theta - (n_2/n_1)^2}}$$
-<p>— about 1–2 µm for diamond at 45°. The same evanescent-wave physics reappears in surface plasmon
+<p>where \(d_p\) is the <b>penetration depth</b> (the distance over which the evanescent field falls to 1/e
+of its value at the surface), \(\lambda\) the vacuum wavelength of the infrared light, \(n_1\) the refractive
+index of the ATR crystal, \(n_2\) that of the sample, and \(\theta\) the angle of incidence inside the crystal
+— about 1–2 µm for diamond at 45°. The same evanescent-wave physics reappears in surface plasmon
 resonance (section 11).</p>
 
 <h3>Why every modern IR spectrometer uses a Michelson interferometer</h3>
@@ -330,10 +353,14 @@ interferometer. One mirror moves, creating a path difference δ; the detector re
 <b>interferogram</b></p>
 $$I(\delta) = \int_0^\infty B(\tilde\nu)\,\big[1 + \cos(2\pi\tilde\nu\delta)\big]\,d\tilde\nu,
 \qquad B(\tilde\nu) \propto \int I(\delta)\cos(2\pi\tilde\nu\delta)\,d\delta,$$
-<p>and the spectrum \(B(\tilde\nu)\) is its cosine (Fourier) transform. All wavelengths are measured at
+<p>where \(I(\delta)\) is the detector signal at optical path difference \(\delta\) between the two arms, and
+\(B(\tilde\nu)\) the spectrum — the intensity reaching the detector at each wavenumber \(\tilde\nu\) (source
+spectrum times sample transmission). The spectrum is the cosine (Fourier) transform of the interferogram. All wavelengths are measured at
 once (the <b>multiplex</b> or Fellgett advantage), without a slit (the <b>throughput</b> or Jacquinot
 advantage), and calibrated by a reference laser (the <b>Connes</b> advantage) [11]. The resolution is set by
-how far the mirror travels: \(\Delta\tilde\nu \approx 1/\delta_\text{max}\).</p>
+how far the mirror travels: \(\Delta\tilde\nu \approx 1/\delta_\text{max}\), where \(\Delta\tilde\nu\) is the smallest
+separation of two lines that can be resolved and \(\delta_\text{max}\) the largest path difference (a path
+difference of 1 cm gives about 1 cm⁻¹).</p>
 
 <figure class="fig" data-fig="ftir">
   <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
@@ -351,13 +378,17 @@ how far the mirror travels: \(\Delta\tilde\nu \approx 1/\delta_\text{max}\).</p>
 changes colour [4]. The explanation is simplest classically.</p>
 
 <h3>Classical picture: an oscillating polarisability mixes frequencies</h3>
-<p>The light's field \(E = E_0\cos\omega_0 t\) induces a dipole in the electron cloud,
+<p>The light's electric field \(E = E_0\cos\omega_0 t\) — amplitude \(E_0\), angular frequency \(\omega_0\) of the
+laser, time \(t\) — induces a dipole in the electron cloud,
 \(\mu_\text{ind} = \alpha E\), where \(\alpha\) is the <b>polarisability</b> — how easily the cloud is
-distorted. If the molecule vibrates, \(Q = Q_0\cos\omega_v t\), the polarisability changes with it:</p>
+distorted. If the molecule vibrates along its normal coordinate \(Q\) with amplitude \(Q_0\) and vibrational
+angular frequency \(\omega_v\), \(Q = Q_0\cos\omega_v t\), the polarisability changes with it (\(\alpha_0\) is its value at
+equilibrium):</p>
 $$\alpha = \alpha_0 + \left(\frac{\partial\alpha}{\partial Q}\right)_0 Q_0\cos\omega_v t$$
 <p>and the product of two cosines is a sum of two others:</p>
 $$\mu_\text{ind} = \underbrace{\alpha_0E_0\cos\omega_0 t}_{\text{Rayleigh}} \;+\; \frac{\alpha' Q_0E_0}{2}\Big[\underbrace{\cos(\omega_0-\omega_v)t}_{\text{Stokes}} + \underbrace{\cos(\omega_0+\omega_v)t}_{\text{anti-Stokes}}\Big]$$
-<p>An oscillating dipole radiates at its own frequencies, so the scattered light contains the laser
+<p>Here \(\alpha'\) is shorthand for \((\partial\alpha/\partial Q)_0\), the rate at which the polarisability changes
+during the vibration. An oscillating dipole radiates at its own frequencies, so the scattered light contains the laser
 frequency and two sidebands displaced by exactly the vibrational frequency. Hence the <b>Raman selection
 rule</b>: a vibration is Raman active only if it changes the polarisability,
 \(\partial\alpha/\partial Q \ne 0\) (α is really a 3×3 tensor; it is enough that one component
@@ -376,12 +407,16 @@ changes) [5, 6].</p>
 <p>A dipole radiates power \(\propto \omega^4|\mu|^2\), so Raman intensity rises steeply with the
 excitation frequency:</p>
 $$I_\text{Raman} \;\propto\; (\tilde\nu_0 \mp \tilde\nu_v)^4\,\left(\frac{\partial\alpha}{\partial Q}\right)^2 N\,I_0$$
-<p>Going from a 785 nm to a 532 nm laser gives (785/532)⁴ ≈ 4.7 times more signal — but also more
+<p>Here \(\tilde\nu_0\) is the laser wavenumber, \(\tilde\nu_v\) the vibrational wavenumber (the Raman shift), the
+minus sign applies to Stokes and the plus to anti-Stokes lines, \(N\) is the number of molecules probed and
+\(I_0\) the laser intensity. Going from a 785 nm to a 532 nm laser gives (785/532)⁴ ≈ 4.7 times more signal — but also more
 fluorescence from biological samples, which is why 785 nm is the usual compromise for tissue. The
 quantum treatment adds one more ingredient: anti-Stokes scattering starts from an excited vibrational
 level, whose population is set by the Boltzmann distribution, so</p>
 $$\frac{I_\text{aS}}{I_\text{S}} = \left(\frac{\tilde\nu_0 + \tilde\nu_v}{\tilde\nu_0 - \tilde\nu_v}\right)^4 \exp\!\left(-\frac{hc\,\tilde\nu_v}{k_BT}\right)$$
-<p>— a contact-free thermometer.</p>
+<p>where \(I_\text{aS}\) and \(I_\text{S}\) are the anti-Stokes and Stokes intensities of the same band,
+\(k_B = 1.381\times10^{-23}\) J K⁻¹ is Boltzmann's constant and \(T\) the absolute temperature; the exponential is the
+fraction of molecules already in the first excited vibrational level — a contact-free thermometer.</p>
 
 <figure class="fig" data-fig="ratio">
   <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
@@ -438,7 +473,7 @@ exclusion).</p>
   <tr><td>Fluorescence</td><td>emission after electronic excitation</td><td>Stokes shift, quantum yield, lifetime [8]</td><td>labelled imaging, sensing</td></tr>
   <tr><td>NIR spectroscopy</td><td>overtones and combinations of X–H</td><td>anharmonicity</td><td>bulk analysis of food, pharma</td></tr>
   <tr><td>Resonance Raman</td><td>Raman of a chromophore</td><td>laser in an electronic band</td><td>haem proteins, carotenoids</td></tr>
-  <tr><td>CARS / SRS</td><td>coherent (stimulated) Raman</td><td>third-order nonlinear: \(\omega_\text{aS} = 2\omega_p - \omega_S\)</td><td>video-rate label-free imaging [12, 13]</td></tr>
+  <tr><td>CARS / SRS</td><td>coherent (stimulated) Raman</td><td>third-order nonlinear: \(\omega_\text{aS} = 2\omega_\text{pump} - \omega_S\) (pump, Stokes and anti-Stokes beam frequencies)</td><td>video-rate label-free imaging [12, 13]</td></tr>
   <tr><td>SERS</td><td>Raman near metal nanostructures</td><td>plasmonic field enhancement ≈ |E|⁴</td><td>trace detection, biosensing [7]</td></tr>
   <tr><td>TERS</td><td>SERS under a metal tip</td><td>one hot spot, scanned</td><td>nanometre-resolution chemical imaging [14]</td></tr>
   <tr><td>SHINERS</td><td>SERS from shell-isolated particles</td><td>Au cores with ultrathin SiO₂ shells</td><td>any surface, without contact [15]</td></tr>
@@ -591,7 +626,12 @@ concentrating light. The answer is their free electrons.</p>
 the light field and damped by collisions at rate \(\gamma\):</p>
 $$m\ddot{\mathbf x} + m\gamma\dot{\mathbf x} = -e\mathbf E_0 e^{-i\omega t}
 \quad\Rightarrow\quad \mathbf P = -ne\mathbf x = -\frac{ne^2}{m(\omega^2 + i\gamma\omega)}\mathbf E$$
-<p>and since \(\varepsilon = 1 + P/(\varepsilon_0E)\),</p>
+<p>Here \(\mathbf x\) is the displacement of an electron, the dots denote first and second time derivatives
+(velocity and acceleration), \(\mathbf E_0 e^{-i\omega t}\) is the light field of angular frequency \(\omega\)
+written in complex form (\(i = \sqrt{-1}\); the physical field is the real part), and \(\mathbf P\) the
+<i>polarisation</i>, the induced dipole moment per unit volume. Since the relative permittivity (dielectric
+function) is \(\varepsilon = 1 + P/(\varepsilon_0E)\), with \(\varepsilon_0 = 8.854\times10^{-12}\) F m⁻¹ the
+permittivity of vacuum,</p>
 $$\boxed{\;\varepsilon(\omega) = \varepsilon_\infty - \frac{\omega_p^2}{\omega^2 + i\gamma\omega}, \qquad \omega_p^2 = \frac{ne^2}{\varepsilon_0 m}\;}$$
 <p>\(\omega_p\) is the <b>plasma frequency</b> (ħω<sub>p</sub> ≈ 9 eV for Au and Ag), and
 \(\varepsilon_\infty\) accounts for the bound d-electrons. Below \(\omega_p\) the real part of ε is
@@ -628,12 +668,16 @@ plasmons are sharper [24].</p>
 equations allow a transverse-magnetic wave bound to the surface, decaying exponentially into both
 media. Matching the fields at the boundary gives its dispersion relation [23]:</p>
 $$k_\text{SPP} = \frac{\omega}{c}\sqrt{\frac{\varepsilon_m\,\varepsilon_d}{\varepsilon_m + \varepsilon_d}}$$
-<p>Because \(\varepsilon_m < -\varepsilon_d\), the square root is larger than \(\sqrt{\varepsilon_d}\): the SPP
+<p>Here \(k_\text{SPP}\) is the wavevector of the surface plasmon along the surface (\(2\pi\) divided by its
+wavelength), \(\omega\) the angular frequency, \(c\) the speed of light, and \(\varepsilon_m\), \(\varepsilon_d\) the
+permittivities of the metal and the dielectric. Because \(\varepsilon_m < -\varepsilon_d\), the square root is larger than \(\sqrt{\varepsilon_d}\): the SPP
 always has <b>more momentum than light</b> of the same frequency in the dielectric. Light hitting a smooth
 metal surface from the dielectric side can therefore never excite it. Two tricks supply the missing
-momentum: a grating (\(k_\parallel + m\,2\pi/\Lambda\)), or a prism of higher index under a thin metal film
+momentum: a grating (\(k_\parallel + m\,2\pi/\Lambda\), where \(k_\parallel\) is the in-plane wavevector of the
+incident light, \(\Lambda\) the grating period and \(m\) an integer diffraction order), or a prism of higher index under a thin metal film
 — the Kretschmann [26] and Otto [27] configurations. Light totally reflected in the prism has
-\(k_\parallel = n_p\,(\omega/c)\sin\theta\); at the angle where this equals \(k_\text{SPP}\) the energy is
+\(k_\parallel = n_p\,(\omega/c)\sin\theta\), with \(n_p\) the prism's refractive index and \(\theta\) the angle of
+incidence; at the angle where this equals \(k_\text{SPP}\) the energy is
 transferred to the plasmon and the reflectance dips sharply. Because \(k_\text{SPP}\) depends on
 \(\varepsilon_d\), that angle reports the refractive index of whatever is on the surface — <b>SPR
 biosensing</b>.</p>
@@ -648,7 +692,7 @@ biosensing</b>.</p>
 </figure>
 
 <p>The SPP field decays into the dielectric over \(\delta_d = \frac{1}{k_0}\left|\frac{\varepsilon_m + \varepsilon_d}{\varepsilon_d^2}\right|^{1/2}\),
-typically 100–300 nm in the visible and near-infrared, and it propagates micrometres to tens of
+where \(k_0 = \omega/c = 2\pi/\lambda\) is the vacuum wavevector — typically 100–300 nm in the visible and near-infrared, and it propagates micrometres to tens of
 micrometres along the surface before absorption in the metal stops it. That short decay is why SPR
 measures binding at the surface, not the bulk solution.</p>
 
@@ -660,12 +704,17 @@ measures binding at the surface, not the bulk solution.</p>
 Laplace's equation with the boundary conditions gives a uniform field inside and, outside, the
 incident field plus that of a point dipole with polarisability [22, 23]</p>
 $$\alpha = 4\pi R^3\,\frac{\varepsilon - \varepsilon_m}{\varepsilon + 2\varepsilon_m}$$
-<p>The denominator vanishes — the response becomes resonant — when</p>
+<p>Here \(\alpha\) is the particle's polarisability (in units of volume: the induced dipole is
+\(\varepsilon_0\varepsilon_m\alpha E_0\)), \(R\) its radius, \(\lambda\) the wavelength, \(\varepsilon(\omega)\) the metal's
+dielectric function and — note the change of meaning from section 11 — \(\varepsilon_m\) now the permittivity of
+the surrounding <b>medium</b> (\(\varepsilon_m = n_m^2\), 1.78 for water). The denominator vanishes — the response becomes resonant — when</p>
 $$\boxed{\;\mathrm{Re}\,\varepsilon(\omega) = -2\varepsilon_m\;}\qquad\text{(the Fröhlich condition)}$$
 <p>which for gold in water happens near 520–530 nm and for silver near 400 nm. Absorption and scattering
 follow from the dipole:</p>
 $$C_\text{ext} = k\,\mathrm{Im}\,\alpha, \qquad C_\text{sca} = \frac{k^4}{6\pi}|\alpha|^2, \qquad C_\text{abs} = C_\text{ext} - C_\text{sca}$$
-<p>Scattering grows as R⁶ and absorption as R³: small particles absorb (and heat), large ones scatter
+<p>where \(C_\text{ext}\), \(C_\text{sca}\) and \(C_\text{abs}\) are the extinction, scattering and absorption
+<i>cross-sections</i> (the area of the beam the particle removes, scatters or absorbs) and
+\(k = 2\pi n_m/\lambda\) the wavevector in the medium. Scattering grows as R⁶ and absorption as R³: small particles absorb (and heat), large ones scatter
 (and glow in dark-field microscopes). Because the resonance condition contains ε<sub>m</sub>, the peak
 shifts to the red as the surrounding refractive index increases — the basis of LSPR sensing.</p>
 
@@ -674,7 +723,11 @@ shifts to the red as the surrounding refractive index increases — the basis of
 red, broadens it, and allows quadrupole and higher modes. Gustav Mie solved the sphere exactly in 1908
 by expanding the fields in vector spherical harmonics [28, 29]:</p>
 $$Q_\text{ext} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\,\mathrm{Re}(a_n + b_n), \qquad Q_\text{sca} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\left(|a_n|^2 + |b_n|^2\right), \qquad x = \frac{2\pi n_m R}{\lambda}$$
-<p>with coefficients \(a_n, b_n\) built from Riccati–Bessel functions. The figure below evaluates them
+<p>Here \(Q_\text{ext}\) and \(Q_\text{sca}\) are <i>efficiencies</i> — cross-sections divided by the geometric
+cross-section \(\pi R^2\); \(x\) is the size parameter, with \(n_m\) the refractive index of the medium; the sum
+runs over multipole orders \(n\) (1 = dipole, 2 = quadrupole, …); and \(a_n\), \(b_n\) are the electric and
+magnetic scattering coefficients of order \(n\), built from Riccati–Bessel functions of \(x\) and of
+\(m x\), where \(m\) is the particle's refractive index relative to the medium. The figure below evaluates them
 exactly, with the measured optical constants of gold and silver.</p>
 
 <figure class="fig" data-fig="mie">
@@ -726,7 +779,9 @@ dipole does not radiate alone: it polarises the particle at \(\omega_R\), which 
 efficiently — by the reciprocity theorem, by the same factor that the particle would enhance a field at
 \(\omega_R\) arriving from the detector's direction. Multiplying the two intensity factors gives [7, 35]</p>
 $$\boxed{\;G_\text{SERS} \approx \frac{|E_\text{loc}(\omega_0)|^2}{|E_0|^2}\cdot\frac{|E_\text{loc}(\omega_R)|^2}{|E_0|^2} \approx \frac{|E_\text{loc}|^4}{|E_0|^4}\;}$$
-<p>— the <b>|E|⁴ approximation</b>, accurate when the Raman shift is small compared with the plasmon
+<p>Here \(E_0\) is the amplitude of the incident field, \(E_\text{loc}\) the local field at the molecule,
+\(\omega_0\) the laser frequency, \(\omega_R\) the Raman-scattered frequency, and \(G_\text{SERS}\) the enhancement of
+the Raman intensity. This is the <b>|E|⁴ approximation</b>, accurate when the Raman shift is small compared with the plasmon
 width. A field enhancement of 10 gives 10⁴; of 100, 10⁸; and in the best gaps 10¹⁰ and more, enough for
 single molecules.</p>
 

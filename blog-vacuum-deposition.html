@@ -188,7 +188,7 @@ build it carefully.</p>
 \(-v_x\): it hands the wall momentum \(2mv_x\). Counting how many such hits arrive per second on
 an area \(A\) and averaging over all molecules gives</p>
 $$p = \tfrac{1}{3}\, n\, m \,\overline{v^2}, \qquad \tfrac12 m\overline{v^2} = \tfrac32 k_B T \;\;\Rightarrow\;\; \boxed{\,p = n\,k_B\,T\,}$$
-<p>where \(n\) is the number of molecules per unit volume, \(T\) the temperature in kelvin and
+<p>where \(p\) is the pressure, \(\overline{v^2}\) the mean of the squared molecular speeds, \(n\) the number of molecules per unit volume, \(T\) the temperature in kelvin and
 \(k_B = 1.381\times10^{-23}\ \mathrm{J\,K^{-1}}\) Boltzmann's constant. <b>Pressure is proportional
 to the number density.</b> Pumping a chamber from 1000 mbar to \(10^{-6}\) mbar removes all but one
 molecule in a billion — and still leaves \(2.5\times10^{10}\) of them in every cubic centimetre.</p>
@@ -196,12 +196,14 @@ molecule in a billion — and still leaves \(2.5\times10^{10}\) of them in every
 <h3>2 · How fast molecules move</h3>
 <p>The speeds follow the Maxwell–Boltzmann distribution. Its mean is</p>
 $$\bar v = \sqrt{\frac{8 k_B T}{\pi m}} \qquad (\text{N}_2 \text{ at } 20^\circ\text{C}: \ \bar v \approx 470\ \mathrm{m\,s^{-1}})$$
+<p>Here \(\bar v\) is the mean speed of the molecules, \(m\) the mass of one molecule (molar mass divided by Avogadro's number), \(T\) the temperature in kelvin and \(k_B\) Boltzmann's constant.</p>
 <p>Light molecules are fast (H₂: 1760 m/s) and heavy ones slow (Au atoms evaporating at 1400 °C:
 ≈ 420 m/s). This matters for turbo pumps, which work only on molecules they can outrun.</p>
 
 <h3>3 · How often molecules hit a surface</h3>
 <p>The number of molecules striking unit area per second, the <b>impingement rate</b>, is</p>
 $$\Phi = \tfrac14 n \bar v = \frac{p}{\sqrt{2\pi m k_B T}}$$
+<p>Here \(\Phi\) is the impingement rate (molecules per unit area per second), \(n\) the number density of the gas, \(\bar v\) the mean speed and \(p\) the pressure.</p>
 <p>For air at room temperature this is \(\Phi \approx 2.9\times10^{20}\, p\,[\mathrm{mbar}]\)
 molecules cm⁻² s⁻¹. The same equation, read in reverse, is the rate at which a hot metal
 <i>leaves</i> its own surface — the Hertz–Knudsen equation of <a href="#s-thermal">section 11</a>.</p>
@@ -211,6 +213,7 @@ molecules cm⁻² s⁻¹. The same equation, read in reverse, is the rate at whi
 moves. It collides with every molecule whose centre lies in that cylinder. On average it travels
 the <b>mean free path</b></p>
 $$\lambda = \frac{k_B T}{\sqrt2\,\pi d^2\, p} \qquad\Rightarrow\qquad \lambda_{\text{air}}\,[\mathrm{cm}] \approx \frac{6.6\times10^{-3}}{p\,[\mathrm{mbar}]}$$
+<p>Here \(\lambda\) is the mean free path, \(d\) the molecular diameter (≈ 0.37 nm for N₂), \(p\) the pressure and \(k_BT\) the thermal energy.</p>
 <p>(the \(\sqrt2\) appears because the other molecules are moving too). At atmosphere \(\lambda\)
 is 66 nm; at \(10^{-2}\) mbar it is 6.6 mm; at \(10^{-5}\) mbar it is 6.6 m — longer than any
 chamber.</p>
@@ -237,6 +240,7 @@ the way it scatters, loses energy, may react, and arrives from a random directio
 all. The probability that an atom crosses a distance \(L\) <b>without a single collision</b>
 follows from the same reasoning as radioactive decay:</p>
 $$P(\text{no collision}) = e^{-L/\lambda}$$
+<p>Here \(P\) is the probability that an atom flies a distance \(L\) without hitting a gas molecule, and \(\lambda\) the mean free path.</p>
 <p>For a 30 cm source–substrate distance we want \(\lambda \gg 30\) cm. At \(10^{-2}\) mbar,
 \(e^{-30/0.66}\approx 10^{-20}\): essentially nothing arrives straight. At \(10^{-5}\) mbar,
 \(e^{-30/660} \approx 0.96\): 96 % do. That one exponential is why evaporators work at
@@ -256,6 +260,7 @@ $$P(\text{no collision}) = e^{-L/\lambda}$$
 \(10^{15}\) molecules per cm², so with a sticking probability near 1 the time to cover a clean
 surface with one layer of contamination is</p>
 $$\tau_{\text{mono}} \approx \frac{10^{15}\ \mathrm{cm^{-2}}}{\Phi} \approx \frac{3\times10^{-6}\ \mathrm{s}}{p\,[\mathrm{mbar}]}$$
+<p>Here \(\tau_\text{mono}\) is the time to form one monolayer, \(10^{15}\) cm⁻² the number of adsorption sites per unit area, \(\Phi\) the impingement rate of the residual gas and \(p\) its pressure in mbar.</p>
 <p>At \(10^{-6}\) mbar a monolayer of water and hydrocarbons forms in about <b>3 s</b>; at
 \(10^{-9}\) mbar in an hour. The film you deposit therefore always competes with the residual gas:
 the ratio of metal flux to gas flux decides how pure it is. Reactive metals (Ti, Cr, Al) pick up
@@ -329,13 +334,15 @@ foreline low, the diffusion pump would fail (section 9).</p>
 
 <h3>Conductance: pipes are resistors</h3>
 <p>A pipe or valve passes gas in proportion to the pressure difference across it,
-\(Q = C\,(p_1 - p_2)\), where \(C\) is its <b>conductance</b> in L/s — exactly like
-\(I = V/R\). Conductances combine like electrical conductances:</p>
+\(Q = C\,(p_1 - p_2)\), where \(p_1\) and \(p_2\) are the pressures at its two ends and \(C\) is its <b>conductance</b> in L/s — exactly like
+Ohm's law \(I = V/R\) (current \(I\), voltage \(V\), resistance \(R\)), with throughput playing the current and pressure difference the voltage. Conductances combine like electrical conductances:</p>
 $$\frac{1}{C_\text{series}} = \sum_i \frac{1}{C_i}, \qquad \frac{1}{S_\text{eff}} = \frac{1}{S_\text{pump}} + \frac{1}{C_\text{line}}$$
+<p>Here \(C_i\) are the conductances of the individual pipes, valves and traps connected in series, \(C_\text{series}\) their combined conductance, \(S_\text{pump}\) the pumping speed at the pump inlet, \(C_\text{line}\) the conductance of the line between pump and chamber, and \(S_\text{eff}\) the effective pumping speed actually available at the chamber.</p>
 <p>The second equation is the sobering one: <b>a pipe can only make a pump slower</b>. The
 conductance depends strongly on the flow regime. For a long round tube of diameter \(d\) and
 length \(L\) (cm) in air at 20 °C,</p>
 $$C_\text{viscous} \approx 135\,\frac{d^4}{L}\,\bar p\ \ [\mathrm{L/s},\ \bar p \text{ in mbar}], \qquad C_\text{molecular} \approx 12.1\,\frac{d^3}{L}\ \ [\mathrm{L/s}], \qquad C_\text{orifice} \approx 11.6\,A\ \ [\mathrm{L/s},\ A \text{ in cm}^2]$$
+<p>Here \(d\) and \(L\) are the tube's inner diameter and length in cm, \(\bar p\) the mean of the pressures at its two ends, and \(A\) the area of an orifice (a hole in a thin wall). The numerical factors hold for air at 20 °C.</p>
 <div class="callout tip"><b>Worked example</b>
 <p>A roughing line 2 m long and 2.5 cm in diameter. At a mean pressure of 1 mbar (viscous)
 \(C \approx 135 \times 39/200 \times 1 = 26\) L/s — much more than the 4.5 L/s rotary pump, so the
@@ -348,6 +355,7 @@ directly under the chamber with an inlet as wide as possible.</p></div>
 <p>For a chamber of volume \(V\) pumped with speed \(S\), the gas inside decreases at the rate it
 is pumped out, while the walls release gas (outgassing, leaks) at a rate \(Q_\text{gas}\):</p>
 $$V\frac{dp}{dt} = -S\,p + Q_\text{gas} \quad\Rightarrow\quad p(t) = \Big(p_0 - \frac{Q_\text{gas}}{S}\Big)e^{-St/V} + \frac{Q_\text{gas}}{S}$$
+<p>Here \(p\) is the chamber pressure at time \(t\), \(p_0\) the pressure when pumping starts, \(V\) the chamber volume, \(S\) the pumping speed and \(Q_\text{gas}\) the total gas load from outgassing and leaks (mbar·L/s).</p>
 <p>Two lessons:</p>
 <ul>
   <li><b>Early on</b> (\(Q_\text{gas}\) negligible) pressure falls exponentially with time constant
@@ -456,7 +464,7 @@ molecules into the next rotor row.</p>
 </figure>
 
 <p>The compression ratio of each stage grows exponentially with the ratio of blade speed to the
-molecule's thermal speed, roughly \(K \propto \exp\!\big(c\,v_\text{blade}\sqrt{M}\big)\). For
+molecule's thermal speed, roughly \(K \propto \exp\!\big(c\,v_\text{blade}\sqrt{M}\big)\), where \(K\) is the compression ratio (outlet pressure ÷ inlet pressure for that gas), \(v_\text{blade}\) the blade tip speed, \(M\) the molar mass of the gas and \(c\) a constant of the pump geometry. For
 nitrogen a turbo pump reaches \(K \sim 10^{8}\)–\(10^{9}\); for hydrogen, whose molecules are
 fast, only \(10^{3}\)–\(10^{4}\). A turbo is oil-free in the pumping path, starts in minutes, and
 does not care which way up it is mounted. It still needs a backing pump: its exhaust must be held
@@ -503,6 +511,7 @@ carries away a fixed amount of energy, so the heat loss is proportional to the i
 i.e. to \(p\). When the mean free path is much shorter than the gap (high pressure), the thermal
 conductivity of a gas,</p>
 $$\kappa \approx \tfrac13\, n\, m\, c_v\, \bar v\, \lambda, \qquad \lambda \propto \frac1n \;\Rightarrow\; \kappa \text{ independent of pressure,}$$
+<p>Here \(\kappa\) is the thermal conductivity of the gas, \(n\) its number density, \(m\) the molecular mass, \(c_v\) the specific heat per unit mass at constant volume, \(\bar v\) the mean speed and \(\lambda\) the mean free path. Because \(\lambda\) falls as \(1/n\), the product \(n\lambda\) — and so \(\kappa\) — does not depend on pressure.</p>
 <p>— Maxwell's surprising result — so the gauge saturates. Between the radiation floor at about
 \(10^{-3}\) mbar and saturation at some tens of mbar, the Pirani gauge reads well. Because
 different gases carry heat differently, a Pirani gauge calibrated for nitrogen <b>reads wrong in
@@ -534,6 +543,7 @@ magnet. A stray electron is accelerated by the electric field but bent into a ti
 magnetic field, so it travels metres before it reaches the anode. On the way it ionises gas
 molecules; the ions are collected at the cathode. The discharge current follows</p>
 $$I = K\,p^{\,n}, \qquad n \approx 1.1\text{–}1.2$$
+<p>Here \(I\) is the discharge current, \(p\) the pressure, \(K\) a gauge- and gas-dependent constant and \(n\) an empirical exponent.</p>
 <p>with \(K\) found by calibration. Range: about \(10^{-2}\) to \(10^{-7}\) mbar (inverted-magnetron
 designs reach \(10^{-11}\)). Switch it on only below \(10^{-2}\) mbar: at higher pressure the
 discharge becomes an intense glow that sputters the electrodes and contaminates the gauge. At very
@@ -664,6 +674,7 @@ replacing an unwanted gas in a space with a clean, inert one. They overlap in pr
   pump down to \(p_\text{low}\), back-fill with pure gas to \(p_\text{high}\), repeat. Each cycle
   dilutes the impurity by \(p_\text{low}/p_\text{high}\), so after \(N\) cycles
   $$x_N = x_0\left(\frac{p_\text{low}}{p_\text{high}}\right)^{N}$$
+<p>Here \(x_0\) is the initial fraction of the impurity (e.g. air) in the gas, \(x_N\) the fraction after \(N\) pump–purge cycles, and \(p_\text{low}\), \(p_\text{high}\) the pumped and back-filled pressures.</p>
   Three cycles between 1 mbar and 1000 mbar reduce air from 100 % to one part in \(10^{9}\).
   Flow-purging alone (sweeping gas through) is far less efficient, because it only dilutes
   exponentially with the number of volume exchanges, and dead legs never get swept.</li>
@@ -718,6 +729,7 @@ made sure of that with the vacuum) and condenses on everything in sight, includi
 <h3>How much heat: Joule heating with the LT supply</h3>
 <p>A boat is a resistor of a few to a few tens of milliohms. The heating power is</p>
 $$P = I^2 R$$
+<p>Here \(P\) is the electrical power dissipated in the boat, \(I\) the current through it and \(R\) its resistance. In the radiation term below, \(\varepsilon\) is the emissivity of the hot surface, \(\sigma = 5.67\times10^{-8}\) W m⁻² K⁻⁴ the Stefan–Boltzmann constant, \(A\) the radiating area and \(T\) the absolute temperature.</p>
 <p>so to deliver several hundred watts into 15 mΩ you need ~150–250 A at only 2–5 V. That is what
 the step-down transformer of the <b>LT (low-tension) supply</b> provides (section 12). The boat
 reaches a temperature where the input power balances radiation (\(\varepsilon\sigma A T^4\)) and
@@ -736,6 +748,7 @@ raise the current slowly — both to avoid thermal shock and to let the charge o
 equilibrium with it. Thermodynamics (the Clausius–Clapeyron equation) gives its temperature
 dependence:</p>
 $$\frac{d\ln p_v}{dT} = \frac{\Delta H_\text{vap}}{RT^2} \quad\Rightarrow\quad \log_{10} p_v = A - \frac{B}{T}$$
+<p>Here \(p_v\) is the vapour pressure, \(T\) the absolute temperature, \(\Delta H_\text{vap}\) the enthalpy of vaporisation (or of sublimation, for a solid) per mole, \(R = 8.314\) J mol⁻¹ K⁻¹ the gas constant, and \(A\), \(B\) constants tabulated for each material (\(B = \Delta H_\text{vap}/(2.303\,R)\)).</p>
 <p>— an exponential rise with temperature. In equilibrium, the flux of atoms leaving the surface
 equals the flux of vapour atoms arriving (section 2, equation 3). In vacuum nothing comes back,
 so the surface keeps emitting at the equilibrium rate. That is the <b>Hertz–Knudsen–Langmuir
@@ -744,6 +757,7 @@ equation</b>:</p>
 $$\Gamma = \frac{\alpha\,(p_v - p)}{\sqrt{2\pi m k_B T}} \qquad \Gamma_m = m\Gamma = \alpha\,p_v\sqrt{\frac{M}{2\pi R T}}$$
 <div class="eq-name">Γ: atoms per m² per s · Γ<sub>m</sub>: kg m⁻² s⁻¹ · α ≤ 1 evaporation coefficient · M molar mass</div>
 </div>
+<p>Here \(p_v\) is the vapour pressure of the source at its temperature \(T\), \(p\) the partial pressure of the same vapour above the surface (≈ 0 in high vacuum), \(m\) the mass of one evaporating atom or molecule, \(M\) its molar mass, \(R\) the gas constant and \(k_B\) Boltzmann's constant.</p>
 <p>In practical units, \(\Gamma_m \approx 5.83\times10^{-2}\, p_v[\mathrm{Torr}]\sqrt{M/T}\) g cm⁻² s⁻¹.
 A useful rate needs \(p_v \approx 10^{-2}\) mbar, which sets the evaporation temperature of each
 material. Some metals (Cr, Ti at modest temperatures) reach it <b>below their melting point</b> and
@@ -764,6 +778,7 @@ number leaving at angle \(\theta\) from the surface normal goes as \(\cos\theta\
 would emit equally in all directions). An area element of the substrate at distance \(r\), whose
 normal makes an angle \(\phi\) with the incoming direction, receives</p>
 $$\frac{dM_s}{dA_s} = \frac{M_e}{\pi r^2}\cos\theta\,\cos\phi$$
+<p>Here \(M_e\) is the total mass evaporated from the source, \(dM_s\) the mass landing on a small substrate area \(dA_s\), \(r\) the source–substrate distance, \(\theta\) the emission angle measured from the source normal and \(\phi\) the angle of arrival measured from the substrate normal.</p>
 <p>For a flat substrate parallel to the source at height \(h\), a point at lateral distance \(\ell\)
 has \(\cos\theta = \cos\phi = h/r\) and \(r^2 = h^2 + \ell^2\). Dividing by density gives the
 thickness, and normalising to the thickness \(t_0\) directly above the source:</p>
@@ -771,6 +786,7 @@ thickness, and normalising to the thickness \(t_0\) directly above the source:</
 $$\frac{t}{t_0} = \frac{1}{\big[1 + (\ell/h)^2\big]^{2}}\ \ \text{(small surface source)}, \qquad \frac{t}{t_0} = \frac{1}{\big[1 + (\ell/h)^2\big]^{3/2}}\ \ \text{(point source)}$$
 <div class="eq-name">film uniformity on a flat substrate</div>
 </div>
+<p>Here \(t\) is the film thickness at lateral distance \(\ell\) from the point directly above the source, \(t_0\) the thickness at that point, and \(h\) the source–substrate height.</p>
 <p>With \(h = 25\) cm, a point 5 cm off-centre gets 92 % of the centre thickness. To do better you
 increase \(h\) (at the cost of rate, which falls as \(1/h^2\)), rotate the substrates, or put them on a
 sphere passing through the source (on such a <b>Knudsen sphere</b>, \(\cos\theta\cos\phi/r^2\) is
@@ -829,6 +845,7 @@ Townsend's \(\alpha = Ap\,e^{-Bp/E}\) and the breakdown condition \(\gamma(e^{\a
 $$V_b = \frac{B\,pd}{\ln(A\,pd) - \ln\!\big[\ln(1 + 1/\gamma)\big]}$$
 <div class="eq-name">breakdown voltage depends only on the product p·d</div>
 </div>
+<p>Here \(V_b\) is the breakdown voltage, \(p\) the gas pressure, \(d\) the electrode gap, \(E\) the electric field, \(A\) and \(B\) constants of the gas (from Townsend's ionisation coefficient \(\alpha\), the number of ionising collisions an electron makes per unit length), and \(\gamma\) the number of secondary electrons released per ion striking the cathode.</p>
 <p>At high pressure, electrons collide too often to gain ionising energy, so a huge voltage is
 needed. At low pressure, they cross the gap without meeting a molecule at all, and no voltage
 helps. In between lies a minimum (a few hundred volts for air at \(pd \approx 1\) Torr·cm). With a
@@ -857,6 +874,7 @@ focused beam of energetic electrons, while it sits in a water-cooled copper hear
 enough thermal energy to escape over the work function \(W\) (4.5 eV for W). The emitted current
 density follows the <b>Richardson–Dushman equation</b>:</p>
 $$J = A_G\,T^2\,e^{-W/k_B T}, \qquad A_G \approx 0.5\text{–}1.2\times10^{6}\ \mathrm{A\,m^{-2}\,K^{-2}}$$
+<p>Here \(J\) is the emitted current density, \(T\) the filament temperature, \(W\) the work function (the energy needed to remove an electron from the metal), \(k_B\) Boltzmann's constant and \(A_G\) the material-dependent Richardson constant.</p>
 <p>The exponential makes emission extremely sensitive to filament temperature, which is how the
 emission current (and so the beam power) is controlled.</p>
 
@@ -865,13 +883,15 @@ emission current (and so the beam power) is controlled.</p>
 \(E = eV\). At 10 kV their speed is about 0.2 c, so a small relativistic correction already
 appears:</p>
 $$\gamma = 1 + \frac{eV}{m_e c^2}, \qquad p = \frac{1}{c}\sqrt{(eV)^2 + 2\,eV\,m_ec^2}$$
+<p>Here \(\gamma\) is the relativistic Lorentz factor (not the secondary-electron yield of the previous section), \(p\) the electron's momentum (not pressure), \(e\) the elementary charge, \(V\) the accelerating voltage, \(m_e\) the electron rest mass and \(c\) the speed of light; \(m_ec^2 = 511\) keV.</p>
 
 <h3>Step 3 — bending them 270°</h3>
 <p>The filament is hidden <i>below and beside</i> the hearth so that evaporated material cannot
 coat it and it does not see the hot melt. A permanent magnet (plus coils) supplies a field
-\(B\) perpendicular to the beam. The Lorentz force \(\mathbf F = -e\,\mathbf v\times\mathbf B\) bends the
+\(B\) perpendicular to the beam. The Lorentz force \(\mathbf F = -e\,\mathbf v\times\mathbf B\) (\(\mathbf v\): electron velocity, \(\mathbf B\): magnetic field, × the vector cross product) bends the
 electrons into a circle of radius</p>
 $$r = \frac{p}{eB} \;\approx\; \frac{\sqrt{2 m_e eV}}{eB}$$
+<p>Here \(r\) is the radius of the electron's circular path, \(p\) its momentum, \(e\) its charge and \(B\) the magnetic flux density; the right-hand form neglects the small relativistic correction.</p>
 <p>With 8 kV and 7.6 mT, \(r \approx 4\) cm: the beam loops up and over through 270° and lands in the
 crucible from above. Extra coils <b>sweep</b> the spot across the melt so it heats evenly and does
 not drill a hole.</p>
@@ -886,7 +906,7 @@ not drill a hole.</p>
 </figure>
 
 <h3>Step 4 — what happens at the melt</h3>
-<p>The beam delivers \(P = V\cdot I\): 8 kV × 0.3 A = 2.4 kW into a spot a few millimetres across, a
+<p>The beam delivers power \(P = V\cdot I\) (accelerating voltage times beam current): 8 kV × 0.3 A = 2.4 kW into a spot a few millimetres across, a
 power density of order \(10^4\) W cm⁻². The surface melts and evaporates; the copper hearth, cooled
 by water, keeps the outer part of the charge solid, so the melt sits in a “skull” of its own
 material and never touches anything else. That is why e-beam films are purer, and why it can
@@ -925,6 +945,7 @@ mode — its two faces slide back and forth relative to each other — when an a
 applied to gold electrodes on both faces. The fundamental resonance is the frequency at which the
 plate is half an acoustic wavelength thick:</p>
 $$f_0 = \frac{v_s}{2\,t_q} = \frac{N_q}{t_q}, \qquad N_q = 1.668\times10^{5}\ \mathrm{Hz\,cm}$$
+<p>Here \(f_0\) is the fundamental resonance frequency, \(v_s\) the speed of the shear acoustic wave in quartz, \(t_q\) the thickness of the quartz plate and \(N_q = v_s/2\) the frequency constant of AT-cut quartz.</p>
 <p>A 6 MHz crystal is therefore 0.278 mm thick. The AT-cut is chosen because its frequency barely
 changes with temperature near room temperature; the sensor head is still water-cooled, because
 radiant heat from the source would otherwise drift the reading.</p>
@@ -960,11 +981,13 @@ the added thickness as mass gives the Sauerbrey equation (1959):</p>
 $$\Delta f = -\frac{2 f_0^2}{\sqrt{\rho_q\,\mu_q}}\,\frac{\Delta m}{A} = -\frac{f_0^2}{N_q\,\rho_q}\,\frac{\Delta m}{A}$$
 <div class="eq-name">ρ<sub>q</sub> = 2.648 g cm⁻³, μ<sub>q</sub> = 2.947×10¹¹ g cm⁻¹ s⁻² (shear modulus of quartz)</div>
 </div>
+<p>Here \(\Delta f\) is the change in resonance frequency, \(f_0\) the resonance frequency before deposition, \(\Delta m\) the deposited mass, \(A\) the active (electrode) area of the crystal, \(\rho_q\) the density and \(\mu_q\) the shear modulus of quartz.</p>
 <p>For a 6 MHz crystal the sensitivity is 81.5 Hz per µg cm⁻². One ångström of gold
 (\(19.3\ \mathrm{g\,cm^{-3}}\times10^{-8}\) cm \(=1.93\times10^{-7}\) g cm⁻²) lowers the frequency by
 about <b>16 Hz</b>; one ångström of aluminium by 2.2 Hz. A counter resolving 0.1 Hz therefore sees a
 small fraction of an atomic layer. The thickness follows from the mass per area:</p>
 $$t_f = \frac{\Delta m}{\rho_f\,A}$$
+<p>Here \(t_f\) is the film thickness and \(\rho_f\) the film density.</p>
 <p>— which is why you must enter the <b>density</b> of the material in the DTM. Enter the density of
 gold while depositing aluminium and the reading is wrong by a factor of seven.</p>
 
@@ -977,6 +1000,7 @@ composite resonator exactly:</p>
 $$t_f = \frac{N_q\,\rho_q}{\pi\,\rho_f\,f_c\,Z}\arctan\!\Big[Z\tan\Big(\pi\,\frac{f_q - f_c}{f_q}\Big)\Big], \qquad Z = \sqrt{\frac{\rho_q\mu_q}{\rho_f\mu_f}}$$
 <div class="eq-name">f<sub>q</sub>: uncoated crystal frequency · f<sub>c</sub>: coated · Z: the “Z-ratio” you enter</div>
 </div>
+<p>Here \(f_q\) is the frequency of the uncoated crystal, \(f_c\) the frequency of the coated crystal, \(\rho_f\) and \(\mu_f\) the density and shear modulus of the film, and \(Z\) the ratio of the acoustic impedances of quartz and film.</p>
 <p>For \(Z = 1\) it reduces to the Sauerbrey (period) form. Gold has \(Z = 0.381\), so on a crystal
 that has collected a lot of gold the simple formula overestimates the thickness; modern monitors
 use the Z-corrected formula, which is why they ask for the Z-ratio as well as the density.</p>
@@ -986,6 +1010,7 @@ use the Z-corrected formula, which is why they ask for the Z-ratio as well as th
 and angle from the source. By the cosine law it receives a different flux. The <b>tooling factor</b>
 corrects for this geometry:</p>
 $$\text{TF}\,(\%) = 100\times\frac{t_\text{substrate}}{t_\text{crystal}}, \qquad \text{TF}_\text{new} = \text{TF}_\text{old}\times\frac{t_\text{measured}}{t_\text{DTM}}$$
+<p>Here \(t_\text{substrate}\) and \(t_\text{crystal}\) are the thicknesses deposited at the same time on the substrate and on the crystal, \(t_\text{measured}\) the real film thickness measured afterwards, and \(t_\text{DTM}\) the thickness the monitor displayed.</p>
 <p>Calibrate it once per source position and material: deposit a film, measure its real thickness
 with a profilometer, AFM or ellipsometer, and update the tooling factor with the second formula.</p>
 
@@ -1069,6 +1094,7 @@ vacuum to stay clean.</p>
 <p>Optical lithography is limited by diffraction to roughly the wavelength of light. Electrons
 have a de Broglie wavelength</p>
 $$\lambda_e = \frac{h}{\sqrt{2 m_e eV\left(1 + \dfrac{eV}{2m_ec^2}\right)}}$$
+<p>Here \(\lambda_e\) is the electron wavelength, \(h\) Planck's constant, \(m_e\) the electron rest mass, \(e\) its charge, \(V\) the accelerating voltage and \(c\) the speed of light; the bracket is the relativistic correction.</p>
 <p>which is picometres at EBL voltages — tens of thousands of times shorter than UV light. The
 resolution of EBL (~5–20 nm) is set not by diffraction but by lens aberrations, electron scattering
 in the resist, the secondary electrons that actually break the polymer bonds, and the resist
@@ -1091,6 +1117,7 @@ resist clears completely is the <b>clearing dose</b>, about 100–400 µC cm⁻�
 higher at 100 kV (faster electrons deposit less energy per nanometre in the thin resist). With a
 beam current \(I\), the exposure time for an area \(A\) is simply</p>
 $$t = \frac{D\,A}{I}$$
+<p>Here \(t\) is the exposure time, \(D\) the dose (charge per unit area), \(A\) the exposed area and \(I\) the beam current.</p>
 <p>and each pixel of size \(s\) gets a dwell time \(t_d = D s^2/I\). EBL is a <b>serial</b> technique,
 which is its great weakness: one square millimetre at 300 µC cm⁻² with 1 nA takes 50 minutes of pure
 exposure.</p>
@@ -1110,6 +1137,7 @@ back-scattered electrons:</p>
 $$f(r) = \frac{1}{\pi(1+\eta)}\left[\frac{1}{\alpha^2}e^{-r^2/\alpha^2} + \frac{\eta}{\beta^2}e^{-r^2/\beta^2}\right]$$
 <div class="eq-name">α: forward-scatter range (nm) · β: back-scatter range (µm) · η: back-scattered energy ÷ forward</div>
 </div>
+<p>Here \(f(r)\) is the energy deposited per unit area at distance \(r\) from the point where the beam enters the resist, normalised so that its integral over the plane is 1; \(\alpha\), \(\beta\) and \(\eta\) are given below the equation.</p>
 <p>Because \(\eta\) is of order 0.5–0.8 on silicon and \(\beta\) is micrometres, every exposed line
 also delivers a background dose to its neighbours. In the middle of a dense grating the background
 adds up; at the edge it does not. The same dose then gives wider lines in the centre than at the

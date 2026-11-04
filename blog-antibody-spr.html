@@ -150,6 +150,10 @@ bind, the dip moves.</p>
 <b>1000 RU ≈ 1 ng of protein per mm²</b> [6]. The same relation follows from the de Feijter formula, which
 converts a layer of thickness \(d\) and index \(n_\text{layer}\) into surface mass [7]:</p>
 $$\Gamma = \frac{d\,(n_\text{layer} - n_\text{buffer})}{\mathrm{d}n/\mathrm{d}c}, \qquad \frac{\mathrm{d}n}{\mathrm{d}c} \approx 0.18\text{–}0.19\ \mathrm{mL\,g^{-1}}\ \text{for proteins}$$
+<p>Here \(\Gamma\) is the surface mass concentration (mass of protein per unit area, e.g. ng mm⁻²), \(d\) the
+thickness of the protein layer, \(n_\text{layer}\) and \(n_\text{buffer}\) the refractive indices of the layer
+and of the buffer it replaces, and \(\mathrm{d}n/\mathrm{d}c\) the <i>refractive index increment</i> — how much
+the refractive index of a solution rises per unit of dissolved protein concentration \(c\).</p>
 <p>Because the signal is proportional to <i>mass</i>, a small antigen gives a small response — which is
 why the number of active antibodies on the surface matters so much.</p>
 
@@ -478,8 +482,11 @@ sensitive as possible.</p>
 <p>Because the SPR response is proportional to mass, the maximum antigen response follows from the amount of
 antibody immobilised:</p>
 $$R_\text{max} = \frac{M_\text{antigen}}{M_\text{antibody}} \times R_\text{antibody} \times n \times f_\text{active}$$
-<p>with \(n = 2\) binding sites per IgG and \(f_\text{active}\) the fraction of sites that work — the number
-orientation is about. Comparing a measured R_max with this formula is the simplest way to estimate
+<p>Here \(R_\text{max}\) is the largest antigen response the surface can give (in RU, when every working site is
+filled), \(R_\text{antibody}\) the response recorded when the antibody was immobilised (RU),
+\(M_\text{antigen}\) and \(M_\text{antibody}\) the molar masses of antigen and antibody (the ratio converts
+antibody mass on the surface into antigen mass), \(n = 2\) the number of binding sites per IgG, and
+\(f_\text{active}\) the fraction of sites that work — the number orientation is about. Comparing a measured R_max with this formula is the simplest way to estimate
 \(f_\text{active}\) for a given immobilisation method.</p>
 
 <figure class="fig" data-fig="rmax">
@@ -494,15 +501,24 @@ orientation is about. Comparing a measured R_max with this formula is the simple
 <p>For a 1 : 1 interaction between surface sites and an analyte at concentration \(C\) (the Langmuir model),
 the response obeys</p>
 $$\frac{\mathrm dR}{\mathrm dt} = k_a\,C\,(R_\text{max} - R) - k_d\,R, \qquad K_D = \frac{k_d}{k_a}, \qquad R_\text{eq} = \frac{R_\text{max}\,C}{C + K_D}$$
+<p>Here \(R\) is the response (RU) at time \(t\), proportional to the number of occupied sites; \(R_\text{max} - R\)
+is therefore proportional to the free sites. \(k_a\) is the association rate constant (M⁻¹ s⁻¹),
+\(k_d\) the dissociation rate constant (s⁻¹), \(K_D\) the equilibrium dissociation constant (M; the
+concentration at which half the sites are filled at equilibrium — smaller means tighter binding), and
+\(R_\text{eq}\) the response reached at equilibrium for concentration \(C\).</p>
 <p>During injection the signal rises towards \(R_\text{eq}\) with rate \(k_\text{obs} = k_aC + k_d\); afterwards it
-decays as \(R(t) = R_0e^{-k_d t}\). Fitting a series of concentrations gives \(k_a\), \(k_d\) and \(K_D\) [27].</p>
+decays as \(R(t) = R_0e^{-k_d t}\), where \(R_0\) is the response at the moment buffer replaces the
+sample and \(k_\text{obs}\) is the observed (apparent) rate constant of the rise. Fitting a series of concentrations gives \(k_a\), \(k_d\) and \(K_D\) [27].</p>
 
 <h3>Mass transport: when the surface is too good</h3>
 <p>Analyte reaches the surface by flow and diffusion through a thin unstirred layer. If binding is faster
 than delivery, the surface depletes the solution next to it and the measured curves report diffusion, not
 chemistry. The two-compartment model captures this with a transport coefficient \(k_m\) [26]:</p>
 $$\frac{\mathrm dR}{\mathrm dt} = k_m\,(C - C_s) = k_a\,C_s\,(R_\text{max} - R) - k_d\,R$$
-<p>where \(C_s\) is the concentration at the surface. When \(k_aR_\text{max}/k_m \gtrsim 1\) the association
+<p>where \(C\) is the analyte concentration in the injected bulk solution, \(C_s\) the concentration just at the
+surface, and \(k_m\) the mass-transport coefficient, which sets how fast analyte is carried from the bulk to
+the surface (it grows with flow rate and diffusion coefficient; written here in RU M⁻¹ s⁻¹ so that both sides
+are rates of change of the response). When \(k_aR_\text{max}/k_m \gtrsim 1\) the association
 straightens, dissociation slows (analyte rebinds before escaping) and fitted rate constants are wrong.
 Remedies: <b>lower immobilisation levels</b> (R_max of tens to a few hundred RU for kinetics), higher flow
 rates, and checking that k_a does not change with flow.</p>

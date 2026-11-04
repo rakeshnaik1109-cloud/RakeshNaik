@@ -132,11 +132,21 @@ bond strengths and atomic masses, its intensity by how much the vibration modula
 weakly, so Raman works in aqueous and biological samples where infrared absorption struggles; one visible
 or near-infrared laser excites every band at once; and the bands are narrow, 10–20 cm⁻¹ wide.</p>
 
-<p>The price is sensitivity. The incident field \(E_0\) induces a dipole \(\mathbf p = \alpha\mathbf E\);
+<p>The price is sensitivity. The light's oscillating electric field \(\mathbf E\) (amplitude \(E_0\), angular
+frequency \(\omega_0 = 2\pi c/\lambda_0\) for a laser of wavelength \(\lambda_0\)) induces an electric dipole moment \(\mathbf p = \alpha\mathbf E\);
 because the polarisability depends on the vibrational coordinate,
 \(\alpha(Q) = \alpha_0 + (\partial\alpha/\partial Q)_0\,Q\), the dipole contains components at
 \(\omega_0 \pm \omega_v\) whose radiated power scales as</p>
 $$I_\text{Raman} \;\propto\; \omega_s^{4}\,\Big|\Big(\frac{\partial\alpha}{\partial Q}\Big)_0\Big|^2 \langle Q^2\rangle\, I_0 .$$
+<p>Here \(\mathbf p\) is the induced dipole moment and \(\alpha\) the molecule's <i>polarisability</i> — how easily
+its electron cloud is distorted by a field. \(Q\) is the <i>normal coordinate</i> of a vibration (the
+collective displacement of the atoms in that mode), oscillating at the vibrational angular frequency
+\(\omega_v\); \(\alpha_0\) is the polarisability at the equilibrium geometry and \((\partial\alpha/\partial Q)_0\)
+how much it changes as the molecule vibrates — a mode is Raman-active only if this derivative is non-zero.
+\(\omega_s = \omega_0 - \omega_v\) is the frequency of the (Stokes) scattered light, \(\langle Q^2\rangle\) the
+mean-square amplitude of the vibration, \(I_0\) the incident laser intensity, and \(I_\text{Raman}\) the
+scattered intensity. The \(\omega_s^4\) factor is the familiar dipole-radiation law (the same one that makes
+the sky blue).</p>
 <p>For an ordinary molecule the differential Raman cross-section is of order
 10⁻³⁰–10⁻²⁹ cm² sr⁻¹, whereas a good fluorophore absorbs with a cross-section near 10⁻¹⁶ cm² [5]. Roughly one
 photon in 10⁷–10⁹ is Raman-scattered. Detecting a few molecules — or the nanomolar and picomolar
@@ -209,7 +219,10 @@ multiplexable answer at the cost of losing the target's own spectrum.</p></div>
 <p>For \(N\) molecules in the laser spot, each with Raman cross-section \(\sigma_\text{ads}\) in its adsorbed
 state, illuminated with laser intensity \(I_L\), the detected SERS signal can be written [4, 5]</p>
 $$I_\text{SERS} = \eta_\text{det}\, N\, \sigma_\text{ads}\, \langle G\rangle\, I_L ,$$
-<p>where \(\eta_\text{det}\) collects the collection optics and detector, and \(\langle G\rangle\) is the
+<p>where \(\eta_\text{det}\) is the fraction of scattered photons that are collected and counted (optics and
+detector efficiency), \(\sigma_\text{ads}\) is a <i>cross-section</i> — an effective area such that the
+scattered power equals \(\sigma\) times the incident intensity, a convenient measure of how strongly one
+molecule scatters — and \(\langle G\rangle\) is the
 enhancement averaged over the molecules. Each factor is a design lever: <b>label-free</b> work can only
 change \(N\) (by getting more analyte to the surface) and \(G\) (better substrates); <b>labelled</b> work
 also chooses \(\sigma_\text{ads}\), by picking a reporter with a large, possibly resonant, cross-section, and
@@ -222,8 +235,12 @@ enhanced local field at the laser frequency, and its Raman-shifted dipole radiat
 the scattered frequency. Both steps scale with the intensity enhancement, giving the well-known
 fourth-power law derived in the first article (<a href="blog-spectroscopy.html#s-sers">SERS section</a>):</p>
 $$G_\text{EM} \approx \frac{|E_\text{loc}(\omega_0)|^2\,|E_\text{loc}(\omega_s)|^2}{|E_0|^4} \approx \Big|\frac{E_\text{loc}}{E_0}\Big|^4 .$$
-<p>For a small sphere the field factor is set by \(g = (\varepsilon - \varepsilon_m)/(\varepsilon + 2\varepsilon_m)\),
-which is large when \(\mathrm{Re}\,\varepsilon \approx -2\varepsilon_m\) and \(\mathrm{Im}\,\varepsilon\) is small —
+<p>Here \(E_0\) is the amplitude of the incident field, \(E_\text{loc}\) the amplitude of the local field at the
+molecule, \(\omega_0\) the laser frequency and \(\omega_s\) the Raman-scattered frequency; \(G_\text{EM}\) is the
+electromagnetic enhancement of the Raman intensity. For a small sphere the field factor is set by \(g = (\varepsilon - \varepsilon_m)/(\varepsilon + 2\varepsilon_m)\),
+where \(\varepsilon(\omega)\) is the complex dielectric function (relative permittivity) of the metal and
+\(\varepsilon_m\) that of the surrounding medium (1.78 for water). \(g\) is large when
+\(\mathrm{Re}\,\varepsilon \approx -2\varepsilon_m\) and the imaginary (absorptive) part \(\mathrm{Im}\,\varepsilon\) is small —
 the reason silver and gold dominate. In the gap between two particles the fields of both add and \(|E/E_0|\)
 can exceed 100, so \(G\) exceeds 10⁸; these <b>hot spots</b> are tiny and dominate the signal (section 12).</p>
 
@@ -234,8 +251,16 @@ molecular orbitals; when the laser is near that transition, the scattering becom
 Lombardi and Birke showed that plasmon, charge-transfer and molecular resonances can be written in one
 expression whose numerator couples them through Herzberg–Teller vibronic terms [7]; schematically,</p>
 $$R(\omega) \;\propto\; \frac{\mu_\text{PR}\,\mu_\text{K}\,\mu_\text{CT}\,h_\text{IK}}{\big[(\varepsilon_1(\omega)+2\varepsilon_m)^2+\varepsilon_2^2\big]\,\big(\omega_\text{FK}^2-\omega^2+\gamma_\text{FK}^2\big)\big(\omega_\text{IK}^2-\omega^2+\gamma_\text{IK}^2\big)} ,$$
-<p>with one denominator for the plasmon, one for the charge-transfer transition and one for the molecular
-transition. The practical lessons are that chemical enhancement (typically 10–100) depends on how the
+<p>In the notation of [7], \(R(\omega)\) is the SERS intensity contribution of a given vibrational mode at laser
+frequency \(\omega\); \(\mu_\text{PR}\), \(\mu_\text{K}\) and \(\mu_\text{CT}\) are the transition dipole moments of the
+plasmon resonance, the molecular transition (from the ground state I to an excited state K) and the
+charge-transfer transition (between the metal Fermi level F and the molecule); \(h_\text{IK}\) is the
+Herzberg–Teller coupling, which lets the vibration borrow intensity from these transitions. In the
+denominators, \(\varepsilon_1\) and \(\varepsilon_2\) are the real and imaginary parts of the metal's dielectric
+function, \(\varepsilon_m\) that of the medium, \(\omega_\text{FK}\) and \(\omega_\text{IK}\) the charge-transfer and
+molecular transition frequencies, and the \(\gamma\) terms their damping (line widths). Each bracket becomes
+small — and \(R\) large — near its resonance: one for the plasmon, one for the charge-transfer transition and
+one for the molecular transition. The practical lessons are that chemical enhancement (typically 10–100) depends on how the
 molecule binds, varies between molecules on the same substrate, and can change relative band intensities.
 For label-free work it is a nuisance to be understood; for reporters it is one more reason to choose
 molecules that bind covalently and reproducibly.</p>
@@ -254,7 +279,9 @@ assignment should use SERS references measured under similar conditions.</p>
 surface; the intensity as the sixth power; and the SERS enhancement, the square of the intensity
 enhancement, as the twelfth [4]:</p>
 $$\frac{G(d)}{G(0)} = \Big(\frac{r}{r+d}\Big)^{12}, \qquad d_{1/2} = r\,\big(2^{1/12} - 1\big) \approx 0.059\,r .$$
-<p>For a 20 nm radius of curvature half the enhancement is gone after only 1.2 nm. Real surfaces have a
+<p>Here \(G(d)\) is the enhancement for a molecule at distance \(d\) from the surface, \(G(0)\) its value at
+contact, \(r\) the radius of the sphere (or of curvature of the feature), and \(d_{1/2}\) the distance at which
+half the enhancement is lost. For a 20 nm radius of curvature half the enhancement is gone after only 1.2 nm. Real surfaces have a
 fast short-range component and a slower long-range tail: atomic-layer-deposited alumina spacers on silver
 film-over-nanosphere substrates showed both, with signal still measurable through about 3 nm of oxide
 [12]. Sharp tips and gaps decay faster still.</p>
@@ -303,7 +330,11 @@ whatever does not, is not. Three kinds of interaction decide this.</p>
 <p>If adsorption and desorption balance on a fixed number of equivalent sites, with rate constants
 \(k_a\) and \(k_d\) and surface coverage \(\theta\),</p>
 $$k_a\,C\,(1-\theta) = k_d\,\theta \quad\Longrightarrow\quad \theta = \frac{K C}{1 + K C}, \qquad K = \frac{k_a}{k_d} = \frac{1}{c^\circ}\,e^{-\Delta G^\circ_\text{ads}/RT} .$$
-<p>Since the SERS signal is proportional to the number of adsorbed molecules, \(I \propto \theta\): linear
+<p>Here \(C\) is the analyte concentration in solution (M), \(\theta\) the fraction of surface sites occupied (0 to
+1), \(K\) the adsorption equilibrium constant (M⁻¹; \(1/K\) is the concentration at which half the sites are
+filled), \(\Delta G^\circ_\text{ads}\) the standard free energy of adsorption (negative when adsorption is
+favourable), \(c^\circ = 1\) M the standard concentration, \(R = 8.314\) J mol⁻¹ K⁻¹ the gas constant and \(T\) the
+absolute temperature. Since the SERS signal \(I\) is proportional to the number of adsorbed molecules, \(I \propto \theta\): linear
 at \(C \ll 1/K\), saturating at \(C \gg 1/K\). A free energy of adsorption of −34 kJ mol⁻¹ gives
 \(K \approx 10^6\ \mathrm{M^{-1}}\) at room temperature and a linear range ending near 100 nM. This is why
 label-free SERS calibration curves bend over and why they span only a few decades.</p>
@@ -311,7 +342,8 @@ label-free SERS calibration curves bend over and why they span only a few decade
 <h3>Competition with the matrix</h3>
 <p>Real samples contain other molecules that adsorb. For an analyte A and a competitor B on the same sites,</p>
 $$\theta_A = \frac{K_A C_A}{1 + K_A C_A + K_B C_B} .$$
-<p>At low analyte concentration the sensitivity falls by the factor \(1 + K_B C_B\). Serum proteins at
+<p>Here \(\theta_A\) is the fraction of sites holding the analyte, \(C_A\) and \(C_B\) the concentrations of
+analyte and competitor, and \(K_A\) and \(K_B\) their adsorption constants. At low analyte concentration the sensitivity falls by the factor \(1 + K_B C_B\). Serum proteins at
 mg mL⁻¹ concentrations, salts that change the surface, and the citrate itself can win the competition and
 hide the analyte completely. The next figure lets you see how fast this happens.</p>
 
@@ -331,8 +363,10 @@ hide the analyte completely. The next figure lets you see how fast this happens.
 <p>The workhorse label-free substrate is a silver or gold colloid, often made by citrate reduction [34].
 Isolated spheres give only modest enhancement; the strong signal comes from gaps between particles.
 Adding salt or an aggregating agent compresses the electrical double layer — for a 1:1 electrolyte in water
-at 25 °C the Debye length is \(\kappa^{-1} \approx 0.304\ \mathrm{nm}/\sqrt{I/\mathrm{M}}\), about 1 nm at
-0.1 M — so van der Waals attraction wins and particles cluster, trapping analyte in the junctions. The
+at 25 °C the Debye length — the distance over which the ions in solution screen a charged surface — is
+\(\kappa^{-1} \approx 0.304\ \mathrm{nm}/\sqrt{I/\mathrm{M}}\), where \(I\) is the ionic strength of the
+solution (\(I = \tfrac12\sum_i c_i z_i^2\) over all ions of concentration \(c_i\) and charge number \(z_i\); equal
+to the salt concentration for NaCl). It is about 1 nm at 0.1 M — so van der Waals attraction wins and particles cluster, trapping analyte in the junctions. The
 price is that aggregation is a <i>process</i>: the signal rises, peaks and falls as clusters grow and
 sediment, so measurements must be made at a fixed, reproducible time.</p>
 
@@ -527,9 +561,14 @@ an SPR chip (<a href="blog-antibody-spr.html#s-amine">immobilisation chemistries
 <p>The binding of antigen to the surface follows the same Langmuir form as section 5, now with the antibody
 dissociation constant \(K_D\). With a background \(S_\text{blank}\) from tags that stick non-specifically,</p>
 $$S(C) = S_\text{blank} + S_\text{max}\,\frac{C}{K_D + C}, \qquad \mathrm{LOD}: \; S(C_\text{LOD}) = S_\text{blank} + 3\sigma_\text{blank} .$$
-<p>Solving,</p>
+<p>Here \(C\) is the antigen concentration, \(S(C)\) the reporter signal, \(S_\text{max}\) the extra signal when all
+capture antibodies are occupied, \(S_\text{blank}\) the mean signal of samples without antigen,
+\(\sigma_\text{blank}\) the standard deviation of repeated blank measurements, and \(C_\text{LOD}\) the limit of
+detection — the lowest concentration whose signal stands clear of the blank's noise by three standard
+deviations (≈ 99.9 % one-sided confidence for normally distributed noise). Solving,</p>
 $$C_\text{LOD} = K_D\,\frac{3\sigma_\text{blank}}{S_\text{max} - 3\sigma_\text{blank}} \;\approx\; \frac{3\sigma_\text{blank}}{S_\text{max}/K_D} = \frac{3\sigma_\text{blank}}{\text{slope}} .$$
-<p>The detection limit is set by the <i>noise of the blank</i>, which comes mostly from non-specific tag
+<p>The <i>slope</i> is the calibration sensitivity, the signal change per unit concentration at low
+concentration, \(\mathrm dS/\mathrm dC = S_\text{max}/K_D\). The detection limit is set by the <i>noise of the blank</i>, which comes mostly from non-specific tag
 binding (<a href="blog-antibody-spr.html#s-nsb">non-specific binding</a>), not by how bright a single tag is.
 Brighter tags help only until the background they create dominates.</p>
 
@@ -561,7 +600,9 @@ residual tumour at the edge of the resection [28]. Combining SERS with spatially
 the same units. A fluorophore's emission band is typically 30–60 nm wide; at 650 nm a width \(\Delta\lambda\)
 corresponds to</p>
 $$\Delta\tilde\nu = \frac{\Delta\lambda}{\lambda^2} = \frac{50\ \mathrm{nm}}{(650\ \mathrm{nm})^2} \approx 1200\ \mathrm{cm^{-1}},$$
-<p>while a Raman band is 10–20 cm⁻¹ wide. Within the 400–2400 cm⁻¹ window covered by one spectrometer, many
+<p>Here \(\lambda\) is the wavelength, \(\Delta\lambda\) the band width in wavelength and \(\Delta\tilde\nu\) the same width
+in wavenumbers (\(\tilde\nu = 1/\lambda\), the unit of Raman shifts); to get cm⁻¹, write the lengths in cm
+(50 nm = 5 × 10⁻⁶ cm). A Raman band, by contrast, is 10–20 cm⁻¹ wide. Within the 400–2400 cm⁻¹ window covered by one spectrometer, many
 reporters can be told apart, all excited by one laser.</p>
 
 <h3>Linear unmixing</h3>
@@ -570,9 +611,15 @@ plus a background and noise. Writing the spectrum as a vector \(\mathbf y\) (one
 reference spectra as the columns of \(\mathbf S\), and the background as a few smooth basis functions
 \(\mathbf B\),</p>
 $$\mathbf y = \mathbf S\,\mathbf c + \mathbf B\,\mathbf b + \boldsymbol\varepsilon .$$
-<p>Least squares gives the amounts directly:</p>
+<p>Here \(\mathbf c\) is the vector of unknown tag amounts (one entry per reporter), \(\mathbf b\) the coefficients
+of the background functions, and \(\boldsymbol\varepsilon\) the noise at each wavenumber. Least squares —
+choosing \(\mathbf c\) and \(\mathbf b\) to minimise the sum of squared differences between the measured and
+modelled spectra — gives the amounts directly:</p>
 $$\hat{\mathbf c} = (\mathbf A^\mathsf T\mathbf A)^{-1}\mathbf A^\mathsf T\mathbf y, \qquad \mathbf A = [\,\mathbf S\;\mathbf B\,], \qquad \mathrm{Cov}(\hat{\mathbf c}) = \sigma^2(\mathbf A^\mathsf T\mathbf A)^{-1} .$$
-<p>The covariance shows what limits multiplexing: when two reference spectra overlap, \(\mathbf A^\mathsf T\mathbf A\)
+<p>Here \(\mathbf A\) is the matrix holding all reference and background spectra side by side, \(\mathbf A^\mathsf T\) its
+transpose, \((\cdot)^{-1}\) the matrix inverse, the hat in \(\hat{\mathbf c}\) marks an estimate, \(\sigma^2\) is the
+variance of the noise at each point, and \(\mathrm{Cov}(\hat{\mathbf c})\) the covariance matrix of the estimates
+(its diagonal holds their variances). The covariance shows what limits multiplexing: when two reference spectra overlap, \(\mathbf A^\mathsf T\mathbf A\)
 approaches singularity and noise in the estimates grows. Because amounts cannot be negative, non-negative
 least squares (constrained \(\mathbf c \ge 0\)) is usually used; the figure removes negative components and
 refits.</p>
@@ -592,10 +639,11 @@ refits.</p>
 
 <h3>Hot-spot statistics</h3>
 <p>Enhancement is not shared fairly. Fang, Seong and Dlott measured the distribution of site enhancements on a
-silver film-over-nanosphere substrate and found a power law, \(p(\eta) \propto \eta^{-1.75}\), spanning
+silver film-over-nanosphere substrate and found a power law, \(p(\eta) \propto \eta^{-1.75}\) — where \(\eta\) is the enhancement factor of an individual
+site and \(p(\eta)\) the probability density of finding a site with that enhancement — spanning
 2.8 × 10⁴ to 4.1 × 10¹⁰; the 63 hottest sites in a million produced 24 % of the signal [11]. For such a
 heavy-tailed distribution the variance is dominated by rare, very bright sites, so the relative standard
-deviation of a sum of \(N\) molecules falls much more slowly than the \(1/\sqrt N\) of ordinary statistics.
+deviation (RSD: standard deviation divided by the mean) of a sum of \(N\) molecules falls much more slowly than the \(1/\sqrt N\) of ordinary statistics.
 At low coverage the signal from one spot to the next can vary several-fold — and in the single-molecule limit
 it blinks on and off [9, 10].</p>
 
@@ -604,7 +652,9 @@ it blinks on and off [9, 10].</p>
 aggregation state. Dividing the analyte band by a band from an internal standard measured in the same spot
 cancels them:</p>
 $$\frac{I_A}{I_\text{IS}} = \frac{N_A\,\sigma_A\,\langle G\rangle_A}{N_\text{IS}\,\sigma_\text{IS}\,\langle G\rangle_\text{IS}} .$$
-<p>The ratio is reliable only if \(\langle G\rangle_A \approx \langle G\rangle_\text{IS}\), i.e. if the standard
+<p>Here \(I_A\) and \(I_\text{IS}\) are the intensities of an analyte band and an internal-standard band, \(N\) the
+number of molecules of each in the spot, \(\sigma\) their Raman cross-sections and \(\langle G\rangle\) the
+enhancement averaged over the sites each occupies. The ratio is reliable only if \(\langle G\rangle_A \approx \langle G\rangle_\text{IS}\), i.e. if the standard
 samples the same hot spots. That is why the best internal standards are placed <i>inside</i> the
 nanostructure — core–shell particles with an embedded reporter [31] — or are isotopically labelled versions
 of the analyte, which adsorb identically. A standard that sits on different sites still cancels the shared
@@ -635,8 +685,12 @@ and the alternative of making the hot spots uniform in the first place.</p>
 <h3>Enhancement factors: a worked example</h3>
 <p>Two definitions are common [6, 20]. The <b>analytical enhancement factor</b> compares signals per unit
 concentration, \(\mathrm{AEF} = (I_\text{SERS}/c_\text{SERS})/(I_\text{RS}/c_\text{RS})\); it is what matters for a
-detection method. The <b>substrate enhancement factor</b> compares signals per molecule,
-\(\mathrm{SSEF} = (I_\text{SERS}/N_\text{surf})/(I_\text{RS}/N_\text{vol})\), and describes the substrate. An
+detection method; \(I_\text{SERS}\) and \(I_\text{RS}\) are the SERS and normal Raman intensities of the same band,
+measured under identical conditions, and \(c_\text{SERS}\), \(c_\text{RS}\) the concentrations used for each. The
+<b>substrate enhancement factor</b> compares signals per molecule,
+\(\mathrm{SSEF} = (I_\text{SERS}/N_\text{surf})/(I_\text{RS}/N_\text{vol})\), where \(N_\text{surf}\) is the number of
+adsorbed molecules in the SERS laser spot and \(N_\text{vol}\) the number of molecules in the scattering volume of
+the normal Raman measurement; it describes the substrate. An
 illustrative calculation:</p>
 <div class="callout tip"><b>Worked example (illustrative numbers)</b>
 <p>Normal Raman of a 0.1 M solution with an effective scattering volume of 100 µm³ (10⁻¹³ L):
