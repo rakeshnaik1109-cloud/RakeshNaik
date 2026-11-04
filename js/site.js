@@ -51,6 +51,33 @@
     sync();
   }
 
+  /* ── Long articles: contents sidebar on wide screens ────────────── */
+  var toc = document.querySelector('.article .prose > .toc');
+  if (toc) {
+    var wrapEl = toc.closest('.wrap'), head = document.querySelector('.article-head .wrap');
+    var side = document.createElement('aside');
+    side.className = 'toc-side'; side.setAttribute('aria-label', 'Contents');
+    side.innerHTML = '<h2>Contents</h2>' + toc.querySelector('ol').outerHTML;
+    wrapEl.insertBefore(side, wrapEl.firstChild);
+    wrapEl.classList.add('has-side'); if (head) head.classList.add('has-side-head');
+    var sideLinks = [].slice.call(side.querySelectorAll('a'));
+    var targets = sideLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var current = -1;
+    var mark = function () {
+      var y = 140, idx = -1;
+      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].getBoundingClientRect().top <= y) idx = i; }
+      if (idx === current) return; current = idx;
+      sideLinks.forEach(function (a, i) { a.classList.toggle('on', i === idx); });
+      if (idx >= 0 && side.scrollHeight > side.clientHeight) {
+        var a = sideLinks[idx], top = a.offsetTop, h = side.clientHeight;
+        if (top < side.scrollTop + 40 || top > side.scrollTop + h - 60) side.scrollTop = top - h / 3;
+      }
+    };
+    var mt = false;
+    window.addEventListener('scroll', function () { if (!mt) { mt = true; requestAnimationFrame(function () { mark(); mt = false; }); } }, { passive: true });
+    mark();
+  }
+
   /* ── Sticky nav hairline + scroll progress ─────────────────────── */
   var nav = document.querySelector('.nav');
   var line = document.querySelector('.scroll-line');
