@@ -174,6 +174,185 @@
     draw();
   };
 
+  /* ═══ 4b. TE and TM in different structures (animated 3D) ═══ */
+  // Scene coordinates: x to the right, v up, y into the page (drawn back and to the right).
+  var V3 = { add: function (a, b) { return [a[0] + b[0], a[1] + b[1], a[2] + b[2]]; }, mul: function (a, s) { return [a[0] * s, a[1] * s, a[2] * s]; },
+    cross: function (a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; },
+    norm: function (a) { var L = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / L, a[1] / L, a[2] / L]; } };
+  var TETM = {
+    iface: { name: 'Plane interface (reflection, refraction)', angle: true,
+      ref: 'the plane of incidence — the plane that contains the incoming ray k and the surface normal n',
+      te: 'E sticks out of the plane of incidence: it is parallel to the surface (s polarisation, from German “senkrecht”).',
+      tm: 'E lies in the plane of incidence and H sticks out of it (p polarisation, “parallel”). Only this polarisation has a Brewster angle.',
+      comps: ['E_y only (H_x, H_v)', 'H_y only (E_x, E_v)'] },
+    grating: { name: '1D grating, classical mounting', angle: true,
+      ref: 'the plane of incidence, which here is perpendicular to the grooves',
+      te: 'E is parallel to the grooves (lines along y).',
+      tm: 'E is perpendicular to the grooves, in the plane of incidence; H is parallel to the grooves. TM pushes charge across the ridges — the polarisation that excites surface plasmons on metal gratings and that a wire-grid polariser transmits.',
+      comps: ['E ∥ grooves', 'H ∥ grooves'] },
+    conical: { name: '1D grating, conical mounting', angle: true, azi: true,
+      ref: 'the plane of incidence, which is now rotated away from the grating vector',
+      te: 'E is perpendicular to the (rotated) plane of incidence — no longer parallel to the grooves.',
+      tm: 'E lies in the rotated plane of incidence. In conical mounting the grating mixes TE and TM: diffracted orders contain both, so the labels describe the input only.',
+      comps: ['E ⟂ plane of incidence', 'E in plane of incidence'] },
+    slab: { name: 'Slab waveguide', ref: 'the plane containing the propagation direction (x) and the direction in which the index changes (v)',
+      te: 'E points along y, parallel to the layers; there is no E along the propagation direction.',
+      tm: 'H points along y; E lies in the x–v plane, mostly across the layers (with a small component along x).',
+      comps: ['E_y, H_x, H_v', 'H_y, E_x, E_v'] },
+    strip: { name: 'Silicon strip waveguide (quasi-TE / quasi-TM)', ref: 'the chip surface: a rectangular wire is guided in two directions, so the modes are hybrid and named by their dominant E',
+      te: 'quasi-TE: the main E points across the width, parallel to the substrate (higher effective index in a 450 × 220 nm wire).',
+      tm: 'quasi-TM: the main E points vertically, perpendicular to the substrate.',
+      comps: ['dominant E_y (horizontal)', 'dominant E_v (vertical)'] },
+    spp: { name: 'Metal surface: surface plasmon', ref: 'the plane containing the propagation direction (x) and the surface normal (v)',
+      te: 'TE: E would be parallel to the surface along y — it cannot pile up surface charge, so no surface plasmon exists. (A TE wave only reflects.)',
+      tm: 'TM: E has a component normal to the surface, which drives the oscillating surface charge (+ − + −) of the surface plasmon. Surface plasmons are TM only; in the Kretschmann SPR geometry only p light shows the dip.',
+      comps: ['not supported', 'E_v and E_x, H_y'] },
+    phc: { name: '2D photonic crystal of rods', ref: 'the plane of periodicity (x–y); the rods are uniform along v. NOTE: this convention is opposite to gratings',
+      te: 'TE (photonic-crystal convention): E lies in the plane of periodicity, H along the rods. Hole lattices tend to have TE band gaps.',
+      tm: 'TM (photonic-crystal convention): E along the rods, H in the plane. Lattices of dielectric rods tend to have TM band gaps.',
+      comps: ['E in x–y plane, H ∥ rods', 'E ∥ rods, H in x–y plane'] },
+    metalwg: { name: 'Hollow metal waveguide (TE₁₀ / TM₁₁)', ref: 'the propagation direction x: TE has no E along x, TM has no H along x',
+      te: 'TE₁₀: E is purely transverse (vertical here), largest in the middle and zero at the side walls; H has a component along x.',
+      tm: 'TM₁₁: E has a component along the propagation direction (drawn here), zero on all four walls; H is purely transverse.',
+      comps: ['E_x = 0, H_x ≠ 0', 'H_x = 0, E_x ≠ 0'] },
+    fibre: { name: 'Optical fibre, cross-section (TE₀₁ / TM₀₁)', ref: 'the fibre axis: TE has no E along the axis, TM has no H along it. Most fibre modes are hybrid (HE, EH); TE₀₁ and TM₀₁ are the pure ones',
+      te: 'TE₀₁: E circles around the axis (azimuthal).',
+      tm: 'TM₀₁: E points radially, out from the axis and back.',
+      comps: ['E azimuthal', 'E radial'] }
+  };
+  F.tetm = function (fig) {
+    var ctl = VL.part(fig, 'vl-controls'), host = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout'), t0 = 0;
+    var W = 780, H = 420, S = 150, ox = 380, oy = 250, depth = [0.55 * Math.cos(Math.PI / 6), -0.55 * Math.sin(Math.PI / 6)];
+    var P = function (q) { return [ox + S * (q[0] + q[1] * depth[0]), oy - S * q[2] + S * q[1] * depth[1]]; };
+    var f1 = function (n) { return n.toFixed(1); }, pt = function (q) { var p = P(q); return f1(p[0]) + ' ' + f1(p[1]); };
+    var poly = function (qs, fill, op, stroke) { return '<path d="M ' + qs.map(pt).join(' L ') + ' Z" fill="' + fill + '" fill-opacity="' + op + '" stroke="' + (stroke || fill) + '" stroke-opacity="' + Math.min(1, op * 3 + 0.15) + '" stroke-width="1"/>'; };
+    var box = function (x0, x1, y0, y1, v0, v1, col, op) {
+      return poly([[x0, y0, v0], [x1, y0, v0], [x1, y0, v1], [x0, y0, v1]], col, op) + poly([[x0, y0, v1], [x1, y0, v1], [x1, y1, v1], [x0, y1, v1]], col, op * 0.8) + poly([[x1, y0, v0], [x1, y1, v0], [x1, y1, v1], [x1, y0, v1]], col, op * 0.6);
+    };
+    var arrow2 = function (a, b, col, w, hs, dash) { var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy); if (L < 1.5) return ''; hs = Math.min(hs || 9, L * 0.7); var ux = dx / L, uy = dy / L, e = [b[0] - ux * hs * 0.7, b[1] - uy * hs * 0.7], hw = hs * 0.45;
+      return '<line x1="' + f1(a[0]) + '" y1="' + f1(a[1]) + '" x2="' + f1(e[0]) + '" y2="' + f1(e[1]) + '" stroke="' + col + '" stroke-width="' + w + '"' + (dash ? ' stroke-dasharray="4 3"' : '') + '/><path d="M ' + f1(b[0]) + ' ' + f1(b[1]) + ' L ' + f1(b[0] - ux * hs + uy * hw) + ' ' + f1(b[1] - uy * hs - ux * hw) + ' L ' + f1(b[0] - ux * hs - uy * hw) + ' ' + f1(b[1] - uy * hs + ux * hw) + ' Z" fill="' + col + '"/>'; };
+    var arrow3 = function (a, b, col, w, hs, dash) { return arrow2(P(a), P(b), col, w, hs, dash); };
+    var label = function (q, s, col, dx, dy, size) { var p = P(q); return '<text x="' + f1(p[0] + (dx || 0)) + '" y="' + f1(p[1] + (dy || 0)) + '" font-family="IBM Plex Mono, monospace" font-size="' + (size || 13) + '" font-weight="600" fill="' + col + '">' + s + '</text>'; };
+    var axes = function () { var o = [-1.75, -0.95, -0.55], L = 0.28; return arrow3(o, [o[0] + L, o[1], o[2]], C.text2, 1.4, 7) + arrow3(o, [o[0], o[1], o[2] + L], C.text2, 1.4, 7) + arrow3(o, [o[0], o[1] + L * 1.4, o[2]], C.text2, 1.4, 7) + label([o[0] + L, o[1], o[2]], 'x', C.text2, 3, 4, 11) + label([o[0], o[1], o[2] + L], 'v', C.text2, -4, -4, 11) + label([o[0], o[1] + L * 1.4, o[2]], 'y', C.text2, 3, 0, 11); };
+    var draw = function () {
+      var key = st.get(), D = TETM[key], te = pol.get() === 'te', th = (D.angle ? ang.get() : 0) * Math.PI / 180, ph = (D.azi ? azi.get() : 0) * Math.PI / 180, showH = hsel.get() === 'yes';
+      var wt = t0 * 2 * Math.PI * 0.6, red = C.red, cyan = C.cyan, gold = C.au, s = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="plot" role="img" aria-label="' + D.name + '">';
+      var Ecol = red, Hcol = cyan;
+      var fieldAlong = function (pos0, kdir, Edir, n, len, amp, opts) { // arrows of E (and H) at points along a ray, travelling wave
+        var out = '', Hdir = V3.norm(V3.cross(kdir, Edir));
+        for (var i = 0; i < n; i++) { var sAlong = len * i / (n - 1), c = Math.cos(2 * Math.PI * (sAlong / (opts && opts.lam || 0.5)) - wt), p = V3.add(pos0, V3.mul(kdir, sAlong));
+          out += arrow3(p, V3.add(p, V3.mul(Edir, 1.45 * amp * c)), Ecol, 2.8, 10);
+          if (showH) out += arrow3(p, V3.add(p, V3.mul(Hdir, amp * c)), Hcol, 2, 8); }
+        return out; };
+      if (key === 'iface' || key === 'grating' || key === 'conical') {
+        var hor = [Math.cos(ph), Math.sin(ph), 0], k = V3.norm([Math.sin(th) * hor[0], Math.sin(th) * hor[1], -Math.cos(th)]), n = [0, 0, 1];
+        var Ete = V3.norm(Math.sin(th) < 1e-6 ? [ -hor[1], hor[0], 0] : V3.cross(n, k)), Etm = V3.norm(V3.cross(Ete, k)), E = te ? Ete : Etm;
+        // substrate (and grating ridges)
+        s += box(-1.6, 1.6, -0.9, 0.9, -0.42, key === 'iface' ? 0 : -0.06, key === 'iface' ? C.cyan : C.violet, 0.16);
+        if (key !== 'iface') for (var gx = -1.5; gx < 1.6; gx += 0.36) s += box(gx, gx + 0.18, -0.9, 0.9, -0.06, 0.06, C.violet, 0.3);
+        // plane of incidence
+        var pl = [V3.mul(hor, -1.55), V3.mul(hor, 1.55)];
+        s += poly([[pl[0][0], pl[0][1], 0], [pl[1][0], pl[1][1], 0], [pl[1][0], pl[1][1], 1.25], [pl[0][0], pl[0][1], 1.25]], gold, 0.06, gold);
+        s += label([pl[0][0], pl[0][1], 1.25], 'plane of incidence', gold, 4, -6, 12);
+        s += arrow3([0, 0, 0], [0, 0, 1.15], C.text2, 1.2, 8, true) + label([0, 0, 1.15], 'n', C.text2, 5, 4);
+        // incoming ray and its fields
+        var start = V3.mul(k, -1.35);
+        s += arrow3(start, V3.mul(k, -0.04), gold, 2.2, 10) + label(start, 'k', gold, -14, -4);
+        var r = [k[0], k[1], -k[2]]; s += arrow3([0, 0, 0], V3.mul(r, 0.9), gold, 1.2, 8, true);
+        s += fieldAlong(start, k, E, 6, 1.2, 0.26, { lam: 0.6 });
+        if (key !== 'iface') s += label([1.6, -0.9, -0.42], 'grating lines (grooves) run along y', C.violet, -250, 20, 12);
+      } else if (key === 'slab') {
+        s += box(-1.6, 1.6, -0.9, 0.9, -0.5, -0.12, C.cyan, 0.12) + box(-1.6, 1.6, -0.9, 0.9, -0.12, 0.0, gold, 0.28);
+        s += label([1.6, 0.9, -0.06], 'core', gold, 6, 0, 12) + label([1.6, 0.9, -0.35], 'substrate', C.cyan, 6, 0, 12);
+        s += arrow3([-1.75, 0, -0.06], [-1.45, 0, -0.06], gold, 2.2, 10) + label([-1.75, 0, -0.06], 'k', gold, -12, -6);
+        s += fieldAlong([-1.4, 0, -0.06], [1, 0, 0], te ? [0, 1, 0] : [0, 0, 1], 9, 2.8, 0.3);
+      } else if (key === 'strip') {
+        s += box(-1.6, 1.6, -0.9, 0.9, -0.35, 0, C.cyan, 0.12) + box(-1.6, 1.6, -0.22, 0.22, 0, 0.16, gold, 0.4);
+        s += label([1.6, 0.22, 0.16], 'Si wire', gold, 6, 0, 12) + label([1.6, 0.9, -0.2], 'SiO₂', C.cyan, 6, 0, 12);
+        s += arrow3([-1.8, 0, 0.08], [-1.5, 0, 0.08], gold, 2.2, 10) + label([-1.8, 0, 0.08], 'k', gold, -12, -6);
+        s += fieldAlong([-1.4, 0, 0.08], [1, 0, 0], te ? [0, 1, 0] : [0, 0, 1], 9, 2.8, 0.28);
+      } else if (key === 'spp') {
+        s += box(-1.6, 1.6, -0.9, 0.9, -0.42, 0, '#b9bec8', 0.22) + label([1.6, 0.9, -0.2], 'metal', C.text2, 6, 0, 12) + label([1.6, 0.9, 0.3], 'dielectric', C.text2, 6, 0, 12);
+        s += arrow3([-1.8, 0, 0.12], [-1.5, 0, 0.12], gold, 2.2, 10) + label([-1.8, 0, 0.12], 'k', gold, -12, -6);
+        if (te) { for (var i = 0; i < 9; i++) { var x = -1.4 + 2.8 * i / 8, c = Math.cos(2 * Math.PI * x / 0.7 - wt); s += arrow3([x, 0, 0.12], [x, 0.28 * c, 0.12], red, 1.6, 7, true); }
+          s += label([-0.6, 0, 0.75], 'no surface plasmon for TE', red, 0, 0, 14);
+        } else {
+          for (var j = 0; j < 13; j++) { var xx = -1.5 + 3.0 * j / 12, ph2 = 2 * Math.PI * xx / 0.9 - wt, cv = Math.cos(ph2), sx = Math.sin(ph2);
+            [0.05, 0.3, 0.6].forEach(function (h, hi) { var a = Math.exp(-h / 0.35) * 0.3; s += arrow3([xx, 0, h], [xx + a * 0.6 * sx, 0, h + a * cv], red, hi ? 1.2 : 1.8, 6); });
+            var p0 = P([xx, 0, 0]); s += '<text x="' + f1(p0[0] - 4) + '" y="' + f1(p0[1] + 14) + '" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700" fill="' + (cv > 0 ? '#e0a82e' : '#45bfd6') + '" opacity="' + Math.abs(cv).toFixed(2) + '">' + (cv > 0 ? '+' : '−') + '</text>'; }
+        }
+      } else if (key === 'phc') {
+        s += box(-1.6, 1.6, -0.9, 0.9, -0.12, -0.04, C.text3, 0.15);
+        for (var gx2 = -1.4; gx2 <= 1.41; gx2 += 0.35) for (var gy = -0.7; gy <= 0.71; gy += 0.35) if (Math.abs(gy) > 0.01) s += box(gx2 - 0.05, gx2 + 0.05, gy - 0.05, gy + 0.05, -0.04, 0.75, gold, 0.2);
+        s += label([1.6, 0.7, 0.75], 'rods along v', gold, 6, 0, 12) + label([-1.6, -0.9, -0.12], 'one row removed: a line-defect waveguide', C.text3, 0, 18, 11);
+        s += arrow3([-1.85, 0, 0.35], [-1.55, 0, 0.35], C.au, 2.2, 10) + label([-1.85, 0, 0.35], 'k', C.au, -12, -6);
+        s += fieldAlong([-1.45, 0, 0.35], [1, 0, 0], te ? [0, 1, 0] : [0, 0, 1], 9, 2.9, 0.26);
+      } else if (key === 'metalwg') {
+        var a = 0.55, b = 0.28;
+        s += box(-1.6, 1.6, -a, a, -b, b, '#b9bec8', 0.12) + label([1.6, a, b], 'metal walls', C.text2, 6, 0, 12);
+        s += arrow3([-1.85, 0, 0], [-1.55, 0, 0], gold, 2.2, 10) + label([-1.85, 0, 0], 'k', gold, -12, -6);
+        for (var ix = 0; ix < 7; ix++) { var X = -1.35 + 2.7 * ix / 6, cc = Math.cos(2 * Math.PI * X / 1.2 - wt);
+          for (var iy = 0; iy < 5; iy++) { var Y = -a + 2 * a * (iy + 0.5) / 5;
+            if (te) { var amp = Math.cos(Math.PI * Y / (2 * a)) * 0.22 * cc; s += arrow3([X, Y, -amp / 2], [X, Y, amp / 2], red, 1.6, 6); }
+            else [-b / 2, b / 2].forEach(function (Z) { var am = Math.cos(Math.PI * Y / (2 * a)) * Math.cos(Math.PI * Z / (2 * b)) * 0.22 * Math.sin(2 * Math.PI * X / 1.2 - wt); s += arrow3([X - am / 2, Y, Z], [X + am / 2, Y, Z], red, 1.4, 6); }); } }
+      } else if (key === 'fibre') {
+        var cx2 = W / 2, cy2 = H / 2 + 10, R = 120, osc = Math.cos(wt);
+        s += '<circle cx="' + cx2 + '" cy="' + cy2 + '" r="' + (R * 1.55) + '" fill="' + C.cyan + '" fill-opacity="0.08" stroke="' + C.cyan + '" stroke-opacity="0.35"/><circle cx="' + cx2 + '" cy="' + cy2 + '" r="' + R + '" fill="' + gold + '" fill-opacity="0.16" stroke="' + gold + '" stroke-opacity="0.6"/>';
+        s += '<text x="' + (cx2 + R * 1.1) + '" y="' + (cy2 - R * 1.3) + '" font-family="IBM Plex Mono, monospace" font-size="12" fill="' + C.cyan + '">cladding</text><text x="' + (cx2 - 22) + '" y="' + (cy2 - R + 18) + '" font-family="IBM Plex Mono, monospace" font-size="12" fill="' + gold + '">core</text>';
+        s += '<circle cx="' + cx2 + '" cy="' + cy2 + '" r="5" fill="none" stroke="' + C.text2 + '"/><circle cx="' + cx2 + '" cy="' + cy2 + '" r="1.6" fill="' + C.text2 + '"/><text x="' + (cx2 + 9) + '" y="' + (cy2 + 18) + '" font-family="IBM Plex Mono, monospace" font-size="11" fill="' + C.text2 + '">k (out of the page)</text>';
+        [0.35, 0.7, 1.05, 1.35].forEach(function (rr) { var prof = rr < 1 ? Math.sin(Math.PI * rr * 0.8) : Math.sin(Math.PI * 0.8) * Math.exp(-(rr - 1) * 3), nA = Math.round(8 + rr * 8);
+          for (var q = 0; q < nA; q++) { var t2 = 2 * Math.PI * q / nA, px = cx2 + R * rr * Math.cos(t2), py = cy2 + R * rr * Math.sin(t2), L = 26 * prof * osc;
+            var dir = te ? [-Math.sin(t2), Math.cos(t2)] : [Math.cos(t2), Math.sin(t2)];
+            s += arrow2([px - dir[0] * L / 2, py - dir[1] * L / 2], [px + dir[0] * L / 2, py + dir[1] * L / 2], red, 1.6, 7); } });
+      }
+      if (key !== 'fibre') s += axes();
+      s += '<text x="16" y="24" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="700" fill="' + (te ? C.red : C.au) + '">' + (key === 'strip' ? (te ? 'quasi-TE' : 'quasi-TM') : te ? 'TE' : 'TM') + '</text><text x="16" y="44" font-family="IBM Plex Mono, monospace" font-size="11" fill="' + C.text3 + '">red: E' + (showH && key !== 'fibre' && key !== 'metalwg' && key !== 'spp' ? ' · cyan: H' : '') + '</text>';
+      host.innerHTML = s + '</svg>';
+      read.innerHTML = '<div style="grid-column:1/-1"><b>Reference</b><span>TE and TM are defined relative to ' + D.ref + '.</span></div><div style="grid-column:1/-1"><b style="color:' + (te ? C.red : C.au) + '">' + (te ? 'TE' : 'TM') + ' here</b><span>' + (te ? D.te : D.tm) + '</span></div><div><b>' + D.comps[te ? 0 : 1] + '</b><span>field components</span></div>';
+    };
+    var st = VL.select(ctl, { label: 'Structure', value: 'iface', options: Object.keys(TETM).map(function (k) { return [k, TETM[k].name]; }), on: function () { sync(); draw(); } });
+    var pol = VL.select(ctl, { label: 'Polarisation', value: 'te', options: [['te', 'TE'], ['tm', 'TM']], on: draw });
+    var ang = VL.slider(ctl, { label: 'Angle of incidence', min: 0, max: 75, step: 1, value: 40, fmt: function (v) { return v + '°'; }, on: draw });
+    var azi = VL.slider(ctl, { label: 'Azimuth (conical)', min: 0, max: 80, step: 1, value: 40, fmt: function (v) { return v + '°'; }, on: draw });
+    var hsel = VL.select(ctl, { label: 'Show H', value: 'no', options: [['no', 'No'], ['yes', 'Yes']], on: draw });
+    var sync = function () { var D = TETM[st.get()]; ang.input.closest('.vl-ctl').style.display = D.angle ? '' : 'none'; azi.input.closest('.vl-ctl').style.display = D.azi ? '' : 'none'; };
+    var loop = VL.loop(host, function (dt) { if (!dt) return; t0 += dt; draw(); });
+    var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { btn.textContent = loop.toggle() ? 'Stop' : 'Start'; }, 'primary');
+    sync(); draw();
+  };
+
+  /* ═══ 4c. TE or TM? a self-test ═══ */
+  var QUIZ = [
+    ['Light hits a glass plate at 45°. Its electric field points out of the plane of incidence, parallel to the surface.', 'TE', 'E ⟂ plane of incidence = TE (s).'],
+    ['Same plate; now E lies in the plane of incidence.', 'TM', 'E in the plane of incidence = TM (p).'],
+    ['At Brewster’s angle one polarisation is not reflected at all. Which?', 'TM', 'r_p = 0 at Brewster’s angle: TM (p) is fully transmitted.'],
+    ['In a Kretschmann SPR measurement, the reflectance dip appears for which polarisation?', 'TM', 'Surface plasmons need E normal to the metal surface: only TM (p) excites them.'],
+    ['A grating has its lines along y; the light travels in the x–z plane with E along y.', 'TE', 'Classical mounting: E parallel to the grooves = TE.'],
+    ['Same grating; E now oscillates along x, across the grooves.', 'TM', 'E perpendicular to the grooves (H parallel to them) = TM.'],
+    ['A wire-grid polariser (metal wires along y) transmits light with E along x. In grating language, the transmitted light is…', 'TM', 'E across the wires = TM; E along the wires (TE) drives currents in the wires and is reflected.'],
+    ['A slab waveguide mode has only E_y, H_x and H_z (propagation along z, layers normal to x).', 'TE', 'No E along the propagation direction and E parallel to the layers = TE.'],
+    ['A 450 × 220 nm silicon wire guides a mode whose main electric field is horizontal, parallel to the chip.', 'TE', 'Dominant E parallel to the substrate = quasi-TE (the fundamental mode of a standard Si wire).'],
+    ['A hollow rectangular metal waveguide mode has E_z = 0 and H_z ≠ 0 (propagation along z).', 'TE', 'No electric field along the propagation direction = TE (e.g. TE₁₀).'],
+    ['A 2D photonic crystal of dielectric rods: the mode has E along the rod axis.', 'TM', 'Photonic-crystal convention: E along the uniform axis (H in the periodic plane) = TM — opposite to the grating naming.'],
+    ['A fibre mode whose electric field points purely radially.', 'TM', 'Radial E, no H along the axis: TM₀₁ (azimuthal E would be TE₀₁).'],
+    ['Light falls on a flat surface at exactly normal incidence. Is it TE or TM?', 'Neither', 'At normal incidence the plane of incidence is undefined: every polarisation reflects identically, and the labels lose their meaning.'],
+    ['The fundamental mode of a coaxial cable has neither E nor H along the cable.', 'Neither', 'That is a TEM mode (transverse electric and magnetic), possible only with two conductors.']
+  ];
+  F.tetmquiz = function (fig) {
+    var box = VL.part(fig, 'vl-plot'), i = 0, score = 0, done = 0, answered = false;
+    var order = QUIZ.map(function (_, k) { return k; });
+    var render = function (fb) {
+      var q = QUIZ[order[i]];
+      box.innerHTML = '<div class="quiz"><p class="quiz-n">Question ' + (i + 1) + ' of ' + QUIZ.length + ' · score ' + score + ' / ' + done + '</p><p class="quiz-q">' + q[0] + '</p><div class="quiz-a">' +
+        ['TE', 'TM', 'Neither'].map(function (o) { return '<button type="button" class="vl-btn" data-a="' + o + '"' + (answered ? ' disabled' : '') + '>' + (o === 'Neither' ? 'Neither / both' : o) + '</button>'; }).join('') +
+        '</div>' + (fb || '') + '<div class="quiz-nav"><button type="button" class="vl-btn primary" data-next="1"' + (answered ? '' : ' disabled') + '>' + (i < QUIZ.length - 1 ? 'Next question →' : 'Start again') + '</button></div></div>';
+      box.querySelectorAll('[data-a]').forEach(function (b) { b.onclick = function () { if (answered) return; answered = true; done++; var ok = b.getAttribute('data-a') === q[1]; if (ok) score++;
+        render('<p class="quiz-fb ' + (ok ? 'ok' : 'no') + '"><b>' + (ok ? 'Correct.' : 'Not quite — the answer is ' + (q[1] === 'Neither' ? 'neither / both' : q[1]) + '.') + '</b> ' + q[2] + '</p>'); }; });
+      var nx = box.querySelector('[data-next]'); nx.onclick = function () { if (!answered) return; answered = false; if (i < QUIZ.length - 1) i++; else { i = 0; score = 0; done = 0; } render(); };
+    };
+    render();
+  };
+
   /* ═══ 5. second-harmonic generation and phase matching ═══ */
   F.shg = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');

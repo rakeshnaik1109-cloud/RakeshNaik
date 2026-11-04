@@ -195,3 +195,14 @@
 .series-nav a:hover { color: var(--au); }
 .series-nav .sn-none { color: var(--text-3); }
 .series-nav.sn-bottom { margin: 2.4em auto 0; }
+
+/* ── self-test quiz inside a figure ── */
+.quiz { padding: 6px 4px; }
+.prose p.quiz-n, .quiz-n { font-family: var(--mono); font-size: .72rem; color: var(--text-3); margin-bottom: 8px; }
+.prose p.quiz-q, .quiz-q { font-size: 1.02rem; color: var(--text); margin-bottom: 14px; }
+.quiz-a { display: flex; flex-wrap: wrap; gap: 10px; }
+.prose p.quiz-fb, .quiz-fb { margin-top: 14px; padding: 10px 14px; border-radius: var(--radius-s); font-size: .92rem; color: var(--text-2); }
+.quiz-fb.ok { border: 1px solid rgba(127,209,139,.5); background: rgba(127,209,139,.08); }
+.quiz-fb.no { border: 1px solid rgba(226,86,110,.5); background: rgba(226,86,110,.08); }
+.quiz-fb b { color: var(--text); }
+.quiz-nav { margin-top: 14px; }

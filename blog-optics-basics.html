@@ -29,8 +29,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
-<link rel="stylesheet" href="css/site.css?v=20261104e">
-<link rel="stylesheet" href="css/article.css?v=20261104e">
+<link rel="stylesheet" href="css/site.css?v=20261104f">
+<link rel="stylesheet" href="css/article.css?v=20261104f">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
@@ -106,6 +106,7 @@
     <li><a href="#s-linear">Light in a linear medium: refractive index and dispersion</a></li>
     <li><a href="#s-aniso">Anisotropic media: birefringence</a></li>
     <li><a href="#s-interface">At an interface: Snell, Fresnel, Brewster and total internal reflection</a></li>
+    <li><a href="#s-tetm">TE and TM: which is which, in any structure</a></li>
     <li><a href="#s-metal">Light in metals</a></li>
     <li><a href="#s-nonlinear">Nonlinear media</a></li>
     <li><a href="#s-guide">Why guide light, and how: total internal reflection</a></li>
@@ -291,7 +292,7 @@ radiation pressure — the basis of optical tweezers and solar sails. Dividing b
 flux \(I/\hbar\omega\): a 1 mW laser pointer at 532 nm emits \(2.7\times10^{15}\) photons per second.</p>
 <p>A useful sense of scale: focusing that 1 mW into a 1 µm spot gives about 10⁹ W m⁻², and a field amplitude of about
 10⁶ V m⁻¹ — still about a million times smaller than the fields inside atoms (~5 × 10¹¹ V m⁻¹), which is why ordinary optics is linear and
-why nonlinear optics (section 11) needs pulsed lasers.</p>
+why nonlinear optics (section 12) needs pulsed lasers.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <h2 id="s-linear"><span class="num">07</span>Light in a linear medium: refractive index and dispersion</h2>
@@ -335,7 +336,7 @@ and imaginary parts are linked by the Kramers–Kronig relations: absorption som
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Refractive index and extinction from a model material.</b> Dielectric: one Lorentz oscillator —
   absorption (κ) peaks at the resonance, \(n\) rises towards it (normal dispersion) and drops through it (anomalous
-  dispersion). Metal: the Drude model of section 10 — below the plasma frequency κ is large, the metal reflects and
+  dispersion). Metal: the Drude model of section 11 — below the plasma frequency κ is large, the metal reflects and
   light penetrates only tens of nanometres.</figcaption>
 </figure>
 
@@ -354,7 +355,7 @@ limits ultrafast optics and fibre communications, and is put to use in pulse com
 perpendicular to the optic axis sees the ordinary index \(n_o\), and light with a component along it sees an
 extraordinary index between \(n_o\) and \(n_e\). Two polarisations travel at two speeds — <b>birefringence</b> — which
 splits beams, makes wave plates (a plate of thickness \(d\) delays one polarisation by \(\Delta\varphi = 2\pi(n_e - n_o)d/\lambda\)) and,
-as section 11 shows, makes efficient frequency conversion possible.</p>
+as section 12 shows, makes efficient frequency conversion possible.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <h2 id="s-interface"><span class="num">09</span>At an interface: Snell, Fresnel, Brewster and total internal reflection</h2>
@@ -388,7 +389,180 @@ reflection coefficients for <b>s</b> polarisation (\(\mathbf E\) perpendicular t
 </figure>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-metal"><span class="num">10</span>Light in metals</h2>
+<h2 id="s-tetm"><span class="num">10</span>TE and TM: which is which, in any structure</h2>
+
+<p>“TE” and “TM” appear everywhere in optics — reflection, gratings, waveguides, fibres, photonic crystals,
+plasmonics — and they cause more confusion than almost any other pair of words. The reason is in the names:
+<b>transverse electric</b> means the electric field has no component along some reference direction (it is
+transverse to it); <b>transverse magnetic</b> means the magnetic field has none. Every light wave is transverse
+to its own direction of travel, so the names only mean something once the reference is fixed — and different
+structures, and different communities, choose different references. The first question is therefore always:
+<b>transverse to what?</b></p>
+
+<h3>The recipe</h3>
+<div class="callout tip"><b>Three steps that work for every structure</b>
+<p><b>1. Find the reference.</b> For a plane wave meeting a surface or a grating in classical mounting, it is the
+<i>plane of incidence</i> — the plane containing the wave vector \(\mathbf k\) and the surface normal \(\mathbf n\). For a
+waveguide, it is the <i>propagation direction</i> of the mode (and, for a slab, the plane containing the
+propagation direction and the direction in which the index changes). For a 2D photonic crystal, it is the
+<i>plane of periodicity</i>.</p>
+<p><b>2. Look for the uniform direction.</b> Most structures where TE and TM are clean are uniform along one
+direction (the grooves of a grating, the layers of a slab, the rods of a photonic crystal). Maxwell's equations
+then split into two independent sets: one with \(\mathbf E\) along the uniform direction, one with \(\mathbf H\) along it.</p>
+<p><b>3. Name them by the convention of the field.</b> Surfaces, gratings, slabs and fibres: TE = \(\mathbf E\) perpendicular
+to the plane of incidence / no \(E\) along the propagation direction. Photonic crystals (and some scattering texts):
+TE = \(\mathbf E\) in the plane of periodicity — the <i>opposite</i> label for the same physical field. When in doubt, say
+which way \(\mathbf E\) points.</p></div>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 6</div>
+  <svg viewBox="0 0 880 330" role="img" aria-label="Decision diagram for TE and TM">
+    <style>.dq{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}.da{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.dt{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:700}</style>
+    <rect x="300" y="12" width="280" height="44" rx="8" fill="#211735" stroke="#e0a82e"/><text x="440" y="39" class="dq" text-anchor="middle">What is the structure?</text>
+    <g stroke="#837a94" stroke-width="1.4" fill="none"><path d="M 360 56 L 150 96"/><path d="M 440 56 L 440 96"/><path d="M 520 56 L 730 96"/></g>
+    <rect x="20" y="96" width="260" height="62" rx="8" fill="#211735" stroke="rgba(255,255,255,.18)"/><text x="150" y="118" class="dq" text-anchor="middle">Surface, film stack, grating</text><text x="150" y="138" class="da" text-anchor="middle">reference: plane of incidence</text><text x="150" y="152" class="da" text-anchor="middle">(contains k and the normal)</text>
+    <rect x="310" y="96" width="260" height="62" rx="8" fill="#211735" stroke="rgba(255,255,255,.18)"/><text x="440" y="118" class="dq" text-anchor="middle">Waveguide or fibre mode</text><text x="440" y="138" class="da" text-anchor="middle">reference: propagation direction</text><text x="440" y="152" class="da" text-anchor="middle">(and the layer normal, for a slab)</text>
+    <rect x="600" y="96" width="260" height="62" rx="8" fill="#211735" stroke="rgba(255,255,255,.18)"/><text x="730" y="118" class="dq" text-anchor="middle">2D photonic crystal</text><text x="730" y="138" class="da" text-anchor="middle">reference: plane of periodicity</text><text x="730" y="152" class="da" text-anchor="middle">(rods or holes are uniform ⟂ to it)</text>
+    <g stroke="#837a94" stroke-width="1.4" fill="none"><path d="M 150 158 L 150 186"/><path d="M 440 158 L 440 186"/><path d="M 730 158 L 730 186"/></g>
+    <rect x="20" y="186" width="125" height="72" rx="8" fill="rgba(226,86,110,.12)" stroke="#e2566e"/><text x="82" y="208" class="dt" text-anchor="middle" fill="#e2566e">TE = s</text><text x="82" y="228" class="da" text-anchor="middle">E ⟂ plane of</text><text x="82" y="242" class="da" text-anchor="middle">incidence</text>
+    <rect x="155" y="186" width="125" height="72" rx="8" fill="rgba(224,168,46,.12)" stroke="#e0a82e"/><text x="217" y="208" class="dt" text-anchor="middle" fill="#e0a82e">TM = p</text><text x="217" y="228" class="da" text-anchor="middle">E in the plane,</text><text x="217" y="242" class="da" text-anchor="middle">H ⟂ to it</text>
+    <rect x="310" y="186" width="125" height="72" rx="8" fill="rgba(226,86,110,.12)" stroke="#e2566e"/><text x="372" y="208" class="dt" text-anchor="middle" fill="#e2566e">TE</text><text x="372" y="228" class="da" text-anchor="middle">no E along</text><text x="372" y="242" class="da" text-anchor="middle">propagation</text>
+    <rect x="445" y="186" width="125" height="72" rx="8" fill="rgba(224,168,46,.12)" stroke="#e0a82e"/><text x="507" y="208" class="dt" text-anchor="middle" fill="#e0a82e">TM</text><text x="507" y="228" class="da" text-anchor="middle">no H along</text><text x="507" y="242" class="da" text-anchor="middle">propagation</text>
+    <rect x="600" y="186" width="125" height="72" rx="8" fill="rgba(226,86,110,.12)" stroke="#e2566e"/><text x="662" y="208" class="dt" text-anchor="middle" fill="#e2566e">TE</text><text x="662" y="228" class="da" text-anchor="middle">E in the periodic</text><text x="662" y="242" class="da" text-anchor="middle">plane, H ∥ rods</text>
+    <rect x="735" y="186" width="125" height="72" rx="8" fill="rgba(224,168,46,.12)" stroke="#e0a82e"/><text x="797" y="208" class="dt" text-anchor="middle" fill="#e0a82e">TM</text><text x="797" y="228" class="da" text-anchor="middle">E ∥ rods,</text><text x="797" y="242" class="da" text-anchor="middle">H in the plane</text>
+    <text x="440" y="290" class="da" text-anchor="middle">Both labels apply only when the structure makes them independent; hybrid modes (fibres, strip waveguides, conical gratings) mix them.</text>
+    <text x="440" y="310" class="da" text-anchor="middle">At exactly normal incidence there is no plane of incidence: TE and TM are the same.</text>
+  </svg>
+  <figcaption><b>Deciding TE or TM.</b> Choose the reference from the structure, then read off which field avoids it.
+  Note that the photonic-crystal branch names the same physical field the other way round from the grating branch:
+  E along the uniform direction is TE for a grating and TM for a photonic crystal.</figcaption>
+</figure>
+
+<h3>Case 1 — a plane surface (reflection, refraction, thin films)</h3>
+<p>The plane of incidence contains \(\mathbf k\) and the surface normal. <b>TE = s</b>: \(\mathbf E\) is perpendicular to this plane and
+therefore parallel to the surface. <b>TM = p</b>: \(\mathbf E\) lies in the plane, \(\mathbf H\) is perpendicular to it. These are the
+two polarisations of the Fresnel equations in section 9: only TM has a Brewster angle, and TM is the one that, in a
+metal, can drive charge across the surface. In a laboratory with the optical table horizontal and the beam reflected
+sideways off a vertical mirror, the plane of incidence is horizontal: s light is <i>vertically</i> polarised, p light
+horizontally. Turn the mirror so that the beam goes up, and the names swap — the polarisation of the laser has not
+changed, the plane of incidence has. Multilayer coatings, ellipsometry (\(\Psi\) and \(\Delta\) compare \(r_p\) and \(r_s\)) and SPR
+prisms all use this convention.</p>
+
+<h3>Case 2 — a slab waveguide</h3>
+<p>Take propagation along \(z\), layers normal to \(x\), and the structure uniform along \(y\) (\(\partial/\partial y = 0\)). Writing out
+Maxwell's curl equations, the six field components split into two independent groups:</p>
+$$\text{TE:}\ \ (E_y,\ H_x,\ H_z), \qquad \text{TM:}\ \ (H_y,\ E_x,\ E_z) .$$
+<p>TE has no electric field along the propagation direction and its \(\mathbf E\) is parallel to the layers; TM has no magnetic
+field along it, and its \(\mathbf E\) points mainly across the layers. The two have different effective indices (TE is
+usually slightly higher) and different cut-offs — the modes of section 14.</p>
+
+<h3>Case 3 — rectangular (strip, rib) waveguides: quasi-TE and quasi-TM</h3>
+<p>A wire confines light in two directions, so no direction is uniform and the modes are <b>hybrid</b>: all six components
+are non-zero. They are named after their dominant electric field: <b>quasi-TE</b> when \(\mathbf E\) is mostly parallel to the
+substrate (across the width), <b>quasi-TM</b> when it is mostly perpendicular to it. In a standard 450 × 220 nm silicon
+wire the quasi-TE mode has the higher effective index and is the one most devices are designed for; grating couplers,
+ring resonators and directional couplers behave very differently for the two, which is why on-chip polarisation
+splitters and rotators exist.</p>
+
+<h3>Case 4 — hollow metal waveguides</h3>
+<p>Here the reference is the propagation direction alone. <b>TE</b> (or H) modes have \(E_z = 0\) and \(H_z \ne 0\); <b>TM</b> (or E)
+modes have \(H_z = 0\) and \(E_z \ne 0\). The indices \(m, n\) count half-wave variations across the width and height:
+TE₁₀ has its electric field across the short side, largest in the middle and zero at the side walls, and is the
+fundamental mode of a rectangular guide; the lowest TM mode is TM₁₁. A guide with two separate conductors (coaxial
+cable, a pair of wires) also supports a <b>TEM</b> mode, with neither field along the propagation direction.</p>
+
+<h3>Case 5 — optical fibres</h3>
+<p>The cylindrical symmetry makes most fibre modes hybrid, labelled HE and EH according to which longitudinal field
+dominates; the fundamental mode is HE₁₁. Only the rotationally symmetric modes are pure: <b>TE₀₁</b>, with \(\mathbf E\)
+circling the axis (azimuthal), and <b>TM₀₁</b>, with \(\mathbf E\) pointing radially. In weakly guiding fibres the modes are
+grouped into linearly polarised LP modes (section 15) — TE₀₁, TM₀₁ and HE₂₁ together form LP₁₁ — and “TE/TM” is rarely
+used for them.</p>
+
+<h3>Case 6 — gratings and periodic surfaces</h3>
+<p>In <b>classical mounting</b> the plane of incidence is perpendicular to the grooves. Then <b>TE</b>: \(\mathbf E\) parallel to the
+grooves; <b>TM</b>: \(\mathbf E\) perpendicular to them, \(\mathbf H\) parallel to the grooves. The two behave very differently:</p>
+<ul>
+  <li>On a <b>metal grating</b>, only TM has a field component that crosses the ridges and piles up charge, so only TM
+  couples to surface plasmons (grating-coupled SPR) and shows the sharp Wood–Rayleigh anomalies.</li>
+  <li>A <b>wire-grid polariser</b> reflects TE (E along the wires drives currents in them) and transmits TM.</li>
+  <li><b>Diffraction efficiencies</b> of ruled and holographic gratings are quoted separately for TE and TM (sometimes
+  called “s” and “p”, or “parallel” and “perpendicular to the grooves” — check the definition in the data sheet).</li>
+  <li>For sub-wavelength gratings the two polarisations see different effective indices: <b>form birefringence</b>,
+  used for wave plates and polarisation-sensitive metasurfaces.</li>
+</ul>
+<p>In <b>conical mounting</b> the plane of incidence is rotated away from the grating vector. TE and TM are still defined
+relative to the plane of incidence (\(\mathbf E\) perpendicular or parallel to it), but the grating now <i>mixes</i> them: each
+diffracted order contains both, and rigorous solvers such as RCWA must treat them together.</p>
+
+<h3>Case 7 — photonic crystals: the convention flips</h3>
+<p>A two-dimensional photonic crystal (a lattice of rods or holes, uniform along \(z\)) separates, for light travelling in
+the periodic \(x\)–\(y\) plane, into two families. The photonic-crystal literature names them relative to the
+<i>plane of periodicity</i> [22]: <b>TE</b> has \(\mathbf E\) in the plane and \(\mathbf H\) along the rods; <b>TM</b> has \(\mathbf E\) along the rods
+and \(\mathbf H\) in the plane. A lattice of dielectric rods in air tends to open a band gap for TM, a lattice of air holes in a
+dielectric for TE. In photonic-crystal <i>slabs</i> (finite thickness) the modes become TE-like and TM-like by their
+symmetry about the slab's mid-plane. Compared with a grating, this is the opposite name for the same physical field —
+the most common source of TE/TM mistakes.</p>
+
+<h3>Case 8 — plasmonics, nanowires and scattering</h3>
+<ul>
+  <li><b>Surface plasmon polaritons</b> on a flat metal surface are TM only: a TE wave has no field normal to the surface
+  and cannot create surface charge (section 11 and the <a href="blog-spectroscopy.html#s-spp">spectroscopy article</a>).</li>
+  <li><b>Metal nanorods</b> have longitudinal and transverse plasmon resonances — named by whether \(\mathbf E\) is along or across
+  the rod, not TE/TM.</li>
+  <li><b>Scattering by long cylinders and wires</b>: many texts call the case with \(\mathbf E\) parallel to the cylinder axis “TM”
+  (others call it “case I” or “E-polarisation”), relative to the cross-sectional plane — like photonic crystals. Saying “E
+  parallel to the axis” avoids the ambiguity.</li>
+</ul>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Structure</th><th>Reference</th><th>TE</th><th>TM</th><th>Typical consequence</th></tr></thead>
+  <tbody>
+    <tr><td>Plane surface, thin films</td><td>plane of incidence</td><td>E ⟂ plane (s), E ∥ surface</td><td>E in plane (p)</td><td>Brewster angle and SPR only for TM</td></tr>
+    <tr><td>Grating, classical mount</td><td>plane of incidence (⟂ grooves)</td><td>E ∥ grooves</td><td>E ⟂ grooves, H ∥ grooves</td><td>plasmons and wire-grid transmission for TM</td></tr>
+    <tr><td>Grating, conical mount</td><td>rotated plane of incidence</td><td>E ⟂ that plane</td><td>E in that plane</td><td>orders mix TE and TM</td></tr>
+    <tr><td>Slab waveguide</td><td>propagation + layer normal</td><td>E_y, H_x, H_z (E ∥ layers)</td><td>H_y, E_x, E_z</td><td>different n_eff and cut-off</td></tr>
+    <tr><td>Strip / rib waveguide</td><td>chip surface</td><td>quasi-TE: E mostly ∥ substrate</td><td>quasi-TM: E mostly ⟂ substrate</td><td>polarisation-dependent devices</td></tr>
+    <tr><td>Hollow metal waveguide</td><td>propagation direction</td><td>E_z = 0 (TE₁₀ fundamental)</td><td>H_z = 0 (TM₁₁ lowest)</td><td>cut-off frequencies; TEM needs two conductors</td></tr>
+    <tr><td>Optical fibre</td><td>fibre axis</td><td>TE₀₁: azimuthal E</td><td>TM₀₁: radial E</td><td>most modes hybrid (HE₁₁ fundamental); LP in weak guidance</td></tr>
+    <tr><td>2D photonic crystal</td><td>plane of periodicity</td><td>E in plane, H ∥ rods</td><td>E ∥ rods, H in plane</td><td>rods → TM gaps, holes → TE gaps (opposite naming)</td></tr>
+    <tr><td>Metal surface (SPP)</td><td>propagation + surface normal</td><td>not supported</td><td>E normal + along the surface</td><td>plasmons are TM only</td></tr>
+    <tr><td>Normal incidence</td><td>none</td><td colspan="2">TE and TM identical — the labels are meaningless</td><td>any polarisation behaves the same</td></tr>
+  </tbody>
+</table></div>
+
+<p>The figure below draws each case in three dimensions, with the reference plane or direction marked and the
+oscillating field vectors of the chosen polarisation.</p>
+
+<figure class="fig" data-fig="tetm">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>TE and TM in nine structures.</b> Red arrows: the electric field, oscillating as the wave travels;
+  cyan (optional): the magnetic field. For the surface and the gratings the gold plane is the plane of incidence and the
+  dashed arrow its normal; change the angle of incidence and, for conical mounting, the azimuth, and watch which way
+  E points relative to the plane and to the grooves. For the guides the wave travels along x. The panel below the
+  drawing states the reference, the definition and the field components for each case.</figcaption>
+</figure>
+
+<h3>Test yourself</h3>
+<figure class="fig" data-fig="tetmquiz">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>TE, TM or neither?</b> Fourteen situations from the lab and the literature, each with the reasoning
+  behind the answer.</figcaption>
+</figure>
+
+<h3>In the laboratory</h3>
+<ul>
+  <li>To set s or p at a sample, decide the plane of incidence first (the plane containing the beam and the sample
+  normal), then rotate a half-wave plate or polariser so that \(\mathbf E\) is perpendicular (s) or parallel (p) to that
+  plane. “Vertical” and “horizontal” are only meaningful once that plane is known.</li>
+  <li>A polarising beam-splitter cube transmits p and reflects s <i>relative to its own internal reflecting surface</i>.</li>
+  <li>For a grating, write down whether \(\mathbf E\) is parallel or perpendicular to the grooves; for a waveguide, which
+  way the dominant \(\mathbf E\) points relative to the substrate. These statements are unambiguous, whatever the names.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-metal"><span class="num">11</span>Light in metals</h2>
 
 <p>A metal has free electrons with no restoring force: set \(\omega_0 = 0\) in the Lorentz model and the result is the
 <b>Drude model</b>,</p>
@@ -407,7 +581,7 @@ polariton</b>, and in small particles the localised surface plasmon — the subj
 to the metal model to see \(n\), \(\kappa\), the reflectance and the penetration depth of a Drude metal.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-nonlinear"><span class="num">11</span>Nonlinear media</h2>
+<h2 id="s-nonlinear"><span class="num">12</span>Nonlinear media</h2>
 
 <p>The linear relation \(\mathbf P = \varepsilon_0\chi\mathbf E\) is the first term of an expansion valid while the light field is small
 compared with the fields inside atoms (~10¹¹ V m⁻¹). Intense laser pulses reach a fraction of that, and the next terms
@@ -436,7 +610,7 @@ exist: <b>birefringent phase matching</b>, choosing the angle and polarisations 
 harmonic is reset in step before it can flow back [13].</p>
 
 <figure class="fig" data-fig="shg">
-  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Second-harmonic power along a crystal.</b> With perfect phase matching the power grows as \(L^2\);
   with a mismatch it oscillates and never exceeds its value at one coherence length (logarithmic scale); with quasi-phase matching (domains
@@ -453,7 +627,7 @@ own phase (self-phase modulation, which broadens its spectrum), a beam with a be
 which the vibrational resonance appears in \(\chi^{(3)}\) (<a href="blog-raman-variants.html#s-crs">coherent Raman</a>).</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-guide"><span class="num">12</span>Why guide light, and how: total internal reflection</h2>
+<h2 id="s-guide"><span class="num">13</span>Why guide light, and how: total internal reflection</h2>
 
 <p>A beam cannot stay narrow in free space. A Gaussian beam of waist radius \(w_0\) doubles its area after the Rayleigh
 range \(z_R = \pi w_0^2 n/\lambda_0\): a beam of 5 µm waist radius at 1.55 µm doubles its area after about 50 µm. To carry light over kilometres,
@@ -462,7 +636,7 @@ internal reflection: a core of higher index \(n_1\) surrounded by a cladding of 
 boundary beyond the critical angle.</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 7</div>
+  <div class="fig-tag">Figure 10</div>
   <svg viewBox="0 0 860 260" role="img" aria-label="Ray picture of a slab waveguide">
     <style>.rl{font-family:'IBM Plex Mono',monospace;font-size:12px;fill:#b6acc8}.rh{font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:600;fill:#efeaf6}</style>
     <rect x="60" y="40" width="760" height="50" fill="#45bfd6" opacity=".10"/><rect x="60" y="90" width="760" height="80" fill="#e0a82e" opacity=".18"/><rect x="60" y="170" width="760" height="50" fill="#45bfd6" opacity=".10"/>
@@ -490,7 +664,7 @@ $$2\,n_1k_0\,d\,\sin\theta - 2\phi_r = 2\pi m, \qquad m = 0, 1, 2, \dots ,$$
 coefficients). Each integer \(m\) is a <b>mode</b>: a field pattern that keeps its shape as it travels.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-slab"><span class="num">13</span>Modes of a slab waveguide</h2>
+<h2 id="s-slab"><span class="num">14</span>Modes of a slab waveguide</h2>
 
 <p>The wave picture is exact. For a slab (core of thickness \(d\) in \(x\), infinite in \(y\)), look for fields
 \(E_y(x)\,e^{i(\beta z - \omega t)}\) (TE modes). The wave equation becomes</p>
@@ -504,7 +678,7 @@ of \(2V/\pi\) plus one, and the guide is <b>single-mode</b> for \(V < \pi/2\). T
 symmetric slab; it has no cut-off. TM modes follow similarly with a factor \(n_1^2/n_2^2\) in the matching condition.</p>
 
 <figure class="fig" data-fig="slab">
-  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The TE modes of a symmetric slab waveguide</b>, from the exact dispersion equations above. Mode \(m\)
   has \(m\) zeros in the core; higher modes have lower effective indices and longer evanescent tails. Thin the core, lower
@@ -513,7 +687,7 @@ symmetric slab; it has no cut-off. TM modes follow similarly with a factor \(n_1
 </figure>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-fibre"><span class="num">14</span>Optical fibres</h2>
+<h2 id="s-fibre"><span class="num">15</span>Optical fibres</h2>
 
 <p>An optical fibre is a cylindrical waveguide: a glass core of radius \(a\) inside a glass cladding of slightly lower
 index (index difference typically 0.3–1 %). In 1966 Kao and Hockham argued that if the impurities in glass could be
@@ -532,7 +706,7 @@ close to a Gaussian with mode-field diameter \(2w\), \(w/a \approx 0.65 + 1.619V
 illumination and spectroscopy.</p>
 
 <figure class="fig" data-fig="fibre">
-  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Single-mode or multimode?</b> The V number of a step-index fibre against wavelength. Below
   \(V = 2.405\) (to the right of the cut-off wavelength) only one mode is guided. The default resembles a standard
@@ -545,19 +719,19 @@ illumination and spectroscopy.</p>
   faster; modal dispersion almost cancels.</li>
   <li><b>Polarisation-maintaining fibres</b>: stress rods make the fibre birefringent, so a polarisation launched on an axis
   stays there.</li>
-  <li><b>Photonic-crystal and hollow-core fibres</b>: a pattern of air holes forms the cladding (section 17), allowing
+  <li><b>Photonic-crystal and hollow-core fibres</b>: a pattern of air holes forms the cladding (section 18), allowing
   endlessly single-mode guiding, extreme nonlinearity or guiding in air [18].</li>
   <li><b>Fibre probes</b> for Raman and fluorescence, fibre Bragg gratings (a periodic index change in the core that
   reflects one wavelength — sensors of strain and temperature), and fibre lasers doped with erbium or ytterbium.</li>
 </ul>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-integrated"><span class="num">15</span>Integrated waveguides and couplers</h2>
+<h2 id="s-integrated"><span class="num">16</span>Integrated waveguides and couplers</h2>
 
 <p>On a chip, guides are patterned by lithography into thin films. Their cross-sections give them their names:</p>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 10</div>
+  <div class="fig-tag">Figure 13</div>
   <svg viewBox="0 0 880 300" role="img" aria-label="Cross-sections of waveguide types">
     <style>.gl{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:#b6acc8}.gh{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}</style>
     <!-- row 1 -->
@@ -591,7 +765,7 @@ transmits all wavelengths except those fitting a whole number of times around it
 integrated optics, and also of evanescent-field biosensors.</p>
 
 <figure class="fig" data-fig="coupler">
-  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>A directional coupler.</b> Power in the input guide (gold) and the second guide (cyan) oscillates between the two parallel guides with period set by \(\kappa\); a
   mismatch \(\delta\) between the guides speeds up the oscillation and limits the transfer to \(\kappa^2/(\kappa^2 + \delta^2)\) —
@@ -599,7 +773,7 @@ integrated optics, and also of evanescent-field biosensors.</p>
 </figure>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-metalwg"><span class="num">16</span>Metallic and plasmonic waveguides</h2>
+<h2 id="s-metalwg"><span class="num">17</span>Metallic and plasmonic waveguides</h2>
 
 <p>Before fibres, electromagnetic waves were guided in <b>hollow metal tubes</b>. At microwave frequencies metals are almost
 perfect conductors, the tangential \(\mathbf E\) vanishes at the walls, and a rectangular guide of width \(a\) and height \(b\)
@@ -615,7 +789,7 @@ more than distance — in sensors (SPR), nanofocusing tips (<a href="blog-raman-
 compact modulators and detectors.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-pc"><span class="num">17</span>Photonic-crystal waveguides and fibres</h2>
+<h2 id="s-pc"><span class="num">18</span>Photonic-crystal waveguides and fibres</h2>
 
 <p>Total internal reflection is not the only way to trap light. A material whose index varies periodically on the scale of
 the wavelength — a <b>photonic crystal</b> — reflects light by Bragg interference, and for a range of frequencies (a
@@ -630,7 +804,7 @@ filling the core with gases or liquids for spectroscopy. Near the band edge, pho
 down by factors of tens, enhancing light–matter interaction.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-loss"><span class="num">18</span>Loss and dispersion in waveguides</h2>
+<h2 id="s-loss"><span class="num">19</span>Loss and dispersion in waveguides</h2>
 
 <p>Waveguide loss is quoted in decibels, \(\text{loss (dB)} = -10\log_{10}(P_\text{out}/P_\text{in})\): 3 dB halves the power. The
 contributions are</p>
@@ -650,7 +824,7 @@ contributions are</p>
 waveguides is what makes on-chip frequency combs possible.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-summary"><span class="num">19</span>The waveguide family at a glance</h2>
+<h2 id="s-summary"><span class="num">20</span>The waveguide family at a glance</h2>
 
 <div class="tbl-wrap"><table>
   <thead><tr><th>Guide</th><th>Guiding mechanism</th><th>Typical size</th><th>Loss</th><th>Strength</th><th>Used for</th></tr></thead>
@@ -672,7 +846,7 @@ waveguides is what makes on-chip frequency combs possible.</p>
 <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS</a>.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
-<h2 id="s-refs"><span class="num">20</span>References</h2>
+<h2 id="s-refs"><span class="num">21</span>References</h2>
 <ol class="refs">
   <li>T. Young, “The Bakerian Lecture: On the theory of light and colours,” <i>Phil. Trans. R. Soc. Lond.</i> <b>92</b>, 12–48 (1802).</li>
   <li>J. C. Maxwell, “A dynamical theory of the electromagnetic field,” <i>Phil. Trans. R. Soc. Lond.</i> <b>155</b>, 459–512 (1865).</li>
@@ -755,9 +929,9 @@ Drude models, coupled-mode theory, the Marcuse mode-field formula). Corrections 
   </div>
 </footer>
 
-<script src="js/site.js?v=20261104e"></script>
-<script src="js/blog/vl-core.js?v=20261104e"></script>
-<script src="js/blog/wg-figs.js?v=20261104e"></script>
+<script src="js/site.js?v=20261104f"></script>
+<script src="js/blog/vl-core.js?v=20261104f"></script>
+<script src="js/blog/wg-figs.js?v=20261104f"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
