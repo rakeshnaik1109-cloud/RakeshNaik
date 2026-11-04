@@ -99,7 +99,7 @@
     var loop = VL.loop(host, function (dt) { if (!dt) return; phase += dt * 2 * Math.PI * speed.get(); draw(); });
     var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { btn.textContent = loop.toggle() ? 'Stop' : 'Start'; }, 'primary');
     var speed = VL.slider(ctl, { label: 'Speed', min: 0.1, max: 1.5, step: 0.05, value: 0.5, fmt: function (v) { return v.toFixed(2) + ' cycles/s'; } });
-    var view = VL.slider(ctl, { label: 'View angle of the y axis', min: 115, max: 160, step: 1, value: 140, fmt: function (v) { return v + '°'; }, on: draw });
+    var view = VL.slider(ctl, { label: 'Camera (viewing direction)', min: 115, max: 160, step: 1, value: 140, fmt: function (v) { return 'turn ' + (v - 140 >= 0 ? '+' : '') + (v - 140) + '°'; }, on: draw });
     var vec = VL.select(ctl, { label: 'Field arrows', value: 'yes', options: [['yes', 'Shown'], ['no', 'Hidden']], on: draw });
     draw();
   };
