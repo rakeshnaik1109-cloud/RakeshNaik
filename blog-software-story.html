@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Why I Wrote My Own Spectral Analysis Suite (and Then a Drawing Tool) | Rakesh Naik</title>
+<meta name="description" content="The story behind RNSpectraX and RNBeamX: how a slow, unreproducible path from Raman measurement to figure became a browser-based spectral analysis suite and an optical-setup designer with traced light — each upgrade step, and an overview of what both tools can do.">
+<meta name="keywords" content="RNSpectraX, RNBeamX, Raman analysis software, SERS data processing, baseline correction, spectral analysis browser, optical setup figure, ray tracing figure, scientific figure tool, reproducible spectroscopy">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-software-story.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why I Wrote My Own Spectral Analysis Suite (and Then a Drawing Tool)">
+<meta property="og:description" content="How RNSpectraX and RNBeamX came to be, step by step, and what the two browser-based tools can do today.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-software-story.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-11-04">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why I Wrote My Own Spectral Analysis Suite (and Then a Drawing Tool)">
+<meta name="twitter:description" content="How RNSpectraX and RNBeamX came to be, step by step, and what the two browser-based tools can do today.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261104c">
+<link rel="stylesheet" href="css/article.css?v=20261104c">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Why I Wrote My Own Spectral Analysis Suite (and Then a Drawing Tool)","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-software-story.html"}]},
+{"@type":"BlogPosting","headline":"Why I Wrote My Own Spectral Analysis Suite (and Then a Drawing Tool)","datePublished":"2026-11-04","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"How RNSpectraX and RNBeamX came to be, step by step, and what the two browser-based tools can do today.","inLanguage":"en","proficiencyLevel":"Beginner"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Why I wrote my own spectral analysis suite (and then a drawing tool)</h1>
+    <p class="lede">Three programs, two file conversions and one undocumented baseline setting stood between a
+    measurement and a figure. This is the story of how that annoyance became <b>RNSpectraX</b>, a spectral
+    analysis suite that runs in a browser tab, and then <b>RNBeamX</b>, an optical-setup designer in which the
+    light is actually traced. How each version grew out of a problem the previous one could not solve, and
+    what the two can do today.</p>
+    <div class="article-meta"><span class="post-tag">Software · Story</span><span>4 November 2026</span><span>≈ 14 min read</span><span>Rakesh Naik</span></div>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-start">The figure that took a whole afternoon</a></li>
+    <li><a href="#s-v1">Step 1 — one tab, one pipeline</a></li>
+    <li><a href="#s-xy">Step 2 — not every dataset is a spectrum</a></li>
+    <li><a href="#s-fix">Step 3 — the release that fixed my own mistakes</a></li>
+    <li><a href="#s-answers">Step 4 — from figures to answers</a></li>
+    <li><a href="#s-principles">What RNSpectraX refuses to hide</a></li>
+    <li><a href="#s-beamx">The other half of every paper: the setup figure</a></li>
+    <li><a href="#s-trace">Step 1 — let the light draw itself</a></li>
+    <li><a href="#s-physics">Step 2 — physics you can trust</a></li>
+    <li><a href="#s-figures">Step 3 — from setups to whole figures</a></li>
+    <li><a href="#s-beyond">Step 4 — beyond the optical table</a></li>
+    <li><a href="#s-bridge">The bridge between the two</a></li>
+    <li><a href="#s-overview">The two tools at a glance</a></li>
+    <li><a href="#s-next">Try them, break them, tell me</a></li>
+  </ol>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-start"><span class="num">01</span>The figure that took a whole afternoon</h2>
+
+<p>A Raman measurement takes seconds. Turning it into a figure for a paper used to take me the rest of the
+day. The spectrometer software exported one format; the program that removed the baseline wanted another;
+the plotting program wanted a third. Somewhere along the way the cosmic-ray spikes were removed by a filter
+whose settings I could not see, the baseline was fitted with a polynomial whose order was buried in a
+dialog box, and the averaged spectra came out without the standard deviation anyone would ask for in review.</p>
+
+<p>Worse, I could not write it down. A methods section should let another group repeat the analysis exactly:
+which despiking threshold, which baseline, which smoothing window, which normalisation. When the pipeline is
+spread over three programs, half of those numbers are defaults nobody remembers choosing. Two labs applying
+“baseline correction” to the same spectrum can publish different peak ratios, and neither can say why.</p>
+
+<p>So I started writing a small tool for myself, with one rule: <b>every step that changes the data must
+be visible, adjustable and reportable</b>. That small tool became
+<a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-v1"><span class="num">02</span>Step 1 — one tab, one pipeline</h2>
+
+<p>The first version did one job: take raw spectrometer files and carry them, in one place, through the
+steps every Raman and SERS spectrum needs. Load the files, remove the spikes, subtract the baseline, smooth,
+normalise, average the replicates, find the bands. Each step has its own panel, its parameters are on the
+screen, and the result updates as you change them.</p>
+
+<p>The decision that shaped everything after it was to run the whole thing <b>inside the browser</b>. There is
+nothing to install and no account to create — useful in a teaching lab or on a borrowed computer — and, more
+importantly, the spectra never leave your machine. Clinical samples, unpublished results and someone else's
+data stay where they are; the app is just a web page doing arithmetic.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 1</div>
+  <img src="images/rnspectrax-plot.png" width="1400" height="755" loading="lazy" decoding="async" alt="A processed set of spectra in RNSpectraX: baseline-corrected group averages with automatic peak labels" style="display:block;width:100%;height:auto;border-radius:8px;background:#fff">
+  <figcaption><b>A typical RNSpectraX result:</b> baseline-corrected group averages with automatic peak labels
+  (synthetic demonstration spectra).</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-xy"><span class="num">03</span>Step 2 — not every dataset is a spectrum</h2>
+
+<p>It soon became clear that most data in a lab are not spectra. A calibration curve. An I–V
+characteristic. A decay to fit with an exponential. An absorbance series from a UV–vis spectrometer with forty
+columns in one file. These are all X–Y data, and they all need the same two things: a clean graph with error
+bars, and a fit you can defend.</p>
+
+<p>So RNSpectraX grew a second workspace, the <b>XY plotting and fitting mode</b>. It reads pasted values, CSV
+and Excel files, lets you tick the columns to plot and average replicate columns with SD or SEM, and fits
+linear, polynomial, exponential, power, logarithmic, Gaussian, Lorentzian, Langmuir and Hill models. The
+fitting was then made properly rigorous: Levenberg–Marquardt refinement, weighting by 1/σ² when error bars are
+given, and every parameter reported with its standard error, R² and reduced χ². Axis presets for FTIR, UV–vis,
+XRD, XPS, I–V, kinetics and thermal analysis followed, and later a <b>resonance tracker</b> for SPR and LSPR
+sensors that follows a dip through a concentration series and reports its shift, width, Q factor, LOD and LOQ.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fix"><span class="num">04</span>Step 3 — the release that fixed my own mistakes</h2>
+
+<p>The version I am proudest of added almost nothing new. Checking every step of the code against its
+derivation on paper, some of it did not survive. The Savitzky–Golay
+smoother was evaluating each local fit at the edge of its window instead of the centre, quietly shifting every
+band by a few wavenumbers. The rubber-band baseline was built from the wrong half of the convex hull. The
+despiker was “repairing” the steep flanks of genuine sharp bands. Peak detection used a fixed threshold that
+nobody could see.</p>
+
+<p>Version 3.3 fixed all of it, and the release notes say so in plain words. The polynomial baseline became
+iterative (ModPoly) so it runs under the bands instead of through them, peaks are found by topographic
+prominence with a visible threshold, and the band library assigns a peak only when a literature band is close
+enough — otherwise it says <i>Unassigned</i> instead of guessing. It was a humbling lesson and the best
+argument for the project's rule: if every step is visible, every step can be checked, including by me.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-answers"><span class="num">05</span>Step 4 — from figures to answers</h2>
+
+<p>A clean figure is the start of an analysis, not the end. Version 3.4 added the tools that turn spectra into
+numbers you can report:</p>
+<ul>
+  <li><b>Analysis panel</b> — band fitting with Gaussian, Lorentzian or pseudo-Voigt profiles and standard
+  errors; band heights, areas and ratios across every spectrum with Welch's t-test or ANOVA; principal
+  component analysis with 95 % confidence ellipses; and difference spectra between groups.</li>
+  <li><b>Identify</b> — your spectrum ranked against 202 reference spectra of 141 biomolecules from the open
+  RamanBiolib library, with the original publication of each match cited next to it.</li>
+  <li><b>Band libraries</b> — peak assignments from a biological-tissue library or, new this week, the
+  organelle marker bands of <i>The Raman Map of the Human Cell</i>, cited automatically in every report.</li>
+  <li><b>Shift calibration</b> from a silicon, polystyrene or diamond band, excluded regions, and derivative
+  spectra.</li>
+  <li><b>Project files</b> that save and reopen everything, and a <b>Methods text</b> generator that writes
+  the methods paragraph — with references — from the settings actually used.</li>
+</ul>
+<p>That last feature closes the loop that started the project: the analysis you ran and the analysis you
+describe can no longer drift apart.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-principles"><span class="num">06</span>What RNSpectraX refuses to hide</h2>
+
+<div class="callout tip"><b>Four rules, kept since version one</b>
+<p><b>No hidden defaults.</b> Every parameter that changes the data is on the screen, and the processed data
+can be downloaded at every stage — raw, despiked, baseline, corrected, smoothed, normalised.</p>
+<p><b>No data leave the tab.</b> All processing runs locally; there is no server that ever sees a spectrum.</p>
+<p><b>Suggestions, not identifications.</b> Band assignments and library matches are labelled as suggestions
+and can be edited; the sources are always cited.</p>
+<p><b>Written-out mathematics.</b> A methods guide explains every step — what it does, the equations, when to
+use it — so it can be described exactly in a paper.</p></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-beamx"><span class="num">07</span>The other half of every paper: the setup figure</h2>
+
+<p>With the data figures under control, the slowest figure in every manuscript became the one I had not
+thought about: the schematic of the setup. Laser, mirrors, beam splitter, objective, sample, spectrometer —
+drawn by hand in a vector editor, beam by beam. It looks fine until a reviewer asks for an extra filter, or a
+co-author moves the dichroic. Then every beam after it has to be redrawn, and nothing checks that the light
+could actually go where the lines say it does.</p>
+
+<p>That is where <a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>
+started: a drawing tool in which you place the optics and <b>the light is traced for you</b>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-trace"><span class="num">08</span>Step 1 — let the light draw itself</h2>
+
+<p>The first version was a canvas of optical parts and a ray tracer. Beams reflect from mirrors, split at beam
+splitters, focus through lenses and stop at detectors, and they move live as you drag or rotate anything. The
+same setup can be shown in three looks: <b>Schematic</b> line art for Optics Express-style figures,
+<b>Shaded</b> metal-and-glass for glossier journals, and a <b>3D</b> optical table with posts, shadows and
+glowing beams for graphical abstracts. It exports SVG and PDF with real, editable text, and TIFF or PNG with
+the DPI written in.</p>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 2</div>
+  <img src="images/rnbeamx-sers-setup.svg" width="1612" height="931" loading="lazy" decoding="async" alt="A SERS setup drawn in RNBeamX, with laser, filters, objective, sample and spectrometer; every beam is traced" style="display:block;width:100%;height:auto;border-radius:8px;background:#fff">
+  <figcaption><b>A SERS setup exported from RNBeamX</b> as a vector figure. Every beam in it is traced:
+  move the dichroic and the Raman path follows.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-physics"><span class="num">09</span>Step 2 — physics you can trust</h2>
+
+<p>A tracer that only routes lines is a fancy pen. Each upgrade since has made the drawing a little more of a
+model. Polarisation is followed with Jones calculus through wave plates, polarisers, PBS cubes and isolators.
+Prisms disperse with Sellmeier glass data and gratings obey the grating equation. Gaussian beams have real
+waists and Rayleigh ranges; ghost reflections follow the Fresnel equations, so Brewster windows behave;
+optical path and phase are tracked, so a Michelson shows fringes when you move its mirror. Fibres, cavities
+and ring resonators work as they should.</p>
+
+<p>Then came calculations that go beyond rays: reflectance of thin-film stacks and SPR prisms by the
+transfer-matrix method with measured optical constants, a rigorous grating solver (RCWA), nanoparticle-on-mirror
+gaps, ellipsometry, waveguide modes and the colour of a film. Each was checked against analytic results
+and published values, and the whole app now runs more than five hundred automated tests on every change.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-figures"><span class="num">10</span>Step 3 — from setups to whole figures</h2>
+
+<p>Journals do not want a setup on its own; they want a figure. So the next upgrades were about the page
+around the optics:</p>
+<ul>
+  <li><b>Journal presets</b> at final print size and a <b>journal check</b> that flags text under 5 pt, hairlines,
+  unlabelled optics and red–green beam pairs before an editor does.</li>
+  <li><b>Automatic label placement</b>, a <b>caption helper</b> that writes the abbreviation list, and
+  colour-blind-safe beam colours.</li>
+  <li><b>32 ready-made templates</b> — interferometers, confocal and light-sheet microscopes, Raman and FTIR
+  spectrometers, pump–probe, SPR — each a working model to edit, not a picture.</li>
+  <li><b>Animation</b> with one-click presets (a 3D turn of the whole setup, a switch-on, a scan) exported as
+  MP4, WebM or GIF for talks.</li>
+  <li><b>PowerPoint and TikZ export</b> and share links.</li>
+</ul>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 3</div>
+  <video controls muted playsinline preload="none" poster="images/rnbeamx-demo-poster.jpg" style="display:block;width:100%;height:auto;border-radius:8px;background:#000">
+    <source src="media/rnbeamx-demo.webm" type="video/webm">
+    <source src="media/rnbeamx-demo.mp4" type="video/mp4">
+  </video>
+  <figcaption><b>RNBeamX's 3D view</b>: a turntable swing and light flow, rendered in the browser.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-beyond"><span class="num">11</span>Step 4 — beyond the optical table</h2>
+
+<p>Real figures need more than optics on the page — and so a setup tool slowly turned into a small figure
+studio. Today RNBeamX holds 183 parts (366 counting their variants), and the newest ones are not
+optics at all:</p>
+<ul>
+  <li><b>Graphical-abstract and lab parts</b>: nanostructures, unit cells, energy-band diagrams, labware,
+  instruments, cells and biomolecules.</li>
+  <li><b>Data and image panels</b>: a vector data plot as panel <i>b</i>, and microscope images with
+  calibrated scale bars, length measurements with mean and standard deviation (made for nanorods), a porosity
+  analysis for SERS substrates, and an image editor for background removal, cropping and colour.</li>
+  <li><b>Diagrams</b>: neural networks, CNN and Transformer blocks, and flowcharts whose connectors stay
+  attached.</li>
+  <li><b>Project planning</b>, the latest addition: Gantt charts typed as plain text, and PERT networks that lay
+  themselves out and find the critical path — the work plans every proposal needs.</li>
+  <li><b>Learn pages</b> that explain each component to a newcomer, with the physics and a live demo.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-bridge"><span class="num">12</span>The bridge between the two</h2>
+
+<p>The two tools were written separately but for the same figure. A paper on a sensor typically needs a setup
+(panel a) and a processed spectrum (panel b). So RNSpectraX has a <b>→ RNBeamX</b> button that sends the
+processed spectrum straight across as a vector data panel, ready to sit next to the setup it was measured on.
+One measurement, two tabs, one figure — which, three programs and two file conversions ago, is where this
+story began.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-overview"><span class="num">13</span>The two tools at a glance</h2>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th></th><th>RNSpectraX — spectral analysis</th><th>RNBeamX — optical figures</th></tr></thead>
+  <tbody>
+    <tr><td>Purpose</td><td>From raw spectra and XY data to analysed, publication-ready plots</td><td>Optical setups, graphical abstracts and multi-panel figures with traced light</td></tr>
+    <tr><td>Input</td><td>Ocean Optics, Horiba, Renishaw, Bruker, WITec, JCAMP-DX, SPC, CSV, Excel</td><td>Parts placed by click, templates, your own SVG or photos, data and images</td></tr>
+    <tr><td>Core</td><td>Despiking, five baselines, smoothing, normalisation, averages with SD/SEM, peak detection and assignment</td><td>Ray tracing with reflection, refraction, dispersion, polarisation, Gaussian beams and interference</td></tr>
+    <tr><td>Analysis / physics</td><td>Band fitting, ratios with t-test / ANOVA, PCA, difference spectra, library identification, curve fitting with uncertainties, resonance tracking</td><td>Thin films and SPR (transfer matrix), gratings (RCWA), plasmonic gaps, ellipsometry, waveguide modes, colour</td></tr>
+    <tr><td>Output</td><td>PNG / TIFF / SVG at any DPI, processed data per stage, fit and peak reports, Methods text</td><td>SVG / PDF / TIFF / PNG, PowerPoint, TikZ, MP4 / GIF animation, share links</td></tr>
+    <tr><td>Extras</td><td>Project files, methods guide, band libraries with citations</td><td>Journal check, caption helper, micrograph tools, diagrams, Gantt and PERT charts, Learn pages</td></tr>
+    <tr><td>Runs</td><td colspan="2">In the browser — nothing to install, no account, your data stay on your computer</td></tr>
+  </tbody>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-next"><span class="num">14</span>Try them, break them, tell me</h2>
+
+<p>Both tools are free to use, written with my supervisor, Prof. Sachin Kumar Srivastava, and archived with a
+DOI so a paper can cite the exact version it used:</p>
+<ul>
+  <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX</a>
+  (<a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/guide.html" target="_blank" rel="noopener noreferrer">methods guide</a>) —
+  Naik, R., &amp; Srivastava, S. K. (2026). <i>RNSpectraX (Spectral Plotter and Analytics Suite)</i>. Zenodo.
+  <a href="https://doi.org/10.5281/zenodo.23593680" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.23593680</a></li>
+  <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX</a>
+  (<a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/guide.html" target="_blank" rel="noopener noreferrer">guide</a>) —
+  Naik, R., &amp; Srivastava, S. K. (2026). <i>RNBeamX (Optical Setup Designer)</i>. Zenodo.
+  <a href="https://doi.org/10.5281/zenodo.23697703" target="_blank" rel="noopener noreferrer">doi:10.5281/zenodo.23697703</a></li>
+</ul>
+<p>Every feature in this story started as a request or a complaint. If a file does not load, a number looks
+wrong, or a figure you need cannot be drawn yet, write to me — that is how the next step begins.</p>
+
+<hr>
+<p>Feedback and bug reports are welcome at
+<a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-sers-label-free.html">Label-free and labelled SERS →</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a></p>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261104c"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
