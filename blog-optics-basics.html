@@ -29,8 +29,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
-<link rel="stylesheet" href="css/site.css?v=20261104g">
-<link rel="stylesheet" href="css/article.css?v=20261104g">
+<link rel="stylesheet" href="css/site.css?v=20261104h">
+<link rel="stylesheet" href="css/article.css?v=20261104h">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
@@ -280,9 +280,13 @@ $$\tan 2\psi = \tan 2\theta\,\cos\delta, \qquad \sin 2\chi = \sin 2\theta\,\sin\
 <figure class="fig" data-fig="pol">
   <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
-  <figcaption><b>The polarisation ellipse.</b> The path of the electric-field vector at a fixed point during one
-  optical period, for the chosen amplitude split \(\theta\) and phase difference \(\delta\). The red segment shows the
-  direction of rotation.</figcaption>
+  <figcaption><b>How two oscillations make linear, circular and elliptical light.</b> Left: the plane across the beam,
+  with the light coming towards you. The red arrow is the electric field \(\mathbf E\) at one point in the beam; it is the sum of
+  its two components, \(E_x\) (gold, along x) and \(E_y\) (cyan, along y). As time runs, the tip of \(\mathbf E\) moves along the gold
+  path. Right: the same two components drawn against time; the red line marks the present moment. The amplitude split
+  \(\theta\) sets how big each component is; the phase difference \(\delta\) sets how far \(E_y\) lags behind \(E_x\). In step
+  (\(\delta = 0\)) the tip moves on a line; equal sizes a quarter period apart (\(\theta = 45°\), \(\delta = \pm 90°\)) give a circle;
+  anything else gives an ellipse. Try the preset buttons.</figcaption>
 </figure>
 
 <h3>Jones vectors: the standard states</h3>
@@ -1065,9 +1069,9 @@ Drude models, coupled-mode theory, the Marcuse mode-field formula). Corrections 
   </div>
 </footer>
 
-<script src="js/site.js?v=20261104g"></script>
-<script src="js/blog/vl-core.js?v=20261104g"></script>
-<script src="js/blog/wg-figs.js?v=20261104g"></script>
+<script src="js/site.js?v=20261104h"></script>
+<script src="js/blog/vl-core.js?v=20261104h"></script>
+<script src="js/blog/wg-figs.js?v=20261104h"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

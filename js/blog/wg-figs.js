@@ -104,23 +104,60 @@
     draw();
   };
 
-  /* ═══ 2. polarisation ellipse ═══ */
+  /* ═══ 2. polarisation ellipse: how two oscillations make a line, a circle or an ellipse (animated) ═══ */
   F.pol = function (fig) {
-    var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
-    plot.style.maxWidth = '440px'; plot.style.margin = '0 auto';
+    var ctl = VL.part(fig, 'vl-controls'), host = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout'), wt = 0;
+    var W = 880, H = 400, cx = 205, cy = 200, R = 150, tx0 = 470, tw = 390;
+    var f1 = function (v) { return v.toFixed(1); };
+    var arrow = function (x1, y1, x2, y2, col, w) { var dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy); if (L < 3) return ''; var ux = dx / L, uy = dy / L, hs = Math.min(11, L * 0.5), hw = hs * 0.45, ex = x2 - ux * hs * 0.7, ey = y2 - uy * hs * 0.7;
+      return '<line x1="' + f1(x1) + '" y1="' + f1(y1) + '" x2="' + f1(ex) + '" y2="' + f1(ey) + '" stroke="' + col + '" stroke-width="' + w + '"/><path d="M ' + f1(x2) + ' ' + f1(y2) + ' L ' + f1(x2 - ux * hs + uy * hw) + ' ' + f1(y2 - uy * hs - ux * hw) + ' L ' + f1(x2 - ux * hs - uy * hw) + ' ' + f1(y2 - uy * hs + ux * hw) + ' Z" fill="' + col + '"/>'; };
+    var txt = function (x, y, s, col, size, anchor, weight) { return '<text x="' + f1(x) + '" y="' + f1(y) + '" font-family="IBM Plex Mono, monospace" font-size="' + (size || 12) + '" fill="' + col + '"' + (anchor ? ' text-anchor="' + anchor + '"' : '') + (weight ? ' font-weight="' + weight + '"' : '') + '>' + s + '</text>'; };
     var draw = function () {
-      var th = ang.get() * Math.PI / 180, A = Math.cos(th), B = Math.sin(th), dl = ph.get() * Math.PI / 180, ts = VL.linspace(0, 2 * Math.PI, 241);
-      // time evolution at a fixed point: E_x = A cos ωt, E_y = B cos(ωt − δ)  (Jones vector (A, B e^{iδ}), fields ∝ e^{i(kz − ωt)})
-      var path = ts.map(function (t) { return [A * Math.cos(t), B * Math.cos(t - dl)]; });
-      var arrowAt = [0, 0.35].map(function (t) { return [A * Math.cos(t), B * Math.cos(t - dl)]; });
-      plot.innerHTML = VL.plot({ id: 'po', w: 420, h: 400, m: { l: 52, r: 18, t: 16, b: 46 }, label: 'Path of the electric-field vector', x: { min: -1.15, max: 1.15, label: 'E_x / E₀' }, y: { min: -1.15, max: 1.15, label: 'E_y / E₀' },
-        series: [{ data: path, color: C.au, width: 2.6 }, { data: arrowAt, color: C.red, width: 3 }], marks: [{ x: arrowAt[0][0], y: arrowAt[0][1], color: C.red, r: 4, label: 't = 0' }] });
+      var th = ang.get() * Math.PI / 180, A = Math.cos(th), B = Math.sin(th), dl = ph.get() * Math.PI / 180;
+      // at a fixed point: E_x = A cos ωt, E_y = B cos(ωt − δ)   (Jones vector (A, B e^{iδ}), fields ∝ e^{i(kz − ωt)})
+      var Ex = function (t) { return A * Math.cos(t); }, Ey = function (t) { return B * Math.cos(t - dl); };
+      var gold = C.au, red = C.red, cxc = C.cyan, ink = C.text2;
+      var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="plot" role="img" aria-label="How the two field components make the polarisation ellipse">';
+      // ── left: the plane across the beam ──
+      s += '<rect x="' + (cx - R - 25) + '" y="' + (cy - R - 25) + '" width="' + (2 * R + 50) + '" height="' + (2 * R + 50) + '" rx="8" fill="rgba(255,255,255,.02)" stroke="rgba(255,255,255,.1)"/>';
+      s += arrow(cx - R - 12, cy, cx + R + 18, cy, ink, 1.2) + arrow(cx, cy + R + 12, cx, cy - R - 18, ink, 1.2) + txt(cx + R + 4, cy - 8, 'x', ink, 13) + txt(cx + 8, cy - R - 8, 'y', ink, 13);
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="5" fill="none" stroke="' + ink + '"/><circle cx="' + cx + '" cy="' + cy + '" r="1.6" fill="' + ink + '"/>' + txt(cx - R - 18, cy + R + 18, 'light travels towards you (out of the screen)', C.text3, 10.5);
+      var path = []; for (var q = 0; q <= 240; q++) { var tt = 2 * Math.PI * q / 240; path.push(f1(cx + R * Ex(tt)) + ' ' + f1(cy - R * Ey(tt))); }
+      s += '<path d="M ' + path.join(' L ') + '" fill="none" stroke="' + gold + '" stroke-width="2.4" stroke-opacity="0.9"/>';
+      // direction of travel round the path: a small arrowhead a little after the current point
+      var px = cx + R * Ex(wt), py = cy - R * Ey(wt);
+      s += '<line x1="' + f1(px) + '" y1="' + f1(cy) + '" x2="' + f1(px) + '" y2="' + f1(py) + '" stroke="' + cxc + '" stroke-dasharray="3 3" stroke-opacity="0.7"/><line x1="' + f1(cx) + '" y1="' + f1(py) + '" x2="' + f1(px) + '" y2="' + f1(py) + '" stroke="' + gold + '" stroke-dasharray="3 3" stroke-opacity="0.7"/>';
+      s += arrow(cx, cy, px, cy, gold, 3) + arrow(cx, cy, cx, py, cxc, 3) + arrow(cx, cy, px, py, red, 3.4);
+      s += txt(px + (Ex(wt) >= 0 ? 6 : -6), cy + 16, 'E_x', gold, 12, Ex(wt) >= 0 ? 'start' : 'end', 600) + txt(cx + 8, py + (Ey(wt) >= 0 ? -6 : 14), 'E_y', cxc, 12, 'start', 600) + txt(px + 8, py - 8, 'E', red, 14, 'start', 700);
+      // ── right: E_x(t) and E_y(t) ──
+      var row = function (y0, f, col, name) {
+        var h = 70, o = '', pts = [];
+        o += '<line x1="' + tx0 + '" y1="' + y0 + '" x2="' + (tx0 + tw) + '" y2="' + y0 + '" stroke="rgba(255,255,255,.18)"/>' + txt(tx0 - 10, y0 + 4, name, col, 12, 'end', 600);
+        for (var q = 0; q <= 200; q++) { var tt = 4 * Math.PI * q / 200; pts.push(f1(tx0 + tw * q / 200) + ' ' + f1(y0 - h * f(tt))); }
+        o += '<path d="M ' + pts.join(' L ') + '" fill="none" stroke="' + col + '" stroke-width="2.2"/>';
+        var tc = ((wt % (4 * Math.PI)) + 4 * Math.PI) % (4 * Math.PI), xc = tx0 + tw * tc / (4 * Math.PI);
+        o += '<line x1="' + f1(xc) + '" y1="' + (y0 - h - 6) + '" x2="' + f1(xc) + '" y2="' + (y0 + h + 6) + '" stroke="' + red + '" stroke-opacity="0.5"/><circle cx="' + f1(xc) + '" cy="' + f1(y0 - h * f(wt)) + '" r="5" fill="' + col + '" stroke="#0f0a18"/>';
+        return o;
+      };
+      s += txt(tx0 + tw / 2, 28, 'the two components against time', ink, 12, 'middle', 600);
+      s += row(115, Ex, gold, 'E_x(t)') + row(290, Ey, cxc, 'E_y(t)');
+      s += txt(tx0 + tw, H - 12, 'time → (two periods)', C.text3, 10.5, 'end');
+      // mark the delay between the first peaks
+      if (A > 0.05 && B > 0.05 && Math.abs(dl) > 0.05) {
+        var tpx = tx0, d0 = ((dl % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI), tpy = tx0 + tw * d0 / (4 * Math.PI);
+        s += '<line x1="' + f1(tpx) + '" y1="45" x2="' + f1(tpx) + '" y2="360" stroke="' + gold + '" stroke-dasharray="2 4" stroke-opacity="0.5"/><line x1="' + f1(tpy) + '" y1="45" x2="' + f1(tpy) + '" y2="360" stroke="' + cxc + '" stroke-dasharray="2 4" stroke-opacity="0.5"/>';
+        s += arrow(tpx, 200, tpy, 200, C.text, 1.4) + txt((tpx + tpy) / 2, 194, 'delay δ', C.text, 11, 'middle');
+      }
+      host.innerHTML = s + '</svg>';
       var psi = 0.5 * Math.atan2(2 * A * B * Math.cos(dl), A * A - B * B) * 180 / Math.PI, chi = 0.5 * Math.asin(Math.max(-1, Math.min(1, 2 * A * B * Math.sin(dl)))) * 180 / Math.PI;
-      var kind = Math.abs(chi) < 0.5 ? 'linear' : Math.abs(Math.abs(chi) - 45) < 0.5 ? 'circular' : 'elliptical', hand = Math.abs(chi) < 0.5 ? '' : (chi > 0 ? ' — left-handed (counter-clockwise, seen facing the source)' : ' — right-handed (clockwise, seen facing the source)');
-      read.innerHTML = '<div><b>' + kind + '</b><span>polarisation' + hand + '</span></div><div><b>' + psi.toFixed(1) + '°</b><span>orientation ψ of the major axis</span></div><div><b>' + chi.toFixed(1) + '°</b><span>ellipticity angle χ (0 linear, ±45° circular)</span></div><div><b>(' + A.toFixed(2) + ', ' + B.toFixed(2) + ' e^{i' + Math.round(dl * 180 / Math.PI) + '°})</b><span>Jones vector</span></div>';
+      var kind = Math.abs(chi) < 0.5 ? 'linear' : Math.abs(Math.abs(chi) - 45) < 0.5 ? 'circular' : 'elliptical', hand = Math.abs(chi) < 0.5 ? ' — the tip moves back and forth on a line' : (chi > 0 ? ' — left-handed: anticlockwise as you look towards the source' : ' — right-handed: clockwise as you look towards the source');
+      read.innerHTML = '<div><b>' + kind + '</b><span>polarisation' + hand + '</span></div><div><b>' + psi.toFixed(1) + '°</b><span>tilt ψ of the long axis of the path</span></div><div><b>' + chi.toFixed(1) + '°</b><span>roundness χ: 0° line, ±45° circle</span></div><div><b>(' + A.toFixed(2) + ', ' + B.toFixed(2) + ' e^{i' + Math.round(dl * 180 / Math.PI) + '°})</b><span>Jones vector</span></div>';
     };
     var ang = VL.slider(ctl, { label: 'Amplitude split θ', min: 0, max: 90, step: 1, value: 45, fmt: function (v) { return v + '°'; }, on: draw });
-    var ph = VL.slider(ctl, { label: 'Phase difference δ', min: -180, max: 180, step: 1, value: 60, fmt: function (v) { return v + '°'; }, on: draw });
+    var ph = VL.slider(ctl, { label: 'Phase difference δ', min: -180, max: 180, step: 1, value: 0, fmt: function (v) { return v + '°'; }, on: draw });
+    var loop = VL.loop(host, function (dt) { if (!dt) return; wt += dt * 2 * Math.PI * 0.25; draw(); });
+    var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { btn.textContent = loop.toggle() ? 'Stop' : 'Start'; }, 'primary');
+    [['Linear 45°', 45, 0], ['Linear 0° (H)', 0, 0], ['Circular (left)', 45, 90], ['Circular (right)', 45, -90], ['Elliptical', 30, 60]].forEach(function (p) { VL.button(ctl, p[0], function () { ang.set(p[1]); ph.set(p[2]); }); });
     draw();
   };
 
