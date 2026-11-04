@@ -11,25 +11,50 @@
   var cabs2 = function (z) { return z[0] * z[0] + z[1] * z[1]; };
   var sinc = function (x) { return Math.abs(x) < 1e-9 ? 1 : Math.sin(x) / x; };
 
-  /* ═══ 1. double slit, one photon at a time ═══ */
+  /* ═══ 1. double slit, one photon at a time (animated) ═══ */
   F.dslit = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
-    var draw = function () {
-      var N = Math.round(np.get()), d = sep.get(), a = 0.25, one = mode.get() === 'one', R = rng(7);
-      var I = function (x) { var env = Math.pow(sinc(Math.PI * a * x), 2); return one ? env : env * Math.pow(Math.cos(Math.PI * d * x), 2); };
-      var pts = [], bins = new Array(80).fill(0), lo = -4, hi = 4;
-      while (pts.length < N) { var x = lo + (hi - lo) * R(); if (R() < I(x)) { pts.push([x, 0.05 + 0.9 * R()]); bins[Math.min(79, Math.floor((x - lo) / (hi - lo) * 80))]++; } }
-      var mx = Math.max.apply(null, bins) || 1, hist = bins.map(function (b, i) { return [lo + (i + 0.5) * (hi - lo) / 80, b / mx]; });
-      var th = VL.linspace(lo, hi, 600).map(function (x) { return [x, I(x)]; });
-      var ser = [{ data: pts, color: C.cyan, dots: true, r: N > 3000 ? 0.9 : N > 500 ? 1.4 : 2.4 }];
-      if (N >= 200) ser.push({ data: hist, color: C.au, width: 2, label: 'counts per position' }, { data: th, color: C.text, dash: '4 4', width: 1.2, label: 'wave prediction |ψ₁ + ψ₂|²' });
-      plot.innerHTML = VL.plot({ id: 'ds', w: 700, h: 300, label: 'Photons arriving at a screen behind two slits', x: { min: lo, max: hi, label: 'Position on the screen (units of λL / slit separation)' }, y: { min: 0, max: 1.05, label: 'Arrivals' }, series: ser, legend: N >= 200, legendX: 420, legendY: 14 });
-      read.innerHTML = '<div><b>' + N.toLocaleString('en') + '</b><span>photons detected, each as a single dot</span></div><div><b>' + (one ? 'no fringes' : 'fringes') + '</b><span>' + (one ? 'one slit open: only the single-slit envelope' : 'both slits open: each photon “interferes with itself”') + '</span></div>';
+    var NMAX = 10000, lo = -4, hi = 4, a = 0.25, R = rng(7), pts = [], bins = new Array(80).fill(0), hold = 0, sinceDraw = 1, carry = 0;
+    var I = function (x) { var env = Math.pow(sinc(Math.PI * a * x), 2); return mode.get() === 'one' ? env : env * Math.pow(Math.cos(Math.PI * sep.get() * x), 2); };
+    var addPhoton = function () { for (;;) { var x = lo + (hi - lo) * R(); if (R() < I(x)) { pts.push([x, 0.05 + 0.9 * R()]); bins[Math.min(79, Math.floor((x - lo) / (hi - lo) * 80))]++; return; } } };
+    var reset = function (n) { pts = []; bins = new Array(80).fill(0); R = rng(7); for (var i = 0; i < n; i++) addPhoton(); };
+    // plot geometry (VL.plot defaults: 700 × 300, margins l 62 r 18 t 16 b 46)
+    var W = 700, Hh = 300, ml = 62, mt = 16, pw = W - 62 - 18, ph = Hh - 16 - 46, ymax = 1.05;
+    var X = function (x) { return ml + (x - lo) / (hi - lo) * pw; }, Y = function (y) { return mt + ph - y / ymax * ph; };
+    var showCount = function () { var o = np.input.parentNode.querySelector('output'); np.input.value = Math.log10(Math.max(1, pts.length)); o.textContent = pts.length.toLocaleString('en'); };
+    var render = function () {
+      var N = pts.length, ser = [];
+      if (N >= 200) {
+        var mx = Math.max.apply(null, bins) || 1;
+        ser.push({ data: bins.map(function (c, i) { return [lo + (i + 0.5) * (hi - lo) / 80, c / mx]; }), color: C.au, width: 2, label: 'counts per position' },
+          { data: VL.linspace(lo, hi, 600).map(function (x) { return [x, I(x)]; }), color: C.text, dash: '4 4', width: 1.2, label: 'wave prediction |ψ₁ + ψ₂|²' });
+      }
+      var svg = VL.plot({ id: 'ds', w: W, h: Hh, label: 'Photons arriving at a screen behind two slits', x: { min: lo, max: hi, label: 'Position on the screen (units of λL / slit separation)' }, y: { min: 0, max: ymax, label: 'Arrivals' }, series: ser, legend: N >= 200, legendX: 420, legendY: 14 });
+      // the photons: one path of small squares (fast to draw even for thousands)
+      var s = N > 3000 ? 1.4 : N > 500 ? 2 : 3.6, d = '';
+      for (var i = 0; i < N; i++) d += 'M' + (X(pts[i][0]) - s / 2).toFixed(1) + ' ' + (Y(pts[i][1]) - s / 2).toFixed(1) + 'h' + s + 'v' + s + 'h-' + s + 'z';
+      svg = svg.replace('</svg>', '<path d="' + d + '" fill="' + C.cyan + '" clip-path="url(#ds-clip)"/></svg>');
+      plot.innerHTML = svg;
+      var one = mode.get() === 'one';
+      read.innerHTML = '<div><b>' + N.toLocaleString('en') + '</b><span>photons detected, each as a single dot</span></div><div><b>' + (one ? 'no fringes' : 'fringes') + '</b><span>' + (one ? 'one slit open: only the single-slit envelope' : 'both slits open: each photon “interferes with itself”') + '</span></div><div><b>' + (loop.playing ? 'running' : 'stopped') + '</b><span>' + (loop.playing ? 'photons keep arriving; press Stop to freeze' : 'press Start to continue') + '</span></div>';
+      showCount();
     };
-    var np = VL.slider(ctl, { label: 'Photons detected', min: 0.7, max: 4.3, step: 0.05, value: 1.3, log: true, fmt: function (v) { return Math.round(v).toLocaleString('en'); }, on: draw });
-    var sep = VL.slider(ctl, { label: 'Slit separation (relative)', min: 0.6, max: 2, step: 0.05, value: 1, fmt: function (v) { return v.toFixed(2); }, on: draw });
-    var mode = VL.select(ctl, { label: 'Slits', value: 'two', options: [['two', 'Both open'], ['one', 'One open']], on: draw });
-    draw();
+    var np = VL.slider(ctl, { label: 'Photons detected', min: 0, max: Math.log10(NMAX), step: 0.01, value: 0, log: true, fmt: function (v) { return Math.round(v).toLocaleString('en'); }, on: function (v) { reset(Math.round(v)); hold = 0; render(); } });
+    var sep = VL.slider(ctl, { label: 'Slit separation (relative)', min: 0.6, max: 2, step: 0.05, value: 1, fmt: function (v) { return v.toFixed(2); }, on: function () { reset(pts.length); render(); } });
+    var mode = VL.select(ctl, { label: 'Slits', value: 'two', options: [['two', 'Both open'], ['one', 'One open']], on: function () { reset(pts.length); render(); } });
+    // the arrival rate grows with the count, so the first dots appear one by one and the fringes fill in within ~15 s
+    var loop = VL.loop(plot, function (dt) {
+      if (!dt) return;
+      if (pts.length >= NMAX) { hold += dt; if (hold > 3) { hold = 0; reset(1); render(); } return; }
+      carry += dt * Math.max(2.5, pts.length * 0.6);
+      var n = Math.floor(carry); carry -= n;
+      for (var i = 0; i < n && pts.length < NMAX; i++) addPhoton();
+      sinceDraw += dt;
+      if (n && sinceDraw > (pts.length > 2000 ? 0.12 : 0.05)) { sinceDraw = 0; render(); }
+    });
+    var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { var on = loop.toggle(); btn.textContent = on ? 'Stop' : 'Start'; render(); }, 'primary');
+    VL.button(ctl, 'Restart', function () { reset(1); hold = 0; carry = 0; if (!loop.playing) { loop.play(); btn.textContent = 'Stop'; } render(); });
+    reset(1); render();
   };
 
   /* ═══ 2. polarisation ellipse ═══ */
