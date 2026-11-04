@@ -149,3 +149,16 @@
   .vl-readout { grid-template-columns: 1fr 1fr; }
   .dtm-row b { font-size: 1.3rem; }
 }
+
+/* ── Light theme: text colours, and figures keep their dark instrument-panel look ── */
+:root[data-theme="light"] .prose p, :root[data-theme="light"] .prose li,
+:root[data-theme="light"] .prose th, :root[data-theme="light"] .prose td { color: #2b2339; }
+:root[data-theme="light"] .prose code { color: #8a5800; }
+:root[data-theme="light"] .fig:not(.paper) {
+  --void: #0f0a18; --void-2: #171026; --void-3: #211735;
+  --hairline: rgba(255, 255, 255, .10); --hairline-2: rgba(255, 255, 255, .18);
+  --text: #efeaf6; --text-2: #b6acc8; --text-3: #837a94;
+  --au: #e0a82e; --au-soft: rgba(224, 168, 46, .14); --au-line: rgba(224, 168, 46, .38);
+  --stokes: #e2566e; --anti: #45bfd6;
+  color-scheme: dark; color: var(--text);
+}

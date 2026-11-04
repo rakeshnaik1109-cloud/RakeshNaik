@@ -200,7 +200,7 @@ p + p { margin-top: 1.1em; }
   align-items: center; justify-content: center;
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1080px) {
   .nav-toggle { display: flex; }
   .nav-links {
     position: fixed; inset: 68px 0 auto 0;
@@ -951,6 +951,51 @@ p + p { margin-top: 1.1em; }
   .spectrum-fill, .band-dot { opacity: 1; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   Light theme — opt-in via the sun/moon button in the navigation.
+   The site stays dark by default; the choice is remembered per browser.
+═══════════════════════════════════════════════════════════════════ */
+.theme-toggle {
+  order: 3; flex-shrink: 0;
+  width: 38px; height: 38px; margin-left: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; color: var(--text-2);
+  border: 1px solid var(--hairline); border-radius: 9px; cursor: pointer;
+  transition: color .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+}
+.theme-toggle:hover { color: var(--au); border-color: var(--au-line); background: var(--au-soft); }
+.theme-toggle .i-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .i-sun { display: block; }
+:root[data-theme="light"] .theme-toggle .i-moon { display: none; }
+.nav-links { order: 2; }
+.nav-toggle { order: 4; }
+@media (max-width: 1080px) { .theme-toggle { margin-left: auto; } }
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --void:      #faf8fc;
+  --void-2:    #ffffff;
+  --void-3:    #f0ecf6;
+  --hairline:  rgba(21, 15, 32, .10);
+  --hairline-2:rgba(21, 15, 32, .20);
+  --paper:     #f0ecf6;
+  --paper-2:   #e6e1ef;
+  --text:      #1b1428;
+  --text-2:    #4c4360;
+  --text-3:    #6c6380;
+  --au:        #a36800;
+  --au-soft:   rgba(163, 104, 0, .10);
+  --au-line:   rgba(163, 104, 0, .38);
+  --stokes:    #c2334f;
+  --anti:      #0f7c95;
+}
+:root[data-theme="light"] .nav { background: rgba(250, 248, 252, .85); }
+:root[data-theme="light"] .nav-links a:hover { background: rgba(21, 15, 32, .05); }
+:root[data-theme="light"] .nav-cta:hover { background: rgba(163, 104, 0, .18) !important; }
+:root[data-theme="light"] .btn-gold { color: #fff; }
+:root[data-theme="light"] .btn-gold:hover { background: #8a5800; }
+:root[data-theme="light"] ::selection { color: #fff; }
 
 /* ═══════════════════════════════════════════════════════════════════
    Print — so a PDF of this page reads like a CV

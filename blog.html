@@ -26,7 +26,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script>document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
 <link rel="stylesheet" href="css/site.css">
 <style>.post-card-link{display:inline-flex;margin-top:18px;font-family:var(--mono);font-size:.78rem;font-weight:600;color:var(--au);text-decoration:none;border:1px solid var(--au-line);border-radius:99px;padding:8px 16px}.post-card-link:hover{background:var(--au-soft)}</style>
 <script type="application/ld+json">
