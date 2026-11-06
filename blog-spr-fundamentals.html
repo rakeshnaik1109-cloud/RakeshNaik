@@ -160,16 +160,44 @@ about \(10^{14}\ \mathrm{s^{-1}}\)). The solution \(x = eE/[m(\omega^2 + i\gamma
 \(P = -n_e e x\) for \(n_e\) electrons per unit volume, and therefore a relative permittivity [2, 6]</p>
 $$\varepsilon_m(\omega) = 1 - \frac{\omega_p^2}{\omega^2 + i\gamma\omega}, \qquad \omega_p^2 = \frac{n_e e^2}{\varepsilon_0 m}.$$
 <p>This is the <b>Drude model</b>. \(\omega\) is the angular frequency of the light, \(\varepsilon_0\) the permittivity of
-free space and \(\omega_p\) the <i>plasma frequency</i> — for gold and silver in the ultraviolet, near 9 eV. Below
-\(\omega_p\) the electrons move against the field (they are driven above their natural response, so they lag by more
-than 90°), and the real part of \(\varepsilon_m\) becomes <b>negative</b>. Visible and near-infrared light sits far below
+free space and \(\omega_p\) the <i>plasma frequency</i> — for gold and silver in the ultraviolet, near 9 eV.</p>
+
+<p>What the equation says is easiest to see. A free electron has no spring holding it in place, so the oscillating
+push \(-eE\) only accelerates it, and an accelerated mass is displaced opposite to its acceleration: the
+electron's displacement lags the push by almost 180° (exactly 180° without damping). The electrons therefore end
+up displaced <i>along</i> \(E\), and since their charge is negative the dipole they form, \(P = -n_e e x\), points
+<i>against</i> \(E\). That makes a negative contribution, \(-\omega_p^2/\omega^2\), to the permittivity. At low
+frequency the electrons have plenty of time to move far and this contribution outweighs the vacuum's 1: below
+\(\omega_p\) the real part of \(\varepsilon_m\) becomes <b>negative</b>. In a slab with the field across it, the
+charge piled up at the two faces adds its own field, and the total field inside, \(E_\text{in} = E_0/\varepsilon_m\),
+is <i>reversed</i> and weaker than the field outside: the metal screens the light out and reflects it. Above
+\(\omega_p\) the electrons cannot keep up, \(0 < \varepsilon_m < 1\), and the metal becomes transparent (the alkali
+metals are transparent in the ultraviolet for this reason). Exactly at \(\omega_p\), \(\varepsilon_m \approx 0\) and
+the electron sea can oscillate on its own: the bulk plasmon.</p>
+
+<figure class="fig" data-fig="drude">
+  <div class="fig-tag">Figure 1 · <span class="live">Animated</span></div>
+  <noscript><p>This animated figure needs JavaScript.</p></noscript>
+  <figcaption><b>Free electrons in an oscillating field</b> (Drude model, field across a thin slab). Gold arrows:
+  the applied field \(E(t)\) outside. Cyan: the free electrons, jiggling and colliding, and sloshing together as one
+  cloud over the fixed positive ions. The cloud's shift uncovers positive ions at one face and piles electrons up at
+  the other (the + and − bands); their field adds to the applied one, and the total field inside (red arrows) is
+  \(E_0/\varepsilon\). Below \(\omega_p\) the red arrows point opposite to the gold ones — the sign of
+  \(\varepsilon < 0\). On the right, the time traces show the electrons' displacement in step with the field
+  inside the metal — half a cycle behind the force \(-eE_\text{in}\) on them — while below \(\omega_p\) that inside
+  field is opposite to the applied one: the electrons rush so far that they over-cancel it. Raise the frequency through \(\omega_p\) to watch the inside field flip to the
+  same direction as the applied one, with a large response at \(\omega_p\) itself; raise the damping to see the phase
+  shift and the absorption grow. (Arrow lengths and the cloud's shift are compressed for display.)</figcaption>
+</figure>
+
+<p>Visible and near-infrared light sits far below
 \(\omega_p\), so for gold and silver \(\varepsilon_m' \) is strongly negative and grows more negative with
 wavelength, while the imaginary part \(\varepsilon_m''\) describes absorption. Real metals add interband transitions
 (in gold, below about 600 nm) that the free-electron model leaves out, so in this article the measured optical
 constants of Johnson and Christy [5] are used throughout.</p>
 
 <figure class="fig" data-fig="eps">
-  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The permittivity of gold and silver</b> (Johnson & Christy [5]). The real part ε′ is negative and
   falls steadily with wavelength; the dotted line is −ε_d of the dielectric. A bound surface wave needs ε′ below that
@@ -210,7 +238,7 @@ $$\frac{\kappa_d}{\varepsilon_d} + \frac{\kappa_m}{\varepsilon_m} = 0 .$$
 \(\kappa^2\) gives the dispersion relation of the surface plasmon polariton (SPP) [1, 2, 7]:</p>
 $$k_{sp} = k_0\sqrt{\frac{\varepsilon_m\,\varepsilon_d}{\varepsilon_m + \varepsilon_d}}, \qquad n_{sp} \equiv \frac{\operatorname{Re} k_{sp}}{k_0}.$$
 <p>For \(k_{sp}\) to be real and larger than the light's, the denominator must be negative: \(\varepsilon_m' < -\varepsilon_d\).
-That is the line drawn in Figure 1. With gold and water at 633 nm (\(\varepsilon_m \approx -11.8 + 1.2i\),
+That is the line drawn in Figure 2. With gold and water at 633 nm (\(\varepsilon_m \approx -11.8 + 1.2i\),
 \(\varepsilon_d = 1.774\)) one finds \(n_{sp} \approx 1.44\) — larger than water's index, 1.333. The number
 \(n_{sp}\) acts as an <b>effective index</b> of the surface wave: it travels along the surface as if through a medium of
 index 1.44. Because \(\varepsilon_m\) has an imaginary part, so does \(k_{sp}\): the wave is absorbed as it travels.</p>
@@ -234,7 +262,7 @@ is everywhere parallel to the surface — TE — has no normal component, pushes
 and never piles up charge. With nothing to hold on to, no bound wave forms; the TE light is simply reflected.</p>
 
 <figure class="fig" data-fig="tmte">
-  <div class="fig-tag">Figure 2 · <span class="live">Animated</span></div>
+  <div class="fig-tag">Figure 3 · <span class="live">Animated</span></div>
   <noscript><p>This animated figure needs JavaScript.</p></noscript>
   <figcaption><b>TM against TE at a gold–water surface.</b> Top: the field of a surface plasmon polariton, calculated
   from the equations of section 03 — the electric field (arrows) loops from positive to negative surface charge, the
@@ -249,7 +277,7 @@ and never piles up charge. With nothing to hold on to, no bound wave forms; the 
   <li><b>Every SPR instrument uses p-polarised light</b> — TM with respect to the metal surface. In a prism coupler that
   means the electric field lies in the plane containing the beam and the surface normal.</li>
   <li><b>s-polarised light is the perfect reference.</b> It travels the same path but never couples; dividing the
-  p signal by the s signal removes source drifts and detector effects. Figure 7 shows both.</li>
+  p signal by the s signal removes source drifts and detector effects. Figure 8 shows both.</li>
   <li><b>On a grating, "TM" is defined relative to the grooves.</b> The field must have a component along the grating
   vector \(\mathbf{K}\) (perpendicular to the grooves) and normal to the surface — see section 14 and
   <a href="blog-optics-basics.html#s-tetm">Part 1, section 10</a> for how TE and TM are assigned on gratings.</li>
@@ -266,7 +294,7 @@ $$\delta_d = \frac{1}{\operatorname{Re}\kappa_d} = \frac{1}{k_0\operatorname{Re}
 surface. In the square root, \(n_{sp}\) is complex here, so the formula uses the full \(k_{sp}/k_0\).</p>
 
 <figure class="fig" data-fig="sppprops">
-  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>How far the plasmon reaches and travels</b>, from the dispersion relation with Johnson & Christy
   constants. At 633 nm on gold in water the field reaches ≈ 180 nm into the water and only ≈ 27 nm into the gold, and
@@ -288,11 +316,11 @@ $$n_{sp} > \sqrt{\varepsilon_d} = n_d .$$
 surface, \(k_x = n_d k_0 \sin\theta\), can match the plasmon's (the boundary conditions hold at every \(x\) only if both
 fields vary as the same \(e^{ik_x x}\)). But \(\sin\theta \le 1\), so \(k_x \le n_d k_0 < \operatorname{Re}k_{sp}\). At every
 angle and every wavelength, light from the dielectric is <b>short of momentum</b>. On a dispersion diagram the plasmon
-curve always lies to the right of the light line; they never cross (Figure 4). That is why a gold mirror does not show
+curve always lies to the right of the light line; they never cross (Figure 5). That is why a gold mirror does not show
 plasmon dips in ordinary reflection [1].</p>
 
 <figure class="fig" data-fig="disp">
-  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Dispersion of the surface plasmon</b> (photon energy against in-plane wavevector, real metal data).
   The dashed light line of the dielectric never meets the plasmon curve. Light inside a glass prism has more momentum,
@@ -306,7 +334,7 @@ helps to see the bookkeeping on a single axis: plot \(k_x/k_0\) (an effective in
 each coupler contributes.</p>
 
 <figure class="fig" data-fig="kmatch">
-  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The momentum ledger.</b> The gold line is the plasmon's \(n_{sp}\), its shaded width the plasmon's
   damping \(\operatorname{Im}n_{sp}\). Light from the water can never reach it. A prism raises the ceiling to \(n_p\); a grating adds
@@ -332,7 +360,7 @@ each coupler contributes.</p>
 </ul>
 
 <figure class="fig">
-  <div class="fig-tag">Figure 6</div>
+  <div class="fig-tag">Figure 7</div>
   <svg viewBox="0 0 900 380" role="img" aria-label="Five SPR coupling configurations">
     <style>.ct{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}.cl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#b6acc8}</style>
     <g fill="none" stroke="rgba(255,255,255,.12)"><rect x="5" y="5" width="292" height="182" rx="8"/><rect x="304" y="5" width="292" height="182" rx="8"/><rect x="603" y="5" width="292" height="182" rx="8"/><rect x="5" y="193" width="292" height="182" rx="8"/><rect x="304" y="193" width="292" height="182" rx="8"/><rect x="603" y="193" width="292" height="182" rx="8"/></g>
@@ -406,7 +434,7 @@ $$r = \frac{r_{pm} + r_{md}\,e^{2ik_{z,m}d}}{1 + r_{pm}\,r_{md}\,e^{2ik_{z,m}d}}
 algebra [13]; every reflectance curve in this article comes from it.</p>
 
 <figure class="fig" data-fig="kret">
-  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The Kretschmann configuration, calculated exactly.</b> Left: the beam at the chosen angle; the
   reflected beam fades and the plasmon (yellow) lights up as the angle crosses the resonance. Right: the p-polarised
@@ -435,10 +463,10 @@ Two conclusions follow directly:</p>
 
 <p><b>Thickness.</b> Thin films radiate strongly (\(\Gamma_\text{rad} > \Gamma_i\)): the dip is broad and shallow. Thick films
 barely let the light through (\(\Gamma_\text{rad} < \Gamma_i\)): narrow but shallow again. In between lies critical coupling —
-about 50 nm for gold across the red and near-infrared, and somewhat more (55–60 nm) for silver (Figure 8).</p>
+about 50 nm for gold across the red and near-infrared, and somewhat more (55–60 nm) for silver (Figure 9).</p>
 
 <figure class="fig" data-fig="thick">
-  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Film thickness and critical coupling</b> (BK7 prism, water). Top: reflectance curves for five
   thicknesses. Bottom: the minimum reflectance falls to zero at one thickness (critical coupling) while the width keeps
@@ -446,17 +474,17 @@ about 50 nm for gold across the red and near-infrared, and somewhat more (55–6
 </figure>
 
 <p><b>Gold or silver.</b> The width scales with \(\operatorname{Im}n_{sp}\), which is set by the loss ratio \(\varepsilon_m''/|\varepsilon_m'|\)
-(Figure 1). Silver's ratio is several times smaller, so its dip is several times sharper. But silver tarnishes in air
+(Figure 2). Silver's ratio is several times smaller, so its dip is several times sharper. But silver tarnishes in air
 and dissolves in many buffers, so sensor chips almost always use gold — or silver protected by a few nanometres of gold
-(the "Silver + 10 nm gold cap" option in Figure 7), which keeps most of silver's sharpness with gold's surface
+(the "Silver + 10 nm gold cap" option in Figure 8), which keeps most of silver's sharpness with gold's surface
 chemistry.</p>
 <p><b>Adhesion layers.</b> Gold sticks poorly to glass, so a 1–5 nm layer of chromium or titanium is evaporated first (the
 practicalities are in <a href="blog-vacuum-deposition.html">Part 5</a>). These metals are much lossier than gold. In
 the red, where gold's own loss already sets a broad dip, a few nanometres change little; in the near-infrared, where
-the gold dip is sharp, 5 nm of chromium broadens it by well over half (set Figure 7 to 850 nm and try it). The adhesion
+the gold dip is sharp, 5 nm of chromium broadens it by well over half (set Figure 8 to 850 nm and try it). The adhesion
 layer also adds to the total metal thickness, so the gold must be thinned to stay at critical coupling. Keeping the
 adhesion layer as thin as possible, or replacing it with a molecular adhesion promoter, is part of good chip design.</p>
-<p><b>Wavelength.</b> Moving from 633 nm to 850 nm narrows the gold dip several-fold (compare in Figure 7), because gold's
+<p><b>Wavelength.</b> Moving from 633 nm to 850 nm narrows the gold dip several-fold (compare in Figure 8), because gold's
 loss ratio falls and the interband absorption is left behind. The price is a deeper reach into the liquid (section 13).</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -468,12 +496,12 @@ reflected at the prism's base sends its evanescent field across the gap to the m
 plasmon at the same matching condition \(n_p\sin\theta = n_{sp}\) — here with \(n_{sp}\) computed for the gap medium.</p>
 <p>The gap plays the role that the film thickness plays in Kretschmann's geometry: it sets the radiative damping. Too
 narrow, and the prism over-couples and broadens the dip; too wide, and the evanescent field never reaches the metal.
-The best gap is of the order of the wavelength (Figure 9). Holding a gap of a few hundred nanometres uniform over a
+The best gap is of the order of the wavelength (Figure 10). Holding a gap of a few hundred nanometres uniform over a
 millimetre-sized spot is awkward, which is why Otto's geometry is rarely used in biosensing. It shines where the metal
 cannot be a thin film — single crystals, bulk samples, or surfaces that must not be touched from behind.</p>
 
 <figure class="fig" data-fig="otto">
-  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>The Otto configuration</b>: prism, dielectric gap, thick metal. The dip deepens and narrows as the gap
   approaches its optimum and fades when the gap is too wide for the evanescent field to bridge. Dashed lines: half and
@@ -499,7 +527,7 @@ something else [3, 4]:</p>
 </ul>
 
 <figure class="fig" data-fig="interrog">
-  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>One chip, four readouts</b> (BK7, 50 nm gold, water and water + Δn). Angular: the dip moves in angle.
   Wavelength: at a fixed angle the dip moves in wavelength. Intensity: at a fixed angle and wavelength the reflected
@@ -515,16 +543,16 @@ something else [3, 4]:</p>
 \(n_{sp}^2 = \varepsilon_m n_d^2/(\varepsilon_m + n_d^2)\) with \(\varepsilon_m\) taken as real for the moment, a few lines of algebra give
 \(\mathrm{d}n_{sp}/\mathrm{d}n_d = (n_{sp}/n_d)^3\), and so</p>
 $$S_\theta \equiv \frac{\mathrm{d}\theta_\text{res}}{\mathrm{d}n_d} = \frac{(n_{sp}/n_d)^3}{n_p\cos\theta_\text{res}}\quad(\text{radians per refractive-index unit, RIU}).$$
-<p>For gold, water and BK7 at 633 nm this gives about 150°/RIU, close to the exact 147°/RIU of Figure 7. A
+<p>For gold, water and BK7 at 633 nm this gives about 150°/RIU, close to the exact 147°/RIU of Figure 8. A
 lower-index prism pushes the resonance to larger angles, where \(\cos\theta\) is small: the sensitivity rises (try
-SF10 against BK7 in Figure 7: about 77°/RIU against 147°/RIU).</p>
+SF10 against BK7 in Figure 8: about 77°/RIU against 147°/RIU).</p>
 
 <h3>Spectral sensitivity</h3>
 <p>At fixed angle, the resonance wavelength moves by</p>
 $$S_\lambda \equiv \frac{\mathrm{d}\lambda_\text{res}}{\mathrm{d}n_d} = \frac{(n_{sp}/n_d)^3}{\left|\dfrac{\mathrm{d}n_{sp}}{\mathrm{d}\lambda} - \sin\theta\,\dfrac{\mathrm{d}n_p}{\mathrm{d}\lambda}\right|} ,$$
 <p>where the denominator is how fast the mismatch between plasmon and prism changes with wavelength. In the near-infrared
 \(n_{sp}\) flattens towards \(n_d\) (the plasmon becomes more light-like), the denominator becomes tiny and \(S_\lambda\) climbs to
-many thousands of nm/RIU (Figure 11).</p>
+many thousands of nm/RIU (Figure 12).</p>
 
 <h3>Width and figure of merit</h3>
 <p>A big shift is useless if the dip is broad: what matters is how precisely the dip's centre can be located. The
@@ -538,7 +566,7 @@ light source and detector, the number of points fitted and temperature control (
 \(10^{-4}\) per kelvin) [22].</p>
 
 <figure class="fig" data-fig="sens">
-  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Sensitivity of prism sensors versus wavelength</b> (BK7, water, gold and silver), from the matching
   condition with dispersive constants. Top: angular sensitivity changes only slowly with wavelength. Bottom: spectral
@@ -560,7 +588,7 @@ even though the infrared gives larger bulk sensitivity and a sharper dip; and wh
 bacteria) prefer the longer reach of the infrared or of long-range plasmons (section 17).</p>
 
 <figure class="fig" data-fig="surf">
-  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>How much of the bulk response a layer produces</b>, as a function of its thickness (a layer 0.005 higher
   in index than water on 50 nm gold, Kretschmann; the fraction is the same for any small index contrast). Solid: transfer-matrix calculation; dashed: the estimate \(1 - e^{-2t/\delta_d}\). At 633 nm a
@@ -594,7 +622,7 @@ TM (p) light, as on a flat surface. In a "conical" mounting the grooves are rota
 along \(\mathbf{K}\); the bookkeeping is in <a href="blog-optics-basics.html#s-tetm">Part 1, section 10</a>.</p>
 
 <figure class="fig" data-fig="grating">
-  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Grating coupling.</b> Upper right: resonance wavelength against angle for orders ±1 and ±2 (the
   matching condition with dispersive gold or silver and water). Bottom: the zeroth-order reflectance at the chosen
@@ -641,7 +669,7 @@ dip never reaches zero. Each ray angle resonates at a different wavelength, and 
 of them; that is why fibre SPR dips are broader than prism dips.</p>
 
 <figure class="fig" data-fig="fibre">
-  <div class="fig-tag">Figure 14 · <span class="live">Animated · interactive</span></div>
+  <div class="fig-tag">Figure 15 · <span class="live">Animated · interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>A fibre SPR probe.</b> Top: light of the chosen colour travels through the core; in the gold-coated,
   unclad section each reflection hands part of it to the plasmon (the real per-reflection losses at that wavelength
@@ -665,7 +693,7 @@ of them; that is why fibre SPR dips are broader than prism dips.</p>
 
 <h3>Probe designs</h3>
 <figure class="fig">
-  <div class="fig-tag">Figure 15</div>
+  <div class="fig-tag">Figure 16</div>
   <svg viewBox="0 0 900 300" role="img" aria-label="Fibre SPR probe designs">
     <style>.ft{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;fill:#efeaf6}.fl{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:#b6acc8}</style>
     <g fill="none" stroke="rgba(255,255,255,.12)"><rect x="5" y="5" width="292" height="140" rx="8"/><rect x="304" y="5" width="292" height="140" rx="8"/><rect x="603" y="5" width="292" height="140" rx="8"/><rect x="5" y="153" width="292" height="140" rx="8"/><rect x="304" y="153" width="292" height="140" rx="8"/><rect x="603" y="153" width="292" height="140" rx="8"/></g>
@@ -716,7 +744,7 @@ matches the water's index, then with 10–25 nm of gold. The result is a dip tha
 with a field that reaches much further into the sample.</p>
 
 <figure class="fig" data-fig="lrspr">
-  <div class="fig-tag">Figure 16 · <span class="live">Interactive</span></div>
+  <div class="fig-tag">Figure 17 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Conventional against long-range SPR</b> (BK7 prism; transfer-matrix calculation). The long-range
   structure — a low-index buffer layer and a thin gold film — gives a much narrower dip. Its depth depends on the buffer
@@ -744,7 +772,7 @@ ranges (aluminium in the ultraviolet) [4]. Each one changes either \(n_{sp}\) (a
 
 <p>In the models of this article, gold at 633 nm in a BK7 prism gives about 150°/RIU and a dip ≈ 5° wide; moving to
 850 nm narrows it to ≈ 1°. The same chip read spectrally gives a few thousand nm/RIU. A first-order grating of 560 nm
-period gives several hundred nm/RIU, and the fibre probe of Figure 14 about 2000 nm/RIU with a broader, shallower dip. The
+period gives several hundred nm/RIU, and the fibre probe of Figure 15 about 2000 nm/RIU with a broader, shallower dip. The
 right choice depends on what is measured: thin molecular layers (short reach, red light), particles and cells (long
 reach), many channels (waveguides), or measurements where the sample is (fibres).</p>
 
@@ -752,7 +780,7 @@ reach), many channels (waveguides), or measurements where the sample is (fibres)
 <h2 id="s-quiz"><span class="num">19</span>Test yourself</h2>
 
 <figure class="fig" data-fig="sprquiz">
-  <div class="fig-tag">Figure 17 · <span class="live">Quiz</span></div>
+  <div class="fig-tag">Figure 18 · <span class="live">Quiz</span></div>
   <noscript><p>This quiz needs JavaScript.</p></noscript>
   <figcaption>Eight questions on the ideas of this article. Each answer comes with the reason.</figcaption>
 </figure>
@@ -819,8 +847,8 @@ reach), many channels (waveguides), or measurements where the sample is (fibres)
 <hr>
 <p>All reflectance curves are exact transfer-matrix calculations with measured optical constants (gold and silver from
 Johnson & Christy, chromium from Rakić et al., water fitted to Hale & Querry, glasses from their Sellmeier formulas).
-Simplified models are named where they are used: the Lorentzian line shape for the grating (Figure 13), and the
-meridional-ray model with a uniformly filled numerical aperture for the fibre (Figure 14). Corrections and questions
+Simplified models are named where they are used: the Lorentzian line shape for the grating (Figure 14), and the
+meridional-ray model with a uniformly filled numerical aperture for the fibre (Figure 15). Corrections and questions
 are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
 
 <p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-optics-basics.html">Light from first principles →</a> · <a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor →</a></p>
@@ -876,7 +904,7 @@ are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac
 
 <script src="js/site.js?v=20261106a"></script>
 <script src="js/blog/vl-core.js?v=20261106a"></script>
-<script src="js/blog/spr-figs.js?v=20261106a"></script>
+<script src="js/blog/spr-figs.js?v=20261106b"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

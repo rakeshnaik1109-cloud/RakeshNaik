@@ -105,6 +105,80 @@
   var mediumOpts = [['water', 'Water'], ['air', 'Air']];
   var nMed = function (m, nm) { return m === 'air' ? 1.0003 : nWater(nm); };
 
+  /* ═══ 0. free electrons in an oscillating field (animated Drude slab) ═══ */
+  F.drude = function (fig) {
+    var ctl = VL.part(fig, 'vl-controls'), W = 880, H = 400, g = VL.canvas(fig, W, H), read = VL.part(fig, 'vl-readout');
+    var phi = 0, hist = [], R0 = (function () { var s = 11; return function () { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; }; })();
+    var sx0 = 120, sx1 = 400, sy0 = 92, sy1 = 300;   // the metal slab
+    var ions = [], els = [];
+    for (var r = 0; r < 6; r++) for (var c = 0; c < 10; c++) ions.push([sx0 + 14 + c * 28, sy0 + 18 + r * 34]);
+    for (var k = 0; k < 80; k++) els.push({ x: sx0 + 6 + R0() * (sx1 - sx0 - 12), y: sy0 + 6 + R0() * (sy1 - sy0 - 12), vx: R0() - 0.5, vy: R0() - 0.5 });
+    var P = {};
+    var calc = function () {
+      var w = om.get(), gm = ga.get(), eps = cs([1, 0], cd([1, 0], [w * w, gm * w]));   // ε = 1 − 1/(w² + i γ w), in units of ω_p
+      var Ein = cd([1, 0], eps), X = cd(Ein, [w * w, gm * w]);   // field inside (÷ E0) and electron displacement (along x, arbitrary units)
+      P = { w: w, gm: gm, eps: eps, Ein: Ein, X: X };
+      var aE = Math.hypot(Ein[0], Ein[1]), ph = carg(cd([-1, 0], [w * w, gm * w])) / D2R;   // phase of x relative to the force −eE_in acting on the electrons
+      var reg = w < 0.97 ? 'below ω_p: the electrons over-respond, ε′ < 0 — the field inside is reversed and weakened; light is reflected' : w > 1.03 ? 'above ω_p: the electrons cannot keep up, 0 < ε′ < 1 — light passes through (the metal is transparent)' : 'at ω_p: ε ≈ 0 — the electron sea oscillates by itself (bulk plasmon)';
+      read.innerHTML = '<div><b>' + eps[0].toFixed(2) + (eps[1] >= 0 ? ' + ' : ' − ') + Math.abs(eps[1]).toFixed(2) + 'i</b><span>ε(ω) = 1 − ω_p² / (ω² + iγω)</span></div><div><b>' + (Ein[0] < 0 ? '−' : '+') + aE.toFixed(2) + ' × E₀</b><span>field inside the slab, E₀ / ε (' + (Ein[0] < 0 ? 'reversed' : 'same direction') + ')</span></div><div><b>' + Math.abs(ph).toFixed(0) + '°</b><span>lag of the electrons\' displacement behind the force −eE_in on them (no damping: exactly 180°)</span></div><div><b>' + (w < 0.97 ? 'reflects' : w > 1.03 ? 'transparent' : 'plasma resonance') + '</b><span>' + reg + '</span></div>';
+    };
+    var sat = function (a, k) { return a / (k + a) * (k + 1); };   // compresses large amplitudes for drawing
+    var arrowH = function (x, y, L, col, w) {   // horizontal arrow centred at (x, y), signed length L
+      if (Math.abs(L) < 2) return; g.strokeStyle = col; g.fillStyle = col; g.lineWidth = w || 2.4;
+      var x0 = x - L / 2, x1 = x + L / 2, s = L > 0 ? 1 : -1; g.beginPath(); g.moveTo(x0, y); g.lineTo(x1 - s * 6, y); g.stroke();
+      g.beginPath(); g.moveTo(x1, y); g.lineTo(x1 - s * 9, y - 5); g.lineTo(x1 - s * 9, y + 5); g.closePath(); g.fill();
+    };
+    var draw = function (dt) {
+      var cp = Math.cos(phi), sp = Math.sin(phi), re = function (z) { return z[0] * cp + z[1] * sp; };   // Re(z e^{−iφ})
+      var E0 = cp, Ei = re(P.Ein), xr = re(P.X), aX = Math.hypot(P.X[0], P.X[1]), shift = aX ? 24 * sat(aX, 1.2) / (aX * 2.2) * xr : 0;
+      shift = VL.clamp(shift, -26, 26);
+      g.clearRect(0, 0, W, H);
+      g.font = '600 14px "IBM Plex Sans", sans-serif'; g.fillStyle = C.text; g.textAlign = 'left';
+      g.fillText('A metal slab in an oscillating field', 20, 24);
+      g.font = '12px "IBM Plex Mono", monospace'; g.fillStyle = C.text2; g.fillText('field outside (gold) · field inside (red) · free electrons (cyan) on fixed ions (+)', 20, 44);
+      // applied field outside, on both sides
+      for (var i = 0; i < 4; i++) { var yy = sy0 + 26 + i * 52; arrowH(62, yy, 64 * E0, C.au, 3); arrowH(sx1 + 58, yy, 64 * E0, C.au, 3); }
+      // slab: ions, then the electron sea shifted by the collective displacement
+      g.fillStyle = '#3d2f12'; g.fillRect(sx0, sy0, sx1 - sx0, sy1 - sy0);
+      g.save(); g.beginPath(); g.rect(sx0, sy0, sx1 - sx0, sy1 - sy0); g.clip();
+      g.fillStyle = 'rgba(69,191,214,.16)'; g.fillRect(sx0 + shift, sy0, sx1 - sx0, sy1 - sy0);
+      ions.forEach(function (p) { g.fillStyle = '#e8b84a'; g.font = '700 15px "IBM Plex Mono", monospace'; g.textAlign = 'center'; g.fillText('+', p[0], p[1] + 5); });
+      els.forEach(function (e) {   // thermal jiggle + collisions (random kicks) + the collective sloshing
+        var jit = 14 * (dt || 0); e.vx += (R0() - 0.5) * 0.6; e.vy += (R0() - 0.5) * 0.6; e.vx *= 0.9; e.vy *= 0.9; e.x += e.vx * jit; e.y += e.vy * jit;
+        if (e.x < sx0 + 4) e.x = sx1 - 6; if (e.x > sx1 - 4) e.x = sx0 + 6; if (e.y < sy0 + 4) e.y = sy1 - 6; if (e.y > sy1 - 4) e.y = sy0 + 6;
+        g.fillStyle = C.cyan; g.beginPath(); g.arc(e.x + shift, e.y, 3.2, 0, 2 * Math.PI); g.fill();
+      });
+      g.restore();
+      // surface charges left behind at the faces
+      var q = Math.min(1, Math.abs(shift) / 20), posLeft = shift > 0;
+      var face = function (x, pos) { g.fillStyle = pos ? 'rgba(255,138,156,' + (0.25 + 0.6 * q) + ')' : 'rgba(127,211,255,' + (0.25 + 0.6 * q) + ')'; g.fillRect(x - 5, sy0, 10, sy1 - sy0); g.fillStyle = pos ? '#ff8a9c' : '#7fd3ff'; g.font = '700 16px "IBM Plex Mono", monospace'; g.textAlign = 'center'; for (var j = 0; j < 4; j++) g.fillText(pos ? '+' : '−', x, sy0 + 34 + j * 50); };
+      if (q > 0.08) { face(sx0, posLeft); face(sx1, !posLeft); }
+      g.strokeStyle = C.au; g.lineWidth = 1.2; g.strokeRect(sx0, sy0, sx1 - sx0, sy1 - sy0);
+      // field inside
+      var aI = Math.hypot(P.Ein[0], P.Ein[1]), shown = 70 * Math.min(1.6, aI <= 1 ? aI : 1 + 0.3 * Math.log(aI)), Lin = aI ? shown * Ei / aI : 0;
+      for (var m = 0; m < 3; m++) arrowH((sx0 + sx1) / 2, sy0 + 46 + m * 62, Lin, C.red, 3.2);
+      g.font = '12px "IBM Plex Mono", monospace'; g.textAlign = 'center'; g.fillStyle = C.text3;
+      g.fillText('applied E', 62, sy1 + 24); g.fillText('applied E', sx1 + 58, sy1 + 24); g.fillText('metal: fixed ions, free electrons', (sx0 + sx1) / 2, sy1 + 24);
+      g.fillText('(cloud shift exaggerated)', (sx0 + sx1) / 2, sy1 + 42);
+      // time traces
+      hist.push([phi, E0, Ei / (aI || 1), xr / (aX || 1)]); while (hist.length && phi - hist[0][0] > 4 * Math.PI) hist.shift();
+      var tx0 = 520, tx1 = W - 24, ty = 190, th = 66;
+      g.strokeStyle = 'rgba(255,255,255,.12)'; g.lineWidth = 1; g.beginPath(); g.moveTo(tx0, ty); g.lineTo(tx1, ty); g.stroke();
+      g.textAlign = 'left'; g.fillStyle = C.text2; g.font = '12px "IBM Plex Mono", monospace'; g.fillText('last two cycles, each curve scaled to its own size', tx0, 84);
+      [[1, C.au, 'E applied'], [2, C.red, 'E inside'], [3, C.cyan, 'electron displacement x']].forEach(function (s, n) {
+        g.strokeStyle = s[1]; g.lineWidth = 2; g.beginPath();
+        hist.forEach(function (h, j) { var X = tx1 - (phi - h[0]) / (4 * Math.PI) * (tx1 - tx0), Y = ty - th * h[s[0]]; j ? g.lineTo(X, Y) : g.moveTo(X, Y); }); g.stroke();
+        g.fillStyle = s[1]; g.fillRect(tx0, 304 + n * 18, 16, 3); g.fillStyle = C.text2; g.font = '11px "IBM Plex Mono", monospace'; g.fillText(s[2], tx0 + 24, 309 + n * 18);
+      });
+      g.fillStyle = C.text3; g.textAlign = 'left'; g.fillText('← earlier', tx0, 280); g.textAlign = 'right'; g.fillText('now →', tx1, 280); g.textAlign = 'left';
+    };
+    var loop = VL.loop(fig, function (dt) { if (!P.eps) return; phi += 2 * Math.PI * 0.45 * Math.sqrt(P.w) * dt; draw(dt); });
+    VL.playButton(ctl, loop);
+    var om = VL.slider(ctl, { label: 'Light frequency ω / ω_p', min: 0.3, max: 2, step: 0.01, value: 0.6, fmt: function (v) { return v.toFixed(2); }, on: function () { calc(); hist = []; draw(0); } });
+    var ga = VL.slider(ctl, { label: 'Damping γ / ω_p', min: 0.01, max: 0.5, step: 0.01, value: 0.05, fmt: function (v) { return v.toFixed(2); }, on: function () { calc(); hist = []; draw(0); } });
+    calc(); draw(0);
+  };
+
   /* ═══ 1. the permittivity of gold and silver ═══ */
   F.eps = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
