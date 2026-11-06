@@ -29,8 +29,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
-<link rel="stylesheet" href="css/site.css?v=20261104h">
-<link rel="stylesheet" href="css/article.css?v=20261104h">
+<link rel="stylesheet" href="css/site.css?v=20261106a">
+<link rel="stylesheet" href="css/article.css?v=20261106a">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
@@ -85,7 +85,7 @@
     tags — and the physics and kinetics that decide how much antigen you will actually see. With the
     reaction mechanisms, the equations and simulations to try.</p>
     <div class="article-meta"><span class="post-tag">Tutorial · Biosensing</span><span>28 September 2026</span><span>≈ 60 min read</span><span>Rakesh Naik</span></div>
-    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 6 of 8</span><a class="sn-prev" href="blog-vacuum-deposition.html">← Part 5 · Vacuum and thin-film deposition</a><a class="sn-next" href="blog-sers-clinical.html">Part 7 · The future of SERS in clinical diagnostics →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 7 of 9</span><a class="sn-prev" href="blog-spr-fundamentals.html">← Part 6 · Surface plasmon resonance from first principles</a><a class="sn-next" href="blog-sers-clinical.html">Part 8 · The future of SERS in clinical diagnostics →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
   </div>
 </section>
 
@@ -122,8 +122,9 @@ time. On its own, gold does not know which molecules to catch. The selectivity c
 <b>capture layer</b> — most often antibodies — and the way those antibodies are attached decides how many
 of them work, how stable the sensor is, how much non-specific signal it picks up, whether it can be
 regenerated, and finally the detection limit. This article builds that layer from the bottom up. If the
-plasmon physics is new, the companion article <a href="blog-spectroscopy.html">Vibrational spectroscopy,
-plasmonics and SERS</a> explains it from first principles. Numbers in square brackets refer to the
+plasmon physics is new, the previous part, <a href="blog-spr-fundamentals.html">Surface plasmon resonance from
+first principles</a>, builds it from the ground up — why only TM light excites the plasmon, and how prisms,
+gratings, waveguides and fibres couple to it. Numbers in square brackets refer to the
 <a href="#s-refs">references</a>.</p>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -134,7 +135,8 @@ with about 50 nm of gold. At one angle, the component of the light's wavevector 
 that of the surface plasmon on the other side of the gold, energy flows into the plasmon, and the
 reflected intensity dips. The plasmon's field reaches into the liquid as an evanescent wave that decays
 over roughly 200 nm, so the resonance angle depends on the refractive index of whatever sits within that
-distance of the gold [1, 2]. Proteins have a higher refractive index (≈ 1.45) than water (1.333): when they
+distance of the gold [1, 2] (the derivation, and the other ways of exciting the plasmon, are in
+<a href="blog-spr-fundamentals.html">Part 6</a>). Proteins have a higher refractive index (≈ 1.45) than water (1.333): when they
 bind, the dip moves.</p>
 
 <figure class="fig" data-fig="sprcurve">
@@ -641,7 +643,7 @@ two-compartment model of [26]. Protocols are generic starting points — follow 
 instructions. Corrections and questions are welcome at
 <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
 <p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a> · <a href="blog-sers-label-free.html">Label-free and labelled SERS →</a></p>
-<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 6 of 8</span><a class="sn-prev" href="blog-vacuum-deposition.html">← Part 5 · Vacuum and thin-film deposition</a><a class="sn-next" href="blog-sers-clinical.html">Part 7 · The future of SERS in clinical diagnostics →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 7 of 9</span><a class="sn-prev" href="blog-spr-fundamentals.html">← Part 6 · Surface plasmon resonance from first principles</a><a class="sn-next" href="blog-sers-clinical.html">Part 8 · The future of SERS in clinical diagnostics →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
 
 </div>
 </div>
@@ -691,9 +693,9 @@ instructions. Corrections and questions are welcome at
   </div>
 </footer>
 
-<script src="js/site.js?v=20261104h"></script>
-<script src="js/blog/vl-core.js?v=20261104h"></script>
-<script src="js/blog/ab-figs.js?v=20261104h"></script>
+<script src="js/site.js?v=20261106a"></script>
+<script src="js/blog/vl-core.js?v=20261106a"></script>
+<script src="js/blog/ab-figs.js?v=20261106a"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

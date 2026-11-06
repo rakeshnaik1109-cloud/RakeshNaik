@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Surface Plasmon Resonance from First Principles: Prism, Grating, Waveguide and Fibre SPR | Rakesh Naik</title>
+<meta name="description" content="Surface plasmon resonance from the ground up: the Drude metal, the bound TM surface wave and why TE cannot excite it, the momentum gap, Kretschmann and Otto prism coupling, grating, waveguide and fibre-optic SPR, interrogation schemes, sensitivity and figure of merit, with interactive simulations.">
+<meta name="keywords" content="surface plasmon resonance, SPR sensor, surface plasmon polariton, Kretschmann configuration, Otto configuration, grating coupled SPR, fiber optic SPR, waveguide SPR, TM polarization, dispersion relation, angular interrogation, wavelength interrogation, figure of merit, long-range SPR">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spr-fundamentals.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Surface Plasmon Resonance from First Principles: Prism, Grating, Waveguide and Fibre SPR">
+<meta property="og:description" content="Why only TM light excites a surface plasmon, why light needs a coupler, and how prisms, gratings, waveguides and optical fibres do it — with exact simulations.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spr-fundamentals.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-09-11">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Surface Plasmon Resonance from First Principles: Prism, Grating, Waveguide and Fibre SPR">
+<meta name="twitter:description" content="SPR from first principles: the bound TM wave, the momentum gap, and prism, grating, waveguide and fibre couplers, with interactive simulations.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261106a">
+<link rel="stylesheet" href="css/article.css?v=20261106a">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"Surface Plasmon Resonance from First Principles: Prism, Grating, Waveguide and Fibre SPR","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spr-fundamentals.html"}]},
+{"@type":"TechArticle","headline":"Surface Plasmon Resonance from First Principles: Prism, Grating, Waveguide and Fibre SPR","datePublished":"2026-09-11","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"Surface plasmon resonance from first principles: the bound TM surface wave, the momentum gap, prism, grating, waveguide and fibre coupling, interrogation and figure of merit.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>Surface plasmon resonance from first principles: why TM, and how prisms, gratings and fibres excite it</h1>
+    <p class="lede">Why can a sheet of gold carry a wave of light bound to its surface? Why does only one
+    polarisation launch it, and why can light not launch it directly? Starting from free electrons and Maxwell's
+    equations, this tutorial builds the surface plasmon, the momentum gap, and every way of bridging it — Kretschmann
+    and Otto prisms, gratings, planar waveguides and optical fibres — together with the four ways of reading the
+    resonance and the numbers that decide a sensor's performance: sensitivity, width, figure of merit and reach.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Plasmonics</span><span>11 September 2026</span><span>≈ 55 min read</span><span>Rakesh Naik</span></div>
+    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 6 of 9</span><a class="sn-prev" href="blog-vacuum-deposition.html">← Part 5 · Vacuum and thin-film deposition</a><a class="sn-next" href="blog-antibody-spr.html">Part 7 · Putting antibodies on an SPR sensor →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-what">What SPR measures</a></li>
+    <li><a href="#s-drude">Free electrons and a negative permittivity</a></li>
+    <li><a href="#s-bound">A wave that clings to a surface</a></li>
+    <li><a href="#s-tm">Why only TM light excites a surface plasmon</a></li>
+    <li><a href="#s-numbers">The plasmon in numbers: reach, travel and momentum</a></li>
+    <li><a href="#s-gap">The momentum gap</a></li>
+    <li><a href="#s-ways">Four ways to bridge the gap</a></li>
+    <li><a href="#s-kret">Prism coupling I: the Kretschmann configuration</a></li>
+    <li><a href="#s-film">Choosing the metal film</a></li>
+    <li><a href="#s-otto">Prism coupling II: the Otto configuration</a></li>
+    <li><a href="#s-read">Reading the resonance: angle, wavelength, intensity, phase</a></li>
+    <li><a href="#s-sens">Sensitivity, width and figure of merit</a></li>
+    <li><a href="#s-surface">Bulk versus surface sensitivity</a></li>
+    <li><a href="#s-grating">Grating coupling</a></li>
+    <li><a href="#s-wg">Waveguide coupling</a></li>
+    <li><a href="#s-fibre">Fibre-optic SPR</a></li>
+    <li><a href="#s-lr">Long-range SPR and other refinements</a></li>
+    <li><a href="#s-compare">The configurations compared</a></li>
+    <li><a href="#s-quiz">Test yourself</a></li>
+    <li><a href="#s-symbols">Symbols used in this article</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>Surface plasmon resonance (SPR) sensors watch molecules arrive at a metal surface without labels and in real
+time. They do it by exciting a very particular kind of wave — a surface plasmon — that lives on the boundary
+between a metal and a liquid, and by noticing how that wave changes when the liquid changes. This article builds
+SPR from the ground up: why a metal can carry such a wave at all, why only one polarisation of light can launch
+it, why light cannot launch it directly, and how prisms, gratings, waveguides and optical fibres get around that.
+Every curve below is calculated, so the numbers can be checked against the equations in the text. The physics of
+light in metals and of TE and TM polarisation was set up in <a href="blog-optics-basics.html">Part 1</a>
+(sections <a href="blog-optics-basics.html#s-metal">11</a> and <a href="blog-optics-basics.html#s-tetm">10</a>);
+<a href="blog-spectroscopy.html#s-spp">Part 2</a> introduced surface plasmons briefly. The next part,
+<a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor</a>, takes the chip built here and turns it
+into a biosensor. Numbers in square brackets refer to the <a href="#s-refs">references</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-what"><span class="num">01</span>What SPR measures</h2>
+
+<p>An SPR sensor is a refractometer for a very thin slice of liquid. Light is used to launch a surface wave on a gold
+film; the wave only exists at one precise combination of angle and wavelength, and that combination depends on the
+refractive index of the medium within a few hundred nanometres of the gold. When molecules bind to the surface, the
+local refractive index rises (protein ≈ 1.45, water ≈ 1.333), and the resonance moves. Measure the movement and you
+have measured the binding — continuously, without fluorescent labels [3, 4].</p>
+<p>Three questions organise the rest of the article:</p>
+<ol>
+  <li><b>What is the wave?</b> A surface plasmon polariton: electrons in the metal oscillating together with an
+  electromagnetic field, bound to the interface (sections 02–05).</li>
+  <li><b>How does light launch it?</b> The wave carries more momentum than light of the same frequency, so a coupler
+  is needed: a prism, a grating, a waveguide or a fibre (sections 06–10 and 14–17).</li>
+  <li><b>How is a change read out, and how well?</b> By angle, wavelength, intensity or phase; with a sensitivity,
+  a linewidth and a figure of merit that follow from the same physics (sections 11–13).</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-drude"><span class="num">02</span>Free electrons and a negative permittivity</h2>
+
+<p>Start with what makes a metal a metal: some of its electrons are not tied to atoms. Push them with an oscillating
+electric field \(E(t) = E_0 e^{-i\omega t}\) and each one obeys Newton's law with a friction term,</p>
+$$m\,\ddot{x} + m\gamma\,\dot{x} = -e\,E(t),$$
+<p>where \(m\) and \(-e\) are the electron's mass and charge, \(x\) its displacement and \(\gamma\) a damping rate (collisions,
+about \(10^{14}\ \mathrm{s^{-1}}\)). The solution \(x = eE/[m(\omega^2 + i\gamma\omega)]\) gives a polarisation
+\(P = -n_e e x\) for \(n_e\) electrons per unit volume, and therefore a relative permittivity [2, 6]</p>
+$$\varepsilon_m(\omega) = 1 - \frac{\omega_p^2}{\omega^2 + i\gamma\omega}, \qquad \omega_p^2 = \frac{n_e e^2}{\varepsilon_0 m}.$$
+<p>This is the <b>Drude model</b>. \(\omega\) is the angular frequency of the light, \(\varepsilon_0\) the permittivity of
+free space and \(\omega_p\) the <i>plasma frequency</i> — for gold and silver in the ultraviolet, near 9 eV. Below
+\(\omega_p\) the electrons move against the field (they are driven above their natural response, so they lag by more
+than 90°), and the real part of \(\varepsilon_m\) becomes <b>negative</b>. Visible and near-infrared light sits far below
+\(\omega_p\), so for gold and silver \(\varepsilon_m' \) is strongly negative and grows more negative with
+wavelength, while the imaginary part \(\varepsilon_m''\) describes absorption. Real metals add interband transitions
+(in gold, below about 600 nm) that the free-electron model leaves out, so in this article the measured optical
+constants of Johnson and Christy [5] are used throughout.</p>
+
+<figure class="fig" data-fig="eps">
+  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The permittivity of gold and silver</b> (Johnson & Christy [5]). The real part ε′ is negative and
+  falls steadily with wavelength; the dotted line is −ε_d of the dielectric. A bound surface wave needs ε′ below that
+  line. Gold's loss ε″ rises steeply below ≈ 600 nm (interband absorption), which is why gold sensors work in the red
+  and near-infrared. Silver has a smaller ε″ / |ε′| — a sharper resonance — but tarnishes.</figcaption>
+</figure>
+
+<p>A negative permittivity is the whole secret. In a dielectric the bound charges follow the field and partly
+screen it; in a metal the free electrons over-respond. At a boundary between a material with \(\varepsilon > 0\) and
+one with \(\varepsilon < 0\), the normal component of the field flips sign — and that, as the next section shows, is
+exactly what a surface wave needs.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-bound"><span class="num">03</span>A wave that clings to a surface</h2>
+
+<p>Take a flat boundary at \(z = 0\): a dielectric with permittivity \(\varepsilon_d\) above (\(z > 0\)), a metal with
+\(\varepsilon_m\) below. Ask Maxwell's equations a precise question: <i>is there a wave that travels along the
+surface, in \(x\), and decays away from it on both sides?</i> Such a wave has the form \(e^{i(k_x x - \omega t)}\) times
+\(e^{-\kappa_d z}\) above and \(e^{+\kappa_m z}\) below, with both decay constants \(\kappa_d, \kappa_m\) positive. Each
+medium separately demands the wave equation, which links the three wavevector components:</p>
+$$\kappa_d^2 = k_x^2 - \varepsilon_d k_0^2, \qquad \kappa_m^2 = k_x^2 - \varepsilon_m k_0^2, \qquad k_0 = \frac{\omega}{c} = \frac{2\pi}{\lambda}.$$
+<p>Here \(k_x\) is the wavevector along the surface, \(k_0\) the wavevector of light in vacuum, \(c\) the speed of light
+and \(\lambda\) the vacuum wavelength. What remains is to satisfy the boundary conditions — and here the two
+polarisations behave completely differently. Following the convention of <a href="blog-optics-basics.html#s-tetm">Part 1,
+section 10</a>, the <b>plane of incidence</b> contains the propagation direction \(x\) and the surface normal \(z\). In
+<b>TM</b> (p) polarisation the magnetic field \(\mathbf{H} = H_y \hat{y}\) points out of that plane and \(\mathbf{E}\)
+lies in it; in <b>TE</b> (s) polarisation it is the other way round.</p>
+
+<h3>The TM case</h3>
+<p>Write \(H_y = A\,e^{i k_x x}e^{-\kappa_d z}\) above and \(H_y = B\,e^{i k_x x}e^{\kappa_m z}\) below. Ampère's law,
+\(\nabla \times \mathbf{H} = -i\omega\varepsilon_0\varepsilon\mathbf{E}\), gives the electric field from \(H_y\):</p>
+$$E_x = \frac{1}{i\omega\varepsilon_0\varepsilon}\,\frac{\partial H_y}{\partial z}, \qquad E_z = -\frac{1}{i\omega\varepsilon_0\varepsilon}\,\frac{\partial H_y}{\partial x} = -\frac{k_x}{\omega\varepsilon_0\varepsilon}\,H_y .$$
+<p>At the boundary the tangential components \(H_y\) and \(E_x\) must be continuous. The first gives \(A = B\). The second,
+with \(\partial H_y/\partial z = -\kappa_d H_y\) above and \(+\kappa_m H_y\) below, gives</p>
+$$\frac{\kappa_d}{\varepsilon_d} + \frac{\kappa_m}{\varepsilon_m} = 0 .$$
+<p>Both \(\kappa\)'s are positive (the wave must decay), so this can only hold if \(\varepsilon_d\) and \(\varepsilon_m\) have
+<b>opposite signs</b> — a dielectric against a metal. Squaring and substituting the two expressions for
+\(\kappa^2\) gives the dispersion relation of the surface plasmon polariton (SPP) [1, 2, 7]:</p>
+$$k_{sp} = k_0\sqrt{\frac{\varepsilon_m\,\varepsilon_d}{\varepsilon_m + \varepsilon_d}}, \qquad n_{sp} \equiv \frac{\operatorname{Re} k_{sp}}{k_0}.$$
+<p>For \(k_{sp}\) to be real and larger than the light's, the denominator must be negative: \(\varepsilon_m' < -\varepsilon_d\).
+That is the line drawn in Figure 1. With gold and water at 633 nm (\(\varepsilon_m \approx -11.8 + 1.2i\),
+\(\varepsilon_d = 1.774\)) one finds \(n_{sp} \approx 1.44\) — larger than water's index, 1.333. The number
+\(n_{sp}\) acts as an <b>effective index</b> of the surface wave: it travels along the surface as if through a medium of
+index 1.44. Because \(\varepsilon_m\) has an imaginary part, so does \(k_{sp}\): the wave is absorbed as it travels.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-tm"><span class="num">04</span>Why only TM light excites a surface plasmon</h2>
+
+<p>Repeat the same calculation for TE polarisation. Now \(E_y = A\,e^{ik_x x}e^{-\kappa_d z}\) above and
+\(B\,e^{ik_x x}e^{\kappa_m z}\) below. Continuity of \(E_y\) gives \(A = B\). Faraday's law gives \(H_x \propto \partial E_y/\partial z\),
+and continuity of \(H_x\) (no magnetic response, \(\mu = 1\) on both sides) gives</p>
+$$A\,(\kappa_d + \kappa_m) = 0 .$$
+<p>Both \(\kappa\)'s are positive, so their sum cannot vanish: \(A = 0\). <b>There is no TE surface wave</b> on a metal —
+no matter what the metal's permittivity is, because the permittivity never entered this condition [1, 2].</p>
+
+<p>The physical reason is just as clear. A surface plasmon is a wave of <b>surface charge</b>: bands of extra electrons
+and of missing electrons that travel along the interface, with field lines that leave the positive bands and return
+to the negative ones. Gauss's law ties the surface charge density \(\sigma\) to the jump in the <i>normal</i> component
+of the field, \(\sigma = \varepsilon_0(\varepsilon_d E_{z,d} - \varepsilon_m E_{z,m})\) for the polarisation charge
+(the displacement field \(D_z = \varepsilon_0\varepsilon E_z\) is continuous, but \(E_z\) itself jumps). A field that
+is everywhere parallel to the surface — TE — has no normal component, pushes the electrons sideways along the surface,
+and never piles up charge. With nothing to hold on to, no bound wave forms; the TE light is simply reflected.</p>
+
+<figure class="fig" data-fig="tmte">
+  <div class="fig-tag">Figure 2 · <span class="live">Animated</span></div>
+  <noscript><p>This animated figure needs JavaScript.</p></noscript>
+  <figcaption><b>TM against TE at a gold–water surface.</b> Top: the field of a surface plasmon polariton, calculated
+  from the equations of section 03 — the electric field (arrows) loops from positive to negative surface charge, the
+  magnetic field points in and out of the page (⊙ / ⊗), and everything decays away from the interface and travels to
+  the right. Inside the gold, \(E_z\) is reversed and weaker by \(\varepsilon_d/|\varepsilon_m|\). Bottom: a TE field has
+  only a component along \(y\) (out of the page), parallel to the surface; it drives no surface charge and is reflected,
+  with a node at the metal. Press Pause to freeze the motion.</figcaption>
+</figure>
+
+<p>Three practical consequences follow and are worth remembering:</p>
+<ul>
+  <li><b>Every SPR instrument uses p-polarised light</b> — TM with respect to the metal surface. In a prism coupler that
+  means the electric field lies in the plane containing the beam and the surface normal.</li>
+  <li><b>s-polarised light is the perfect reference.</b> It travels the same path but never couples; dividing the
+  p signal by the s signal removes source drifts and detector effects. Figure 7 shows both.</li>
+  <li><b>On a grating, "TM" is defined relative to the grooves.</b> The field must have a component along the grating
+  vector \(\mathbf{K}\) (perpendicular to the grooves) and normal to the surface — see section 14 and
+  <a href="blog-optics-basics.html#s-tetm">Part 1, section 10</a> for how TE and TM are assigned on gratings.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-numbers"><span class="num">05</span>The plasmon in numbers: reach, travel and momentum</h2>
+
+<p>The dispersion relation fixes everything a sensor designer needs. Three lengths matter:</p>
+$$\delta_d = \frac{1}{\operatorname{Re}\kappa_d} = \frac{1}{k_0\operatorname{Re}\sqrt{n_{sp}^2 - \varepsilon_d}}, \qquad \delta_m = \frac{1}{\operatorname{Re}\kappa_m}, \qquad L_{sp} = \frac{1}{2\operatorname{Im}k_{sp}} .$$
+<p>\(\delta_d\) is the distance into the dielectric over which the field falls to \(1/e\) — the depth the sensor "sees";
+\(\delta_m\) is the same inside the metal (a few tens of nanometres, which is why the metal film can be thin); and
+\(L_{sp}\) is the propagation length, over which the plasmon's intensity falls to \(1/e\) as it travels along the
+surface. In the square root, \(n_{sp}\) is complex here, so the formula uses the full \(k_{sp}/k_0\).</p>
+
+<figure class="fig" data-fig="sppprops">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>How far the plasmon reaches and travels</b>, from the dispersion relation with Johnson & Christy
+  constants. At 633 nm on gold in water the field reaches ≈ 180 nm into the water and only ≈ 27 nm into the gold, and
+  the plasmon travels a few micrometres. Towards the infrared it reaches further and travels much further — and its
+  momentum excess over light shrinks, which (section 12) is what makes long-wavelength sensors sensitive.</figcaption>
+</figure>
+
+<p>Two trade-offs are already visible. A longer wavelength gives a longer \(L_{sp}\) — a narrower resonance, because the
+width of any resonance is inversely proportional to the lifetime of what resonates — but also a deeper reach
+\(\delta_d\), so a thin layer of molecules fills a smaller fraction of the field (section 13). And silver beats gold on
+\(L_{sp}\) everywhere, at the cost of chemical stability.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-gap"><span class="num">06</span>The momentum gap</h2>
+
+<p>Since \(\varepsilon_m' < -\varepsilon_d\), the fraction under the square root is larger than \(\varepsilon_d\):</p>
+$$n_{sp} > \sqrt{\varepsilon_d} = n_d .$$
+<p>Now look at light arriving from the dielectric at angle \(\theta\). Only the component of its wavevector along the
+surface, \(k_x = n_d k_0 \sin\theta\), can match the plasmon's (the boundary conditions hold at every \(x\) only if both
+fields vary as the same \(e^{ik_x x}\)). But \(\sin\theta \le 1\), so \(k_x \le n_d k_0 < \operatorname{Re}k_{sp}\). At every
+angle and every wavelength, light from the dielectric is <b>short of momentum</b>. On a dispersion diagram the plasmon
+curve always lies to the right of the light line; they never cross (Figure 4). That is why a gold mirror does not show
+plasmon dips in ordinary reflection [1].</p>
+
+<figure class="fig" data-fig="disp">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Dispersion of the surface plasmon</b> (photon energy against in-plane wavevector, real metal data).
+  The dashed light line of the dielectric never meets the plasmon curve. Light inside a glass prism has more momentum,
+  \(n_p k_0 \sin\theta\) with \(n_p > n_d\): its line (cyan) is shallower and crosses the plasmon curve at one photon energy
+  — that crossing is the resonance. Change the angle to move it. (The plasmon curve is drawn only where the metal's loss
+  is small enough for a well-defined surface wave; for gold that excludes the interband region below ≈ 540 nm.)</figcaption>
+</figure>
+
+<p>Every SPR configuration is a way of supplying the missing in-plane momentum. Before looking at the hardware it
+helps to see the bookkeeping on a single axis: plot \(k_x/k_0\) (an effective index), mark \(n_{sp}\), and add up what
+each coupler contributes.</p>
+
+<figure class="fig" data-fig="kmatch">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The momentum ledger.</b> The gold line is the plasmon's \(n_{sp}\), its shaded width the plasmon's
+  damping \(\operatorname{Im}n_{sp}\). Light from the water can never reach it. A prism raises the ceiling to \(n_p\); a grating adds
+  multiples of \(\lambda/\Lambda\); a guided ray in a fibre or waveguide brings \(n_\text{core}\sin\theta\). Coupling happens
+  when the total lands within the plasmon's width. Raise the analyte's index to see the gold line move away.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ways"><span class="num">07</span>Four ways to bridge the gap</h2>
+
+<p>There are four families of couplers [3, 4, 28]:</p>
+<ul>
+  <li><b>Prism coupling</b> (attenuated total reflection). Light in glass of index \(n_p > n_d\) is totally reflected at
+  the base of the prism; its evanescent field, with \(k_x = n_p k_0 \sin\theta\), tunnels to the metal–dielectric
+  interface. In the <b>Kretschmann</b> geometry [10] the metal film sits on the prism; in the <b>Otto</b> geometry [9] a
+  thin gap separates prism and metal.</li>
+  <li><b>Grating coupling.</b> A periodic surface of period \(\Lambda\) adds \(m\cdot 2\pi/\Lambda\) to the in-plane wavevector
+  of the diffracted light [1, 16].</li>
+  <li><b>Waveguide coupling.</b> A mode guided in a planar waveguide already has an effective index above the cover's;
+  where the waveguide is coated with metal, the mode hands energy to the plasmon [27].</li>
+  <li><b>Fibre coupling</b> — waveguide coupling in an optical fibre: rays in the core strike a gold-coated, unclad
+  section at grazing angles [17, 18].</li>
+</ul>
+
+<figure class="fig">
+  <div class="fig-tag">Figure 6</div>
+  <svg viewBox="0 0 900 380" role="img" aria-label="Five SPR coupling configurations">
+    <style>.ct{font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;fill:#efeaf6}.cl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;fill:#b6acc8}</style>
+    <g fill="none" stroke="rgba(255,255,255,.12)"><rect x="5" y="5" width="292" height="182" rx="8"/><rect x="304" y="5" width="292" height="182" rx="8"/><rect x="603" y="5" width="292" height="182" rx="8"/><rect x="5" y="193" width="292" height="182" rx="8"/><rect x="304" y="193" width="292" height="182" rx="8"/><rect x="603" y="193" width="292" height="182" rx="8"/></g>
+    <!-- Kretschmann -->
+    <text x="18" y="26" class="ct">Kretschmann (prism)</text>
+    <rect x="25" y="38" width="252" height="44" fill="#12233a"/><text x="32" y="54" class="cl" style="fill:#45bfd6">analyte</text>
+    <rect x="25" y="82" width="252" height="5" fill="#e0a82e"/><path d="M60 78 q8 -6 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" stroke="#ffe39a" fill="none"/>
+    <path d="M45 87 L257 87 L151 170 Z" fill="#2a3a52" stroke="#7d8fb0"/><text x="22" y="172" class="cl">glass prism</text>
+    <path d="M85 150 L151 87 L217 150" stroke="#e2566e" stroke-width="2.4" fill="none"/><text x="150" y="54" class="cl" style="fill:#e0a82e">gold film ≈ 50 nm</text>
+    <!-- Otto -->
+    <text x="317" y="26" class="ct">Otto (prism + gap)</text>
+    <path d="M344 112 L556 112 L450 38 Z" fill="#2a3a52" stroke="#7d8fb0"/><text x="450" y="66" class="cl" text-anchor="middle">prism</text>
+    <rect x="324" y="112" width="252" height="12" fill="#12233a"/><text x="330" y="121" class="cl" style="fill:#45bfd6;font-size:9px">gap ≈ λ (air or analyte)</text>
+    <rect x="324" y="124" width="252" height="50" fill="#e0a82e" opacity=".9"/><text x="330" y="158" class="cl" style="fill:#3d2f12">thick metal</text>
+    <path d="M395 75 L450 112 L505 75" stroke="#e2566e" stroke-width="2.4" fill="none"/><path d="M360 127 q8 -6 16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0 t16 0" stroke="#ffe39a" fill="none"/>
+    <!-- Grating -->
+    <text x="616" y="26" class="ct">Grating</text>
+    <rect x="623" y="38" width="252" height="80" fill="#12233a"/><text x="630" y="54" class="cl" style="fill:#45bfd6">analyte (light passes through it)</text>
+    <path d="M623 128 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h14 v10 h14 v-10 h12 v10 L875 172 L623 172 Z" fill="#e0a82e" opacity=".9"/>
+    <path d="M690 62 L749 118 L808 62" stroke="#e2566e" stroke-width="2.4" fill="none" opacity=".9"/><path d="M655 112 L860 112" stroke="#ffe39a" stroke-dasharray="5 3"/><text x="740" y="150" class="cl" style="fill:#3d2f12">m-th order → plasmon</text>
+    <text x="630" y="162" class="cl" style="fill:#3d2f12">period Λ</text>
+    <!-- Waveguide -->
+    <text x="18" y="214" class="ct">Waveguide</text>
+    <rect x="25" y="226" width="252" height="40" fill="#12233a"/><text x="140" y="244" class="cl" style="fill:#45bfd6">analyte</text>
+    <rect x="110" y="262" width="100" height="4" fill="#e0a82e"/>
+    <rect x="25" y="266" width="252" height="22" fill="#4a5f82"/>
+    <rect x="25" y="288" width="252" height="70" fill="#22314a"/><text x="32" y="304" class="cl">↑ guiding layer</text><text x="32" y="345" class="cl">substrate</text>
+    <path d="M30 277 q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0" stroke="#e2566e" stroke-width="2" fill="none" opacity=".85"/><text x="140" y="326" class="cl" style="fill:#e2566e">guided mode, n_eff</text>
+    <!-- Fibre -->
+    <text x="317" y="214" class="ct">Optical fibre</text>
+    <rect x="324" y="248" width="70" height="56" fill="#22314a"/><rect x="506" y="248" width="70" height="56" fill="#22314a"/>
+    <rect x="394" y="236" width="112" height="80" fill="#12233a"/><text x="400" y="248" class="cl" style="fill:#45bfd6">analyte</text>
+    <rect x="324" y="260" width="252" height="32" fill="#4a5f82"/><rect x="394" y="256" width="112" height="4" fill="#e0a82e"/><rect x="394" y="292" width="112" height="4" fill="#e0a82e"/>
+    <path d="M330 288 L352 263 L374 288 L396 263 L418 288 L440 263 L462 288 L484 263 L506 288 L528 263 L550 288 L570 266" stroke="#e2566e" stroke-width="2" fill="none"/>
+    <text x="330" y="330" class="cl">white light in → spectrometer out</text><text x="330" y="346" class="cl">core stripped, gold-coated section</text>
+    <!-- common principle -->
+    <text x="616" y="214" class="ct">What each one supplies</text>
+    <text x="616" y="240" class="cl">needed: k_x / k₀ = n_sp (≈ 1.44)</text>
+    <text x="616" y="264" class="cl" style="fill:#45bfd6">prism:     n_p sin θ           (n_p > n_d)</text>
+    <text x="616" y="286" class="cl" style="fill:#a98bf0">grating:   n_d sin θ + m λ / Λ</text>
+    <text x="616" y="308" class="cl" style="fill:#e2566e">waveguide: n_eff of the guided mode</text>
+    <text x="616" y="330" class="cl" style="fill:#7fd18b">fibre:     n_core sin θ_wall</text>
+    <text x="616" y="358" class="cl">and always: TM (p) relative to the metal</text>
+  </svg>
+  <figcaption><b>The coupling configurations</b> (schematic; film thicknesses not to scale). All of them do the same
+  job: bring light to the metal with an in-plane wavevector equal to the plasmon's, and with its electric field in the
+  plane of incidence. The yellow wavy lines mark where the plasmon lives.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-kret"><span class="num">08</span>Prism coupling I: the Kretschmann configuration</h2>
+
+<p>In 1968 Kretschmann and Raether evaporated a thin silver film directly onto a prism and shone light through the
+glass [10]. At angles beyond the critical angle for glass–dielectric, \(\theta_c = \arcsin(n_d/n_p)\), the light is
+totally reflected at the glass–metal side, but its evanescent field penetrates the thin metal and reaches the outer
+surface with in-plane wavevector \(n_p k_0 \sin\theta\). At the angle where</p>
+$$n_p \sin\theta_\text{res} = n_{sp} = \operatorname{Re}\sqrt{\frac{\varepsilon_m\,\varepsilon_d}{\varepsilon_m + \varepsilon_d}}$$
+<p>the plasmon on the <i>outer</i> surface (facing the analyte) is excited, energy flows into it and is absorbed in the
+metal, and the reflected beam darkens. The thin film is essential: it lets the light tunnel through, and its outer
+surface is where the sample is. Liedberg, Nylander and Lundström used exactly this geometry for the first SPR gas
+sensor and biosensor in 1983 [11].</p>
+
+<h3>The exact reflectance</h3>
+<p>For three media — prism (\(p\)), metal film (\(m\), thickness \(d\)), dielectric (\(d\)) — the reflection coefficient follows
+from summing the multiply reflected waves in the film (the Airy sum) [12, 13]:</p>
+$$r = \frac{r_{pm} + r_{md}\,e^{2ik_{z,m}d}}{1 + r_{pm}\,r_{md}\,e^{2ik_{z,m}d}}, \qquad r_{ij} = \frac{k_{z,i}/\varepsilon_i - k_{z,j}/\varepsilon_j}{k_{z,i}/\varepsilon_i + k_{z,j}/\varepsilon_j}, \qquad k_{z,j} = k_0\sqrt{\varepsilon_j - n_p^2\sin^2\theta} .$$
+<p>\(r_{ij}\) is the Fresnel coefficient for p-polarisation at the interface between media \(i\) and \(j\) (written with the
+\(k_z/\varepsilon\) "admittances" of TM waves), \(k_{z,j}\) the wavevector component normal to the layers in medium \(j\), and
+\(R = |r|^2\) the reflectance. For s-polarisation the same formula holds with \(k_{z,i}\) in place of
+\(k_{z,i}/\varepsilon_i\). For more layers (an adhesion layer, a bound film) the transfer-matrix method chains the same
+algebra [13]; every reflectance curve in this article comes from it.</p>
+
+<figure class="fig" data-fig="kret">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The Kretschmann configuration, calculated exactly.</b> Left: the beam at the chosen angle; the
+  reflected beam fades and the plasmon (yellow) lights up as the angle crosses the resonance. Right: the p-polarised
+  reflectance (gold) has a sharp dip just above the critical angle θ_c; the s-polarised reflectance (cyan) stays near 1
+  — no plasmon without TM. Press <i>Sweep the angle</i> to scan, change the analyte's index to move the dip, add a
+  chromium adhesion layer to see it broaden (clearest at 850 nm), or try silver. Prism dispersion from the SCHOTT Sellmeier data [26], water
+  from [24], gold and silver from [5], chromium from [25].</figcaption>
+</figure>
+
+<h3>What the dip's shape means</h3>
+<p>Near the resonance the exact formula reduces to a Lorentzian [1]:</p>
+$$R \approx 1 - \frac{4\,\Gamma_i\,\Gamma_\text{rad}}{\left(k_x - k^0_{sp}\right)^2 + \left(\Gamma_i + \Gamma_\text{rad}\right)^2}, \qquad k_x = n_p k_0\sin\theta .$$
+<p>\(k^0_{sp}\) is the real part of the plasmon wavevector (slightly shifted by the prism's presence), \(\Gamma_i = \operatorname{Im}k_{sp}\)
+the <b>internal damping</b> (absorption in the metal), and \(\Gamma_\text{rad}\) the <b>radiative damping</b> — the rate at which the
+plasmon leaks back through the film into the prism, which falls off as \(e^{-2\operatorname{Re}\kappa_m d}\) with film thickness.
+Two conclusions follow directly:</p>
+<ul>
+  <li>The dip reaches <b>zero</b> when \(\Gamma_\text{rad} = \Gamma_i\) — <b>critical coupling</b>, just as for any resonator
+  fed through a partly transparent mirror.</li>
+  <li>Its full width in \(k_x\) is \(2(\Gamma_i + \Gamma_\text{rad})\); at critical coupling \(4\,\Gamma_i\). Converted to angle,
+  \(\Delta\theta \approx 4\operatorname{Im}n_{sp}/(n_p\cos\theta_\text{res})\) radians. The width is set by the metal's loss.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-film"><span class="num">09</span>Choosing the metal film</h2>
+
+<p><b>Thickness.</b> Thin films radiate strongly (\(\Gamma_\text{rad} > \Gamma_i\)): the dip is broad and shallow. Thick films
+barely let the light through (\(\Gamma_\text{rad} < \Gamma_i\)): narrow but shallow again. In between lies critical coupling —
+about 50 nm for gold across the red and near-infrared, and somewhat more (55–60 nm) for silver (Figure 8).</p>
+
+<figure class="fig" data-fig="thick">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Film thickness and critical coupling</b> (BK7 prism, water). Top: reflectance curves for five
+  thicknesses. Bottom: the minimum reflectance falls to zero at one thickness (critical coupling) while the width keeps
+  shrinking as the film thickens, because the radiative loss through the film falls exponentially.</figcaption>
+</figure>
+
+<p><b>Gold or silver.</b> The width scales with \(\operatorname{Im}n_{sp}\), which is set by the loss ratio \(\varepsilon_m''/|\varepsilon_m'|\)
+(Figure 1). Silver's ratio is several times smaller, so its dip is several times sharper. But silver tarnishes in air
+and dissolves in many buffers, so sensor chips almost always use gold — or silver protected by a few nanometres of gold
+(the "Silver + 10 nm gold cap" option in Figure 7), which keeps most of silver's sharpness with gold's surface
+chemistry.</p>
+<p><b>Adhesion layers.</b> Gold sticks poorly to glass, so a 1–5 nm layer of chromium or titanium is evaporated first (the
+practicalities are in <a href="blog-vacuum-deposition.html">Part 5</a>). These metals are much lossier than gold. In
+the red, where gold's own loss already sets a broad dip, a few nanometres change little; in the near-infrared, where
+the gold dip is sharp, 5 nm of chromium broadens it by well over half (set Figure 7 to 850 nm and try it). The adhesion
+layer also adds to the total metal thickness, so the gold must be thinned to stay at critical coupling. Keeping the
+adhesion layer as thin as possible, or replacing it with a molecular adhesion promoter, is part of good chip design.</p>
+<p><b>Wavelength.</b> Moving from 633 nm to 850 nm narrows the gold dip several-fold (compare in Figure 7), because gold's
+loss ratio falls and the interband absorption is left behind. The price is a deeper reach into the liquid (section 13).</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-otto"><span class="num">10</span>Prism coupling II: the Otto configuration</h2>
+
+<p>Otto's arrangement, published the same year, turns the geometry around [9]: the prism faces the
+metal across a thin gap of a dielectric (air, or the analyte), and the metal can be as thick as one likes. Light totally
+reflected at the prism's base sends its evanescent field across the gap to the metal surface, where it excites the
+plasmon at the same matching condition \(n_p\sin\theta = n_{sp}\) — here with \(n_{sp}\) computed for the gap medium.</p>
+<p>The gap plays the role that the film thickness plays in Kretschmann's geometry: it sets the radiative damping. Too
+narrow, and the prism over-couples and broadens the dip; too wide, and the evanescent field never reaches the metal.
+The best gap is of the order of the wavelength (Figure 9). Holding a gap of a few hundred nanometres uniform over a
+millimetre-sized spot is awkward, which is why Otto's geometry is rarely used in biosensing. It shines where the metal
+cannot be a thin film — single crystals, bulk samples, or surfaces that must not be touched from behind.</p>
+
+<figure class="fig" data-fig="otto">
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The Otto configuration</b>: prism, dielectric gap, thick metal. The dip deepens and narrows as the gap
+  approaches its optimum and fades when the gap is too wide for the evanescent field to bridge. Dashed lines: half and
+  1.6 times the chosen gap.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-read"><span class="num">11</span>Reading the resonance: angle, wavelength, intensity, phase</h2>
+
+<p>The resonance condition couples two variables, angle and wavelength. Fix one and scan the other, or fix both and watch
+something else [3, 4]:</p>
+<ul>
+  <li><b>Angular interrogation.</b> Monochromatic light (a laser diode or LED) arrives as a converging fan of angles; a
+  detector array records \(R(\theta)\), and software tracks the dip's centre. Robust and widely used; the readout is in
+  degrees or millidegrees.</li>
+  <li><b>Wavelength (spectral) interrogation.</b> White light at one fixed angle; a spectrometer records \(R(\lambda)\). No
+  moving parts and natural for fibres; the readout is in nanometres.</li>
+  <li><b>Intensity interrogation.</b> Fixed angle and wavelength on the steep flank of the dip; the reflected power changes
+  in proportion to the index change. Simple optics, but linear only over a small range and sensitive to source drift.</li>
+  <li><b>Phase interrogation.</b> Near critical coupling, the phase of \(r_p\) jumps steeply across the resonance — far more
+  steeply than the intensity changes. Interferometric or polarimetric set-ups compare the p-phase with the s-phase and
+  reach very low detection limits [21].</li>
+</ul>
+
+<figure class="fig" data-fig="interrog">
+  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>One chip, four readouts</b> (BK7, 50 nm gold, water and water + Δn). Angular: the dip moves in angle.
+  Wavelength: at a fixed angle the dip moves in wavelength. Intensity: at a fixed angle and wavelength the reflected
+  power follows Δn, linearly only near the working point. Phase: the phase of r_p rises steeply through the resonance;
+  the steepness grows dramatically as the dip approaches zero.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-sens"><span class="num">12</span>Sensitivity, width and figure of merit</h2>
+
+<h3>Angular sensitivity</h3>
+<p>Differentiate the matching condition \(n_p\sin\theta_\text{res} = n_{sp}(n_d)\) with respect to the analyte index \(n_d\). Using
+\(n_{sp}^2 = \varepsilon_m n_d^2/(\varepsilon_m + n_d^2)\) with \(\varepsilon_m\) taken as real for the moment, a few lines of algebra give
+\(\mathrm{d}n_{sp}/\mathrm{d}n_d = (n_{sp}/n_d)^3\), and so</p>
+$$S_\theta \equiv \frac{\mathrm{d}\theta_\text{res}}{\mathrm{d}n_d} = \frac{(n_{sp}/n_d)^3}{n_p\cos\theta_\text{res}}\quad(\text{radians per refractive-index unit, RIU}).$$
+<p>For gold, water and BK7 at 633 nm this gives about 150°/RIU, close to the exact 147°/RIU of Figure 7. A
+lower-index prism pushes the resonance to larger angles, where \(\cos\theta\) is small: the sensitivity rises (try
+SF10 against BK7 in Figure 7: about 77°/RIU against 147°/RIU).</p>
+
+<h3>Spectral sensitivity</h3>
+<p>At fixed angle, the resonance wavelength moves by</p>
+$$S_\lambda \equiv \frac{\mathrm{d}\lambda_\text{res}}{\mathrm{d}n_d} = \frac{(n_{sp}/n_d)^3}{\left|\dfrac{\mathrm{d}n_{sp}}{\mathrm{d}\lambda} - \sin\theta\,\dfrac{\mathrm{d}n_p}{\mathrm{d}\lambda}\right|} ,$$
+<p>where the denominator is how fast the mismatch between plasmon and prism changes with wavelength. In the near-infrared
+\(n_{sp}\) flattens towards \(n_d\) (the plasmon becomes more light-like), the denominator becomes tiny and \(S_\lambda\) climbs to
+many thousands of nm/RIU (Figure 11).</p>
+
+<h3>Width and figure of merit</h3>
+<p>A big shift is useless if the dip is broad: what matters is how precisely the dip's centre can be located. The
+<b>figure of merit</b></p>
+$$\text{FOM} = \frac{S}{\text{FWHM}}\quad(\text{RIU}^{-1})$$
+<p>compares the shift with the full width at half maximum, both in the same units (degrees or nm). Because sensitivity and
+width are both governed by the same dispersion relation, the FOM is largely independent of whether the dip is read in
+angle or wavelength. It grows with wavelength and is several times larger for silver than for gold. The final
+<b>resolution</b> — the smallest index change distinguishable from noise — depends on the FOM, the noise of the
+light source and detector, the number of points fitted and temperature control (water's index changes by about
+\(10^{-4}\) per kelvin) [22].</p>
+
+<figure class="fig" data-fig="sens">
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Sensitivity of prism sensors versus wavelength</b> (BK7, water, gold and silver), from the matching
+  condition with dispersive constants. Top: angular sensitivity changes only slowly with wavelength. Bottom: spectral
+  sensitivity grows steeply into the near-infrared. The readouts give the dip width at critical coupling and the figure
+  of merit at the chosen wavelength.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-surface"><span class="num">13</span>Bulk versus surface sensitivity</h2>
+
+<p>The numbers above are <b>bulk</b> sensitivities: the whole dielectric changes index. In biosensing only a thin layer
+changes — a few nanometres of protein at the surface. Since the plasmon's intensity falls as \(e^{-2z/\delta_d}\), a
+layer of thickness \(t\) and index \(n_a\) on a buffer of index \(n_b\) acts roughly like a bulk change scaled by the fraction
+of the field's energy it occupies:</p>
+$$\Delta\theta \approx S_\theta\,(n_a - n_b)\left(1 - e^{-2t/\delta_d}\right) \approx S_\theta\,(n_a - n_b)\,\frac{2t}{\delta_d}\quad(t \ll \delta_d).$$
+<p>So for thin layers what matters is not \(S_\theta\) alone but \(S_\theta/\delta_d\). A short reach concentrates the field
+where the molecules are. This is why most biosensors work in the red (633–700 nm) rather than deep in the infrared,
+even though the infrared gives larger bulk sensitivity and a sharper dip; and why large targets (cells, vesicles,
+bacteria) prefer the longer reach of the infrared or of long-range plasmons (section 17).</p>
+
+<figure class="fig" data-fig="surf">
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>How much of the bulk response a layer produces</b>, as a function of its thickness (a layer 0.005 higher
+  in index than water on 50 nm gold, Kretschmann; the fraction is the same for any small index contrast). Solid: transfer-matrix calculation; dashed: the estimate \(1 - e^{-2t/\delta_d}\). At 633 nm a
+  10 nm layer gives a larger share of its bulk response than at 1000 nm because the field is more concentrated.</figcaption>
+</figure>
+
+<p>Turning this surface sensitivity into a biosensor — choosing the capture layer, its thickness, its density and
+orientation — is the subject of the next part, <a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-grating"><span class="num">14</span>Grating coupling</h2>
+
+<p>Wood noticed in 1902 that the spectrum diffracted by a metal grating showed sudden dark bands for p-polarised light
+[14]; Fano explained them in 1941 as surface waves on the metal [15]. A grating of period \(\Lambda\) can diffract light
+into orders whose in-plane wavevector is increased by multiples of the grating vector \(K = 2\pi/\Lambda\). When one of
+those orders matches the plasmon,</p>
+$$n_d\sin\theta + m\,\frac{\lambda}{\Lambda} = \pm\, n_{sp}(\lambda), \qquad m = \pm 1, \pm 2, \dots ,$$
+<p>energy goes into the plasmon and the specularly reflected (zeroth-order) light dips. Here \(\theta\) is the angle of
+incidence measured in the analyte (the light comes through the sample, not through a prism), \(m\) the diffraction
+order and the ± sign the direction in which the plasmon runs. At normal incidence and first order the condition is
+simply \(\lambda_\text{res} \approx \Lambda\,n_{sp}\): the resonance follows the period. Cullen, Brown and Lowe used
+gold-coated diffraction gratings to detect immunocomplex formation in the late 1980s [16].</p>
+
+<p>Two branches appear when the angle is tilted (\(m = +1\) and \(m = -1\)), and they cross at normal incidence, where
+the two counter-propagating plasmons interact and open a small band gap (not captured by the simple matching
+condition). The groove depth sets the radiative damping: shallow grooves couple weakly (narrow, shallow dip), deep
+grooves over-couple — the same critical-coupling story as the film thickness in Kretschmann's geometry [1].</p>
+<p><b>Polarisation on a grating.</b> The plasmon is driven by the field component along the grating vector, perpendicular
+to the grooves. In the usual "classical" mounting — grooves perpendicular to the plane of incidence — that means
+TM (p) light, as on a flat surface. In a "conical" mounting the grooves are rotated and both s and p have a component
+along \(\mathbf{K}\); the bookkeeping is in <a href="blog-optics-basics.html#s-tetm">Part 1, section 10</a>.</p>
+
+<figure class="fig" data-fig="grating">
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Grating coupling.</b> Upper right: resonance wavelength against angle for orders ±1 and ±2 (the
+  matching condition with dispersive gold or silver and water). Bottom: the zeroth-order reflectance at the chosen
+  angle, in Raether's Lorentzian model [1] — the flat-metal reflectance multiplied by a dip whose depth and width are
+  set by the ratio of radiative to internal damping (here expressed through the groove depth relative to critical
+  coupling). This model gives the positions and the depth trend correctly; exact grating line shapes need a rigorous
+  method such as RCWA.</figcaption>
+</figure>
+
+<p>Grating sensors are cheap to mass-produce by moulding or embossing, need no prism and no index-matching oil, and can be
+read from the sample side. Their spectral sensitivity, roughly \(\Lambda(n_{sp}/n_d)^3/m\) near normal incidence, is
+usually several times lower than a prism's in the near-infrared (compare Figures 11 and 13), and the light must pass
+through the sample, so absorbing or turbid samples and flow cells need care [3, 4].</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-wg"><span class="num">15</span>Waveguide coupling</h2>
+
+<p>A planar dielectric waveguide carries light in modes whose effective index \(n_\text{eff}\) lies between the indices of
+the cladding and the core (<a href="blog-optics-basics.html#s-slab">Part 1, section 14</a>). Coat a short section with
+gold and the guided mode's evanescent tail reaches the metal. If \(n_\text{eff}\) of the mode equals \(n_{sp}\) of the plasmon
+on the outer surface — the waveguide analogue of the matching condition — power transfers from the mode to the
+plasmon and is absorbed; the transmitted light shows a dip in its spectrum [27].</p>
+<p>The phase matching is set by the waveguide's design (its index and thickness) rather than by an external angle, so
+waveguide SPR sensors are usually read spectrally. They are compact, robust and well suited to integration —
+several sensing sections on one chip, light sources and detectors on the same substrate [3, 4, 27]. Their
+practical limitation is that only one angle is available (the mode's), so the operating wavelength must be
+designed in, and the coupling is strongly polarisation-dependent: only the TM-like mode of the guide couples.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fibre"><span class="num">16</span>Fibre-optic SPR</h2>
+
+<p>An optical fibre is a waveguide too, and fibre SPR sensors — first demonstrated by Jorgenson and Yee in 1993 [17] —
+are the most widespread waveguide-coupled sensors. In the simplest probe a few millimetres to centimetres of a
+multimode fibre are stripped of cladding and coated with about 50 nm of gold; white light is launched at one end and a
+spectrometer records what arrives at the other. In the ray picture, a guided ray travelling at an angle \(\alpha\) to the
+fibre axis strikes the gold at \(\theta = 90^\circ - \alpha\) — grazing incidence, ≳ 70° — and is reflected
+\(N(\alpha) = L\tan\alpha/D\) times in a sensing length \(L\) of a core of diameter \(D\). Every reflection is a Kretschmann
+reflection with the core playing the prism [18]:</p>
+$$T(\lambda) = \frac{\displaystyle\int_0^{\alpha_\text{max}} p(\alpha)\,\tfrac12\left[R_p(\theta,\lambda)^{N(\alpha)} + R_s(\theta,\lambda)^{N(\alpha)}\right]\mathrm{d}\alpha}{\displaystyle\int_0^{\alpha_\text{max}} p(\alpha)\,\mathrm{d}\alpha}, \qquad \sin\alpha_\text{max} = \frac{\mathrm{NA}}{n_\text{core}} .$$
+<p>\(p(\alpha)\) is the power carried by rays at angle \(\alpha\) — here a uniformly filled numerical aperture,
+\(p \propto \sin\alpha\cos\alpha\), for meridional rays — and NA the fibre's numerical aperture. In a multimode fibre light
+of both polarisations travels in every direction, so p and s are averaged: only half the light can couple, and the
+dip never reaches zero. Each ray angle resonates at a different wavelength, and the spectrum is a superposition of all
+of them; that is why fibre SPR dips are broader than prism dips.</p>
+
+<figure class="fig" data-fig="fibre">
+  <div class="fig-tag">Figure 14 · <span class="live">Animated · interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A fibre SPR probe.</b> Top: light of the chosen colour travels through the core; in the gold-coated,
+  unclad section each reflection hands part of it to the plasmon (the real per-reflection losses at that wavelength
+  are used; angles are drawn steeper than they are). The bar on the right is the fraction that arrives. Bottom: the
+  transmission spectrum from the ray model above (fused-silica core [23], gold [5], water [24]), divided — as in
+  practice — by the spectrum of the same probe in air, which removes gold's own absorption in the blue. Lengthen the sensing
+  section to deepen the dip, raise the analyte index to move it to the red, or narrow the numerical aperture to sharpen
+  it.</figcaption>
+</figure>
+
+<p>Three design choices stand out in the model, and they match what is found in practice [18, 19]:</p>
+<ul>
+  <li><b>Sensing length and core diameter</b> set the number of reflections. More reflections deepen the dip, but once
+  the resonant rays are fully absorbed further length only broadens it.</li>
+  <li><b>Numerical aperture</b> sets the range of angles, and with it the spread of resonance wavelengths: a smaller NA
+  gives a narrower dip but needs a longer section.</li>
+  <li><b>Spectral sensitivity</b> is high — about 2000 nm/RIU in water in this model, rising with the analyte's index —
+  because the rays meet the gold near grazing incidence, where the matching wavelength changes quickly with the
+  analyte's index.</li>
+</ul>
+
+<h3>Probe designs</h3>
+<figure class="fig">
+  <div class="fig-tag">Figure 15</div>
+  <svg viewBox="0 0 900 300" role="img" aria-label="Fibre SPR probe designs">
+    <style>.ft{font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;fill:#efeaf6}.fl{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:#b6acc8}</style>
+    <g fill="none" stroke="rgba(255,255,255,.12)"><rect x="5" y="5" width="292" height="140" rx="8"/><rect x="304" y="5" width="292" height="140" rx="8"/><rect x="603" y="5" width="292" height="140" rx="8"/><rect x="5" y="153" width="292" height="140" rx="8"/><rect x="304" y="153" width="292" height="140" rx="8"/><rect x="603" y="153" width="292" height="140" rx="8"/></g>
+    <!-- a unclad -->
+    <text x="16" y="24" class="ft">(a) Unclad straight core</text>
+    <rect x="20" y="60" width="70" height="40" fill="#22314a"/><rect x="210" y="60" width="70" height="40" fill="#22314a"/><rect x="20" y="68" width="260" height="24" fill="#4a5f82"/>
+    <rect x="90" y="64" width="120" height="4" fill="#e0a82e"/><rect x="90" y="92" width="120" height="4" fill="#e0a82e"/><text x="20" y="122" class="fl">cladding removed, core gold-coated</text>
+    <!-- b side-polished -->
+    <text x="315" y="24" class="ft">(b) Side-polished (D-shaped)</text>
+    <path d="M320 60 H400 Q420 74 440 74 H480 Q500 74 520 60 H580 V100 H320 Z" fill="#22314a"/><rect x="320" y="76" width="260" height="16" fill="#4a5f82"/>
+    <path d="M420 72 H500" stroke="#e0a82e" stroke-width="4"/><text x="320" y="122" class="fl">flat polished to near the core, gold on top</text>
+    <!-- c tapered -->
+    <text x="614" y="24" class="ft">(c) Tapered</text>
+    <path d="M620 66 H700 L740 76 H780 L820 66 H880 V94 H820 L780 84 H740 L700 94 H620 Z" fill="#4a5f82"/>
+    <path d="M700 64 L740 74 H780 L820 64" stroke="#e0a82e" stroke-width="3" fill="none"/><path d="M700 96 L740 86 H780 L820 96" stroke="#e0a82e" stroke-width="3" fill="none"/>
+    <text x="620" y="122" class="fl">steeper rays at the gold, shifts the angles</text>
+    <!-- d U-bent -->
+    <text x="16" y="172" class="ft">(d) U-bent</text>
+    <path d="M40 200 H170 A40 40 0 0 1 170 280 H40" fill="none" stroke="#4a5f82" stroke-width="16"/><path d="M150 192 H170 A48 48 0 0 1 170 288 H150" fill="none" stroke="#e0a82e" stroke-width="3"/>
+    <text x="40" y="244" class="fl">bend sends rays to the</text><text x="40" y="258" class="fl">gold at smaller angles</text>
+    <!-- e tip -->
+    <text x="315" y="172" class="ft">(e) Tip / reflection probe</text>
+    <rect x="320" y="226" width="200" height="22" fill="#4a5f82"/><rect x="320" y="220" width="90" height="34" fill="#22314a" opacity=".85"/><rect x="320" y="226" width="90" height="22" fill="#4a5f82"/>
+    <rect x="410" y="222" width="110" height="4" fill="#e0a82e"/><rect x="410" y="248" width="110" height="4" fill="#e0a82e"/><rect x="520" y="222" width="6" height="30" fill="#cfd6e4"/>
+    <text x="320" y="276" class="fl">mirrored end: light passes the gold twice,</text><text x="320" y="289" class="fl">dip-in probe, one fibre in and out</text>
+    <!-- f TFBG -->
+    <text x="614" y="172" class="ft">(f) Tilted fibre Bragg grating</text>
+    <rect x="620" y="210" width="260" height="40" fill="#22314a"/><rect x="620" y="220" width="260" height="20" fill="#4a5f82"/>
+    <g stroke="#a98bf0" stroke-width="2"><path d="M700 240 L710 220"/><path d="M712 240 L722 220"/><path d="M724 240 L734 220"/><path d="M736 240 L746 220"/><path d="M748 240 L758 220"/><path d="M760 240 L770 220"/><path d="M772 240 L782 220"/></g>
+    <rect x="620" y="206" width="260" height="4" fill="#e0a82e"/><rect x="620" y="250" width="260" height="4" fill="#e0a82e"/>
+    <text x="620" y="276" class="fl">grating couples core light to cladding modes;</text><text x="620" y="289" class="fl">thin gold on the cladding, narrow comb of dips</text>
+  </svg>
+  <figcaption><b>Common fibre SPR probe designs</b> [18, 19]. (a) the basic unclad core; (b) a side-polished fibre with
+  the gold on the flat — robust, keeps the fibre's strength; (c) a taper changes the ray angles along its length;
+  (d) a U-bend steepens rays on the outer surface and raises the sensitivity; (e) a mirrored tip makes a compact dip-in
+  probe; (f) a tilted Bragg grating in a single-mode fibre couples the core light into many cladding modes, each probing
+  the gold on the cladding surface — a dense comb of narrow resonances.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-lr"><span class="num">17</span>Long-range SPR and other refinements</h2>
+
+<p>A very thin metal film between two dielectrics of nearly equal index carries two coupled plasmons, one on each face.
+They combine into a symmetric and an antisymmetric mode; in the one that keeps most of its field outside the metal,
+the absorption drops dramatically and the plasmon travels much further — a <b>long-range surface plasmon</b> [8, 20].
+In a Kretschmann-type set-up the prism is first covered with one to a few micrometres of a low-index buffer that
+matches the water's index, then with 10–25 nm of gold. The result is a dip that is many times narrower than the conventional one,
+with a field that reaches much further into the sample.</p>
+
+<figure class="fig" data-fig="lrspr">
+  <div class="fig-tag">Figure 16 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Conventional against long-range SPR</b> (BK7 prism; transfer-matrix calculation). The long-range
+  structure — a low-index buffer layer and a thin gold film — gives a much narrower dip. Its depth depends on the buffer
+  thickness (which sets the coupling, as the gap does in Otto's geometry), and it needs the buffer index to stay close to
+  the sample's: move it away and the long-range mode weakens.</figcaption>
+</figure>
+
+<p>Other refinements follow the same physics: bimetallic films (silver for sharpness, gold for chemistry), high-index
+dielectric overlayers that pull the field to the surface, and metals other than gold and silver for other spectral
+ranges (aluminium in the ultraviolet) [4]. Each one changes either \(n_{sp}\) (and so the sensitivity) or
+\(\operatorname{Im}n_{sp}\) and \(\Gamma_\text{rad}\) (and so the width), and can be judged by its figure of merit and reach.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-compare"><span class="num">18</span>The configurations compared</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Configuration</th><th>How k is supplied</th><th>Usual readout</th><th>Strengths</th><th>Limitations</th></tr>
+  <tr><td>Kretschmann prism</td><td>\(n_p\sin\theta\) through a thin film</td><td>angle, wavelength, intensity or phase</td><td>reference standard; sharp, deep dip; any readout; light never passes through the sample</td><td>bulky prism, index-matching oil between prism and chip</td></tr>
+  <tr><td>Otto prism</td><td>\(n_p\sin\theta\) across a gap</td><td>angle</td><td>thick or bulk metal; nothing touches the metal from behind</td><td>sub-micrometre gap must be held uniform; rarely used for biosensing</td></tr>
+  <tr><td>Grating</td><td>\(+m\lambda/\Lambda\)</td><td>wavelength or angle</td><td>no prism, mass-producible, read from the front</td><td>lower spectral sensitivity; light crosses the sample</td></tr>
+  <tr><td>Planar waveguide</td><td>mode index \(n_\text{eff}\)</td><td>wavelength</td><td>compact, integrable, several channels per chip</td><td>fixed angle, operating wavelength designed in</td></tr>
+  <tr><td>Optical fibre</td><td>\(n_\text{core}\sin\theta\) of guided rays</td><td>wavelength (transmission or reflection)</td><td>small, flexible, remote and in-situ sensing, dip-in probes</td><td>broader dips (many angles, both polarisations); sensitive to bending and launch conditions</td></tr>
+  <tr><td>Long-range (any coupler)</td><td>as its coupler</td><td>angle or wavelength</td><td>very narrow dip, long reach</td><td>index-matched buffer needed; less concentrated field for thin layers</td></tr>
+</table></div>
+
+<p>In the models of this article, gold at 633 nm in a BK7 prism gives about 150°/RIU and a dip ≈ 5° wide; moving to
+850 nm narrows it to ≈ 1°. The same chip read spectrally gives a few thousand nm/RIU. A first-order grating of 560 nm
+period gives several hundred nm/RIU, and the fibre probe of Figure 14 about 2000 nm/RIU with a broader, shallower dip. The
+right choice depends on what is measured: thin molecular layers (short reach, red light), particles and cells (long
+reach), many channels (waveguides), or measurements where the sample is (fibres).</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-quiz"><span class="num">19</span>Test yourself</h2>
+
+<figure class="fig" data-fig="sprquiz">
+  <div class="fig-tag">Figure 17 · <span class="live">Quiz</span></div>
+  <noscript><p>This quiz needs JavaScript.</p></noscript>
+  <figcaption>Eight questions on the ideas of this article. Each answer comes with the reason.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-symbols"><span class="num">20</span>Symbols used in this article</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Symbol</th><th>Meaning</th></tr>
+  <tr><td>\(\varepsilon_m = \varepsilon_m' + i\varepsilon_m''\)</td><td>relative permittivity of the metal (real and imaginary parts)</td></tr>
+  <tr><td>\(\varepsilon_d = n_d^2\)</td><td>permittivity of the dielectric (analyte); \(n_d\) its refractive index</td></tr>
+  <tr><td>\(\omega,\ \omega_p,\ \gamma\)</td><td>angular frequency of the light; plasma frequency; electron damping rate</td></tr>
+  <tr><td>\(\lambda,\ k_0 = 2\pi/\lambda\)</td><td>vacuum wavelength; vacuum wavevector</td></tr>
+  <tr><td>\(k_x\)</td><td>wavevector component along the surface (in-plane)</td></tr>
+  <tr><td>\(k_{sp},\ n_{sp}\)</td><td>surface plasmon wavevector; its effective index \(\operatorname{Re}k_{sp}/k_0\)</td></tr>
+  <tr><td>\(\kappa_d,\ \kappa_m\)</td><td>decay constants of the field into the dielectric and the metal</td></tr>
+  <tr><td>\(\delta_d,\ \delta_m,\ L_{sp}\)</td><td>field reach into dielectric and metal (1/e); propagation length (1/e intensity)</td></tr>
+  <tr><td>\(n_p,\ \theta,\ \theta_c,\ \theta_\text{res}\)</td><td>prism index; angle of incidence; critical angle; resonance angle</td></tr>
+  <tr><td>\(r,\ r_{ij},\ R\)</td><td>reflection coefficient of the stack; Fresnel coefficient between media i and j; reflectance \(|r|^2\)</td></tr>
+  <tr><td>\(k_{z,j}\)</td><td>wavevector component normal to the layers in medium j</td></tr>
+  <tr><td>\(d,\ t\)</td><td>metal film thickness; thickness of an adsorbed layer</td></tr>
+  <tr><td>\(\Gamma_i,\ \Gamma_\text{rad}\)</td><td>internal (absorption) and radiative damping of the plasmon</td></tr>
+  <tr><td>\(S_\theta,\ S_\lambda\)</td><td>angular and spectral sensitivity (per refractive-index unit, RIU)</td></tr>
+  <tr><td>FWHM, FOM</td><td>full width at half maximum of the dip; figure of merit = sensitivity ÷ FWHM</td></tr>
+  <tr><td>\(\Lambda,\ m,\ K\)</td><td>grating period; diffraction order; grating vector \(2\pi/\Lambda\)</td></tr>
+  <tr><td>\(n_\text{eff}\)</td><td>effective index of a guided mode</td></tr>
+  <tr><td>\(\alpha,\ N,\ L,\ D,\ \mathrm{NA}\)</td><td>ray angle to the fibre axis; number of reflections; sensing length; core diameter; numerical aperture</td></tr>
+  <tr><td>\(\sigma\)</td><td>surface charge density</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">21</span>References</h2>
+<ol class="refs">
+  <li>H. Raether, <i>Surface Plasmons on Smooth and Rough Surfaces and on Gratings</i>, Springer Tracts in Modern Physics 111, Springer, Berlin (1988).</li>
+  <li>S. A. Maier, <i>Plasmonics: Fundamentals and Applications</i>, Springer, New York (2007).</li>
+  <li>J. Homola, S. S. Yee and G. Gauglitz, “Surface plasmon resonance sensors: review,” <i>Sens. Actuators B</i> <b>54</b>, 3–15 (1999).</li>
+  <li>J. Homola, “Surface plasmon resonance sensors for detection of chemical and biological species,” <i>Chem. Rev.</i> <b>108</b>, 462–493 (2008).</li>
+  <li>P. B. Johnson and R. W. Christy, “Optical constants of the noble metals,” <i>Phys. Rev. B</i> <b>6</b>, 4370–4379 (1972).</li>
+  <li>N. W. Ashcroft and N. D. Mermin, <i>Solid State Physics</i>, Holt, Rinehart and Winston, New York (1976).</li>
+  <li>R. H. Ritchie, “Plasma losses by fast electrons in thin films,” <i>Phys. Rev.</i> <b>106</b>, 874–881 (1957).</li>
+  <li>E. N. Economou, “Surface plasmons in thin films,” <i>Phys. Rev.</i> <b>182</b>, 539–554 (1969).</li>
+  <li>A. Otto, “Excitation of nonradiative surface plasma waves in silver by the method of frustrated total reflection,” <i>Z. Phys.</i> <b>216</b>, 398–410 (1968).</li>
+  <li>E. Kretschmann and H. Raether, “Radiative decay of non-radiative surface plasmons excited by light,” <i>Z. Naturforsch. A</i> <b>23</b>, 2135–2136 (1968).</li>
+  <li>B. Liedberg, C. Nylander and I. Lundström, “Surface plasmon resonance for gas detection and biosensing,” <i>Sens. Actuators</i> <b>4</b>, 299–304 (1983).</li>
+  <li>M. Born and E. Wolf, <i>Principles of Optics</i>, 7th ed., Cambridge University Press (1999).</li>
+  <li>P. Yeh, <i>Optical Waves in Layered Media</i>, Wiley, New York (1988).</li>
+  <li>R. W. Wood, “On a remarkable case of uneven distribution of light in a diffraction grating spectrum,” <i>Philos. Mag.</i> <b>4</b>, 396–402 (1902).</li>
+  <li>U. Fano, “The theory of anomalous diffraction gratings and of quasi-stationary waves on metallic surfaces (Sommerfeld's waves),” <i>J. Opt. Soc. Am.</i> <b>31</b>, 213–222 (1941).</li>
+  <li>D. C. Cullen, R. G. W. Brown and C. R. Lowe, “Detection of immuno-complex formation via surface plasmon resonance on gold-coated diffraction gratings,” <i>Biosensors</i> <b>3</b>, 211–225 (1987/88).</li>
+  <li>R. C. Jorgenson and S. S. Yee, “A fiber-optic chemical sensor based on surface plasmon resonance,” <i>Sens. Actuators B</i> <b>12</b>, 213–220 (1993).</li>
+  <li>A. K. Sharma, R. Jha and B. D. Gupta, “Fiber-optic sensors based on surface plasmon resonance: a comprehensive review,” <i>IEEE Sens. J.</i> <b>7</b>, 1118–1129 (2007).</li>
+  <li>C. Caucheteur, T. Guo and J. Albert, “Review of plasmonic fiber optic biochemical sensors: improving the limit of detection,” <i>Anal. Bioanal. Chem.</i> <b>407</b>, 3883–3897 (2015).</li>
+  <li>D. Sarid, “Long-range surface-plasma waves on very thin metal films,” <i>Phys. Rev. Lett.</i> <b>47</b>, 1927–1930 (1981).</li>
+  <li>A. V. Kabashin and P. I. Nikitin, “Surface plasmon resonance interferometer for bio- and chemical-sensors,” <i>Opt. Commun.</i> <b>150</b>, 5–8 (1998).</li>
+  <li>M. Piliarik and J. Homola, “Surface plasmon resonance (SPR) sensors: approaching their limits?” <i>Opt. Express</i> <b>17</b>, 16505–16517 (2009).</li>
+  <li>I. H. Malitson, “Interspecimen comparison of the refractive index of fused silica,” <i>J. Opt. Soc. Am.</i> <b>55</b>, 1205–1209 (1965).</li>
+  <li>G. M. Hale and M. R. Querry, “Optical constants of water in the 200-nm to 200-µm wavelength region,” <i>Appl. Opt.</i> <b>12</b>, 555–563 (1973).</li>
+  <li>A. D. Rakić, A. B. Djurišić, J. M. Elazar and M. L. Majewski, “Optical properties of metallic films for vertical-cavity optoelectronic devices,” <i>Appl. Opt.</i> <b>37</b>, 5271–5283 (1998).</li>
+  <li>SCHOTT AG, Optical glass data sheets: N-BK7 and SF10 (Sellmeier coefficients).</li>
+  <li>R. D. Harris and J. S. Wilkinson, “Waveguide surface plasmon resonance sensors,” <i>Sens. Actuators B</i> <b>29</b>, 261–267 (1995).</li>
+  <li>J. Homola (ed.), <i>Surface Plasmon Resonance Based Sensors</i>, Springer Series on Chemical Sensors and Biosensors 4, Springer, Berlin (2006).</li>
+</ol>
+
+<hr>
+<p>All reflectance curves are exact transfer-matrix calculations with measured optical constants (gold and silver from
+Johnson & Christy, chromium from Rakić et al., water fitted to Hale & Querry, glasses from their Sellmeier formulas).
+Simplified models are named where they are used: the Lorentzian line shape for the grating (Figure 13), and the
+meridional-ray model with a uniformly filled numerical aperture for the fibre (Figure 14). Corrections and questions
+are welcome at <a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-optics-basics.html">Light from first principles →</a> · <a href="blog-antibody-spr.html">Putting antibodies on an SPR sensor →</a></p>
+<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 6 of 9</span><a class="sn-prev" href="blog-vacuum-deposition.html">← Part 5 · Vacuum and thin-film deposition</a><a class="sn-next" href="blog-antibody-spr.html">Part 7 · Putting antibodies on an SPR sensor →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+
+</div>
+</div>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261106a"></script>
+<script src="js/blog/vl-core.js?v=20261106a"></script>
+<script src="js/blog/spr-figs.js?v=20261106a"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

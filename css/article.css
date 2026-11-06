@@ -206,3 +206,8 @@
 .quiz-fb.no { border: 1px solid rgba(226,86,110,.5); background: rgba(226,86,110,.08); }
 .quiz-fb b { color: var(--text); }
 .quiz-nav { margin-top: 14px; }
+
+/* ── figure with a schematic beside a plot (SPR article) ── */
+.spr-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 14px; align-items: center; }
+.spr-row svg { width: 100%; height: auto; display: block; }
+@media (max-width: 760px) { .spr-row { grid-template-columns: 1fr; } }
