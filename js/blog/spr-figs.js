@@ -42,6 +42,7 @@
   var GLASS = {
     BK7: { name: 'N-BK7', f: sell([1.03961212, 0.231792344, 1.01046945], [0.00600069867, 0.0200179144, 103.560653]) },
     SF10: { name: 'SF10', f: sell([1.62153902, 0.256287842, 1.64447552], [0.0122241457, 0.0595736775, 147.468793]) },
+    SF11: { name: 'SF11', f: sell([1.73759695, 0.313747346, 1.89878101], [0.013188707, 0.0623068142, 155.23629]) },
     silica: { name: 'fused silica', f: sell([0.6961663, 0.4079426, 0.8974794], [0.0684043 * 0.0684043, 0.1162414 * 0.1162414, 9.896161 * 9.896161]) }
   };
   var nGlass = function (id, nm) { return GLASS[id].f(nm); };
@@ -307,7 +308,7 @@
     };
     var met = VL.select(ctl, { label: 'Metal', value: 'Au', options: metalOpts, on: draw });
     var med = VL.select(ctl, { label: 'Dielectric', value: 'water', options: mediumOpts, on: draw });
-    var prism = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7 glass'], ['SF10', 'SF10 glass']], on: draw });
+    var prism = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: function () { var n = nMed(med.get(), 633); ang.set(Math.min(89, Math.round(10 * Math.asin(Math.min(1, nsp(epsM(met.get(), 633), n * n)[0] / nGlass(prism.get(), 633))) / D2R) / 10 - 2)); } });
     var ang = VL.slider(ctl, { label: 'Angle in the prism', min: 40, max: 89, step: 0.2, value: 70, fmt: function (v) { return v.toFixed(1) + '°'; }, on: draw });
     draw();
   };
@@ -317,11 +318,11 @@
     var ctl = VL.part(fig, 'vl-controls'), box = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
     var draw = function () {
       var mth = how.get(), L = lam.get(), e = epsM('Au', L), nd = nWater(L) + dn.get(), ns = nsp(e, nd * nd), th = ang.get(), lo = 0.9, hi = 1.9;
-      show(ang, true); show(per, mth === 'grating'); show(ord, mth === 'grating'); show(nco, mth === 'fibre');
+      show(ang, true); show(kpr, mth === 'prism'); show(per, mth === 'grating'); show(ord, mth === 'grating'); show(nco, mth === 'fibre');
       var parts = [], label = '';
       if (mth === 'direct') { parts = [[nd * Math.sin(th * D2R), C.text2, 'n_d sin θ']]; label = 'light arriving from the water'; }
       var ceil = null;
-      if (mth === 'prism') { var np = nGlass('BK7', L); ceil = [np, 'n_p: the most a prism can give']; parts = [[np * Math.sin(th * D2R), C.cyan, 'n_p sin θ']]; label = 'light totally reflected in a BK7 prism (n_p = ' + np.toFixed(4) + ')'; }
+      if (mth === 'prism') { var np = nGlass(kpr.get(), L); ceil = [np, 'n_p: the most a prism can give']; parts = [[np * Math.sin(th * D2R), C.cyan, 'n_p sin θ']]; label = 'light totally reflected in a ' + GLASS[kpr.get()].name + ' prism (n_p = ' + np.toFixed(4) + ')'; }
       if (mth === 'grating') { var m = +ord.get(), G = m * L / per.get(); parts = [[nd * Math.sin(th * D2R), C.text2, 'n_d sin θ'], [G, C.violet, (m > 0 ? '+' : '') + m + ' λ/Λ']]; label = 'light diffracted by a grating of period ' + per.get() + ' nm'; }
       if (mth === 'fibre') { var nc = nco.get(); parts = [[nc * Math.sin(th * D2R), C.green, 'n_core sin θ']]; label = 'a ray in a fibre core (or waveguide) striking the gold at θ'; }
       var tot = parts.reduce(function (a, p) { return a + p[0]; }, 0), Wd = 860, Hd = 230, L0 = 40, R0 = 20, pw = Wd - L0 - R0, X = function (v) { return L0 + (v - lo) / (hi - lo) * pw; };
@@ -344,6 +345,7 @@
     var dn = VL.slider(ctl, { label: 'Analyte Δn', min: 0, max: 0.05, step: 0.001, value: 0, fmt: function (v) { return '+' + v.toFixed(3); }, on: draw });
     var per = VL.slider(ctl, { label: 'Grating period Λ', min: 300, max: 1200, step: 1, value: 480, fmt: function (v) { return v + ' nm'; }, on: draw });
     var ord = VL.select(ctl, { label: 'Diffraction order m', value: '1', options: [['1', '+1'], ['-1', '−1'], ['2', '+2']], on: draw });
+    var kpr = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: function () { var L = lam.get(), n = nWater(L) + dn.get(); ang.set(Math.round(10 * Math.asin(Math.min(1, nsp(epsM('Au', L), n * n)[0] / nGlass(kpr.get(), L))) / D2R) / 10); } });
     var nco = VL.slider(ctl, { label: 'Core index', min: 1.44, max: 1.9, step: 0.001, value: 1.457, fmt: function (v) { return v.toFixed(3); }, on: draw });
     draw();
   };
@@ -404,7 +406,7 @@
     var dm = VL.slider(ctl, { label: 'Metal thickness', min: 10, max: 90, step: 1, value: 50, fmt: function (v) { return v + ' nm'; }, on: upd });
     var cr = VL.slider(ctl, { label: 'Chromium adhesion layer', min: 0, max: 5, step: 0.5, value: 0, fmt: function (v) { return v.toFixed(1) + ' nm'; }, on: upd });
     var lam = VL.slider(ctl, { label: 'Wavelength', min: 550, max: 1000, step: 1, value: 633, fmt: function (v) { return v + ' nm'; }, on: upd });
-    var pr = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10 (high index)']], on: upd });
+    var pr = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: function () { cache = null; compute(); ang.set(Math.round((cache.dip.x - 1.5) * 20) / 20); } });
     var dn = VL.slider(ctl, { label: 'Analyte Δn (over water)', min: 0, max: 0.05, step: 0.0005, value: 0, fmt: function (v) { return '+' + v.toFixed(4); }, on: upd });
     var pv = VL.select(ctl, { label: 'Show', value: 'both', options: [['p', 'p only'], ['both', 'p and s']], on: draw });
     var ang = VL.slider(ctl, { label: 'Beam angle', min: 40, max: 88, step: 0.05, value: 70, fmt: function (v) { return v.toFixed(2) + '°'; }, on: draw });
@@ -417,7 +419,7 @@
   F.thick = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), plot2 = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
     var draw = function () {
-      var m = met.get(), L = lam.get(), np = nGlass('BK7', L), na = nWater(L), thc = Math.asin(na / np) / D2R, a = thc - 2, b = 88.5;
+      var m = met.get(), L = lam.get(), np = nGlass(tpr.get(), L), na = nWater(L), thc = Math.asin(na / np) / D2R, a = thc - 2, b = 88.5;
       var ds = [30, 40, 50, 60, 70], cols = ['#6b5a2a', '#9c7d2c', C.au, '#ffd27a', '#fff3c4'], ths = VL.linspace(a, b, 360);
       var st = function (d) { return [{ eps: re(np) }, { eps: epsM(m, L), d: d }, { eps: re(na) }]; };
       plot.innerHTML = VL.plot({ id: 'thk', label: 'Reflectance for different metal thicknesses', w: 720, h: 300, x: { min: a, max: b, label: 'Angle in the prism (°)' }, y: { min: 0, max: 1.02, label: 'Reflectance R_p' },
@@ -429,6 +431,7 @@
       read.innerHTML = '<div><b>' + best.d + ' nm</b><span>' + MET[m].name.toLowerCase() + ' thickness that makes the dip reach (nearly) zero at ' + L + ' nm</span></div><div><b>thinner</b><span>radiation back into the prism dominates: broad, shallow dip</span></div><div><b>thicker</b><span>light barely tunnels through: narrow but shallow dip</span></div>';
     };
     var met = VL.select(ctl, { label: 'Metal', value: 'Au', options: metalOpts, on: draw });
+    var tpr = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: draw });
     var lam = VL.slider(ctl, { label: 'Wavelength', min: 550, max: 1000, step: 1, value: 633, fmt: function (v) { return v + ' nm'; }, on: draw });
     draw();
   };
@@ -448,7 +451,7 @@
     };
     var met = VL.select(ctl, { label: 'Metal (thick)', value: 'Ag', options: metalOpts, on: draw });
     var gap = VL.select(ctl, { label: 'Gap filled with', value: 'air', options: [['air', 'air'], ['water', 'water']], on: draw });
-    var pr = VL.select(ctl, { label: 'Prism', value: 'SF10', options: [['BK7', 'N-BK7'], ['SF10', 'SF10']], on: draw });
+    var pr = VL.select(ctl, { label: 'Prism', value: 'SF10', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: draw });
     var gw = VL.slider(ctl, { label: 'Gap thickness', min: 100, max: 2500, step: 10, value: 800, fmt: function (v) { return v + ' nm'; }, on: draw });
     var lam = VL.slider(ctl, { label: 'Wavelength', min: 550, max: 1000, step: 1, value: 633, fmt: function (v) { return v + ' nm'; }, on: draw });
     draw();
@@ -458,13 +461,17 @@
   F.interrog = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
     var o = { metal: 'Au', d: 50, cr: 0, prism: 'BK7' };
+    // resonance angle of the chip at wavelength L (water), used to centre the angle ranges
+    var thRes = function (L) { var S = kStack(o, L, 0), thc = Math.asin(Math.min(1, nWater(L) / nGlass(o.prism, L))) / D2R; return dipOf(function (t) { return R(S, L, t); }, thc + 0.05, 89.5, 300).x; };
+    var preset = function () { o.prism = ipr.get(); var c = thRes(lam.get()), md = mode.get(); ang.input.min = (c - 8).toFixed(2); ang.input.max = Math.min(89.5, c + 8).toFixed(2); var steep = c - 1, best = 0, S = kStack(o, lam.get(), 0); for (var t = c - 4; t < c; t += 0.01) { var sl = Math.abs(R(S, lam.get(), t + 0.01) - R(S, lam.get(), t)); if (sl > best) { best = sl; steep = t; } } ang.set(md === 'intensity' ? steep : md === 'phase' ? c - 0.05 : c - 2); };
     var draw = function () {
-      var md = mode.get(), dA = dn.get(), th = ang.get(), L = lam.get();
+      o.prism = ipr.get(); var md = mode.get(), dA = dn.get(), th = ang.get(), L = lam.get();
       show(ang, md !== 'angle'); show(lam, md !== 'wave');
       var S0 = function (l) { return kStack(o, l, 0); }, S1 = function (l) { return kStack(o, l, dA); }, sv = '', rd = '';
+      var c = thRes(L), A0 = Math.max(35, c - 10), A1 = Math.min(89.5, c + 10), B0 = c - 5, B1 = Math.min(89.5, c + 5);
       if (md === 'angle') {
-        var ths = VL.linspace(62, 82, 400), f0 = function (t) { return R(S0(L), L, t); }, f1 = function (t) { return R(S1(L), L, t); }, a0 = dipOf(f0, 62, 82), a1 = dipOf(f1, 62, 82);
-        sv = VL.plot({ id: 'int', label: 'Angular interrogation', w: 720, h: 320, x: { min: 62, max: 82, label: 'Angle (°) at a fixed wavelength of ' + L + ' nm' }, y: { min: 0, max: 1.02, label: 'R_p' }, series: [{ data: ths.map(function (t) { return [t, f0(t)]; }), color: C.au, width: 2.4, label: 'water' }, { data: ths.map(function (t) { return [t, f1(t)]; }), color: C.cyan, width: 2.4, dash: '6 4', label: 'water + Δn' }], marks: [{ x: a0.x, y: a0.v, color: C.au }, { x: a1.x, y: a1.v, color: C.cyan }], legend: true, legendX: 20, legendY: 200 });
+        var ths = VL.linspace(A0, A1, 400), f0 = function (t) { return R(S0(L), L, t); }, f1 = function (t) { return R(S1(L), L, t); }, a0 = dipOf(f0, A0, A1), a1 = dipOf(f1, A0, A1);
+        sv = VL.plot({ id: 'int', label: 'Angular interrogation', w: 720, h: 320, x: { min: A0, max: A1, label: 'Angle (°) at a fixed wavelength of ' + L + ' nm' }, y: { min: 0, max: 1.02, label: 'R_p' }, series: [{ data: ths.map(function (t) { return [t, f0(t)]; }), color: C.au, width: 2.4, label: 'water' }, { data: ths.map(function (t) { return [t, f1(t)]; }), color: C.cyan, width: 2.4, dash: '6 4', label: 'water + Δn' }], marks: [{ x: a0.x, y: a0.v, color: C.au }, { x: a1.x, y: a1.v, color: C.cyan }], legend: true, legendX: 20, legendY: 200 });
         rd = '<div><b>' + ((a1.x - a0.x) * 1000).toFixed(1) + ' m°</b><span>shift of the dip</span></div><div><b>' + (dA ? ((a1.x - a0.x) / dA).toFixed(0) + ' °/RIU' : '—') + '</b><span>angular sensitivity</span></div><div><b>angle</b><span>monochromatic laser or LED, a fan of angles onto a detector array</span></div>';
       } else if (md === 'wave') {
         var ls = VL.linspace(520, 1000, 400), g0 = function (l) { return R(S0(l), l, th); }, g1 = function (l) { return R(S1(l), l, th); }, b0 = dipOf(g0, 520, 1000), b1 = dipOf(g1, 520, 1000);
@@ -475,15 +482,16 @@
         sv = VL.plot({ id: 'int', label: 'Intensity interrogation', w: 720, h: 320, x: { min: 0, max: 0.02, label: 'Refractive-index change Δn (fixed angle ' + th.toFixed(2) + '° and wavelength ' + L + ' nm)' }, y: { min: 0, max: 1.02, label: 'R_p' }, series: [{ data: ns.map(function (d) { return [d, h(d)]; }), color: C.au, width: 2.6, label: 'reflected intensity' }], marks: [{ x: dA, y: h(dA), color: C.cyan, label: 'Δn = ' + dA.toFixed(4), dx: 10 }], legend: true, legendX: 20, legendY: 30 });
         rd = '<div><b>' + (100 * h(0)).toFixed(2) + ' %</b><span>reflectance with water</span></div><div><b>' + (100 * (h(dA) - h(0))).toFixed(2) + ' %</b><span>change for this Δn</span></div><div><b>' + sl.toFixed(1) + ' / RIU</b><span>slope dR/dn at the working point (linear only over a small range)</span></div>';
       } else {
-        var tp = VL.linspace(66, 76, 500), ph = function (S, t) { return carg(rTMM(S, L, t, 'p')) / D2R; }, Sa = kStack(o, L, 0), Sb = kStack(o, L, dA), mk = function (S) { var out = [], off = 0, prev = null; tp.forEach(function (t) { var v = ph(S, t); if (prev != null) { if (v - prev > 180) off -= 360; if (v - prev < -180) off += 360; } prev = v; out.push([t, v + off]); }); var s0 = out[0][1]; return out.map(function (q) { return [q[0], q[1] - s0]; }); };
+        var tp = VL.linspace(B0, B1, 500), ph = function (S, t) { return carg(rTMM(S, L, t, 'p')) / D2R; }, Sa = kStack(o, L, 0), Sb = kStack(o, L, dA), mk = function (S) { var out = [], off = 0, prev = null; tp.forEach(function (t) { var v = ph(S, t); if (prev != null) { if (v - prev > 180) off -= 360; if (v - prev < -180) off += 360; } prev = v; out.push([t, v + off]); }); var s0 = out[0][1]; return out.map(function (q) { return [q[0], q[1] - s0]; }); };
         var ra = mk(Sa), rb = mk(Sb), steep = 0, at = 0; for (var i = 1; i < ra.length; i++) { var sl2 = Math.abs((ra[i][1] - ra[i - 1][1]) / (ra[i][0] - ra[i - 1][0])); if (sl2 > steep) { steep = sl2; at = ra[i][0]; } }
         var pa = ph(Sa, th), pb = ph(Sb, th), dph = ((pb - pa + 540) % 360) - 180;
-        sv = VL.plot({ id: 'int', label: 'Phase interrogation', w: 720, h: 320, x: { min: 66, max: 76, label: 'Angle (°) at ' + L + ' nm · gold ' + o.d + ' nm' }, y: (function () { var all = ra.concat(rb).map(function (q) { return q[1]; }), lo = Math.min.apply(null, all), hi = Math.max.apply(null, all), pad = 0.1 * (hi - lo || 1); return { min: Math.floor((lo - pad) / 10) * 10, max: Math.ceil((hi + pad) / 10) * 10, label: 'Phase of r_p, relative (°)' }; })(), series: [{ data: ra, color: C.au, width: 2.4, label: 'water' }, { data: rb, color: C.cyan, width: 2.2, dash: '6 4', label: 'water + Δn' }], vlines: [{ x: th, color: C.text3 }], legend: true, legendX: 20, legendY: 210 });
+        sv = VL.plot({ id: 'int', label: 'Phase interrogation', w: 720, h: 320, x: { min: B0, max: B1, label: 'Angle (°) at ' + L + ' nm · gold ' + o.d + ' nm' }, y: (function () { var all = ra.concat(rb).map(function (q) { return q[1]; }), lo = Math.min.apply(null, all), hi = Math.max.apply(null, all), pad = 0.1 * (hi - lo || 1); return { min: Math.floor((lo - pad) / 10) * 10, max: Math.ceil((hi + pad) / 10) * 10, label: 'Phase of r_p, relative (°)' }; })(), series: [{ data: ra, color: C.au, width: 2.4, label: 'water' }, { data: rb, color: C.cyan, width: 2.2, dash: '6 4', label: 'water + Δn' }], vlines: [{ x: th, color: C.text3 }], legend: true, legendX: 20, legendY: 210 });
         rd = '<div><b>' + dph.toFixed(2) + '°</b><span>phase change at θ = ' + th.toFixed(2) + '°</span></div><div><b>' + (dA ? (dph / dA).toExponential(2) + ' °/RIU' : '—') + '</b><span>phase sensitivity at that angle</span></div><div><b>' + steep.toFixed(0) + ' °/° at ' + at.toFixed(2) + '°</b><span>steepest phase slope; it grows sharply as the dip deepens towards zero</span></div>';
       }
       plot.innerHTML = sv; read.innerHTML = rd;
     };
-    var mode = VL.select(ctl, { label: 'Interrogation', value: 'angle', options: [['angle', 'angle'], ['wave', 'wavelength'], ['intensity', 'intensity'], ['phase', 'phase']], on: function () { if (mode.get() === 'intensity') ang.set(70.3); else if (mode.get() === 'phase') ang.set(72.0); else if (mode.get() === 'wave') ang.set(70); else draw(); } });
+    var mode = VL.select(ctl, { label: 'Interrogation', value: 'angle', options: [['angle', 'angle'], ['wave', 'wavelength'], ['intensity', 'intensity'], ['phase', 'phase']], on: function () { preset(); } });
+    var ipr = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: function () { preset(); } });
     var dn = VL.slider(ctl, { label: 'Analyte Δn', min: 0, max: 0.01, step: 0.0001, value: 0.003, fmt: function (v) { return '+' + v.toFixed(4); }, on: draw });
     var ang = VL.slider(ctl, { label: 'Fixed angle', min: 64, max: 80, step: 0.01, value: 70, fmt: function (v) { return v.toFixed(2) + '°'; }, on: draw });
     var lam = VL.slider(ctl, { label: 'Fixed wavelength', min: 600, max: 900, step: 1, value: 633, fmt: function (v) { return v + ' nm'; }, on: draw });
@@ -495,9 +503,9 @@
     var ctl = VL.part(fig, 'vl-controls'), plot = VL.part(fig, 'vl-plot'), plot2 = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout');
     // from phase matching: n_p(λ) sin θ = Re n_sp(λ, n)
     var nsR = function (m, l, n) { return nsp(epsM(m, l), n * n)[0]; };
-    var angS = function (m, l) { var n = nWater(l), np = nGlass('BK7', l), s = function (dn) { return Math.asin(Math.min(1, nsR(m, l, n + dn) / np)) / D2R; }; return (s(0.001) - s(0)) / 0.001; };
-    var wavS = function (m, l) { var n = nWater(l), np = nGlass('BK7', l), th = Math.asin(nsR(m, l, n) / np), f = function (L, dn) { return nsR(m, L, nWater(L) + dn) - nGlass('BK7', L) * Math.sin(th); }; var dfdn = (f(l, 0.001) - f(l, 0)) / 0.001, dfdl = (f(l + 0.5, 0) - f(l - 0.5, 0)) / 1; return -dfdn / dfdl; };
-    var fom = function (m, l) { var n = nWater(l), np = nGlass('BK7', l), ns = nsp(epsM(m, l), n * n), th = Math.asin(ns[0] / np), w = 4 * ns[1] / (np * Math.cos(th)) / D2R; return { w: w, f: angS(m, l) / w }; };
+    var angS = function (m, l) { var n = nWater(l), np = nGlass(spr.get(), l), s = function (dn) { return Math.asin(Math.min(1, nsR(m, l, n + dn) / np)) / D2R; }; return (s(0.001) - s(0)) / 0.001; };
+    var wavS = function (m, l) { var n = nWater(l), np = nGlass(spr.get(), l), th = Math.asin(nsR(m, l, n) / np), f = function (L, dn) { return nsR(m, L, nWater(L) + dn) - nGlass(spr.get(), L) * Math.sin(th); }; var dfdn = (f(l, 0.001) - f(l, 0)) / 0.001, dfdl = (f(l + 0.5, 0) - f(l - 0.5, 0)) / 1; return -dfdn / dfdl; };
+    var fom = function (m, l) { var n = nWater(l), np = nGlass(spr.get(), l), ns = nsp(epsM(m, l), n * n), th = Math.asin(ns[0] / np), w = 4 * ns[1] / (np * Math.cos(th)) / D2R; return { w: w, f: angS(m, l) / w }; };
     var draw = function () {
       var ls = VL.linspace(600, 1600, 140), L = lam.get();
       plot.innerHTML = VL.plot({ id: 'sens1', label: 'Angular sensitivity', w: 720, h: 260, x: { min: 600, max: 1600, label: 'Wavelength (nm)' }, y: { min: 0, max: 250, label: 'dθ/dn (°/RIU)' },
@@ -507,6 +515,7 @@
       var fa = fom('Au', L), fs = fom('Ag', L);
       read.innerHTML = '<div><b>' + angS('Au', L).toFixed(0) + ' / ' + angS('Ag', L).toFixed(0) + ' °/RIU</b><span>angular sensitivity at ' + L + ' nm (gold / silver)</span></div><div><b>' + Math.round(wavS('Au', L)) + ' / ' + Math.round(wavS('Ag', L)) + ' nm/RIU</b><span>spectral sensitivity at ' + L + ' nm (gold / silver)</span></div><div><b>' + fa.w.toFixed(2) + '° / ' + fs.w.toFixed(2) + '°</b><span>dip width at critical coupling, 4 Im n_sp / (n_p cos θ)</span></div><div><b>' + fa.f.toFixed(0) + ' / ' + fs.f.toFixed(0) + ' RIU⁻¹</b><span>figure of merit, sensitivity ÷ width (gold / silver)</span></div>';
     };
+    var spr = VL.select(ctl, { label: 'Prism', value: 'BK7', options: [['BK7', 'N-BK7'], ['SF10', 'SF10'], ['SF11', 'SF11 (highest index)']], on: function () { draw(); } });
     var lam = VL.slider(ctl, { label: 'Wavelength', min: 600, max: 1600, step: 1, value: 633, fmt: function (v) { return v + ' nm'; }, on: draw });
     draw();
   };
