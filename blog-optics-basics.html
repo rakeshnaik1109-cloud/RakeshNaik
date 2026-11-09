@@ -544,7 +544,8 @@ structures, and different communities, choose different references. The first qu
 <h3>The recipe</h3>
 <div class="callout tip"><b>Three steps that work for every structure</b>
 <p><b>1. Find the reference.</b> For a plane wave meeting a surface or a grating in classical mounting, it is the
-<i>plane of incidence</i> — the plane containing the wave vector \(\mathbf k\) and the surface normal \(\mathbf n\). For a
+<i>plane of incidence</i> — the plane containing the wave vector \(\mathbf k\) and the surface normal \(\mathbf n\) (for a grating,
+the plane perpendicular to the grooves, which remains the reference even at normal incidence). For a
 waveguide, it is the <i>propagation direction</i> of the mode (and, for a slab, the plane containing the
 propagation direction and the direction in which the index changes). For a 2D photonic crystal, it is the
 <i>plane of periodicity</i>.</p>
@@ -573,22 +574,64 @@ which way \(\mathbf E\) points.</p></div>
     <rect x="600" y="186" width="125" height="72" rx="8" fill="rgba(226,86,110,.12)" stroke="#e2566e"/><text x="662" y="208" class="dt" text-anchor="middle" fill="#e2566e">TE</text><text x="662" y="228" class="da" text-anchor="middle">E in the periodic</text><text x="662" y="242" class="da" text-anchor="middle">plane, H ∥ rods</text>
     <rect x="735" y="186" width="125" height="72" rx="8" fill="rgba(224,168,46,.12)" stroke="#e0a82e"/><text x="797" y="208" class="dt" text-anchor="middle" fill="#e0a82e">TM</text><text x="797" y="228" class="da" text-anchor="middle">E ∥ rods,</text><text x="797" y="242" class="da" text-anchor="middle">H in the plane</text>
     <text x="440" y="290" class="da" text-anchor="middle">Both labels apply only when the structure makes them independent; hybrid modes (fibres, strip waveguides, conical gratings) mix them.</text>
-    <text x="440" y="310" class="da" text-anchor="middle">At exactly normal incidence there is no plane of incidence: TE and TM are the same.</text>
+    <text x="440" y="310" class="da" text-anchor="middle">At normal incidence on a flat, isotropic surface TE and TM are the same; on a grating they still differ (E ∥ or ⟂ grooves).</text>
   </svg>
   <figcaption><b>Deciding TE or TM.</b> Choose the reference from the structure, then read off which field avoids it.
   Note that the photonic-crystal branch names the same physical field the other way round from the grating branch:
   E along the uniform direction is TE for a grating and TM for a photonic crystal.</figcaption>
 </figure>
 
+<h3>Where the conventions come from</h3>
+<p>Every convention in this section applies one rule with a different reference axis. Choose an axis \(\hat{\mathbf u}\): a field
+is <b>TE to \(\hat{\mathbf u}\)</b> if \(\mathbf E\cdot\hat{\mathbf u} = 0\), and <b>TM to \(\hat{\mathbf u}\)</b> if \(\mathbf H\cdot\hat{\mathbf u} = 0\). In a homogeneous region
+any field can be split into a TE and a TM part with respect to any fixed axis [27]. In a structure the split stays clean only
+if the axis suits the structure: the direction in which the layers vary, for a stratified medium [28]; the guide axis, for a
+hollow waveguide [6, 29]. Communities differ only in the axis they chose — in each case the one their problem singled out.</p>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Field of use</th><th>Reference axis</th><th>“TE” means</th><th>Standard sources</th></tr></thead>
+  <tbody>
+    <tr><td>Microwave waveguides</td><td>guide axis</td><td>\(E_z = 0\) (also called H modes, since \(H_z \ne 0\))</td><td>[6, 29]</td></tr>
+    <tr><td>Reflection, thin films, ellipsometry</td><td>normal to the interface; equivalently, E referred to the plane of incidence</td><td>E parallel to the surface, ⟂ plane of incidence: s (German <i>senkrecht</i>)</td><td>[8, 11, 28, 36]</td></tr>
+    <tr><td>Slab waveguides</td><td>layer normal (with the guide axis)</td><td>only \(E_y\): an s-polarised wave bouncing in a zig-zag between the faces</td><td>[11, 24]</td></tr>
+    <tr><td>Gratings, classical mounting</td><td>grating normal; plane of incidence ⟂ grooves</td><td>E ∥ grooves</td><td>[30, 31, 32]</td></tr>
+    <tr><td>Gratings, conical mounting</td><td>plane of incidence of the input; each diffracted order uses its own plane of diffraction</td><td>E ⟂ that plane</td><td>[33]</td></tr>
+    <tr><td>Strip and rib waveguides</td><td>substrate (no exact TE/TM)</td><td>quasi-TE: dominant E ∥ substrate</td><td>[20, 34]</td></tr>
+    <tr><td>Optical fibres</td><td>fibre axis</td><td>TE₀ₘ: E azimuthal (most modes hybrid)</td><td>[23, 24]</td></tr>
+    <tr><td>2D photonic crystals</td><td>rod (uniform) axis</td><td>\(E_z = 0\): E in the periodic plane</td><td>[22]</td></tr>
+    <tr><td>Scattering by long cylinders</td><td>cylinder axis</td><td>E ⟂ axis (E ∥ axis is TM to the axis, or “case I”)</td><td>[35, 37]</td></tr>
+  </tbody>
+</table></div>
+
+<p><b>Why the photonic-crystal names look reversed.</b> For a surface the reference is the normal to the layers, \(z\): s light has
+E along the surface, so \(E_z = 0\) and it is TE. The slab waveguide uses the same axis, which is why its TE mode is simply
+an s-polarised wave zig-zagging between the faces [11]. Grating theory took over this optical convention, so in classical
+mounting E along the grooves (perpendicular to the plane of incidence, \(E_z = 0\)) is TE [30, 31]. A 2D photonic crystal has no
+special normal within its periodic plane — light travels in that plane in every direction — so the natural axis is the one
+along which the structure does not change, the rod axis. E along the rods then has a component on that axis and is TM [22],
+just as in microwave scattering by cylinders, where fields are named relative to the cylinder axis [37]. Both communities
+use the same definition; they measure “transverse” against perpendicular axes.</p>
+
+<div class="callout warn"><b>Two traps in data sheets and papers</b>
+<p><b>Grating “P” and “S”.</b> Grating manufacturers call light with E parallel to the grooves <i>P-plane</i> (TE) and E
+perpendicular to the grooves <i>S-plane</i> (TM) [32]: the letters refer to the grooves, not to the plane of incidence. In
+classical mounting the manufacturer's P light is s-polarised in the Fresnel sense. TE and TM agree between the two
+communities; the letters s and p are swapped. Always check which way E points relative to the grooves.</p>
+<p><b>Normal incidence.</b> On a flat, isotropic surface TE and TM become identical at normal incidence, because no plane of
+incidence is defined. On a grating, or on any anisotropic structure, they do not: E along and across the grooves still give
+different efficiencies, and the plane perpendicular to the grooves is kept as the reference [31].</p></div>
+
 <h3>Case 1 — a plane surface (reflection, refraction, thin films)</h3>
 <p>The plane of incidence contains \(\mathbf k\) and the surface normal. <b>TE = s</b>: \(\mathbf E\) is perpendicular to this plane and
 therefore parallel to the surface. <b>TM = p</b>: \(\mathbf E\) lies in the plane, \(\mathbf H\) is perpendicular to it. These are the
-two polarisations of the Fresnel equations in section 9: only TM has a Brewster angle, and TM is the one that, in a
+two polarisations of the Fresnel equations in section 9 [8, 11]; the letters come from German <i>senkrecht</i> (perpendicular) and
+<i>parallel</i>. In the language of layered media, s light is TE to the surface normal (\(E_z = 0\)) and p light TM to it
+(\(H_z = 0\)) [28]. Only TM has a Brewster angle, and TM is the one that, in a
 metal, can drive charge across the surface. In a laboratory with the optical table horizontal and the beam reflected
 sideways off a vertical mirror, the plane of incidence is horizontal: s light is <i>vertically</i> polarised, p light
 horizontally. Turn the mirror so that the beam goes up, and the names swap — the polarisation of the laser has not
 changed, the plane of incidence has. Multilayer coatings, ellipsometry (\(\Psi\) and \(\Delta\) compare \(r_p\) and \(r_s\)) and SPR
-prisms all use this convention.</p>
+prisms all use this convention [36].</p>
 
 <h3>Case 2 — a slab waveguide</h3>
 <p>Take propagation along \(z\), layers normal to \(x\), and the structure uniform along \(y\) (\(\partial/\partial y = 0\)). Writing out
@@ -596,12 +639,16 @@ Maxwell's curl equations, the six field components split into two independent gr
 $$\text{TE:}\ \ (E_y,\ H_x,\ H_z), \qquad \text{TM:}\ \ (H_y,\ E_x,\ E_z) .$$
 <p>TE has no electric field along the propagation direction and its \(\mathbf E\) is parallel to the layers; TM has no magnetic
 field along it, and its \(\mathbf E\) points mainly across the layers. The two have different effective indices (TE is
-usually slightly higher) and different cut-offs — the modes of section 14.</p>
+usually slightly higher) and different cut-offs — the modes of section 14. In the ray picture, the TE mode is an s-polarised
+plane wave reflecting back and forth between the faces, and the TM mode a p-polarised one [11]: the slab inherits the
+convention of the plane surface.</p>
 
 <h3>Case 3 — rectangular (strip, rib) waveguides: quasi-TE and quasi-TM</h3>
 <p>A wire confines light in two directions, so no direction is uniform and the modes are <b>hybrid</b>: all six components
 are non-zero. They are named after their dominant electric field: <b>quasi-TE</b> when \(\mathbf E\) is mostly parallel to the
-substrate (across the width), <b>quasi-TM</b> when it is mostly perpendicular to it. In a standard 450 × 220 nm silicon
+substrate (across the width), <b>quasi-TM</b> when it is mostly perpendicular to it. Marcatili, who gave the first
+approximate theory of these guides, labelled the two families \(E^x_{pq}\) and \(E^y_{pq}\) after the direction of their main
+electric field [34]; quasi-TE and quasi-TM are the names used in silicon photonics today [20]. In a standard 450 × 220 nm silicon
 wire the quasi-TE mode has the higher effective index and is the one most devices are designed for; grating couplers,
 ring resonators and directional couplers behave very differently for the two, which is why on-chip polarisation
 splitters and rotators exist.</p>
@@ -609,32 +656,39 @@ splitters and rotators exist.</p>
 <h3>Case 4 — hollow metal waveguides</h3>
 <p>Here the reference is the propagation direction alone. <b>TE</b> (or H) modes have \(E_z = 0\) and \(H_z \ne 0\); <b>TM</b> (or E)
 modes have \(H_z = 0\) and \(E_z \ne 0\). The indices \(m, n\) count half-wave variations across the width and height:
-TE₁₀ has its electric field across the short side, largest in the middle and zero at the side walls, and is the
-fundamental mode of a rectangular guide; the lowest TM mode is TM₁₁. A guide with two separate conductors (coaxial
+in TE₁₀ the electric field points along the short side of the cross-section and varies as one half-sine across the long
+side — largest in the middle, zero at the side walls. TE₁₀ is the fundamental mode of a rectangular guide; the lowest TM mode
+is TM₁₁ [6, 29]. A guide with two separate conductors (coaxial
 cable, a pair of wires) also supports a <b>TEM</b> mode, with neither field along the propagation direction.</p>
 
 <h3>Case 5 — optical fibres</h3>
 <p>The cylindrical symmetry makes most fibre modes hybrid, labelled HE and EH according to which longitudinal field
 dominates; the fundamental mode is HE₁₁. Only the rotationally symmetric modes are pure: <b>TE₀₁</b>, with \(\mathbf E\)
-circling the axis (azimuthal), and <b>TM₀₁</b>, with \(\mathbf E\) pointing radially. In weakly guiding fibres the modes are
-grouped into linearly polarised LP modes (section 15) — TE₀₁, TM₀₁ and HE₂₁ together form LP₁₁ — and “TE/TM” is rarely
+circling the axis (azimuthal), and <b>TM₀₁</b>, with \(\mathbf E\) pointing radially [23, 24]. In weakly guiding fibres the modes are
+grouped into linearly polarised LP modes (section 15) [16] — TE₀₁, TM₀₁ and HE₂₁ together form LP₁₁ — and “TE/TM” is rarely
 used for them.</p>
 
 <h3>Case 6 — gratings and periodic surfaces</h3>
 <p>In <b>classical mounting</b> the plane of incidence is perpendicular to the grooves. Then <b>TE</b>: \(\mathbf E\) parallel to the
-grooves; <b>TM</b>: \(\mathbf E\) perpendicular to them, \(\mathbf H\) parallel to the grooves. The two behave very differently:</p>
+grooves; <b>TM</b>: \(\mathbf E\) perpendicular to them, \(\mathbf H\) parallel to the grooves [30, 31]. This is the plane-surface convention
+carried over, and it still holds at normal incidence, where the grooves rather than the beam define the two cases. The
+two behave very differently:</p>
 <ul>
   <li>On a <b>metal grating</b>, only TM has a field component that crosses the ridges and piles up charge, so only TM
-  couples to surface plasmons (grating-coupled SPR) and shows the sharp Wood–Rayleigh anomalies.</li>
+  couples to surface plasmons (grating-coupled SPR) [21]. The sharp Wood anomalies in the efficiency curves are
+therefore seen mainly in TM and rarely in TE [32].</li>
   <li>A <b>wire-grid polariser</b> reflects TE (E along the wires drives currents in them) and transmits TM.</li>
-  <li><b>Diffraction efficiencies</b> of ruled and holographic gratings are quoted separately for TE and TM (sometimes
-  called “s” and “p”, or “parallel” and “perpendicular to the grooves” — check the definition in the data sheet).</li>
+  <li><b>Diffraction efficiencies</b> of ruled and holographic gratings are quoted separately for the two. Manufacturers
+  call them P (E ∥ grooves, TE) and S (E ⟂ grooves, TM) [32] — the reverse of the Fresnel letters for the same field in
+  classical mounting (see the box above).</li>
   <li>For sub-wavelength gratings the two polarisations see different effective indices: <b>form birefringence</b>,
   used for wave plates and polarisation-sensitive metasurfaces.</li>
 </ul>
 <p>In <b>conical mounting</b> the plane of incidence is rotated away from the grating vector. TE and TM are still defined
 relative to the plane of incidence (\(\mathbf E\) perpendicular or parallel to it), but the grating now <i>mixes</i> them: each
-diffracted order contains both, and rigorous solvers such as RCWA must treat them together.</p>
+diffracted order contains both. Each order also travels in its own plane of diffraction (containing its wave vector and
+the grating normal), so its TE and TM parts are referred to that plane, which differs from order to order. Rigorous solvers
+such as RCWA therefore treat the two polarisations together and resolve every order into its own TE and TM parts [33].</p>
 
 <h3>Case 7 — photonic crystals: the convention flips</h3>
 <p>A two-dimensional photonic crystal (a lattice of rods or holes, uniform along \(z\)) separates, for light travelling in
@@ -643,7 +697,8 @@ the periodic \(x\)–\(y\) plane, into two families. The photonic-crystal litera
 and \(\mathbf H\) in the plane. A lattice of dielectric rods in air tends to open a band gap for TM, a lattice of air holes in a
 dielectric for TE. In photonic-crystal <i>slabs</i> (finite thickness) the modes become TE-like and TM-like by their
 symmetry about the slab's mid-plane. Compared with a grating, this is the opposite name for the same physical field —
-the most common source of TE/TM mistakes.</p>
+the most common source of TE/TM mistakes. The reason is the choice of axis, not a different definition: see “Where the
+conventions come from” above.</p>
 
 <h3>Case 8 — plasmonics, nanowires and scattering</h3>
 <ul>
@@ -651,24 +706,24 @@ the most common source of TE/TM mistakes.</p>
   and cannot create surface charge (section 11 and the <a href="blog-spectroscopy.html#s-spp">spectroscopy article</a>).</li>
   <li><b>Metal nanorods</b> have longitudinal and transverse plasmon resonances — named by whether \(\mathbf E\) is along or across
   the rod, not TE/TM.</li>
-  <li><b>Scattering by long cylinders and wires</b>: many texts call the case with \(\mathbf E\) parallel to the cylinder axis “TM”
-  (others call it “case I” or “E-polarisation”), relative to the cross-sectional plane — like photonic crystals. Saying “E
-  parallel to the axis” avoids the ambiguity.</li>
+  <li><b>Scattering by long cylinders and wires</b>: electrical-engineering texts call the case with \(\mathbf E\) parallel to
+  the cylinder axis TM to the axis (\(\text{TM}^z\)) [37] — like photonic crystals; Bohren and Huffman call it “case I” [35],
+  and others “E-polarisation”. Saying “E parallel to the axis” avoids the ambiguity.</li>
 </ul>
 
 <div class="tbl-wrap"><table>
   <thead><tr><th>Structure</th><th>Reference</th><th>TE</th><th>TM</th><th>Typical consequence</th></tr></thead>
   <tbody>
     <tr><td>Plane surface, thin films</td><td>plane of incidence</td><td>E ⟂ plane (s), E ∥ surface</td><td>E in plane (p)</td><td>Brewster angle and SPR only for TM</td></tr>
-    <tr><td>Grating, classical mount</td><td>plane of incidence (⟂ grooves)</td><td>E ∥ grooves</td><td>E ⟂ grooves, H ∥ grooves</td><td>plasmons and wire-grid transmission for TM</td></tr>
-    <tr><td>Grating, conical mount</td><td>rotated plane of incidence</td><td>E ⟂ that plane</td><td>E in that plane</td><td>orders mix TE and TM</td></tr>
+    <tr><td>Grating, classical mount</td><td>plane of incidence (⟂ grooves)</td><td>E ∥ grooves (maker's “P”)</td><td>E ⟂ grooves, H ∥ grooves (maker's “S”)</td><td>plasmons and wire-grid transmission for TM; still distinct at normal incidence</td></tr>
+    <tr><td>Grating, conical mount</td><td>rotated plane of incidence</td><td>E ⟂ that plane</td><td>E in that plane</td><td>orders mix TE and TM, each referred to its own plane of diffraction</td></tr>
     <tr><td>Slab waveguide</td><td>propagation + layer normal</td><td>E_y, H_x, H_z (E ∥ layers)</td><td>H_y, E_x, E_z</td><td>different n_eff and cut-off</td></tr>
     <tr><td>Strip / rib waveguide</td><td>chip surface</td><td>quasi-TE: E mostly ∥ substrate</td><td>quasi-TM: E mostly ⟂ substrate</td><td>polarisation-dependent devices</td></tr>
     <tr><td>Hollow metal waveguide</td><td>propagation direction</td><td>E_z = 0 (TE₁₀ fundamental)</td><td>H_z = 0 (TM₁₁ lowest)</td><td>cut-off frequencies; TEM needs two conductors</td></tr>
     <tr><td>Optical fibre</td><td>fibre axis</td><td>TE₀₁: azimuthal E</td><td>TM₀₁: radial E</td><td>most modes hybrid (HE₁₁ fundamental); LP in weak guidance</td></tr>
     <tr><td>2D photonic crystal</td><td>plane of periodicity</td><td>E in plane, H ∥ rods</td><td>E ∥ rods, H in plane</td><td>rods → TM gaps, holes → TE gaps (opposite naming)</td></tr>
     <tr><td>Metal surface (SPP)</td><td>propagation + surface normal</td><td>not supported</td><td>E normal + along the surface</td><td>plasmons are TM only</td></tr>
-    <tr><td>Normal incidence</td><td>none</td><td colspan="2">TE and TM identical — the labels are meaningless</td><td>any polarisation behaves the same</td></tr>
+    <tr><td>Flat surface, normal incidence</td><td>none</td><td colspan="2">TE and TM identical — the labels are meaningless</td><td>any polarisation behaves the same (not on a grating)</td></tr>
   </tbody>
 </table></div>
 
@@ -692,7 +747,7 @@ oscillating field vectors of the chosen polarisation.</p>
 <figure class="fig" data-fig="tetmquiz">
   <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
-  <figcaption><b>TE, TM or neither?</b> Fourteen situations from the lab and the literature, each with the reasoning
+  <figcaption><b>TE, TM or neither?</b> Sixteen situations from the lab and the literature, each with the reasoning
   behind the answer.</figcaption>
 </figure>
 
@@ -1019,6 +1074,17 @@ waveguides is what makes on-chip frequency combs possible.</p>
   <li>K. Okamoto, <i>Fundamentals of Optical Waveguides</i>, 2nd ed., Academic Press, Burlington (2006).</li>
   <li>R. C. Jones, “A new calculus for the treatment of optical systems. I. Description and discussion of the calculus,” <i>J. Opt. Soc. Am.</i> <b>31</b>, 488–493 (1941).</li>
   <li>E. Collett, <i>Field Guide to Polarization</i>, SPIE Press, Bellingham (2005).</li>
+  <li>R. F. Harrington, <i>Time-Harmonic Electromagnetic Fields</i>, McGraw-Hill, New York (1961).</li>
+  <li>W. C. Chew, <i>Waves and Fields in Inhomogeneous Media</i>, Van Nostrand Reinhold, New York (1990).</li>
+  <li>D. M. Pozar, <i>Microwave Engineering</i>, 4th ed., Wiley, Hoboken (2012).</li>
+  <li>R. Petit (ed.), <i>Electromagnetic Theory of Gratings</i>, Springer, Berlin (1980).</li>
+  <li>E. G. Loewen and E. Popov, <i>Diffraction Gratings and Applications</i>, Marcel Dekker, New York (1997).</li>
+  <li>C. Palmer, <i>Diffraction Grating Handbook</i>, 8th ed., MKS Instruments, Rochester, NY (2020).</li>
+  <li>M. G. Moharam, E. B. Grann, D. A. Pommet and T. K. Gaylord, “Formulation for stable and efficient implementation of the rigorous coupled-wave analysis of binary gratings,” <i>J. Opt. Soc. Am. A</i> <b>12</b>, 1068–1076 (1995).</li>
+  <li>E. A. J. Marcatili, “Dielectric rectangular waveguide and directional coupler for integrated optics,” <i>Bell Syst. Tech. J.</i> <b>48</b>, 2071–2102 (1969).</li>
+  <li>C. F. Bohren and D. R. Huffman, <i>Absorption and Scattering of Light by Small Particles</i>, Wiley, New York (1983).</li>
+  <li>R. M. A. Azzam and N. M. Bashara, <i>Ellipsometry and Polarized Light</i>, North-Holland, Amsterdam (1977).</li>
+  <li>C. A. Balanis, <i>Advanced Engineering Electromagnetics</i>, 2nd ed., Wiley, Hoboken (2012).</li>
 </ol>
 
 <hr>
@@ -1078,7 +1144,7 @@ Drude models, coupled-mode theory, the Marcuse mode-field formula). Corrections 
 
 <script src="js/site.js?v=20261107a"></script>
 <script src="js/blog/vl-core.js?v=20261107a"></script>
-<script src="js/blog/wg-figs.js?v=20261109g"></script>
+<script src="js/blog/wg-figs.js?v=20261109h"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
