@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>How Cameras and Light Detectors Work: From a Photon to a Number | Rakesh Naik</title>
+<meta name="description" content="How cameras and light detectors work: the photoelectric effect in silicon and quantum efficiency, photodiodes, PMTs, APDs and SPADs, CCD and CMOS sensors, rolling shutters, shot, dark and read noise, CCD vs EMCCD vs sCMOS, full well, dynamic range and the photon transfer curve, cooling, aliasing, Bayer filters, f-number and diffraction, infrared detectors, and dark and flat-field calibration — with interactive simulations.">
+<meta name="keywords" content="camera, image sensor, CCD, CMOS, sCMOS, EMCCD, quantum efficiency, photodiode, photomultiplier, PMT, APD, SPAD, shot noise, read noise, dark current, photon transfer curve, dynamic range, full well, rolling shutter, Bayer filter, demosaicing, aliasing, Nyquist, f-number, depth of field, InGaAs, MCT, microbolometer, flat field correction, TCSPC">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-cameras.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Cameras and Light Detectors Work: From a Photon to a Number">
+<meta property="og:description" content="From a photon to a number: silicon detection, PMTs and SPADs, CCD and CMOS readout, every kind of noise, CCD vs EMCCD vs sCMOS, dynamic range, cooling, aliasing, colour filters, lenses and calibration — with interactive simulations.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-cameras.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-06-30">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Cameras and Light Detectors Work: From a Photon to a Number">
+<meta name="twitter:description" content="From a photon to a number: silicon detection, PMTs and SPADs, CCD and CMOS readout, every kind of noise, CCD vs EMCCD vs sCMOS, dynamic range, cooling, aliasing, colour filters, lenses and calibration — with interactive simulations.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261107a">
+<link rel="stylesheet" href="css/article.css?v=20261107a">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"How Cameras and Light Detectors Work: From a Photon to a Number","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-cameras.html"}]},
+{"@type":"TechArticle","headline":"How Cameras and Light Detectors Work: From a Photon to a Number","datePublished":"2026-06-30","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"How cameras and light detectors work: silicon detection, PMTs and SPADs, CCD and CMOS sensors, noise and SNR, CCD vs EMCCD vs sCMOS, photon transfer, cooling, sampling, colour, lenses, infrared detectors and calibration.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>How cameras and light detectors work: from a photon to a number</h1>
+    <p class="lede">Every spectrum and every micrograph ends as numbers read out of a detector. This tutorial follows the
+    signal from the photon to the digital value: how silicon turns light into electrons and why it stops at 1.1 µm,
+    photodiodes, photomultipliers and single-photon detectors, how CCD and CMOS sensors read their pixels and why phone
+    videos bend propellers, where every kind of noise comes from and how CCD, EMCCD and sCMOS cameras compare, full
+    well, dynamic range and the photon transfer curve, cooling, pixels and aliasing, colour filters, lenses and
+    f-numbers, infrared detectors — and how dark frames and flat fields turn pictures into measurements.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Instrumentation</span><span>30 June 2026</span><span>≈ 50 min read</span><span>Rakesh Naik</span></div>
+    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 4 of 12</span><a class="sn-prev" href="blog-microscopes.html">← Part 3 · How microscopes work</a><a class="sn-next" href="blog-spectroscopy.html">Part 5 · Vibrational spectroscopy, plasmonics and SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-chain">From a photon to a number</a></li>
+    <li><a href="#s-si">How silicon detects light</a></li>
+    <li><a href="#s-point">Single-point detectors: photodiodes, PMTs, APDs and SPADs</a></li>
+    <li><a href="#s-ccd">Image sensors: CCD and CMOS</a></li>
+    <li><a href="#s-shutter">Global and rolling shutters</a></li>
+    <li><a href="#s-noise">Where the noise comes from</a></li>
+    <li><a href="#s-compare">CCD, EMCCD and sCMOS compared</a></li>
+    <li><a href="#s-photons">An image is made of photons</a></li>
+    <li><a href="#s-ptc">Full well, dynamic range and the photon transfer curve</a></li>
+    <li><a href="#s-dark">Dark current and cooling</a></li>
+    <li><a href="#s-alias">Pixels, sampling and aliasing</a></li>
+    <li><a href="#s-colour">Colour: Bayer filters and demosaicing</a></li>
+    <li><a href="#s-lens">Lenses: f-number, depth of field and diffraction</a></li>
+    <li><a href="#s-ir">Beyond silicon: infrared detectors</a></li>
+    <li><a href="#s-tcspc">Counting and timing single photons</a></li>
+    <li><a href="#s-calib">From pictures to measurements</a></li>
+    <li><a href="#s-choose">Choosing a detector</a></li>
+    <li><a href="#s-quiz">Test yourself</a></li>
+    <li><a href="#s-symbols">Symbols used in this article</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p>This is the third instrument part of the reading path. <a href="blog-spectrometers.html">Part 2</a> spread light
+into a spectrum and <a href="blog-microscopes.html">Part 3</a> formed an image; both ended on a detector. Here is what
+happens there, and why the same physics — the photon nature of light from <a href="blog-optics-basics.html">Part 1</a>
+and the band gap of a semiconductor — sets the noise floor of every measurement in the parts that follow. Every figure is
+calculated from the equations in the text. Numbers in square brackets refer to the <a href="#s-refs">references</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-chain"><span class="num">01</span>From a photon to a number</h2>
+
+<p>A digital camera pixel is a small light meter, and every one does the same five things (Figure 1). Photons arrive;
+a fraction of them, the <b>quantum efficiency</b> (QE), free an electron each in the semiconductor — the photoelectric
+effect, explained by Einstein in 1905 [1]. The electrons are collected and stored in a potential well, which can hold
+only so many: the <b>full well</b>. At the end of the exposure the charge is converted to a voltage by an amplifier,
+which adds <b>read noise</b>. Finally an analogue-to-digital converter turns the voltage into a <b>digital number</b>
+(DN, or ADU — analogue-to-digital unit), with a <b>conversion gain</b> \(K\) in electrons per ADU and a small
+<b>offset</b> added so that noise never pushes the value below zero:</p>
+$$\text{DN} = \frac{\eta\,N_\text{ph}}{K} + \text{offset} ,$$
+<p>where \(\eta\) is the QE and \(N_\text{ph}\) the number of photons. Everything in this article is about one of these
+steps: how efficiently photons become electrons, how much noise each step adds, and what limits the largest and
+smallest signals.</p>
+
+<figure class="fig" data-fig="camchain">
+  <div class="fig-tag">Figure 1 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>One pixel, one exposure.</b> Follow the photons through quantum efficiency, the full well, the amplifier
+  and the converter to a digital number. Push the photon count up until the well saturates; change the gain to see how
+  many electrons each digital step stands for. The numbers are typical of a scientific CMOS (sCMOS) camera.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-si"><span class="num">02</span>How silicon detects light</h2>
+
+<p>In a semiconductor, electrons fill a valence band separated from an empty conduction band by an energy gap \(E_g\).
+A photon with energy \(h\nu > E_g\) can lift an electron across, leaving a hole; an electric field inside the device
+(a p–n junction or a gate electrode) separates the pair before it recombines, and the electron is collected [2]. For
+silicon, \(E_g = 1.12\) eV at room temperature, so photons with wavelengths beyond \(\lambda = hc/E_g \approx 1.1\) µm
+are not detected at all.</p>
+
+<p>How deep the light goes before it is absorbed matters just as much. Silicon absorbs blue light within a fraction of a
+micrometre but lets near-infrared light travel tens or hundreds of micrometres [3]. In a <b>front-illuminated</b>
+sensor the light enters through the electrodes and wiring on top of the pixels, which absorb and reflect much of the
+blue. A <b>back-illuminated</b> sensor is thinned and turned over, so light enters through bare, anti-reflection-coated
+silicon: QE reaches above 90 % across the visible [4]. At long wavelengths, a thin sensor lets light through before it is
+absorbed; <b>deep-depletion</b> sensors, tens of micrometres thick, recover near-infrared QE — important for Raman with
+785 nm lasers — at the cost of higher dark current. In thin back-illuminated sensors, near-infrared light reflected
+between the two faces interferes and produces <b>etaloning</b> fringes in spectra.</p>
+
+<figure class="fig" data-fig="siabs">
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Quantum efficiency of silicon sensors</b> — a model: the fraction of light absorbed in the sensitive layer,
+  using the absorption coefficient of silicon [3], with a front surface that transmits 62 % and absorbs the blue in its
+  gates (front-illuminated) or 95 % (back-illuminated with an AR coating). Make the layer thicker to recover the
+  near-infrared. The readout gives the depth at which light of each colour is absorbed.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-point">
+<span class="num">03</span>Single-point detectors: photodiodes, PMTs, APDs and SPADs</h2>
+
+<p>A <b>photodiode</b> turns light directly into a current. Its <b>responsivity</b> — current per watt of light — is
+\(R = \eta\,e\lambda/hc = \eta\,\lambda/(1239.8\ \text{nm})\) A/W, about 0.6 A/W for silicon near 900 nm [2]. It is linear
+over many decades, robust and cheap, and is the detector of UV–Vis instruments and power meters.</p>
+
+<p>For weak light, the signal must be amplified before electronic noise swamps it. In a <b>photomultiplier tube</b>
+(PMT), a photon frees an electron from a photocathode (QE 20–40 %); the electron is accelerated onto a series of
+<b>dynodes</b>, each releasing several secondary electrons, so that one photoelectron becomes a pulse of
+\(10^5\)–\(10^7\) electrons [8]. PMTs count single photons, respond in nanoseconds and have large sensitive areas; they are
+used in fluorometers, confocal microscopes and scanning monochromators. Their gain depends steeply on the high voltage,
+which must therefore be very stable.</p>
+
+<figure class="fig" data-fig="pmt">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Photomultiplier gain.</b> Each of the \(n\) dynodes multiplies the electrons by its secondary-emission
+  ratio \(\delta\), which grows with the voltage between stages (here \(\delta \propto V^{0.65}\), a typical form), so the gain
+  \(\delta^n\) rises very steeply with the supply voltage. More dynodes give more gain at the same voltage.</figcaption>
+</figure>
+
+<p>An <b>avalanche photodiode</b> (APD) brings gain into the semiconductor: a high reverse bias accelerates the
+photoelectron until it knocks free more carriers, giving gains of tens to hundreds, with some excess noise. Biased above
+breakdown, the same device becomes a <b>single-photon avalanche diode</b> (SPAD): one photon triggers a full avalanche
+that is detected as a digital pulse and then quenched. SPADs count photons with timing precision of tens of picoseconds
+and are now made in arrays (section 15) [23].</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ccd"><span class="num">04</span>Image sensors: CCD and CMOS</h2>
+
+<p>An image sensor is a grid of millions of light-sensitive pixels. The two families differ in how they read them. In the
+<b>charge-coupled device</b> (CCD), invented by Boyle and Smith in 1969 [6], the charge packets themselves are moved: clock
+voltages on the gate electrodes shift every row down by one, the bottom row into a serial register, and the serial
+register out, pixel by pixel, through a single low-noise amplifier. Charge is transferred with an efficiency above
+99.9999 % per step, so the image arrives intact after thousands of transfers [4]. All pixels share one amplifier, which
+gives very uniform response, but reading millions of pixels through one output takes time.</p>
+
+<p>In the <b>CMOS active-pixel sensor</b> [7], each pixel has its own amplifier, and each column its own
+analogue-to-digital converter, so a whole row is converted at once. CMOS sensors are fast, cheap and low in power, and
+can include processing on the chip. Early CMOS sensors were noisier and less uniform than CCDs; <b>scientific CMOS</b>
+(sCMOS) sensors, introduced around 2010, combined read noise near 1–2 electrons with 100 frames per second at several
+megapixels [22], and now dominate most scientific imaging. CCDs remain the choice where very long, cooled exposures and
+the lowest dark current matter, as in Raman spectroscopy and astronomy.</p>
+
+<figure class="fig" data-fig="readout">
+  <div class="fig-tag">Figure 4 · <span class="live">Animated</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Reading out a CCD and a CMOS sensor.</b> Left: in a CCD the whole image shifts down one row at a time; the
+  bottom row moves into the serial register (gold) and leaves through one amplifier and converter. Right: in a CMOS
+  sensor each pixel has an amplifier (violet dots) and each column a converter (green), so the rows are read one after
+  another, all columns at once (gold). The readout compares the time to read a 4-megapixel sensor each way.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-shutter"><span class="num">05</span>Global and rolling shutters</h2>
+
+<p>Because a CMOS sensor reads its rows one after another, the simplest design also starts and stops each row's exposure
+one after another: a <b>rolling shutter</b>. Every row sees the scene at a slightly different moment, a few to tens of
+microseconds after the row above. For still scenes that does not matter; fast motion is distorted — a spinning propeller
+bends, a moving car leans, and a flash may light only part of the frame. A <b>global shutter</b> exposes all pixels at the
+same time, at the cost of extra transistors in each pixel and usually a little more noise. Scientific cameras offer both;
+for fast processes or pulsed illumination, synchronise the light with the "all rows exposing" part of a rolling shutter,
+or use global mode.</p>
+
+<figure class="fig" data-fig="rolling">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A propeller photographed with a global and a rolling shutter.</b> In the rolling-shutter image each row is
+  captured when the propeller has turned a little further, so the straight blades appear curved and uneven. Speed up the
+  propeller or slow the readout to make the distortion worse.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-noise"><span class="num">06</span>Where the noise comes from</h2>
+
+<p>Even a perfect detector shows noise, because light arrives in photons at random times. The number counted in an exposure
+follows Poisson statistics: with a mean of \(S\) photo-electrons, the standard deviation is \(\sqrt{S}\) — <b>shot
+noise</b>, first analysed by Schottky for electrons in vacuum tubes [11]. The detector adds its own noise:</p>
+<ul>
+  <li><b>Dark current</b>: electrons generated thermally, \(D\) per pixel per second, accumulate with the signal and carry
+  their own shot noise \(\sqrt{Dt}\) (section 10).</li>
+  <li><b>Read noise</b> \(\sigma_r\): added once per readout by the amplifier and converter, independent of the signal.</li>
+  <li><b>Fixed-pattern noise</b>: pixel-to-pixel differences in offset and in sensitivity (PRNU, photo-response
+  non-uniformity), the same in every frame and therefore removable by calibration (section 16).</li>
+</ul>
+<p>Independent noise sources add in quadrature, so the signal-to-noise ratio of one pixel is [4, 5]</p>
+$$\text{SNR} = \frac{\eta N_\text{ph}}{\sqrt{F^2(\eta N_\text{ph} + Dt) + \sigma_r^2}} ,$$
+<p>where \(F\) is an excess noise factor (1 for ordinary sensors, about \(\sqrt2\) for an EMCCD). At high signal the shot
+noise wins and SNR \(\approx \sqrt{\eta N_\text{ph}}\): the only improvement is more light or higher QE. At low signal the
+read noise wins, and a camera with lower read noise is genuinely better.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-compare"><span class="num">07</span>CCD, EMCCD and sCMOS compared</h2>
+
+<p>The <b>electron-multiplying CCD</b> (EMCCD) adds a gain register between the serial register and the amplifier: charge
+is clocked through hundreds of stages at a high voltage, and in each there is a small chance of impact ionisation,
+multiplying the packet by up to a thousand before it is read [9]. The read noise, divided by the gain, effectively
+disappears, and single photons can be seen. The multiplication is random, which adds an excess noise factor of about
+\(\sqrt2\) — as if the QE were halved — so EMCCDs are best at the very lowest light levels [10]. Cooled back-illuminated
+CCDs win for long exposures of faint, static signals; sCMOS cameras win for speed, large fields and moderate light; and
+consumer colour sensors, with their filters and higher noise, are far behind for quantitative work.</p>
+
+<figure class="fig" data-fig="snr">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Signal-to-noise ratio of five detectors</b> from the equation above, with typical specifications. The EMCCD, with an
+  effective read noise far below one electron, beats the 4-electron CCD up to about 16 photons per pixel, but a modern
+  1-electron sCMOS only below about one photon; at higher signals its excess noise puts it behind both, as they approach
+  the ideal shot-noise line. Lengthen the exposure to
+  see dark current hurt the uncooled consumer sensor.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-photons"><span class="num">08</span>An image is made of photons</h2>
+
+<p>Shot noise is not a defect of the camera but a property of light. A faint fluorescence image of a cell is literally a
+scatter of a few photons per pixel, and the structure emerges from the noise only as photons accumulate (Figure 7). This
+is why fluorescence microscopy is a constant negotiation between brightness, exposure time, photobleaching and the
+damage the light does to living cells (<a href="blog-microscopes.html#s-fluor">Part 3</a>), and why every gain in QE
+and every electron of read noise saved matters.</p>
+
+<figure class="fig" data-fig="photons">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A fluorescence image at different light levels</b>, simulated by drawing the photon count in every pixel from
+  a Poisson distribution and adding Gaussian read noise. With a few photons per pixel the cell is barely recognisable;
+  with hundreds it is clean. Set the photon count low and raise the read noise to see what a noisy camera adds.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ptc"><span class="num">09</span>Full well, dynamic range and the photon transfer curve</h2>
+
+<p>The largest signal a pixel can hold is its <b>full well</b> capacity, from a few thousand electrons in small consumer
+pixels to several hundred thousand in large scientific ones. The smallest signal it can distinguish from nothing is about
+its read noise. Their ratio is the <b>dynamic range</b>, often quoted in decibels as \(20\log_{10}(\text{FW}/\sigma_r)\);
+the converter needs at least \(\log_2(\text{FW}/\sigma_r)\) bits to digitise it without throwing away the faintest steps —
+which is why a camera with 30 000 electrons of well and 1.5 electrons of noise needs more than 14 bits.</p>
+
+<p>All of these numbers can be measured with nothing but uniform light and the camera itself, by the <b>photon transfer</b>
+method [5]: record pairs of frames at increasing light levels and plot the noise against the mean signal on logarithmic
+axes. Three regimes appear — a flat floor of read noise, a slope of one half where shot noise dominates, and a slope of one
+where pixel-to-pixel sensitivity differences dominate — ending abruptly at the full well. The slope-½ region also gives
+the conversion gain, since there the variance in electrons must equal the mean. The European machine-vision standard
+EMVA 1288 [19] specifies this measurement so that cameras from different makers can be compared.</p>
+
+<figure class="fig" data-fig="ptc">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A photon transfer curve.</b> Gold: the total noise, \(\sqrt{\sigma_r^2 + S + (\text{PRNU}\cdot S)^2}\), up to the
+  full well; dashed: its three parts. The readout gives the dynamic range in three forms and the signal above which
+  pixel-to-pixel variation exceeds shot noise — the reason flat-field correction matters for bright images.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-dark">
+<span class="num">10</span>Dark current and cooling</h2>
+
+<p>Heat alone generates electron–hole pairs in a semiconductor. The rate depends exponentially on temperature, through the
+band gap: in silicon, generation in the depletion region goes roughly as \(T^{3/2}\exp(-E_g/2kT)\) [2, 4], so the dark
+current falls by about half for every 6–9 °C of cooling near room temperature. An uncooled sensor may produce hundreds of
+dark electrons per pixel per second; at −60 °C to −90 °C, cooled by thermoelectric (Peltier) elements or liquid nitrogen,
+the rate drops below a thousandth of an electron per second, and exposures of many minutes become possible — essential for
+Raman spectroscopy, where signals are weak and exposures long. Cooling also suppresses <b>hot pixels</b>, individual pixels
+with unusually high dark current, and the sensor must be kept in vacuum or dry gas so that it does not frost.</p>
+
+<figure class="fig" data-fig="dark">
+  <div class="fig-tag">Figure 9 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Dark current versus temperature</b>, from \(T^{3/2}\exp(-E_g/2kT)\) with the temperature-dependent band gap of
+  silicon, scaled to the chosen room-temperature value. The readout compares the dark charge collected in an exposure,
+  and its noise, with a typical read noise.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-alias"><span class="num">11</span>Pixels, sampling and aliasing</h2>
+
+<p>A sensor samples the image at the pixel pitch \(a\). Sampling theory says that a pattern can be recorded faithfully only if
+there are at least two samples per period — the Nyquist limit [12]. Finer patterns are not merely lost: they masquerade as
+coarser ones, producing <b>aliasing</b> or moiré. Each pixel also averages the light over its area, which lowers the
+contrast of fine detail (the pixel's modulation transfer function, \(|\sin(\pi a/p)/(\pi a/p)|\) for a pattern of period
+\(p\)). In a microscope, the optics blur the image enough that a camera sampling at the Nyquist rate cannot alias
+(<a href="blog-microscopes.html#s-nyq">Part 3, section 16</a>); in photography with sharp lenses, aliasing is real, and
+many cameras put a weak optical low-pass filter in front of the sensor to prevent it.</p>
+
+<figure class="fig" data-fig="alias">
+  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Sampling a fine pattern.</b> Grey: a sinusoidal pattern in the image; gold: the value each pixel records (the
+  average over its width). Make the period shorter than two pixels and the pixel values trace a false, coarser pattern (red
+  dashed) that does not exist in the scene.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-colour"><span class="num">12</span>Colour: Bayer filters and demosaicing</h2>
+
+<p>A pixel measures how much light arrived, not its colour. Most colour cameras cover the sensor with a mosaic of red, green
+and blue filters — the <b>Bayer pattern</b>, patented by Bryce Bayer at Kodak in 1976 [13] — with twice as many green as red
+or blue pixels, matching the eye's greater sensitivity to green. Each pixel records one colour, and the other two are
+interpolated from its neighbours: <b>demosaicing</b> [14]. Simple interpolation produces false colours at sharp edges and on
+fine patterns; cameras use more elaborate methods, but the information is not there. Each colour filter also blocks about
+two thirds of the light. For quantitative imaging — fluorescence, spectroscopy, low light — <b>monochrome</b> sensors are
+therefore preferred, and colour images are built from separate exposures through filters. Three-chip cameras, with a prism
+splitting the light onto three sensors, avoid both losses at higher cost.</p>
+
+<figure class="fig" data-fig="bayer">
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>A Bayer sensor at work.</b> Left: the scene; centre: what the sensor records — each pixel only red, green or
+  blue; right: the image rebuilt by bilinear interpolation. The colour wheel survives, but the fine stripes and the edges of
+  the checkerboard gain false colours. Switch to a monochrome sensor for comparison.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-lens">
+<span class="num">13</span>Lenses: f-number, depth of field and diffraction</h2>
+
+<p>The lens decides how much light reaches the sensor and how sharp it is. Its <b>f-number</b> \(N = f/D\), focal length over
+aperture diameter, sets the irradiance on the sensor, which scales as \(1/N^2\): each "stop" (a factor \(\sqrt2\) in \(N\))
+halves the light [15]. Exposure is a three-way trade between f-number, exposure time and gain (ISO). Closing the aperture
+increases the <b>depth of field</b> — the range of distances that appear acceptably sharp, here taken as blurring no more than
+two pixels — but also the <b>diffraction</b> blur: the image of a point is an Airy disc of diameter \(2.44\lambda N\), the
+camera counterpart of the microscope's resolution limit (\(N \approx 1/2\text{NA}\)). Beyond a certain f-number, which is
+smaller for smaller pixels, every image is limited by diffraction rather than by the lens design.</p>
+
+<figure class="fig" data-fig="lens">
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The f-number trade-off.</b> The Airy disc grows linearly with the f-number; once it exceeds two pixels, stopping
+  down further blurs the image. The readout gives the depth of field for the chosen lens, distance and pixel size, and the
+  light relative to f/2. Small phone pixels become diffraction-limited at f-numbers near 2–3.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ir"><span class="num">14</span>Beyond silicon: infrared detectors</h2>
+
+<p>Longer wavelengths need smaller band gaps or a different mechanism altogether [16]:</p>
+<div class="tbl-wrap"><table>
+  <tr><th>Detector</th><th>Range</th><th>Principle</th><th>Typical use</th></tr>
+  <tr><td>InGaAs (photodiode, array)</td><td>0.9–1.7 µm (extended to 2.5 µm)</td><td>smaller band gap than silicon; cooled to reduce dark current</td><td>NIR spectroscopy, 1064 nm Raman, telecom, short-wave IR imaging</td></tr>
+  <tr><td>InSb</td><td>1–5.5 µm</td><td>photodiode, cooled to about 77 K</td><td>mid-wave thermal imaging, astronomy</td></tr>
+  <tr><td>HgCdTe (MCT)</td><td>about 1–14 µm, tunable by composition</td><td>photoconductor or photodiode, cooled</td><td>FTIR, IR microscopy, long-wave thermal imaging</td></tr>
+  <tr><td>Microbolometer array</td><td>8–14 µm</td><td>absorbed heat changes the resistance of a suspended membrane; uncooled</td><td>thermal cameras [17]</td></tr>
+  <tr><td>Pyroelectric (DTGS, LiTaO₃)</td><td>broad mid-IR</td><td>absorbed heat changes the polarisation of a crystal</td><td>routine FTIR, gas sensing</td></tr>
+</table></div>
+<p>Infrared detectors are noisier than silicon, partly because the warm surroundings themselves glow at these wavelengths,
+which is why most must be cooled and why the instruments of <a href="blog-spectrometers.html#s-ir">Part 2</a> use
+interferometers that gain from the multiplex advantage.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-tcspc"><span class="num">15</span>Counting and timing single photons</h2>
+
+<p>Some measurements need not only how many photons arrive, but when. In <b>time-correlated single-photon counting</b>
+(TCSPC), a pulsed laser excites the sample and a fast single-photon detector — a PMT, a hybrid detector or a SPAD — records
+the delay of each detected photon with picosecond precision [18]. A histogram of millions of delays gives the fluorescence
+decay; done at every pixel of a scanning microscope it gives fluorescence-lifetime images (FLIM), which reveal the
+environment of a dye and energy transfer between molecules. SPAD arrays now bring single-photon counting and timing to
+every pixel of a camera [23], and streak cameras, which sweep the photoelectrons across a screen, resolve events on
+picosecond to femtosecond scales.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-calib"><span class="num">16</span>From pictures to measurements</h2>
+
+<p>A camera's numbers become measurements only after calibration. Work with <b>raw</b>, linear data: consumer image formats
+apply a non-linear tone curve (gamma), colour processing and compression that make intensities incomparable. Then remove
+what the camera adds. A <b>dark frame</b>, taken with no light at the same exposure and temperature, contains the offset,
+the dark current and the hot pixels; subtracting it removes them. A <b>flat field</b>, an image of perfectly uniform light,
+records everything that makes the response uneven — vignetting by the optics, shadows of dust on the window, and the
+pixel-to-pixel sensitivity differences of section 09. The corrected image is [5, 20]</p>
+$$I_\text{corr} = \frac{I_\text{raw} - I_\text{dark}}{I_\text{flat} - I_\text{dark}}\ \big\langle I_\text{flat} - I_\text{dark}\big\rangle .$$
+<p>Averaging several dark and flat frames keeps their own noise from being added to every image. The same logic is applied
+to spectra (<a href="blog-spectrometers.html#s-cal">Part 2, section 18</a>), where the instrument response takes the role
+of the flat field.</p>
+
+<figure class="fig" data-fig="flat">
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Dark frame and flat field.</b> The flat shows vignetting, two dust shadows and 3 % pixel-to-pixel variation; the
+  dark frame shows the offset and a few hot pixels. Step through the correction: subtracting the dark removes the hot pixels,
+  dividing by the flat removes the dark corners and the dust.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-choose"><span class="num">17</span>Choosing a detector</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Task</th><th>Detector</th><th>Why</th></tr>
+  <tr><td>Raman and photoluminescence spectra</td><td>deep-cooled back-illuminated CCD (deep depletion for 785 nm)</td><td>long exposures with negligible dark current; high QE</td></tr>
+  <tr><td>Single-molecule and photon-starved imaging</td><td>EMCCD, or a low-noise back-illuminated sCMOS</td><td>effective read noise below one electron</td></tr>
+  <tr><td>Live-cell and widefield fluorescence, light-sheet</td><td>sCMOS (monochrome)</td><td>speed, large field, low noise</td></tr>
+  <tr><td>Confocal, fluorescence lifetime</td><td>PMT, GaAsP or hybrid detector, SPAD</td><td>single-photon sensitivity, nanosecond to picosecond timing</td></tr>
+  <tr><td>UV–Vis absorption, power measurement</td><td>silicon photodiode or diode array</td><td>linear, robust, large dynamic range</td></tr>
+  <tr><td>Near-infrared spectroscopy, 1064 nm Raman</td><td>InGaAs array</td><td>sensitive beyond silicon's 1.1 µm cut-off</td></tr>
+  <tr><td>Mid-infrared (FTIR)</td><td>DTGS (routine) or MCT (fast, sensitive)</td><td>broad mid-IR response</td></tr>
+  <tr><td>Documentation, teaching, bright samples</td><td>consumer colour CMOS</td><td>cheap and convenient — but use raw files</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-quiz"><span class="num">18</span>Test yourself</h2>
+
+<figure class="fig" data-fig="camquiz">
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Twelve questions</b> on detection, sensors, noise, sampling and calibration, each with the reasoning behind the
+  answer.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-symbols"><span class="num">19</span>Symbols used in this article</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Symbol</th><th>Meaning</th></tr>
+  <tr><td>\(N_\text{ph},\ \eta\)</td><td>photons reaching a pixel; quantum efficiency</td></tr>
+  <tr><td>\(S\)</td><td>signal in photo-electrons, \(\eta N_\text{ph}\)</td></tr>
+  <tr><td>DN, ADU, \(K\)</td><td>digital number (analogue-to-digital unit); conversion gain in electrons per ADU</td></tr>
+  <tr><td>FW</td><td>full-well capacity (electrons)</td></tr>
+  <tr><td>\(\sigma_r,\ D,\ t\)</td><td>read noise (electrons rms); dark current (electrons per pixel per second); exposure time</td></tr>
+  <tr><td>\(F\)</td><td>excess noise factor (\(\approx\sqrt2\) for an EMCCD, 1 otherwise)</td></tr>
+  <tr><td>PRNU</td><td>photo-response non-uniformity: relative pixel-to-pixel sensitivity variation</td></tr>
+  <tr><td>\(E_g,\ k,\ T\)</td><td>band gap; Boltzmann constant; absolute temperature</td></tr>
+  <tr><td>\(R\)</td><td>responsivity of a photodiode (A/W)</td></tr>
+  <tr><td>\(\delta,\ n\)</td><td>secondary-emission ratio per dynode; number of dynodes of a PMT</td></tr>
+  <tr><td>\(a,\ p\)</td><td>pixel pitch; period of a pattern in the image</td></tr>
+  <tr><td>\(f,\ D,\ N\)</td><td>focal length; aperture diameter; f-number \(f/D\)</td></tr>
+  <tr><td>\(I_\text{raw},\ I_\text{dark},\ I_\text{flat}\)</td><td>raw image; dark frame; flat-field frame</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">20</span>References</h2>
+<ol class="refs">
+  <li>A. Einstein, “Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt,” <i>Ann. Phys.</i> <b>17</b>, 132–148 (1905).</li>
+  <li>S. M. Sze and K. K. Ng, <i>Physics of Semiconductor Devices</i>, 3rd ed., Wiley, Hoboken (2007).</li>
+  <li>M. A. Green, “Self-consistent optical parameters of intrinsic silicon at 300 K including temperature coefficients,” <i>Sol. Energy Mater. Sol. Cells</i> <b>92</b>, 1305–1310 (2008).</li>
+  <li>J. R. Janesick, <i>Scientific Charge-Coupled Devices</i>, SPIE Press, Bellingham (2001).</li>
+  <li>J. R. Janesick, <i>Photon Transfer: DN → λ</i>, SPIE Press, Bellingham (2007).</li>
+  <li>W. S. Boyle and G. E. Smith, “Charge coupled semiconductor devices,” <i>Bell Syst. Tech. J.</i> <b>49</b>, 587–593 (1970).</li>
+  <li>E. R. Fossum, “CMOS image sensors: electronic camera-on-a-chip,” <i>IEEE Trans. Electron Devices</i> <b>44</b>, 1689–1698 (1997).</li>
+  <li>Hamamatsu Photonics K.K., <i>Photomultiplier Tubes: Basics and Applications</i>, Hamamatsu City.</li>
+  <li>J. Hynecek, “Impactron — a new solid state image intensifier,” <i>IEEE Trans. Electron Devices</i> <b>48</b>, 2238–2241 (2001).</li>
+  <li>M. S. Robbins and B. J. Hadwen, “The noise performance of electron multiplying charge-coupled devices,” <i>IEEE Trans. Electron Devices</i> <b>50</b>, 1227–1232 (2003).</li>
+  <li>W. Schottky, “Über spontane Stromschwankungen in verschiedenen Elektrizitätsleitern,” <i>Ann. Phys.</i> <b>362</b>, 541–567 (1918).</li>
+  <li>C. E. Shannon, “Communication in the presence of noise,” <i>Proc. IRE</i> <b>37</b>, 10–21 (1949).</li>
+  <li>B. E. Bayer, “Color imaging array,” U.S. Patent 3,971,065 (1976).</li>
+  <li>R. Ramanath, W. E. Snyder, G. L. Bilbro and W. A. Sander, “Demosaicking methods for Bayer color arrays,” <i>J. Electron. Imaging</i> <b>11</b>, 306–315 (2002).</li>
+  <li>E. Hecht, <i>Optics</i>, 5th ed., Pearson, Harlow (2017).</li>
+  <li>A. Rogalski, <i>Infrared and Terahertz Detectors</i>, 3rd ed., CRC Press, Boca Raton (2019).</li>
+  <li>P. W. Kruse, <i>Uncooled Thermal Imaging: Arrays, Systems, and Applications</i>, SPIE Press, Bellingham (2001).</li>
+  <li>W. Becker, <i>Advanced Time-Correlated Single Photon Counting Techniques</i>, Springer, Berlin (2005).</li>
+  <li>European Machine Vision Association, <i>EMVA Standard 1288: Standard for Characterization of Image Sensors and Cameras</i>, Release 4.0 (2021).</li>
+  <li>G. C. Holst and T. S. Lomheim, <i>CMOS/CCD Sensors and Camera Systems</i>, 2nd ed., JCD Publishing and SPIE Press (2011).</li>
+  <li>D. B. Murphy and M. W. Davidson, <i>Fundamentals of Light Microscopy and Electronic Imaging</i>, 2nd ed., Wiley-Blackwell, Hoboken (2013).</li>
+  <li>B. Fowler, C. Liu, S. Mims, J. Balicki, W. Li, H. Do, J. Appelbaum and P. Vu, “A 5.5Mpixel 100 frames/sec wide dynamic range low noise CMOS image sensor for scientific applications,” <i>Proc. SPIE</i> <b>7536</b>, 753607 (2010).</li>
+  <li>C. Bruschini, H. Homulle, I. M. Antolovic, S. Burri and E. Charbon, “Single-photon avalanche diode imagers in biophotonics: review and outlook,” <i>Light Sci. Appl.</i> <b>8</b>, 87 (2019).</li>
+</ol>
+
+<hr>
+<p>The figures evaluate the equations in the text: absorption in silicon, the PMT gain law, readout timing, row-by-row
+exposure, the SNR equation, Poisson photon statistics, the photon transfer curve, thermally activated dark current, pixel
+sampling, Bayer interpolation, f-number optics and dark/flat calibration. Corrections and questions are welcome at
+<a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-microscopes.html">How microscopes work →</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a></p>
+<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 4 of 12</span><a class="sn-prev" href="blog-microscopes.html">← Part 3 · How microscopes work</a><a class="sn-next" href="blog-spectroscopy.html">Part 5 · Vibrational spectroscopy, plasmonics and SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+
+</div>
+</div>
+</article>
+
+
+
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261107a"></script>
+<script src="js/blog/vl-core.js?v=20261107a"></script>
+<script src="js/blog/cam-figs.js?v=20261109c"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
