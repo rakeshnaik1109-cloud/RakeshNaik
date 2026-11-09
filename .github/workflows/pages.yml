@@ -26,9 +26,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # publish only the files the pages reference (keeps unused full-size originals out of the upload)
+      - run: python3 .github/scripts/assemble_site.py _site
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
-        timeout-minutes: 20
+        with:
+          timeout: 1200000
+        timeout-minutes: 25
