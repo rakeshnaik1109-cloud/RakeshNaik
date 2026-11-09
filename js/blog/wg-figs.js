@@ -346,8 +346,13 @@
   };
   F.tetm = function (fig) {
     var ctl = VL.part(fig, 'vl-controls'), host = VL.part(fig, 'vl-plot'), read = VL.part(fig, 'vl-readout'), t0 = 0;
-    var W = 780, H = 420, S = 150, ox = 380, oy = 250, depth = [0.55 * Math.cos(Math.PI / 6), -0.55 * Math.sin(Math.PI / 6)];
-    var P = function (q) { return [ox + S * (q[0] + q[1] * depth[0]), oy - S * q[2] + S * q[1] * depth[1]]; };
+    var W = 780, H = 420, S = 150, ox = 380, oy = 250, S0 = 150, ox0 = 380, oy0 = 250, depth = [0.55 * Math.cos(Math.PI / 6), -0.55 * Math.sin(Math.PI / 6)];
+    var cam = null;   // null: oblique view; {a, e}: rotated view (azimuth a, elevation e, radians)
+    var P = function (q) {
+      if (!cam) return [ox + S * (q[0] + q[1] * depth[0]), oy - S * q[2] + S * q[1] * depth[1]];
+      var X = q[0] * Math.cos(cam.a) + q[1] * Math.sin(cam.a), Dp = -q[0] * Math.sin(cam.a) + q[1] * Math.cos(cam.a);
+      return [ox + S * X, oy - S * (q[2] * Math.cos(cam.e) + Dp * Math.sin(cam.e))];
+    };
     var f1 = function (n) { return n.toFixed(1); }, pt = function (q) { var p = P(q); return f1(p[0]) + ' ' + f1(p[1]); };
     var poly = function (qs, fill, op, stroke) { return '<path d="M ' + qs.map(pt).join(' L ') + ' Z" fill="' + fill + '" fill-opacity="' + op + '" stroke="' + (stroke || fill) + '" stroke-opacity="' + Math.min(1, op * 3 + 0.15) + '" stroke-width="1"/>'; };
     var box = function (x0, x1, y0, y1, v0, v1, col, op) {
@@ -359,9 +364,36 @@
     var label = function (q, s, col, dx, dy, size) { var p = P(q); return '<text x="' + f1(p[0] + (dx || 0)) + '" y="' + f1(p[1] + (dy || 0)) + '" font-family="IBM Plex Mono, monospace" font-size="' + (size || 13) + '" font-weight="600" fill="' + col + '">' + s + '</text>'; };
     var axes = function () { var o = [-1.75, -0.95, -0.55], L = 0.28; return arrow3(o, [o[0] + L, o[1], o[2]], C.text2, 1.4, 7) + arrow3(o, [o[0], o[1], o[2] + L], C.text2, 1.4, 7) + arrow3(o, [o[0], o[1] + L * 1.4, o[2]], C.text2, 1.4, 7) + label([o[0] + L, o[1], o[2]], 'x', C.text2, 3, 4, 11) + label([o[0], o[1], o[2] + L], 'v', C.text2, -4, -4, 11) + label([o[0], o[1] + L * 1.4, o[2]], 'y', C.text2, 3, 0, 11); };
     var draw = function () {
-      var key = st.get(), D = TETM[key], te = pol.get() === 'te', th = (D.angle ? ang.get() : 0) * Math.PI / 180, ph = (D.azi ? azi.get() : 0) * Math.PI / 180, showH = hsel.get() === 'yes';
+      var key = st.get(), D = TETM[key], both = pol.get() === 'both' && D.angle, te = pol.get() === 'te' || (pol.get() === 'both' && !D.angle), th = (D.angle ? ang.get() : 0) * Math.PI / 180, ph = (D.azi ? azi.get() : 0) * Math.PI / 180, showH = hsel.get() === 'yes';
       var wt = t0 * 2 * Math.PI * 0.6, red = C.red, cyan = C.cyan, gold = C.au, s = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="plot" role="img" aria-label="' + D.name + '">';
-      var Ecol = red, Hcol = cyan;
+      var Ecol = red, Hcol = cyan, TMcol = C.green;
+      // interface and gratings: a camera that turns slowly back and forth, so the plane E lies in shows in 3D
+      var orbitCase = key === 'iface' || key === 'grating' || key === 'conical';
+      if (orbitCase) { cam = { a: (-10 + (view.get() === 'turn' ? 16 * Math.sin(0.45 * t0) : 0)) * Math.PI / 180, e: 24 * Math.PI / 180 }; S = 128; ox = 300; oy = 262; }
+      else { cam = null; S = S0; ox = ox0; oy = oy0; }
+      // the E field as a filled wave sheet along a ray: it lies in whatever plane E oscillates in
+      var sheet = function (pos0, kdir, Edir, len, amp, lam, colS) { colS = colS || Ecol;
+        var tips = [], axis = [];
+        for (var i = 0; i <= 48; i++) { var sa = len * i / 48, c = Math.cos(2 * Math.PI * sa / lam - wt), p = V3.add(pos0, V3.mul(kdir, sa)); axis.push(p); tips.push(V3.add(p, V3.mul(Edir, 1.45 * amp * c))); }
+        var d = 'M ' + tips.map(pt).join(' L ') + ' L ' + axis.slice().reverse().map(pt).join(' L ') + ' Z';
+        return '<path d="' + d + '" fill="' + colS + '" fill-opacity="0.22" stroke="none"/><path d="M ' + tips.map(pt).join(' L ') + '" fill="none" stroke="' + colS + '" stroke-width="1.6" stroke-opacity="0.9"/>';
+      };
+      // the same field seen along the beam: the plane of incidence is a vertical gold line
+      var beamEye = function (te2) {
+        var bx = W - 112, by = 118, r = 62, c = Math.cos(wt), L = 50 * c, o = '';
+        o += '<rect x="' + (bx - 94) + '" y="' + (by - 98) + '" width="188" height="200" rx="10" fill="#0f0a18" fill-opacity="0.85" stroke="rgba(255,255,255,.18)"/>';
+        o += '<text x="' + bx + '" y="' + (by - 78) + '" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="600" fill="' + C.text2 + '">seen along the beam</text>';
+        o += '<circle cx="' + bx + '" cy="' + by + '" r="' + r + '" fill="none" stroke="rgba(255,255,255,.22)" stroke-dasharray="3 4"/>';
+        o += '<line x1="' + bx + '" y1="' + (by - r - 6) + '" x2="' + bx + '" y2="' + (by + r + 6) + '" stroke="' + gold + '" stroke-width="3" stroke-opacity="0.85"/>';
+        o += '<text x="' + bx + '" y="' + (by + r + 22) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="' + gold + '">plane of incidence</text>';
+        o += '<circle cx="' + bx + '" cy="' + by + '" r="3" fill="' + gold + '"/>';
+        var one = function (isTE, colI) { var a = isTE ? [bx - L, by] : [bx, by - L], b2 = isTE ? [bx + L, by] : [bx, by + L];
+          return Math.abs(L) > 3 ? arrow2([bx, by], b2, colI, 3.4, 12) + '<line x1="' + bx + '" y1="' + by + '" x2="' + f1(a[0]) + '" y2="' + f1(a[1]) + '" stroke="' + colI + '" stroke-width="1.4" stroke-opacity="0.45" stroke-dasharray="3 3"/>' : ''; };
+        if (both) { o += one(true, red) + one(false, TMcol);
+          o += '<text x="' + (bx - 46) + '" y="' + (by + r + 38) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="' + red + '">TE: across</text><text x="' + (bx + 46) + '" y="' + (by + r + 38) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="' + TMcol + '">TM: along</text>'; }
+        else o += one(te2, Ecol) + '<text x="' + bx + '" y="' + (by + r + 38) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="' + Ecol + '">' + (te2 ? 'E across the plane' : 'E along the plane') + '</text>';
+        return o;
+      };
       var fieldAlong = function (pos0, kdir, Edir, n, len, amp, opts) { // arrows of E (and H) at points along a ray, travelling wave
         var out = '', Hdir = V3.norm(V3.cross(kdir, Edir));
         for (var i = 0; i < n; i++) { var sAlong = len * i / (n - 1), c = Math.cos(2 * Math.PI * (sAlong / (opts && opts.lam || 0.5)) - wt), p = V3.add(pos0, V3.mul(kdir, sAlong));
@@ -372,19 +404,22 @@
         var hor = [Math.cos(ph), Math.sin(ph), 0], k = V3.norm([Math.sin(th) * hor[0], Math.sin(th) * hor[1], -Math.cos(th)]), n = [0, 0, 1];
         var Ete = V3.norm(Math.sin(th) < 1e-6 ? [ -hor[1], hor[0], 0] : V3.cross(n, k)), Etm = V3.norm(V3.cross(Ete, k)), E = te ? Ete : Etm;
         // substrate (and grating ridges)
-        s += box(-1.6, 1.6, -0.9, 0.9, -0.42, key === 'iface' ? 0 : -0.06, key === 'iface' ? C.cyan : C.violet, 0.16);
-        if (key !== 'iface') for (var gx = -1.5; gx < 1.6; gx += 0.36) s += box(gx, gx + 0.18, -0.9, 0.9, -0.06, 0.06, C.violet, 0.3);
+        var yd = 0.55;   // a shallower block reads better in the turning view
+        s += box(-1.6, 1.6, -yd, yd, -0.42, key === 'iface' ? 0 : -0.06, key === 'iface' ? C.cyan : C.violet, 0.16);
+        if (key !== 'iface') for (var gx = -1.5; gx < 1.6; gx += 0.36) s += box(gx, gx + 0.18, -yd, yd, -0.06, 0.06, C.violet, 0.3);
         // plane of incidence
         var pl = [V3.mul(hor, -1.55), V3.mul(hor, 1.55)];
         s += poly([[pl[0][0], pl[0][1], 0], [pl[1][0], pl[1][1], 0], [pl[1][0], pl[1][1], 1.25], [pl[0][0], pl[0][1], 1.25]], gold, 0.06, gold);
-        s += label([pl[0][0], pl[0][1], 1.25], 'plane of incidence', gold, 4, -6, 12);
+        s += label([pl[0][0], pl[0][1], 1.25], 'plane of incidence', gold, 4, -8, 12);
         s += arrow3([0, 0, 0], [0, 0, 1.15], C.text2, 1.2, 8, true) + label([0, 0, 1.15], 'n', C.text2, 5, 4);
         // incoming ray and its fields
         var start = V3.mul(k, -1.35);
-        s += arrow3(start, V3.mul(k, -0.04), gold, 2.2, 10) + label(start, 'k', gold, -14, -4);
+        s += arrow3(start, V3.mul(k, -0.04), gold, 2.2, 10) + label(start, 'k', gold, -16, 10);
         var r = [k[0], k[1], -k[2]]; s += arrow3([0, 0, 0], V3.mul(r, 0.9), gold, 1.2, 8, true);
-        s += fieldAlong(start, k, E, 6, 1.2, 0.26, { lam: 0.6 });
-        if (key !== 'iface') s += label([1.6, -0.9, -0.42], 'grating lines (grooves) run along y', C.violet, -250, 20, 12);
+        if (both) { s += sheet(start, k, Etm, 1.25, 0.26, 0.6, TMcol) + sheet(start, k, Ete, 1.25, 0.26, 0.6, red); Ecol = TMcol; s += fieldAlong(start, k, Etm, 4, 1.2, 0.26, { lam: 0.6 }); Ecol = red; s += fieldAlong(start, k, Ete, 4, 1.2, 0.26, { lam: 0.6 }); }
+        else s += sheet(start, k, E, 1.25, 0.26, 0.6) + fieldAlong(start, k, E, 4, 1.2, 0.26, { lam: 0.6 });
+        if (key !== 'iface') s += '<text x="16" y="' + (H - 14) + '" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="' + C.violet + '">grating lines (grooves) run along y</text>';
+        s += beamEye(te);
       } else if (key === 'slab') {
         s += box(-1.6, 1.6, -0.9, 0.9, -0.5, -0.12, C.cyan, 0.12) + box(-1.6, 1.6, -0.9, 0.9, -0.12, 0.0, gold, 0.28);
         s += label([1.6, 0.9, -0.06], 'core', gold, 6, 0, 12) + label([1.6, 0.9, -0.35], 'substrate', C.cyan, 6, 0, 12);
@@ -430,16 +465,19 @@
             s += arrow2([px - dir[0] * L / 2, py - dir[1] * L / 2], [px + dir[0] * L / 2, py + dir[1] * L / 2], red, 1.6, 7); } });
       }
       if (key !== 'fibre') s += axes();
-      s += '<text x="16" y="24" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="700" fill="' + (te ? C.red : C.au) + '">' + (key === 'strip' ? (te ? 'quasi-TE' : 'quasi-TM') : te ? 'TE' : 'TM') + '</text><text x="16" y="44" font-family="IBM Plex Mono, monospace" font-size="11" fill="' + C.text3 + '">red: E' + (showH && key !== 'fibre' && key !== 'metalwg' && key !== 'spp' ? ' · cyan: H' : '') + '</text>';
+      s += '<text x="16" y="24" font-family="IBM Plex Sans, sans-serif" font-size="15" font-weight="700" fill="' + (te ? C.red : C.au) + '">' + (both ? 'TE and TM' : key === 'strip' ? (te ? 'quasi-TE' : 'quasi-TM') : te ? 'TE' : 'TM') + '</text><text x="16" y="44" font-family="IBM Plex Mono, monospace" font-size="11" fill="' + C.text3 + '">' + (both ? 'red: E of TE · green: E of TM' : 'red: E' + (showH && key !== 'fibre' && key !== 'metalwg' && key !== 'spp' ? ' · cyan: H' : '')) + '</text>';
       host.innerHTML = s + '</svg>';
-      read.innerHTML = '<div style="grid-column:1/-1"><b>Reference</b><span>TE and TM are defined relative to ' + D.ref + '.</span></div><div style="grid-column:1/-1"><b style="color:' + (te ? C.red : C.au) + '">' + (te ? 'TE' : 'TM') + ' here</b><span>' + (te ? D.te : D.tm) + '</span></div><div><b>' + D.comps[te ? 0 : 1] + '</b><span>field components</span></div>';
+      read.innerHTML = '<div style="grid-column:1/-1"><b>Reference</b><span>TE and TM are defined relative to ' + D.ref + '.</span></div>' + (both
+        ? '<div style="grid-column:1/-1"><b style="color:' + C.red + '">TE</b><span>' + D.te + '</span></div><div style="grid-column:1/-1"><b style="color:' + C.green + '">TM</b><span>' + D.tm + '</span></div>'
+        : '<div style="grid-column:1/-1"><b style="color:' + (te ? C.red : C.au) + '">' + (te ? 'TE' : 'TM') + ' here</b><span>' + (te ? D.te : D.tm) + '</span></div><div><b>' + D.comps[te ? 0 : 1] + '</b><span>field components</span></div>');
     };
     var st = VL.select(ctl, { label: 'Structure', value: 'iface', options: Object.keys(TETM).map(function (k) { return [k, TETM[k].name]; }), on: function () { sync(); draw(); } });
-    var pol = VL.select(ctl, { label: 'Polarisation', value: 'te', options: [['te', 'TE'], ['tm', 'TM']], on: draw });
+    var pol = VL.select(ctl, { label: 'Polarisation', value: 'te', options: [['te', 'TE'], ['tm', 'TM'], ['both', 'TE and TM together']], on: draw });
     var ang = VL.slider(ctl, { label: 'Angle of incidence', min: 0, max: 75, step: 1, value: 40, fmt: function (v) { return v + '°'; }, on: draw });
     var azi = VL.slider(ctl, { label: 'Azimuth (conical)', min: 0, max: 80, step: 1, value: 40, fmt: function (v) { return v + '°'; }, on: draw });
     var hsel = VL.select(ctl, { label: 'Show H', value: 'no', options: [['no', 'No'], ['yes', 'Yes']], on: draw });
-    var sync = function () { var D = TETM[st.get()]; ang.input.closest('.vl-ctl').style.display = D.angle ? '' : 'none'; azi.input.closest('.vl-ctl').style.display = D.azi ? '' : 'none'; };
+    var view = VL.select(ctl, { label: 'View', value: 'turn', options: [['turn', 'turning slowly (3D)'], ['fixed', 'fixed']], on: draw });
+    var sync = function () { var D = TETM[st.get()]; ang.input.closest('.vl-ctl').style.display = D.angle ? '' : 'none'; azi.input.closest('.vl-ctl').style.display = D.azi ? '' : 'none'; view.el.closest('.vl-ctl').style.display = D.angle ? '' : 'none'; };
     var loop = VL.loop(host, function (dt) { if (!dt) return; t0 += dt; draw(); });
     var btn = VL.button(ctl, loop.playing ? 'Stop' : 'Start', function () { btn.textContent = loop.toggle() ? 'Stop' : 'Start'; }, 'primary');
     sync(); draw();
