@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>How Spectrometers Work: Prisms, Gratings, Interferometers and the Instruments Built From Them | Rakesh Naik</title>
+<meta name="description" content="How a spectrometer separates light and what the instrument does to a spectrum: prisms and Sellmeier dispersion, the grating equation, blaze and overlapping orders, Czerny–Turner, Littrow, concave and echelle layouts, resolution and étendue, Fourier-transform and Fabry–Pérot instruments, UV–Vis, fluorescence, Raman and ATR-FTIR, and calibration — with interactive simulations.">
+<meta name="keywords" content="spectrometer, spectrograph, monochromator, diffraction grating, grating equation, blaze wavelength, Czerny-Turner, echelle spectrometer, FTIR, Fourier transform spectrometer, Fabry-Perot, UV-Vis spectrophotometer, fluorescence spectrometer, Raman spectrometer, ATR, wavelength calibration, resolving power, etendue">
+<meta name="author" content="Rakesh Naik">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0f0a18">
+<link rel="canonical" href="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectrometers.html">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="How Spectrometers Work: Prisms, Gratings, Interferometers and the Instruments Built From Them">
+<meta property="og:description" content="How prisms, gratings and interferometers separate light, how slits and pixels set the resolution, and how UV–Vis, fluorescence, Raman and FTIR instruments are built — with interactive simulations.">
+<meta property="og:url" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectrometers.html">
+<meta property="og:image" content="https://rakeshnaik1109-cloud.github.io/RakeshNaik/images/ResearchersBanners.png">
+<meta property="og:site_name" content="Rakesh Naik">
+<meta property="article:published_time" content="2026-06-21">
+<meta property="article:author" content="Rakesh Naik">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Spectrometers Work: Prisms, Gratings, Interferometers and the Instruments Built From Them">
+<meta name="twitter:description" content="How prisms, gratings and interferometers separate light, how slits and pixels set the resolution, and how UV–Vis, fluorescence, Raman and FTIR instruments are built — with interactive simulations.">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>document.documentElement.classList.add('js');try{if(localStorage.getItem('rn-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<link rel="stylesheet" href="css/site.css?v=20261107a">
+<link rel="stylesheet" href="css/article.css?v=20261107a">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.querySelector('.prose'),{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog.html"},
+{"@type":"ListItem","position":3,"name":"How Spectrometers Work: Prisms, Gratings, Interferometers and the Instruments Built From Them","item":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/blog-spectrometers.html"}]},
+{"@type":"TechArticle","headline":"How Spectrometers Work: Prisms, Gratings, Interferometers and the Instruments Built From Them","datePublished":"2026-06-21","author":{"@type":"Person","name":"Rakesh Naik","url":"https://rakeshnaik1109-cloud.github.io/RakeshNaik/"},"description":"How spectrometers work: prisms, the grating equation, blaze and orders, spectrometer layouts, resolution and étendue, echelle, Fourier-transform and Fabry–Pérot instruments, UV–Vis, fluorescence, Raman and ATR-FTIR hardware, and calibration.","inLanguage":"en","proficiencyLevel":"Beginner to advanced"}]}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-line" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html" aria-label="Rakesh Naik — home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="13" fill="#171026"/>
+        <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Rakesh<em>Naik</em>
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav-links" id="navlinks" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="media.html">Lab2Life</a>
+      <a href="blog.html" class="current" aria-current="page">Blog</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX ↗</a>
+      <a class="nav-cta" href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="article-head">
+  <div class="wrap narrow">
+    <p class="eyebrow"><a href="blog.html" style="text-decoration:none">The Lab Notebook</a></p>
+    <h1>How spectrometers work: prisms, gratings, interferometers and the instruments built from them</h1>
+    <p class="lede">A spectrum is only as good as the instrument that records it. This tutorial opens the box: how a prism
+    and a grating separate colours, why gratings are blazed and orders overlap, how slits, mirrors and pixels set the
+    resolution and how much light gets through, and how echelles, Fourier-transform interferometers and Fabry–Pérot
+    etalons push further. It then walks through the instruments found in a lab — UV–Vis, fluorescence, Raman and FTIR
+    — and ends with calibration, so every number on a spectrum can be traced back to the hardware.</p>
+    <div class="article-meta"><span class="post-tag">Tutorial · Instrumentation</span><span>21 June 2026</span><span>≈ 50 min read</span><span>Rakesh Naik</span></div>
+    <nav class="series-nav sn-top" aria-label="Reading path"><span class="sn-step">Reading path · Part 2 of 10</span><a class="sn-prev" href="blog-optics-basics.html">← Part 1 · Light from first principles</a><a class="sn-next" href="blog-spectroscopy.html">Part 3 · Vibrational spectroscopy, plasmonics and SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+  </div>
+</section>
+
+<article class="article">
+<div class="wrap">
+<div class="prose">
+
+<nav class="toc" aria-label="Contents">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#s-what">What a spectrometer does</a></li>
+    <li><a href="#s-prism">Splitting light by refraction: the prism</a></li>
+    <li><a href="#s-grating">Splitting light by diffraction: the grating equation</a></li>
+    <li><a href="#s-blaze">Blaze: putting the light where you want it</a></li>
+    <li><a href="#s-orders">Overlapping orders and how to sort them</a></li>
+    <li><a href="#s-layouts">From a grating to an instrument: the classic layouts</a></li>
+    <li><a href="#s-mono">Monochromator or spectrograph?</a></li>
+    <li><a href="#s-res">Resolution: slit, dispersion and pixels</a></li>
+    <li><a href="#s-etendue">Throughput, étendue and the price of resolution</a></li>
+    <li><a href="#s-echelle">Echelle spectrometers: high orders in two dimensions</a></li>
+    <li><a href="#s-fts">Fourier-transform spectrometers</a></li>
+    <li><a href="#s-fp">Fabry–Pérot etalons and tunable filters</a></li>
+    <li><a href="#s-uvvis">UV–Vis absorption spectrophotometers</a></li>
+    <li><a href="#s-fluor">Fluorescence spectrometers</a></li>
+    <li><a href="#s-raman">Raman spectrometers: the hardware</a></li>
+    <li><a href="#s-ir">Infrared: FTIR and ATR</a></li>
+    <li><a href="#s-det">Detectors for spectroscopy</a></li>
+    <li><a href="#s-cal">Calibrating wavelength and intensity</a></li>
+    <li><a href="#s-choose">Choosing a spectrometer</a></li>
+    <li><a href="#s-quiz">Test yourself</a></li>
+    <li><a href="#s-symbols">Symbols used in this article</a></li>
+    <li><a href="#s-refs">References</a></li>
+  </ol>
+</nav>
+
+<p><a href="blog-optics-basics.html">Part 1</a> built light from Maxwell's equations: refraction, interference,
+diffraction and polarisation. This part puts those ideas to work in the instruments that turn light into a
+spectrum. The next part, <a href="blog-spectroscopy.html">Vibrational spectroscopy</a>, explains what the peaks of
+an infrared or Raman spectrum mean; here the question is how the spectrum was recorded in the first place, and what
+the instrument has done to it on the way. Every figure is calculated from the equations in the text, so the numbers
+can be checked. Numbers in square brackets refer to the <a href="#s-refs">references</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-what"><span class="num">01</span>What a spectrometer does</h2>
+
+<p>A spectrometer measures how much light there is at each wavelength. Whatever its size or price, it does four
+jobs (Figure 1). It <b>collects</b> light from a source or a sample, usually through an entrance slit or an
+optical fibre that defines where the light comes from. It <b>separates</b> the wavelengths, by refraction in a
+prism, by diffraction from a grating, or by interference in an interferometer. It <b>detects</b> the separated
+light, with a single detector behind an exit slit or with an array that records many wavelengths at once. And it is
+<b>calibrated</b>, so that each detector reading is tied to a known wavelength and, when needed, to an absolute
+intensity.</p>
+
+<figure class="fig" data-fig="spmanat">
+  <div class="fig-tag">Figure 1</div>
+  <noscript><p>This figure needs JavaScript.</p></noscript>
+  <figcaption><b>The four jobs of every spectrometer.</b> Light is collected (here through a sample and an entrance
+  slit), its wavelengths are separated, the separated light is detected, and the readings are calibrated into a
+  spectrum. The instruments in this article differ mainly in how they separate the wavelengths.</figcaption>
+</figure>
+
+<p>Three numbers describe how well it does them. The <b>spectral range</b> is the band of wavelengths it covers.
+The <b>resolution</b> \(\Delta\lambda\) is the smallest wavelength difference it can separate, often quoted as the
+resolving power \(R = \lambda/\Delta\lambda\). The <b>throughput</b> is how much of the light that reaches it
+ends up on the detector. The rest of this article is largely about how these three trade against each other.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-prism"><span class="num">02</span>Splitting light by refraction: the prism</h2>
+
+<p>Newton separated sunlight into colours with a prism in 1666 and described it in 1672 [1]. The prism works
+because the refractive index of glass depends on wavelength — dispersion, introduced in
+<a href="blog-optics-basics.html#s-linear">Part 1</a>. Blue light, with the higher index, is bent more at each face
+than red. For a prism of apex angle \(A\), the deviation is smallest when the ray crosses the prism symmetrically,
+and then [2]</p>
+$$n(\lambda) = \frac{\sin\!\big[(A + D_\text{min})/2\big]}{\sin(A/2)} ,$$
+<p>where \(D_\text{min}\) is the minimum deviation. Measuring \(D_\text{min}\) at several wavelengths is still a
+standard way to measure \(n(\lambda)\). The index of optical glasses is described by the Sellmeier formula,
+\(n^2 - 1 = \sum_j B_j\lambda^2/(\lambda^2 - C_j)\), with coefficients published by the glass makers [4] and, for
+crystalline materials, by careful measurements such as Malitson's for fused silica and calcium fluoride [5, 6].</p>
+
+<p>How finely can a prism separate two wavelengths? If the beam fills the prism, the answer depends only on the
+length of glass at its base, \(b\), and on how fast the index changes [2, 3]:</p>
+$$R = \frac{\lambda}{\Delta\lambda} = b\left|\frac{dn}{d\lambda}\right| .$$
+<p>A 50 mm base of the dense flint SF11 gives \(R \approx 7600\) near 589 nm, enough to separate the two yellow
+sodium lines 0.6 nm apart with room to spare; a crown glass such as N-BK7, which disperses less, gives about 2100. The <b>Abbe
+number</b> \(V_d = (n_d - 1)/(n_F - n_C)\), calculated from the indices at three standard lines, sums this up:
+the lower \(V_d\), the stronger the dispersion.</p>
+
+<figure class="fig" data-fig="prism">
+  <div class="fig-tag">Figure 2 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>White light through a prism</b>, traced with Snell's law at both faces and the Sellmeier index of
+  each glass. Change the glass, the apex angle and the angle of incidence. Flint glass (SF11) spreads the colours
+  several times more than crown glass (N-BK7) or fused silica; calcium fluoride disperses least in the visible but
+  transmits from the deep UV to the mid-infrared. At steep internal angles the blue rays are totally reflected at
+  the second face first.</figcaption>
+</figure>
+
+<p>Prisms have two drawbacks for spectroscopy: their dispersion is strongly non-linear (they spread the blue far
+more than the red), and their resolving power is limited by how much glass can be used. They survive where their
+strengths matter — no overlapping orders, high transmission, and use as order separators (cross-dispersers) in
+echelle spectrometers (section 10). For most work, the grating has replaced them.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-grating"><span class="num">03</span>Splitting light by diffraction: the grating equation</h2>
+
+<p>A diffraction grating is a surface with many parallel grooves, spaced \(d\) apart — from about 30 to 3600 per
+millimetre. Light scattered by neighbouring grooves arrives in step only in particular directions: where the path
+difference between them is a whole number \(m\) of wavelengths. For light arriving at angle \(\alpha\) and leaving
+at angle \(\beta\), both measured from the grating normal, this gives the <b>grating equation</b> [7, 8]</p>
+$$m\lambda = d\,(\sin\alpha + \sin\beta) .$$
+<p>Here the angles carry signs: \(\alpha\) and \(\beta\) are positive on the same side of the normal, so the
+specular reflection, \(m = 0\), leaves at \(\beta = -\alpha\) for every wavelength. Each non-zero order \(m\) spreads
+the wavelengths out; an order exists only if \(|\sin\beta| \le 1\), so a fine grating may have only one order or none
+at a long wavelength.</p>
+
+<p>Differentiating the grating equation at fixed \(\alpha\) gives the <b>angular dispersion</b>,</p>
+$$\frac{d\beta}{d\lambda} = \frac{m}{d\cos\beta} ,$$
+<p>which grows with the order and the groove density. And because every one of the \(N\) illuminated grooves
+contributes, the diffraction peak of each wavelength is very narrow. Two wavelengths are just resolved when the
+peak of one falls on the first zero of the other, which gives the resolving power [3, 7]</p>
+$$R = \frac{\lambda}{\Delta\lambda} = mN .$$
+<p>A 25 mm wide grating with 600 grooves/mm has 15 000 grooves: in first order it can in principle separate
+wavelengths 0.04 nm apart at 600 nm — twice as finely as the SF11 prism above and seven times better than one of N-BK7. Whether an instrument reaches that
+depends on the rest of the optics (section 08).</p>
+
+<figure class="fig" data-fig="grating">
+  <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Where each order goes.</b> White beam: incoming light at angle α. Coloured lines: the orders of
+  violet (405 nm), green (532 nm) and red (650 nm) light from the grating equation; the faint line is the zero order,
+  where all colours leave together. Raise the groove density and the orders fan out and disappear one by one as
+  \(|\sin\beta|\) passes 1. The readout gives the first-order angle, the angular dispersion, and the resolving power
+  \(mN\) for the illuminated width.</figcaption>
+</figure>
+
+<p>Gratings are made in two ways. <b>Ruled</b> gratings are cut groove by groove with a diamond tool; their grooves
+can be given a sawtooth shape (section 04). <b>Holographic</b> gratings are recorded as an interference pattern in
+photoresist and etched; their grooves are smoother and more regular, which gives less scattered light and no
+"ghost" lines from periodic ruling errors, and they can be made on curved surfaces with corrected aberrations
+[7, 8]. Most commercial gratings are replicas, moulded from a master.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-blaze"><span class="num">04</span>Blaze: putting the light where you want it</h2>
+
+<p>A grating with symmetric grooves sends most of the light into the useless zero order. A <b>blazed</b> grating has
+sawtooth grooves whose facets are tilted by the blaze angle \(\theta_B\). Each facet acts as a small mirror, and
+when the direction of specular reflection from the facets coincides with a diffraction order, that order gets most
+of the light. In the Littrow arrangement, where the diffracted light returns along the incoming beam
+(\(\alpha = \beta = \theta_B\)), this happens at the <b>blaze wavelength</b> [7]</p>
+$$\lambda_B = \frac{2d\sin\theta_B}{m} .$$
+<p>The same facets therefore blaze the second order at \(\lambda_B/2\), the third at \(\lambda_B/3\), and so on. In
+the scalar theory, which treats the facets as ideal tilted mirrors, the efficiency of order \(m\) is
+\(\eta_m = \mathrm{sinc}^2(m - \lambda_B/\lambda)\) with \(\mathrm{sinc}\,x = \sin\pi x/\pi x\): 100 % at the blaze,
+falling to 50 % at about \(0.69\lambda_B\) and \(1.8\lambda_B\) in first order. Real gratings fall short of this, and
+their efficiency depends on polarisation, because the grooves treat light polarised along them and across them
+differently (TE and TM, <a href="blog-optics-basics.html#s-tetm">Part 1, section 10</a>). Manufacturers publish
+measured curves for both [7, 8].</p>
+
+<figure class="fig" data-fig="blaze">
+  <div class="fig-tag">Figure 4 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Efficiency of a blazed grating</b> in first and second order, scalar theory, Littrow mounting.
+  The default, 600 grooves/mm blazed at 8.6°, is a common "500 nm" grating. A grating is usable over roughly the
+  range where its efficiency exceeds 50 % (dashed line); choose the blaze to cover the wavelengths you care about.
+  Curves stop where the order no longer exists (\(m\lambda > 2d\)).</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-orders"><span class="num">05</span>Overlapping orders and how to sort them</h2>
+
+<p>The grating equation fixes only the product \(m\lambda\). Light of 600 nm in first order, 300 nm in second order
+and 200 nm in third order all leave at the same angle and land on the same pixel. In a spectrometer calibrated for
+first order, a strong ultraviolet line therefore reappears as a false line at twice its wavelength. The range over
+which one order is free of the next is the <b>free spectral range</b>, \(\lambda/m\): from 400 to 800 nm in
+first order, but only from 400 to 600 nm in second.</p>
+
+<p>The cure is an <b>order-sorting filter</b>: a long-pass filter that blocks the short wavelengths before they reach
+the part of the detector where they would be mistaken for long ones. Compact CCD spectrometers often have a stepped
+or graded filter bonded over the long-wavelength half of the detector, so that the blue half still sees the
+ultraviolet [7].</p>
+
+<figure class="fig" data-fig="overlap">
+  <div class="fig-tag">Figure 5 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Second-order light in a CCD spectrometer</b> covering 200–1100 nm with a grating blazed at 500 nm and
+  a silicon detector. With a mercury lamp, the strong ultraviolet lines at 253.7, 365.0 and 404.7 nm reappear at
+  507.3, 730.0 and 809.3 nm (red dashed lines) — lines that a mercury lamp does not emit. Broad sources gain a false
+  red tail. Switch on the order-sorting filter to remove them.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-layouts"><span class="num">06</span>From a grating to an instrument: the classic layouts</h2>
+
+<p>A grating diffracts parallel light into parallel light. To make an instrument, optics must turn the diverging light
+from the entrance slit into a parallel beam (the collimator) and focus each diffracted direction to a sharp image
+of the slit on the detector (the camera). The image of the slit at each wavelength is a spectral line; the spectrum is
+a row of slit images, one per wavelength. The main layouts differ in how they do this with the fewest surfaces and the
+least aberration (Figure 6).</p>
+<ul>
+  <li><b>Czerny–Turner</b> [12]: two concave mirrors and a plane grating. Choosing the mirror angles so that the coma of
+  one cancels that of the other gives sharp lines over a wide field. It is the standard laboratory spectrograph and
+  monochromator.</li>
+  <li><b>Crossed Czerny–Turner</b>: the same parts with the beams crossing, for a compact footprint. Most fibre-coupled
+  mini-spectrometers use it.</li>
+  <li><b>Littrow</b>: one lens or mirror collimates and focuses, and the grating sends the chosen order back almost along
+  the incoming beam. It is compact and works near the blaze condition.</li>
+  <li><b>Concave grating</b>: the grooves sit on a concave mirror, which disperses and focuses at once. Rowland showed
+  that slit, grating and spectrum then lie on one circle of half the grating's radius [16]; holographic gratings with
+  varied groove spacing flatten the spectrum onto a flat detector. Fewer surfaces mean less loss, which matters in the
+  ultraviolet and vacuum ultraviolet.</li>
+  <li><b>Echelle with a cross-disperser</b>: a coarse grating at a steep angle in high orders, with a prism spreading the
+  orders apart (section 10).</li>
+</ul>
+
+<figure class="fig" data-fig="layouts">
+  <div class="fig-tag">Figure 6 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Spectrometer layouts.</b> Choose a layout to see its light path from the entrance slit to the detector,
+  with three colours traced through to their own places on the detector. Drawings are schematic: real instruments use
+  carefully chosen angles to cancel aberrations.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-mono"><span class="num">07</span>Monochromator or spectrograph?</h2>
+
+<p>The same optics can be used in two ways. A <b>monochromator</b> has an exit slit in the focal plane and a single
+detector behind it, usually a photomultiplier; rotating the grating sweeps the spectrum across the exit slit, one
+wavelength at a time. It selects one wavelength well — with low stray light, and with a detector that can be very
+sensitive — and it is used to illuminate a sample with a chosen wavelength (as in the excitation side of a
+fluorometer, section 14). A <b>spectrograph</b> has no exit slit: an array detector in the focal plane records the
+whole spectrum in one exposure. It is faster, since every wavelength is measured at the same time, and it has no
+moving parts during a measurement. The CCD spectrometers on most lab benches are spectrographs.</p>
+
+<p>In both, the spread of wavelengths along the focal plane follows from the angular dispersion and the camera focal
+length \(f\). It is usually quoted as the <b>reciprocal linear dispersion</b>, in nm per mm [7, 9]:</p>
+$$\frac{d\lambda}{dx} = \frac{d\cos\beta}{m f} .$$
+<p>A 600 grooves/mm grating in first order with a 150 mm camera gives about 10 nm/mm: a 25 mm detector covers some
+250 nm. With 1800 grooves/mm and 500 mm, the same detector covers about 25 nm, with ten times finer detail.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-res"><span class="num">08</span>Resolution: slit, dispersion and pixels</h2>
+
+<p>Three things blur a line on the detector. The first is the width \(w\) of the entrance slit: its image is (for equal
+collimator and camera focal lengths) the same width, and spans a wavelength range \(w \times d\lambda/dx\), the
+<b>bandpass</b>. The second is the optics: aberrations and diffraction add a blur of their own, typically a few to
+tens of micrometres. The third is the detector: a line cannot be sharper than about two pixels, and to measure its
+shape it needs several. The narrowest line the instrument records is set by the largest of the three, and the
+resolving power of the grating, \(mN\), is only the ceiling [7, 9].</p>
+
+<figure class="fig" data-fig="resol">
+  <div class="fig-tag">Figure 7 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The sodium D doublet as a spectrograph records it.</b> Grey: the two lines at 588.995 and 589.592 nm
+  [23]. Gold: the counts in each pixel, calculated as the slit image (a rectangle) blurred by 12 µm of optical blur
+  and summed over each pixel. With the defaults the doublet is resolved; widen the slit, shorten the focal length or
+  use a coarser grating to watch it merge. The last readout shows the cost of a narrow slit: less light.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-etendue"><span class="num">09</span>Throughput, étendue and the price of resolution</h2>
+
+<p>The amount of light an optical system can accept is set by its <b>étendue</b>, \(G = A\,\Omega\): the area of the
+entrance aperture times the solid angle of the cone it accepts. Étendue cannot be increased by any passive optics; at
+best it is conserved. For a slit spectrometer, \(A\) is the slit area and \(\Omega\) is set by the f-number of the
+collimator. Narrowing the slit to improve the resolution therefore reduces the étendue in proportion: <b>resolution
+and throughput trade against each other</b>. Jacquinot compared prisms, gratings and Fabry–Pérot etalons on this
+basis in 1954 and showed that, at the same resolving power, instruments without a slit can accept far more light
+[10]. That is the <b>Jacquinot advantage</b> of the Fourier-transform and Fabry–Pérot instruments below.</p>
+
+<p>Two practical rules follow. Match the f-number of the light coming in (from a fibre or a lens) to that of the
+spectrometer: a faster cone overfills the optics and becomes stray light, a slower one wastes étendue. And choose the
+slit no narrower than the resolution you need: halving it halves the light for a gain you may not use.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-echelle"><span class="num">10</span>Echelle spectrometers: high orders in two dimensions</h2>
+
+<p>The resolving power of a grating can be written \(R = mN = Nd(\sin\alpha + \sin\beta)/\lambda\), which depends
+only on the width \(W = Nd\) of the grating and the angles. In Littrow at the blaze, \(R = 2W\sin\theta_B/\lambda\):
+for the highest resolution, use the grating at a steep angle. An <b>echelle</b> (French for ladder) is a coarse
+grating, typically 30–80 grooves/mm, blazed at 63.4° (an "R2" echelle, \(\tan\theta_B = 2\)) and used in orders 30 to
+over 100 [17]. A 50 mm echelle at 500 nm reaches \(R \approx 180\,000\).</p>
+
+<p>The price is a tiny free spectral range: a few nanometres per order, so many orders overlap. A prism (or a second,
+low-dispersion grating) at right angles to the echelle separates them, and the spectrum falls on a two-dimensional
+detector as a stack of short, nearly horizontal stripes — an <b>echellogram</b>. Echelle spectrographs record a wide
+range at high resolution in one exposure, which is why they are used for elemental analysis by optical emission
+(ICP-OES), for laser-induced breakdown spectroscopy and in astronomy.</p>
+
+<figure class="fig" data-fig="echelle">
+  <div class="fig-tag">Figure 8 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>An echellogram</b> from 200 to 780 nm. Each coloured stripe is one order, its wavelengths spread along
+  it by the echelle; the cross-dispersing prism moves each order up or down according to its index, so the orders are
+  spaced more widely in the ultraviolet, where the index changes fastest. White dots: mercury and argon calibration
+  lines [23], brighter near the centre of each order where the blaze is most efficient.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fts"><span class="num">11</span>Fourier-transform spectrometers</h2>
+
+<p>A Fourier-transform (FT) spectrometer does not separate wavelengths in space at all. It sends the light into a
+Michelson interferometer [13]: a beamsplitter divides it between a fixed mirror and a moving one, and the two beams
+recombine on a single detector. When the moving mirror has introduced an optical path difference \(\delta\), each
+wavenumber \(\tilde\nu = 1/\lambda\) interferes with itself and contributes a cosine to the detector signal. The
+recorded <b>interferogram</b> is therefore the cosine transform of the spectrum \(B(\tilde\nu)\) [11]:</p>
+$$I(\delta) = \tfrac12 I(0) + \int_0^\infty B(\tilde\nu)\cos(2\pi\tilde\nu\delta)\,d\tilde\nu ,
+\qquad B(\tilde\nu) \propto \int_0^{\delta_\text{max}} \big[I(\delta) - \tfrac12 I(0)\big]\cos(2\pi\tilde\nu\delta)\,d\delta .$$
+<p>A computer inverts it with the fast Fourier transform [14]. The resolution is set by how far the mirror travels: two
+lines are resolved when they drift one fringe apart over the scan, \(\Delta\tilde\nu \approx 1/\delta_\text{max}\)
+[11]. Cutting the interferogram off abruptly gives each line sinc-shaped side lobes; multiplying it by a smooth
+<b>apodisation</b> function before the transform removes them, at the cost of slightly wider lines.</p>
+
+<figure class="fig" data-fig="fts">
+  <div class="fig-tag">Figure 9 · <span class="live">Animated</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>From interferogram to spectrum.</b> Left: the Michelson interferometer. Right, top: the detector signal
+  as the mirror moves, sampled every 2.5 µm of path; bottom: the spectrum recovered from the part recorded so far,
+  by a cosine transform. Press <i>Scan the mirror</i> to watch the lines sharpen as the path difference grows. For
+  the doublet 4 cm⁻¹ apart, the lines separate once \(\delta_\text{max}\) passes about 2.5 mm. Without apodisation
+  the lines ring; triangular and Happ–Genzel apodisation suppress the side lobes and widen the lines.</figcaption>
+</figure>
+
+<p>FT instruments have three classic advantages, which is why nearly all infrared spectrometers are FTIRs [11]:</p>
+<ul>
+  <li><b>Multiplex (Fellgett) advantage.</b> Every wavelength reaches the detector for the whole measurement, instead of
+  one at a time. When the noise comes from the detector rather than the light — as with infrared detectors — the
+  signal-to-noise ratio improves by roughly the square root of the number of spectral elements.</li>
+  <li><b>Throughput (Jacquinot) advantage.</b> A circular aperture replaces the slit; for a given resolving power it
+  passes much more light (section 09) [10].</li>
+  <li><b>Wavenumber precision (Connes advantage).</b> A helium–neon laser travels through the interferometer with the
+  infrared beam, and its fringes trigger the sampling at exact intervals of path difference. Sampling at every zero
+  crossing of the 632.8 nm fringes sets the highest measurable wavenumber at 15 803 cm⁻¹ and ties the wavenumber
+  axis to the laser.</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fp"><span class="num">12</span>Fabry–Pérot etalons and tunable filters</h2>
+
+<p>Two parallel, partly reflecting mirrors a distance \(l\) apart transmit only the wavelengths for which a round trip
+is a whole number of wavelengths: the <b>Fabry–Pérot</b> etalon [15]. Its transmission (the Airy function) is</p>
+$$T = \frac{1}{1 + F\sin^2(\delta/2)},\qquad \delta = \frac{4\pi n l\cos\theta}{\lambda},\qquad F = \frac{4R}{(1-R)^2} ,$$
+<p>with \(R\) the mirror reflectance. The peaks repeat every free spectral range \(\Delta\lambda_\text{FSR} =
+\lambda^2/2nl\), and their width is the free spectral range divided by the <b>finesse</b>
+\(\mathcal{F} = \pi\sqrt{R}/(1-R)\) [2, 3]. With good mirrors the finesse reaches hundreds, and the resolving power
+\(\mathcal{F}\cdot 2nl/\lambda\) can exceed a million, which is why etalons are used to measure laser linewidths and
+the fine structure of spectral lines. Like the FT spectrometer, an etalon has no slit and enjoys the Jacquinot
+advantage [10].</p>
+
+<figure class="fig" data-fig="fp">
+  <div class="fig-tag">Figure 10 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Fabry–Pérot transmission</b> near 600 nm (air gap, normal incidence). Raise the reflectance to sharpen
+  the peaks (higher finesse); widen the gap to bring them closer together (smaller free spectral range) and narrower.
+  A thin-film interference filter is a solid Fabry–Pérot with a gap of about half a wavelength, so that only one
+  peak falls in the band of interest.</figcaption>
+</figure>
+
+<p>The same principle, and others, make <b>tunable filters</b> that select one band at a time without moving a grating:
+liquid-crystal tunable filters (stacks of birefringent plates and polarisers), acousto-optic tunable filters in which
+a sound wave in a crystal acts as a tunable grating [24], and linear variable filters whose passband changes along the
+filter. They trade resolution for speed and simplicity, and are common in imaging spectrometers.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-uvvis"><span class="num">13</span>UV–Vis absorption spectrophotometers</h2>
+
+<p>The UV–Vis spectrophotometer measures how much light a sample absorbs. A deuterium lamp (ultraviolet) and a
+tungsten–halogen lamp (visible and near-infrared) feed a monochromator; the selected band passes through the sample
+and onto a detector, and the absorbance follows from the Beer–Lambert law,</p>
+$$A = -\log_{10}\frac{I}{I_0} = \varepsilon c\,\ell ,$$
+<p>where \(I_0\) and \(I\) are the light reaching the detector through the reference and the sample, \(\varepsilon\) the
+molar absorption coefficient, \(c\) the concentration and \(\ell\) the path length. A <b>single-beam</b> instrument
+measures the reference and the sample one after the other; a <b>double-beam</b> instrument splits the light and
+measures both at once, which cancels lamp drift. Array-detector instruments ("diode-array") pass white light through
+the sample first and disperse it afterwards, recording the whole spectrum in a fraction of a second.</p>
+
+<p>Two instrumental effects distort the absorbance, and both are easy to underestimate:</p>
+<ul>
+  <li><b>Spectral bandwidth.</b> The instrument averages the transmission over its bandpass. If that is not small
+  compared with the width of the absorption band, peaks are measured too low. A rule of thumb is a bandwidth no more
+  than a tenth of the band's natural width.</li>
+  <li><b>Stray light.</b> A small fraction \(s\) of light at other wavelengths reaches the detector whatever the
+  sample does. The measured absorbance becomes \(-\log_{10}[(T + s)/(1 + s)]\) and can never exceed about
+  \(-\log_{10}s\): with 0.1 % stray light, readings flatten near A = 3. Stray light is measured with sharp cut-off
+  filters that block all light at the test wavelength [19].</li>
+</ul>
+
+<figure class="fig" data-fig="uvvis">
+  <div class="fig-tag">Figure 11 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>What the instrument does to an absorption band.</b> Grey: a Gaussian band of the chosen height and
+  width. Gold: what a spectrophotometer reports with a triangular bandpass of the chosen width and the chosen stray
+  light. Raise the true absorbance to see the peak flatten at the stray-light ceiling (red); widen the bandwidth to
+  see the peak drop and broaden.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-fluor"><span class="num">14</span>Fluorescence spectrometers</h2>
+
+<p>A spectrofluorometer has two monochromators. The <b>excitation</b> monochromator selects the wavelength that
+excites the sample; the <b>emission</b> monochromator, usually at 90° to the excitation beam so that little
+excitation light enters it, analyses the light the sample emits [18]. Scanning the emission at fixed excitation gives
+an <b>emission spectrum</b>; scanning the excitation while watching one emission wavelength gives an <b>excitation
+spectrum</b>, which for a pure compound resembles its absorption spectrum. A reference detector watches the lamp so
+that its spectrum and drift can be divided out, and emission spectra must be corrected for the wavelength response of
+the emission side before they can be compared between instruments.</p>
+
+<p>Three artefacts recur. The <b>Raman band of the solvent</b> appears at a fixed energy shift from the excitation
+(about 3400 cm⁻¹ for water, so near 397 nm when exciting at 350 nm) and moves when the excitation moves, unlike
+true fluorescence. <b>Second-order light</b> from the monochromators puts copies of the excitation at twice its
+wavelength. And the <b>inner-filter effect</b>: in a concentrated sample the excitation is absorbed before it
+reaches the part of the cuvette the emission optics see, and the emission is re-absorbed on its way out. For the
+usual right-angle geometry, viewing the centre of a 1 cm cuvette, the observed signal is reduced by about
+\(10^{-(A_\text{ex} + A_\text{em})/2}\) [18], so the signal stops being proportional to concentration above an
+absorbance of about 0.1.</p>
+
+<figure class="fig" data-fig="inner">
+  <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>The inner-filter effect</b> in right-angle geometry. Dashed: a signal proportional to concentration.
+  Green: what is observed when the light is attenuated on its way in and out, by the factor \(10^{-(A_\text{ex} +
+  A_\text{em})/2}\). With the default settings, about 13 % of the signal is already lost at an absorbance of 0.1, and half of it at 0.5.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-raman">
+<span class="num">15</span>Raman spectrometers: the hardware</h2>
+
+<p>Raman scattering, and its many variants, were the subject of <a href="blog-raman-variants.html">Part 4</a> of the
+reading path; here is what the instrument needs [21]. A narrow-linewidth laser excites the sample; a filter removes the
+elastically scattered laser light, which is a million or more times stronger than the Raman signal; and a
+spectrograph with a cooled CCD records what remains. Modern instruments use thin-film <b>edge</b> or <b>notch</b>
+filters with optical densities of 6 or more at the laser line, which let a single spectrograph replace the double and
+triple monochromators once needed to reject the laser.</p>
+
+<p>Raman spectra are plotted against the Raman shift \(\tilde\nu = 1/\lambda_0 - 1/\lambda_s\), in cm⁻¹, but the
+spectrograph disperses linearly in wavelength. Since \(\Delta\tilde\nu = \Delta\lambda/\lambda^2\), the same grating
+and detector cover fewer cm⁻¹, with finer steps, at longer wavelengths. That decides the choice of grating for each
+laser. It also explains a practical limit of 785 nm and 830 nm excitation: the C–H stretching region near
+3000 cm⁻¹ lands beyond 1000 nm, where silicon CCDs lose their sensitivity. Polystyrene and other materials with
+tabulated Raman shifts are used to check the shift axis [22].</p>
+
+<figure class="fig" data-fig="ramancov">
+  <div class="fig-tag">Figure 13 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>What one detector frame covers.</b> A 26.6 mm detector (1024 pixels of 26 µm) behind a spectrograph of the
+  chosen focal length and grating. Gold band: the Raman shifts recorded in one exposure, over the reference peaks of
+  polystyrene [22]. Coarse gratings cover the whole fingerprint and C–H regions at once; fine gratings resolve
+  detail but need several frames ("step and glue").</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-ir">
+<span class="num">16</span>Infrared: FTIR and ATR</h2>
+
+<p>Mid-infrared spectrometers are almost all FTIRs (section 11), with a glowing ceramic source, a KBr beamsplitter and a
+DTGS (pyroelectric) or liquid-nitrogen-cooled MCT detector [11]. The sample is what changes. Transmission through thin
+films, KBr pellets or liquid cells works but needs preparation, because water and many solids absorb so strongly
+that only micrometres of sample can be used. <b>Attenuated total reflection (ATR)</b> avoids that: the sample is
+pressed against a crystal of high index, the infrared beam is totally reflected inside the crystal, and only the
+evanescent field — the field that leaks a short distance beyond a totally reflecting surface
+(<a href="blog-optics-basics.html#s-interface">Part 1, section 09</a>) — probes the sample. Its intensity decays with a
+penetration depth [20]</p>
+$$d_p = \frac{\lambda}{2\pi n_1\sqrt{\sin^2\theta - (n_2/n_1)^2}} ,$$
+<p>where \(n_1\) and \(n_2\) are the indices of the crystal and the sample and \(\theta\) the angle of incidence. A few
+micrometres of sample are probed whatever its thickness, so liquids, pastes, powders and films are measured as they
+are. Because \(d_p\) grows with wavelength, ATR spectra show stronger bands at low wavenumber than transmission
+spectra; instrument software corrects this before library searches.</p>
+
+<figure class="fig" data-fig="atr">
+  <div class="fig-tag">Figure 14 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>How deep ATR looks</b> for diamond, ZnSe and germanium crystals. Germanium, with \(n = 4\), probes
+  least deeply and is chosen for strongly absorbing samples such as carbon-filled rubbers; diamond is the robust
+  all-purpose choice. Lower the angle towards the critical angle to watch the depth diverge.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-det"><span class="num">17</span>Detectors for spectroscopy</h2>
+
+<p>The detector decides the usable range and much of the noise. The table lists the common ones; how they convert
+photons into a signal, and where their noise comes from, needs an article of its own.</p>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Detector</th><th>Range (approx.)</th><th>Used in</th><th>Notes</th></tr>
+  <tr><td>Photomultiplier (PMT)</td><td>160–900 nm</td><td>monochromators, fluorometers</td><td>single channel; very high gain, photon counting</td></tr>
+  <tr><td>Silicon photodiode / array</td><td>190–1100 nm</td><td>UV–Vis, diode-array instruments</td><td>robust and linear; large dynamic range</td></tr>
+  <tr><td>CCD / CMOS (silicon)</td><td>200–1050 nm</td><td>spectrographs, Raman, echelles</td><td>2D arrays; cooled for low dark current; back-thinned for the UV</td></tr>
+  <tr><td>InGaAs array</td><td>900–1700 nm (extended to 2500 nm)</td><td>NIR spectrometers, 1064 nm dispersive Raman</td><td>cooled; higher dark current than silicon</td></tr>
+  <tr><td>DTGS (pyroelectric)</td><td>mid-IR, flat response</td><td>routine FTIR</td><td>room temperature; slow, modest sensitivity</td></tr>
+  <tr><td>MCT (HgCdTe)</td><td>mid-IR, to about 12–20 µm</td><td>sensitive and fast FTIR, IR microscopy</td><td>cooled with liquid nitrogen</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-cal"><span class="num">18</span>Calibrating wavelength and intensity</h2>
+
+<p>A spectrograph knows only pixel numbers. <b>Wavelength calibration</b> ties pixels to wavelengths with the emission
+lines of a lamp whose wavelengths are known precisely — mercury, argon, neon or their mixtures [23]. The line centres
+are found to a fraction of a pixel, and a polynomial \(\lambda(p)\) is fitted to them. A straight line is not enough:
+\(\cos\beta\) changes across the detector and the focal surface is never perfectly flat, so the dispersion is curved,
+and a quadratic or cubic polynomial is usual. The residuals of the fit, a small fraction of a pixel when all is well,
+are the honest measure of the wavelength accuracy. FT instruments are calibrated by their reference laser instead
+(section 11), and Raman shifts are checked against standards [22].</p>
+
+<figure class="fig" data-fig="calib">
+  <div class="fig-tag">Figure 15 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Wavelength calibration with a mercury–argon lamp.</b> A 2048-pixel spectrograph covers 300–900 nm with a
+  slightly curved dispersion. Blue dots: the error of the fitted polynomial at each lamp line; gold: its error between
+  them. A straight line leaves an error of many picometres that changes sign across the range; a quadratic or cubic
+  removes it, down to the noise in the line centres.</figcaption>
+</figure>
+
+<p><b>Intensity calibration</b> corrects for the instrument's response — the grating efficiency, the transmission of
+the optics and the quantum efficiency of the detector, all of which change with wavelength (Figures 4 and 5). It is
+measured with a source of known spectral output: a calibrated tungsten–halogen or deuterium lamp, or a certified
+luminescent glass. Before either, every measurement needs a <b>dark</b> spectrum (the detector's signal with no
+light) subtracted, and for absorption a <b>reference</b> spectrum to divide by. These corrections, and what comes
+after them — baseline removal, smoothing and peak fitting — were covered from the analysis side in
+<a href="blog-spectroscopy.html#s-practice">Part 3</a>.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-choose"><span class="num">19</span>Choosing a spectrometer</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Type</th><th>Separates by</th><th>Typical resolving power</th><th>Strengths</th><th>Limitations</th></tr>
+  <tr><td>Compact CCD spectrograph</td><td>grating, crossed Czerny–Turner</td><td>300–3000</td><td>small, fibre-coupled, whole spectrum in milliseconds</td><td>modest resolution and stray light; second-order light</td></tr>
+  <tr><td>Scanning monochromator + PMT</td><td>grating, exit slit</td><td>1000–100 000</td><td>low stray light, very sensitive, selects one wavelength</td><td>one wavelength at a time; moving parts</td></tr>
+  <tr><td>Research spectrograph + cooled CCD</td><td>grating, Czerny–Turner, 300–750 mm</td><td>5000–50 000</td><td>Raman, photoluminescence, low light</td><td>range per frame shrinks as resolution grows</td></tr>
+  <tr><td>Echelle</td><td>echelle + cross-disperser</td><td>50 000–200 000</td><td>wide range at high resolution in one exposure</td><td>2D detector and complex calibration</td></tr>
+  <tr><td>Fourier-transform</td><td>Michelson interferometer</td><td>up to 10⁶ (research)</td><td>multiplex, throughput and wavenumber accuracy; the IR standard</td><td>needs a stable interferometer; less suited where light-noise dominates</td></tr>
+  <tr><td>Fabry–Pérot / tunable filter</td><td>interference</td><td>10²–10⁶</td><td>no slit; imaging; extreme resolution (etalon)</td><td>small free spectral range; one band at a time</td></tr>
+</table></div>
+
+<p>In practice: for quick absorption, emission or reflection spectra in the visible, a compact CCD spectrograph is
+hard to beat. For fluorescence, a scanning instrument with photon counting; for Raman, a spectrograph of 300–500 mm
+with a deep-cooled CCD and the grating matched to the laser (Figure 13); for the mid-infrared, an FTIR, almost
+always with ATR. When lines must be measured to picometres across a wide range, an echelle.</p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-quiz"><span class="num">20</span>Test yourself</h2>
+
+<figure class="fig" data-fig="spmquiz">
+  <div class="fig-tag">Figure 16 · <span class="live">Interactive</span></div>
+  <noscript><p>This interactive figure needs JavaScript.</p></noscript>
+  <figcaption><b>Twelve questions</b> on gratings, resolution, FT spectroscopy and the instruments, each with the reasoning
+  behind the answer.</figcaption>
+</figure>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-symbols"><span class="num">21</span>Symbols used in this article</h2>
+
+<div class="tbl-wrap"><table>
+  <tr><th>Symbol</th><th>Meaning</th></tr>
+  <tr><td>\(\lambda,\ \tilde\nu = 1/\lambda\)</td><td>wavelength (vacuum, or air where stated for lamp lines); wavenumber</td></tr>
+  <tr><td>\(R = \lambda/\Delta\lambda\)</td><td>resolving power; \(\Delta\lambda\) the smallest resolved wavelength difference</td></tr>
+  <tr><td>\(n(\lambda),\ A,\ D_\text{min},\ b\)</td><td>refractive index; prism apex angle; minimum deviation; prism base length</td></tr>
+  <tr><td>\(V_d\)</td><td>Abbe number \((n_d - 1)/(n_F - n_C)\)</td></tr>
+  <tr><td>\(d,\ N,\ W\)</td><td>groove spacing; number of illuminated grooves; illuminated grating width \(Nd\)</td></tr>
+  <tr><td>\(m,\ \alpha,\ \beta\)</td><td>diffraction order; angles of incidence and diffraction from the grating normal (same sign on the same side)</td></tr>
+  <tr><td>\(\theta_B,\ \lambda_B,\ \eta_m\)</td><td>blaze angle; blaze wavelength; efficiency of order \(m\)</td></tr>
+  <tr><td>\(f,\ d\lambda/dx,\ w\)</td><td>camera focal length; reciprocal linear dispersion; slit width</td></tr>
+  <tr><td>\(G = A\,\Omega\)</td><td>étendue: aperture area times accepted solid angle</td></tr>
+  <tr><td>\(\delta,\ \delta_\text{max},\ I(\delta),\ B(\tilde\nu)\)</td><td>optical path difference; its maximum; interferogram; spectrum</td></tr>
+  <tr><td>\(R,\ F,\ \mathcal{F},\ l\)</td><td>(Fabry–Pérot) mirror reflectance; coefficient of finesse; finesse; mirror spacing</td></tr>
+  <tr><td>\(A,\ \varepsilon,\ c,\ \ell,\ s\)</td><td>(absorption) absorbance; molar absorption coefficient; concentration; path length; stray-light fraction</td></tr>
+  <tr><td>\(A_\text{ex},\ A_\text{em}\)</td><td>absorbance of a fluorescence sample at the excitation and emission wavelengths</td></tr>
+  <tr><td>\(\lambda_0,\ \lambda_s\)</td><td>laser and scattered wavelengths in Raman</td></tr>
+  <tr><td>\(n_1,\ n_2,\ \theta,\ d_p\)</td><td>(ATR) crystal and sample indices; angle of incidence; penetration depth</td></tr>
+</table></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2 id="s-refs"><span class="num">22</span>References</h2>
+<ol class="refs">
+  <li>I. Newton, “A letter of Mr. Isaac Newton … containing his new theory about light and colors,” <i>Phil. Trans. R. Soc.</i> <b>6</b>, 3075–3087 (1672).</li>
+  <li>E. Hecht, <i>Optics</i>, 5th ed., Pearson, Harlow (2017).</li>
+  <li>M. Born and E. Wolf, <i>Principles of Optics</i>, 7th ed., Cambridge University Press (1999).</li>
+  <li>SCHOTT AG, <i>Optical Glass — Data Sheets</i> (N-BK7, SF11), Mainz.</li>
+  <li>I. H. Malitson, “Interspecimen comparison of the refractive index of fused silica,” <i>J. Opt. Soc. Am.</i> <b>55</b>, 1205–1209 (1965).</li>
+  <li>I. H. Malitson, “A redetermination of some optical properties of calcium fluoride,” <i>Appl. Opt.</i> <b>2</b>, 1103–1107 (1963).</li>
+  <li>C. Palmer, <i>Diffraction Grating Handbook</i>, 8th ed., MKS Instruments, Rochester, NY (2020).</li>
+  <li>E. G. Loewen and E. Popov, <i>Diffraction Gratings and Applications</i>, Marcel Dekker, New York (1997).</li>
+  <li>J. F. James, <i>Spectrograph Design Fundamentals</i>, Cambridge University Press (2007).</li>
+  <li>P. Jacquinot, “The luminosity of spectrometers with prisms, gratings, or Fabry–Perot etalons,” <i>J. Opt. Soc. Am.</i> <b>44</b>, 761–765 (1954).</li>
+  <li>P. R. Griffiths and J. A. de Haseth, <i>Fourier Transform Infrared Spectrometry</i>, 2nd ed., Wiley, Hoboken (2007).</li>
+  <li>M. Czerny and A. F. Turner, “Über den Astigmatismus bei Spiegelspektrometern,” <i>Z. Phys.</i> <b>61</b>, 792–797 (1930).</li>
+  <li>A. A. Michelson and E. W. Morley, “On the relative motion of the Earth and the luminiferous ether,” <i>Am. J. Sci.</i> <b>34</b>, 333–345 (1887).</li>
+  <li>J. W. Cooley and J. W. Tukey, “An algorithm for the machine calculation of complex Fourier series,” <i>Math. Comput.</i> <b>19</b>, 297–301 (1965).</li>
+  <li>C. Fabry and A. Pérot, “Théorie et applications d'une nouvelle méthode de spectroscopie interférentielle,” <i>Ann. Chim. Phys.</i> (7) <b>16</b>, 115–144 (1899).</li>
+  <li>H. A. Rowland, “On concave gratings for optical purposes,” <i>Am. J. Sci.</i> (3) <b>26</b>, 87–98 (1883).</li>
+  <li>G. R. Harrison, “The production of diffraction gratings: II. The design of echelle gratings and spectrographs,” <i>J. Opt. Soc. Am.</i> <b>39</b>, 522–528 (1949).</li>
+  <li>J. R. Lakowicz, <i>Principles of Fluorescence Spectroscopy</i>, 3rd ed., Springer, New York (2006).</li>
+  <li>ASTM E387, <i>Standard Test Method for Estimating Stray Radiant Power Ratio of Dispersive Spectrophotometers by the Opaque Filter Method</i>, ASTM International, West Conshohocken, PA.</li>
+  <li>N. J. Harrick, <i>Internal Reflection Spectroscopy</i>, Interscience, New York (1967).</li>
+  <li>R. L. McCreery, <i>Raman Spectroscopy for Chemical Analysis</i>, Wiley, New York (2000).</li>
+  <li>ASTM E1840, <i>Standard Guide for Raman Shift Standards for Spectrometer Calibration</i>, ASTM International, West Conshohocken, PA.</li>
+  <li>A. Kramida, Yu. Ralchenko, J. Reader and NIST ASD Team, <i>NIST Atomic Spectra Database</i>, National Institute of Standards and Technology, Gaithersburg, MD.</li>
+  <li>I. C. Chang, “Noncollinear acousto-optic filter with large angular aperture,” <i>Appl. Phys. Lett.</i> <b>25</b>, 370–372 (1974).</li>
+</ol>
+
+<hr>
+<p>The figures evaluate the equations in the text: Snell's law with Sellmeier indices, the grating equation, scalar
+blaze efficiencies, slit and pixel convolution, the cosine transform of an interferogram, the Airy function, the
+Beer–Lambert law with bandwidth and stray light, the inner-filter correction, the ATR penetration depth and a
+least-squares calibration. Corrections and questions are welcome at
+<a href="mailto:rakesh_n@cpqct.iitr.ac.in">rakesh_n@cpqct.iitr.ac.in</a>.</p>
+
+<p><a href="blog.html">← Back to the Lab Notebook</a> · <a href="blog-optics-basics.html">Light from first principles →</a> · <a href="blog-spectroscopy.html">Vibrational spectroscopy, plasmonics and SERS →</a></p>
+<nav class="series-nav sn-bottom" aria-label="Reading path"><span class="sn-step">Reading path · Part 2 of 10</span><a class="sn-prev" href="blog-optics-basics.html">← Part 1 · Light from first principles</a><a class="sn-next" href="blog-spectroscopy.html">Part 3 · Vibrational spectroscopy, plasmonics and SERS →</a><a class="sn-all" href="blog.html#reading-path">All parts</a></nav>
+
+</div>
+</div>
+</article>
+
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:16px">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="13" fill="#171026"/>
+            <path d="M6 46C14 46 15 24 20 24s6 22 11 22 5-32 11-32 6 32 16 32" fill="none" stroke="#e0a82e" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Rakesh<em>Naik</em>
+        </a>
+        <p class="footer-note">Reading molecules by the light they scatter — SERS, plasmonic biosensing and machine learning at the Centre for Photonics and Quantum Communication Technology, IIT Roorkee.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="footer-links">
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="media.html">Lab2Life</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul class="footer-links">
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNSpectra_X/" target="_blank" rel="noopener noreferrer">RNSpectraX suite</a></li>
+          <li><a href="https://rakeshnaik1109-cloud.github.io/RNBeamX/" target="_blank" rel="noopener noreferrer">RNBeamX setup designer</a></li>
+          <li><a href="https://scholar.google.com/citations?user=xDMzlr0AAAAJ&hl=en" rel="me noopener noreferrer" target="_blank">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-1391-607X" rel="me noopener noreferrer" target="_blank">ORCID</a></li>
+          <li><a href="https://www.linkedin.com/in/albertrakesh/" rel="me noopener noreferrer" target="_blank">LinkedIn</a></li>
+          <li><a href="CV.pdf" rel="noopener noreferrer" target="_blank">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span data-year>2026</span> Rakesh Naik · IIT Roorkee</span>
+      <span>Built by hand. No cookies; only anonymous visit counts (GoatCounter).</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js?v=20261107a"></script>
+<script src="js/blog/vl-core.js?v=20261107a"></script>
+<script src="js/blog/spm-figs.js?v=20261109b"></script>
+<script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
+<script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
