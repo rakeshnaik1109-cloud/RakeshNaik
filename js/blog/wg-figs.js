@@ -149,8 +149,8 @@
         s += arrow(tpx, 200, tpy, 200, C.text, 1.4) + txt((tpx + tpy) / 2, 194, 'delay δ', C.text, 11, 'middle');
       }
       host.innerHTML = s + '</svg>';
-      var psi = 0.5 * Math.atan2(2 * A * B * Math.cos(dl), A * A - B * B) * 180 / Math.PI, chi = 0.5 * Math.asin(Math.max(-1, Math.min(1, 2 * A * B * Math.sin(dl)))) * 180 / Math.PI;
-      var kind = Math.abs(chi) < 0.5 ? 'linear' : Math.abs(Math.abs(chi) - 45) < 0.5 ? 'circular' : 'elliptical', hand = Math.abs(chi) < 0.5 ? ' — the tip moves back and forth on a line' : (chi > 0 ? ' — left-handed: anticlockwise as you look towards the source' : ' — right-handed: clockwise as you look towards the source');
+      var psi = 0.5 * Math.atan2(2 * A * B * Math.cos(dl), A * A - B * B) * 180 / Math.PI, chi = -0.5 * Math.asin(Math.max(-1, Math.min(1, 2 * A * B * Math.sin(dl)))) * 180 / Math.PI;
+      var kind = Math.abs(chi) < 0.5 ? 'linear' : Math.abs(Math.abs(chi) - 45) < 0.5 ? 'circular' : 'elliptical', hand = Math.abs(chi) < 0.5 ? ' — the tip moves back and forth on a line' : (chi > 0 ? ' — right-handed: clockwise as you look towards the source' : ' — left-handed: anticlockwise as you look towards the source');
       read.innerHTML = '<div><b>' + kind + '</b><span>polarisation' + hand + '</span></div><div><b>' + psi.toFixed(1) + '°</b><span>tilt ψ of the long axis of the path</span></div><div><b>' + chi.toFixed(1) + '°</b><span>roundness χ: 0° line, ±45° circle</span></div><div><b>(' + A.toFixed(2) + ', ' + B.toFixed(2) + ' e^{i' + Math.round(dl * 180 / Math.PI) + '°})</b><span>Jones vector</span></div>';
     };
     var ang = VL.slider(ctl, { label: 'Amplitude split θ', min: 0, max: 90, step: 1, value: 45, fmt: function (v) { return v + '°'; }, on: draw });
@@ -174,11 +174,11 @@
   function cadd(a, b) { return [a[0] + b[0], a[1] + b[1]]; }
   var JIN = { H: [[1, 0], [0, 0]], V: [[0, 0], [1, 0]], D: [[Math.SQRT1_2, 0], [Math.SQRT1_2, 0]], A: [[Math.SQRT1_2, 0], [-Math.SQRT1_2, 0]], R: [[Math.SQRT1_2, 0], [0, -Math.SQRT1_2]], L: [[Math.SQRT1_2, 0], [0, Math.SQRT1_2]] };
   var JNAME = { H: 'horizontal (H)', V: 'vertical (V)', D: 'diagonal +45° (D)', A: 'anti-diagonal −45° (A)', R: 'right circular (R)', L: 'left circular (L)' };
-  var stokes = function (J) { var ex = J[0], ey = J[1], s0 = cabs2(ex) + cabs2(ey), s1 = cabs2(ex) - cabs2(ey), p = cmul([ex[0], -ex[1]], ey); return [s0, s1, 2 * p[0], 2 * p[1]]; };
+  var stokes = function (J) { var ex = J[0], ey = J[1], s0 = cabs2(ex) + cabs2(ey), s1 = cabs2(ex) - cabs2(ey), p = cmul([ex[0], -ex[1]], ey); return [s0, s1, 2 * p[0], -2 * p[1]]; };
   var describe = function (J) {
     var S = stokes(J); if (S[0] < 1e-6) return { I: 0, txt: 'blocked (no light)' };
     var psi = 0.5 * Math.atan2(S[2], S[1]) * 180 / Math.PI, chi = 0.5 * Math.asin(Math.max(-1, Math.min(1, S[3] / S[0]))) * 180 / Math.PI;
-    var kind = Math.abs(chi) < 0.5 ? 'linear ' + (Math.abs(psi) < 0.5 ? '0° (H)' : Math.abs(Math.abs(psi) - 90) < 0.5 ? '90° (V)' : psi.toFixed(1) + '°') : Math.abs(Math.abs(chi) - 45) < 0.5 ? (chi > 0 ? 'left circular' : 'right circular') : (chi > 0 ? 'left' : 'right') + ' elliptical, axis ' + psi.toFixed(0) + '°';
+    var kind = Math.abs(chi) < 0.5 ? 'linear ' + (Math.abs(psi) < 0.5 ? '0° (H)' : Math.abs(Math.abs(psi) - 90) < 0.5 ? '90° (V)' : psi.toFixed(1) + '°') : Math.abs(Math.abs(chi) - 45) < 0.5 ? (chi > 0 ? 'right circular' : 'left circular') : (chi > 0 ? 'right' : 'left') + ' elliptical, axis ' + psi.toFixed(0) + '°';
     return { I: S[0], txt: kind, S: S, psi: psi, chi: chi };
   };
   var JPRESETS = {
@@ -222,7 +222,7 @@
       var ring = function (f, dash) { var p = []; for (var q = 0; q <= 90; q++) { var t = 2 * Math.PI * q / 90, v = f(t), r = Pp(v[0], v[1], v[2]); p.push(r[0].toFixed(1) + ' ' + r[1].toFixed(1)); } return '<path d="M ' + p.join(' L ') + '" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1"' + (dash ? ' stroke-dasharray="3 3"' : '') + '/>'; };
       s += '<circle cx="' + cxs + '" cy="' + cys + '" r="' + rs + '" fill="rgba(69,191,214,.05)" stroke="rgba(255,255,255,.35)"/>';
       s += ring(function (t) { return [Math.cos(t), Math.sin(t), 0]; }) + ring(function (t) { return [Math.cos(t), 0, Math.sin(t)]; }, true) + ring(function (t) { return [0, Math.cos(t), Math.sin(t)]; }, true);
-      [[1, 0, 0, 'H'], [-1, 0, 0, 'V'], [0, 1, 0, 'D'], [0, -1, 0, 'A'], [0, 0, 1, 'L'], [0, 0, -1, 'R']].forEach(function (a) { var p = Pp(a[0] * 1.16, a[1] * 1.16, a[2] * 1.16); s += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="' + C.text2 + '">' + a[3] + '</text>'; });
+      [[1, 0, 0, 'H'], [-1, 0, 0, 'V'], [0, 1, 0, 'D'], [0, -1, 0, 'A'], [0, 0, 1, 'R'], [0, 0, -1, 'L']].forEach(function (a) { var p = Pp(a[0] * 1.16, a[1] * 1.16, a[2] * 1.16); s += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="' + C.text2 + '">' + a[3] + '</text>'; });
       s += '<text x="' + cxs + '" y="22" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" font-weight="600" fill="' + C.text2 + '">Poincaré sphere</text>';
       var prev = null;
       states.forEach(function (J, i) { var d = describe(J); if (d.I < 1e-6) { prev = null; return; } var S = d.S, p = Pp(S[1] / S[0], S[2] / S[0], S[3] / S[0]);

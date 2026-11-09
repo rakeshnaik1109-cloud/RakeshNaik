@@ -274,8 +274,8 @@ $$\mathbf J = \begin{pmatrix}E_x\\ E_y\end{pmatrix} = E_0\begin{pmatrix}\cos\the
 amplitudes and \(\delta\) the phase difference between \(E_y\) and \(E_x\). The tip of \(\mathbf E\) traces a line if
 \(\delta = 0\) or \(\pi\) (<b>linear</b> polarisation), a circle if \(\theta = 45°\) and \(\delta = \pm 90°\) (<b>circular</b>), and an
 ellipse otherwise. The orientation \(\psi\) of its major axis and its ellipticity angle \(\chi\) (\(\tan\chi\) = minor/major axis
-ratio, signed by the sense of rotation) follow from</p>
-$$\tan 2\psi = \tan 2\theta\,\cos\delta, \qquad \sin 2\chi = \sin 2\theta\,\sin\delta .$$
+ratio, positive for right-handed light, which rotates clockwise as you look towards the source) follow from</p>
+$$\tan 2\psi = \tan 2\theta\,\cos\delta, \qquad \sin 2\chi = -\sin 2\theta\,\sin\delta .$$
 
 <figure class="fig" data-fig="pol">
   <div class="fig-tag">Figure 3 · <span class="live">Interactive</span></div>
@@ -378,7 +378,8 @@ each one — as the path of the field vector and as a point on the Poincaré sph
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>A polarisation bench in Jones calculus.</b> Each panel shows the path of the electric-field vector after one
   more element, with the field vector moving around it during an optical period; the intensity and state are written below.
-  On the Poincaré sphere (right) each state is a point: linear states on the equator, circular states at the poles. Choose
+  On the Poincaré sphere (right) each state is a point: linear states on the equator, circular states at the poles (right
+  circular R at the top, left circular L at the bottom). Choose
   an example — Malus's law, three polarisers, half- and quarter-wave plates, a liquid-crystal pixel, two kinds of isolator —
   or set the elements yourself.</figcaption>
 </figure>
@@ -387,13 +388,14 @@ each one — as the path of the field vector and as a point on the Poincaré sph
 <p>Jones vectors describe light that is <i>fully</i> polarised. Sunlight, LEDs and light scattered from tissue are partly or
 completely unpolarised: the relative phase wanders randomly faster than any detector can follow. Such light is described by
 the four <b>Stokes parameters</b>, which are measurable intensities [26]:</p>
-$$S_0 = I_x + I_y, \quad S_1 = I_x - I_y, \quad S_2 = I_{+45} - I_{-45}, \quad S_3 = I_L - I_R ,$$
-<p>where \(I_x\), \(I_y\), \(I_{\pm45}\) are the intensities transmitted by polarisers at 0°, 90°, ±45°, and \(I_L\), \(I_R\) those of left and
-right circular analysers. For fully polarised light \(S_0^2 = S_1^2 + S_2^2 + S_3^2\), and from the Jones vector
-\(S_1 = |E_x|^2 - |E_y|^2\), \(S_2 = 2\,\mathrm{Re}(E_x^*E_y)\), \(S_3 = 2\,\mathrm{Im}(E_x^*E_y)\). In general the <b>degree of
+$$S_0 = I_x + I_y, \quad S_1 = I_x - I_y, \quad S_2 = I_{+45} - I_{-45}, \quad S_3 = I_R - I_L ,$$
+<p>where \(I_x\), \(I_y\), \(I_{\pm45}\) are the intensities transmitted by polarisers at 0°, 90°, ±45°, and \(I_R\), \(I_L\) those of right and
+left circular analysers. For fully polarised light \(S_0^2 = S_1^2 + S_2^2 + S_3^2\), and from the Jones vector
+\(S_1 = |E_x|^2 - |E_y|^2\), \(S_2 = 2\,\mathrm{Re}(E_x^*E_y)\), \(S_3 = -2\,\mathrm{Im}(E_x^*E_y)\) (the minus sign comes from the \(e^{i(kz-\omega t)}\) convention used here). In general the <b>degree of
 polarisation</b> is \(P = \sqrt{S_1^2 + S_2^2 + S_3^2}/S_0\), between 0 (unpolarised) and 1.</p>
 <p>The normalised vector \((S_1, S_2, S_3)/S_0\) is a point on (or, for partial polarisation, inside) the <b>Poincaré sphere</b>.
-Linear states lie on the equator (H and V opposite, D and A between them), circular states at the poles, elliptical states in
+Linear states lie on the equator (H and V opposite, D and A between them), circular states at the poles — right circular at
+the north pole (\(S_3 = +S_0\)), left circular at the south pole — elliptical states in
 between, and orthogonal states at opposite ends of a diameter. Its coordinates are the ellipse angles of the start of this
 section: longitude \(2\psi\), latitude \(2\chi\). Every wave plate is a <b>rotation of the sphere</b> by its retardance \(\Gamma\) about the
 axis through its fast-axis state — which makes the effect of any sequence of plates easy to picture. Elements that
@@ -414,8 +416,10 @@ through non-depolarising elements they give the same result as Jones matrices.</
 <p>Whether a state is called “right” or “left” circular depends on two choices: the sign in the wave's phase
 (\(e^{i(kz-\omega t)}\), used here, or \(e^{i(\omega t - kz)}\), common in engineering and in many optics books), and whether the
 rotation is judged looking towards the source or along the direction of travel. With the convention of this article, a
-state with \(\delta = +90°\) rotates counter-clockwise when viewed facing the source, has \(S_3 &gt; 0\), and is called left circular.
-Other texts call the same state right circular. When it matters — in chiral spectroscopy, circular dichroism, or
+state with \(\delta = +90°\) rotates counter-clockwise when viewed facing the source and is called left circular; it has
+\(S_3 &lt; 0\) and sits at the south pole of the Poincaré sphere. Right circular (clockwise, \(\delta = -90°\)) is at the north
+pole, as in Born &amp; Wolf and most optics texts. Engineering texts that judge the rotation along the direction of travel call
+these same states by the opposite names. When it matters — in chiral spectroscopy, circular dichroism, or
 specifying a component — state the convention, or give the Jones vector and the sign of the phase.</p></div>
 
 <!-- ═══════════════════════════════════════════════════════════ -->
@@ -1071,7 +1075,7 @@ Drude models, coupled-mode theory, the Marcuse mode-field formula). Corrections 
 
 <script src="js/site.js?v=20261107a"></script>
 <script src="js/blog/vl-core.js?v=20261107a"></script>
-<script src="js/blog/wg-figs.js?v=20261107a"></script>
+<script src="js/blog/wg-figs.js?v=20261109a"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
