@@ -648,7 +648,7 @@ plasmons are sharper [24].</p>
   <div class="fig-tag">Figure 12 · <span class="live">Interactive</span></div>
   <noscript><p>This interactive figure needs JavaScript.</p></noscript>
   <figcaption><b>Permittivity of gold and silver</b>, measured (Johnson & Christy [24]) and a simple Drude
-  model. Re ε crosses −2ε<sub>m</sub> (the dashed line, for water) where a small sphere resonates
+  model. Re ε crosses −2ε<sub>d</sub> (the dashed line, for water) where a small sphere resonates
   (section 12). The Drude curve fits Im ε in the red and near-infrared but not gold's interband
   absorption in the blue.</figcaption>
 </figure>
@@ -705,26 +705,26 @@ measures binding at the surface, not the bulk solution.</p>
 <p>A sphere of radius \(R \ll \lambda\) sees a field that is uniform across it at any instant. Solving
 Laplace's equation with the boundary conditions gives a uniform field inside and, outside, the
 incident field plus that of a point dipole with polarisability [22, 23]</p>
-$$\alpha = 4\pi R^3\,\frac{\varepsilon - \varepsilon_m}{\varepsilon + 2\varepsilon_m}$$
+$$\alpha = 4\pi R^3\,\frac{\varepsilon - \varepsilon_d}{\varepsilon + 2\varepsilon_d}$$
 <p>Here \(\alpha\) is the particle's polarisability (in units of volume: the induced dipole is
-\(\varepsilon_0\varepsilon_m\alpha E_0\)), \(R\) its radius, \(\lambda\) the wavelength, \(\varepsilon(\omega)\) the metal's
-dielectric function and — note the change of meaning from section 11 — \(\varepsilon_m\) now the permittivity of
-the surrounding <b>medium</b> (\(\varepsilon_m = n_m^2\), 1.78 for water). The denominator vanishes — the response becomes resonant — when</p>
-$$\boxed{\;\mathrm{Re}\,\varepsilon(\omega) = -2\varepsilon_m\;}\qquad\text{(the Fröhlich condition)}$$
+\(\varepsilon_0\varepsilon_d\alpha E_0\)), \(R\) its radius, \(\lambda\) the wavelength, \(\varepsilon(\omega)\) the metal's
+dielectric function and \(\varepsilon_d\) the permittivity of the surrounding <b>medium</b>, as for the
+surface plasmon in section 11 (\(\varepsilon_d = n_d^2\), 1.78 for water). The denominator vanishes — the response becomes resonant — when</p>
+$$\boxed{\;\mathrm{Re}\,\varepsilon(\omega) = -2\varepsilon_d\;}\qquad\text{(the Fröhlich condition)}$$
 <p>which for gold in water happens near 520–530 nm and for silver near 400 nm. Absorption and scattering
 follow from the dipole:</p>
 $$C_\text{ext} = k\,\mathrm{Im}\,\alpha, \qquad C_\text{sca} = \frac{k^4}{6\pi}|\alpha|^2, \qquad C_\text{abs} = C_\text{ext} - C_\text{sca}$$
 <p>where \(C_\text{ext}\), \(C_\text{sca}\) and \(C_\text{abs}\) are the extinction, scattering and absorption
 <i>cross-sections</i> (the area of the beam the particle removes, scatters or absorbs) and
 \(k = 2\pi n_m/\lambda\) the wavevector in the medium. Scattering grows as R⁶ and absorption as R³: small particles absorb (and heat), large ones scatter
-(and glow in dark-field microscopes). Because the resonance condition contains ε<sub>m</sub>, the peak
+(and glow in dark-field microscopes). Because the resonance condition contains ε<sub>d</sub>, the peak
 shifts to the red as the surrounding refractive index increases — the basis of LSPR sensing.</p>
 
 <h3>Beyond quasi-statics: Mie theory</h3>
 <p>For larger particles the field varies across the particle; retardation shifts the resonance to the
 red, broadens it, and allows quadrupole and higher modes. Gustav Mie solved the sphere exactly in 1908
 by expanding the fields in vector spherical harmonics [28, 29]:</p>
-$$Q_\text{ext} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\,\mathrm{Re}(a_n + b_n), \qquad Q_\text{sca} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\left(|a_n|^2 + |b_n|^2\right), \qquad x = \frac{2\pi n_m R}{\lambda}$$
+$$Q_\text{ext} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\,\mathrm{Re}(a_n + b_n), \qquad Q_\text{sca} = \frac{2}{x^2}\sum_{n=1}^{\infty}(2n+1)\left(|a_n|^2 + |b_n|^2\right), \qquad x = \frac{2\pi n_d R}{\lambda}$$
 <p>Here \(Q_\text{ext}\) and \(Q_\text{sca}\) are <i>efficiencies</i> — cross-sections divided by the geometric
 cross-section \(\pi R^2\); \(x\) is the size parameter, with \(n_m\) the refractive index of the medium; the sum
 runs over multipole orders \(n\) (1 = dipole, 2 = quadrupole, …); and \(a_n\), \(b_n\) are the electric and
@@ -743,7 +743,7 @@ exactly, with the measured optical constants of gold and silver.</p>
 
 <h3>The near field and hot spots</h3>
 <p>Just outside the sphere, on the axis of polarisation, the field is
-\(E = E_0(1 + 2g)\) with \(g = (\varepsilon - \varepsilon_m)/(\varepsilon + 2\varepsilon_m)\). At resonance |g| is
+\(E = E_0(1 + 2g)\) with \(g = (\varepsilon - \varepsilon_d)/(\varepsilon + 2\varepsilon_d)\). At resonance |g| is
 large (limited only by Im ε), so the intensity is enhanced tens of times for gold and hundreds of times
 for silver — and the enhancement falls off with distance as \((R/(R+d))^3\) in field.</p>
 
@@ -883,7 +883,7 @@ comparison with a measured spectrum.</p>
   <tr><td>Silent region</td><td>≈ 1800–2800 cm⁻¹: no bands from common biomolecules</td></tr>
   <tr><td>Plasma frequency ωp</td><td>natural frequency of the free-electron gas</td></tr>
   <tr><td>SPP / LSP</td><td>surface plasmon polariton (propagating) / localized surface plasmon (particle)</td></tr>
-  <tr><td>Fröhlich condition</td><td>Re ε = −2εm: resonance of a small sphere</td></tr>
+  <tr><td>Fröhlich condition</td><td>Re ε = −2ε<sub>d</sub>: resonance of a small sphere in a medium of permittivity ε<sub>d</sub></td></tr>
   <tr><td>Hot spot</td><td>region (usually a gap or tip) of very strong field enhancement</td></tr>
   <tr><td>EF, AEF, SSEF</td><td>SERS enhancement factor; analytical; substrate</td></tr>
 </table></div>
@@ -990,7 +990,7 @@ silver are from Johnson & Christy [24]. Corrections and questions are welcome at
 
 <script src="js/site.js?v=20261107a"></script>
 <script src="js/blog/vl-core.js?v=20261107a"></script>
-<script src="js/blog/sp-figs.js?v=20261107a"></script>
+<script src="js/blog/sp-figs.js?v=20261109a"></script>
 <script>window.goatcounter = { path: function (p) { return p.replace(/index\.html$/, ''); } };</script>
 <script data-goatcounter="https://rakeshnaik.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

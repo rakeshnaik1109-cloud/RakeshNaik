@@ -227,7 +227,7 @@
       var e = ls.map(function (l) { return epsAt(m, l); });
       plot.innerHTML = VL.plot({ id: 'drR', w: 700, h: 260, label: 'Real part of permittivity', x: { min: 300, max: 1200, label: 'Wavelength (nm)' }, y: { min: -70, max: 10, label: 'Re ε' },
         series: [{ data: ls.map(function (l, i) { return [l, e[i][0]]; }), color: C.au, label: m + ' measured (Johnson & Christy)' }, { data: ls.map(function (l) { return [l, dr(l)[0]]; }), color: C.cyan, dash: '6 4', label: 'Drude model' }],
-        hlines: [{ y: -2 * 1.77, color: C.red, label: 'Re ε = −2 εm (water): sphere resonance', dash: '3 3' }], legend: true, legendX: 20, legendY: 150 }) +
+        hlines: [{ y: -2 * 1.77, color: C.red, label: 'Re ε = −2 ε_d (water): sphere resonance', dash: '3 3' }], legend: true, legendX: 20, legendY: 150 }) +
         VL.plot({ id: 'drI', w: 700, h: 220, label: 'Imaginary part of permittivity', x: { min: 300, max: 1200, label: 'Wavelength (nm)' }, y: { min: 0, max: 8, label: 'Im ε (losses)' },
         series: [{ data: ls.map(function (l, i) { return [l, e[i][1]]; }), color: C.au, label: 'measured' }, { data: ls.map(function (l) { return [l, dr(l)[1]]; }), color: C.cyan, dash: '6 4', label: 'Drude (free electrons only)' }],
         bands: m === 'Au' ? [{ x0: 300, x1: 520, color: C.red, op: .1, label: 'interband' }] : [{ x0: 300, x1: 330, color: C.red, op: .1, label: '' }], legend: true, legendX: 430, legendY: 20 });
@@ -291,7 +291,7 @@
       }
       g.putImageData(img, 0, 0);
       g.strokeStyle = '#fff'; g.lineWidth = 2; g.beginPath(); g.moveTo(40, H - 30); g.lineTo(40, H - 90); g.stroke(); g.beginPath(); g.moveTo(40, H - 96); g.lineTo(34, H - 84); g.lineTo(46, H - 84); g.closePath(); g.fillStyle = '#fff'; g.fill(); g.font = '12px IBM Plex Mono'; g.fillText('E₀', 50, H - 60);
-      read.innerHTML = '<div><b>' + mx.toFixed(1) + '</b><span>|E|²/|E₀|² at the poles = |1 + 2g|²</span></div><div><b>' + VL.sci(mx * mx, 2) + '</b><span>|E|⁴ — the SERS enhancement there</span></div><div><b>' + 'g = ' + gq[0].toFixed(2) + (gq[1] >= 0 ? ' + ' : ' − ') + Math.abs(gq[1]).toFixed(2) + 'i</b><span>(ε − εm)/(ε + 2εm)</span></div>';
+      read.innerHTML = '<div><b>' + mx.toFixed(1) + '</b><span>|E|²/|E₀|² at the poles = |1 + 2g|²</span></div><div><b>' + VL.sci(mx * mx, 2) + '</b><span>|E|⁴ — the SERS enhancement there</span></div><div><b>' + 'g = ' + gq[0].toFixed(2) + (gq[1] >= 0 ? ' + ' : ' − ') + Math.abs(gq[1]).toFixed(2) + 'i</b><span>(ε − ε_d)/(ε + 2ε_d)</span></div>';
     };
     var ms = VL.select(ctl, { label: 'Metal', value: 'Au', options: [['Au', 'Gold'], ['Ag', 'Silver']], on: draw });
     var ls = VL.slider(ctl, { label: 'Wavelength', min: 350, max: 900, step: 1, value: 520, fmt: function (v) { return v + ' nm'; }, on: draw });
